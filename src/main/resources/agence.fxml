@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="204.0" prefWidth="214.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.Age">
+   <children>
+      <VBox fx:id="agevbox" prefHeight="290.0" prefWidth="382.0" style="-fx-background-color: #051B46;" styleClass="show-box" stylesheets="@style/styleafficher.css">
+         <children>
+            <Label fx:id="nom" alignment="CENTER" prefHeight="52.0" prefWidth="390.0" text="Crepe Factory" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <VBox prefHeight="226.0" prefWidth="382.0">
+               <children>
+                  <HBox prefHeight="22.0" prefWidth="306.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Adress : ">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="adress" text="Label" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="22.0" prefWidth="306.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Email : ">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="email" text="Label" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="22.0" prefWidth="306.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Phone : ">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="phone" text="Label" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="22.0" prefWidth="306.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Creation Date : ">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="creation" text="Label" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="62.0" prefWidth="382.0">
+                     <children>
+                        <Button fx:id="Rateus" mnemonicParsing="false" prefHeight="44.0" prefWidth="118.0" style="-fx-background-color: #2CA2FB;" styleClass="ajouter-button" text="Rate us" textAlignment="CENTER" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="55.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="reviews" mnemonicParsing="false" prefHeight="49.0" prefWidth="118.0" style="-fx-background-color: #2CA2FB;" styleClass="ajouter-button" text="Reviews" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="33.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="11.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

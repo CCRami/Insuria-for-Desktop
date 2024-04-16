@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="778.0" prefWidth="1171.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficheravisbackbyagence">
+    <children>
+        <AnchorPane layoutX="433.0" layoutY="176.0" prefHeight="598.0" prefWidth="808.0" stylesheets="@style/dashboardDesign.css">
+            <styleClass>
+                <String fx:value="white-bg" />
+                <String fx:value="shadow" />
+            </styleClass>
+
+            <children>
+                <TableView fx:id="tab" layoutX="11.0" layoutY="61.0" prefHeight="530.0" prefWidth="786.0">
+                    <columns>
+                        <TableColumn fx:id="agenceav_id" prefWidth="185.60003662109375" text="Agency " />
+                        <TableColumn fx:id="avis_id" prefWidth="173.5999755859375" text="Client" />
+                        <TableColumn fx:id="note" prefWidth="167.20001220703125" text="Rating" />
+                        <TableColumn fx:id="commentaire" minWidth="7.199951171875" prefWidth="132.79998779296875" text="Comment" />
+                        <TableColumn fx:id="date_avis" prefWidth="125.5999755859375" text="creation date" />
+
+
+                    </columns>
+                </TableView>
+                <TextField fx:id="addEmployee_search" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="277.0" promptText="Search" styleClass="search" stylesheets="@style/dashboardDesign.css" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="254.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
+            <children>
+                <Label layoutX="77.0" layoutY="92.0" text="Total Agencies" textFill="WHITE">
+                    <font>
+                        <Font name="Tahoma" size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="home_totalEmployees" alignment="CENTER_RIGHT" layoutX="87.0" layoutY="14.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="25.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="611.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
+            <children>
+                <Label layoutX="77.0" layoutY="97.0" text="Total Reviews" textFill="WHITE">
+                    <font>
+                        <Font name="Tahoma" size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="home_totalAvis" alignment="CENTER_RIGHT" layoutX="87.0" layoutY="19.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="25.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="39.0" layoutY="176.0" prefHeight="598.0" prefWidth="378.0" stylesheets="@style/dashboardDesign.css">
+            <styleClass>
+                <String fx:value="white-bg" />
+                <String fx:value="shadow" />
+            </styleClass>
+            <children>
+                <AnchorPane layoutX="2.0" layoutY="6.0" prefHeight="518.0" prefWidth="374.0">
+                    <children>
+                        <TextField fx:id="AVAge" disable="true" layoutX="124.0" layoutY="63.0" prefHeight="26.0" prefWidth="207.0" styleClass="search" stylesheets="@style/dashboardDesign.css" />
+                        <TextField fx:id="AVclient" disable="true" layoutX="124.0" layoutY="116.0" prefHeight="26.0" prefWidth="207.0" styleClass="search" stylesheets="@style/dashboardDesign.css" AnchorPane.bottomAnchor="376.0" />
+                        <TextField fx:id="AVnote" disable="true" layoutX="124.0" layoutY="169.0" prefHeight="26.0" prefWidth="207.0" styleClass="search" stylesheets="@style/dashboardDesign.css" AnchorPane.bottomAnchor="323.0" />
+                        <TextField fx:id="AVdate" disable="true" layoutX="124.0" layoutY="476.0" prefHeight="26.0" prefWidth="207.0" styleClass="search" stylesheets="@style/dashboardDesign.css" AnchorPane.topAnchor="476.0" />
+                        <Text layoutX="46.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comment" />
+                        <Text layoutX="46.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Client" />
+                        <Text layoutX="50.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creation" />
+                        <Text layoutX="45.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agency" />
+                        <Text layoutX="48.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" wrappingWidth="47.27813720703125" />
+                        <Text fx:id="errorEmail" fill="RED" layoutX="125.0" layoutY="245.0" wrappingWidth="190.4000244140625" />
+                        <Text fx:id="errorPhone" fill="RED" layoutX="130.0" layoutY="308.0" wrappingWidth="195.20001220703136" />
+                        <Text layoutX="136.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Details">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                        </Text>
+                  <TextArea fx:id="AVcommentaire" disable="true" layoutX="124.0" layoutY="232.0" prefHeight="200.0" prefWidth="207.0" scrollLeft="2.0" scrollTop="5.0" styleClass="search" wrapText="true" />
+                    </children>
+                </AnchorPane>
+                <Button fx:id="supprimer" layoutX="94.0" layoutY="540.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="190.0" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Delete Review" textFill="#f7f5f5" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
