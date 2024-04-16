@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="950.0" style="-fx-background-color: white;" styleClass="right-bar" stylesheets="@style/styleafficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddInsurance">
+    <children>
+        <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0">
+            <left>
+                <VBox alignment="TOP_CENTER" prefHeight="810.0" prefWidth="253.0" style="-fx-background-color: #051B46;" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/logo.png" />
+                            </image>
+                            <VBox.margin>
+                                <Insets bottom="60.0" top="40.0" />
+                            </VBox.margin>
+                        </ImageView>
+                        <HBox spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                            <children>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@images/analyse.png" />
+                                    </image>
+                                </ImageView>
+                                <Label text="Dashboard" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                            <children>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@images/homme.png" />
+                                    </image>
+                                </ImageView>
+                                <Label text="Utilisateur" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                            <children>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@images/probleme.png" />
+                                    </image>
+                                </ImageView>
+                                <Label text="Reclamation" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                            <children>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@images/produit.png" />
+                                    </image>
+                                </ImageView>
+                                <Label text="Produits" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets left="20.0" right="20.0" />
+                    </padding>
+                </VBox>
+            </left>
+
+            <center>
+
+                <VBox fx:id="vboxdash" alignment="CENTER_RIGHT" prefHeight="810.0" prefWidth="1062.0">
+                    <children>
+
+                        <HBox prefHeight="643.0" prefWidth="778.0" styleClass="search-box" stylesheets="@style/styleafficher.css">
+
+
+                            <VBox alignment="CENTER" prefHeight="546.0" prefWidth="363.0">
+
+                                <VBox alignment="TOP_CENTER" prefHeight="93.0" prefWidth="363.0">
+                                    <children>
+
+                                        <Text fill="#ff9b49" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a new Insurance" textAlignment="CENTER" wrappingWidth="296.5366973876953">
+                                            <VBox.margin>
+                                                <Insets bottom="44.0" left="33.0" top="55.0" />
+                                            </VBox.margin>
+                                            <font>
+                                                <Font name="Lucida Fax Demibold" size="24.0" />
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </VBox>
+
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name of the Insurance" wrappingWidth="188.53669357299805">
+                                    <VBox.margin>
+                                        <Insets left="77.0" />
+                                    </VBox.margin>
+                           <font>
+                              <Font name="Lucida Fax Regular" size="12.0" />
+                           </font>
+                                </Text>
+                                <TextField fx:id="nameins" alignment="TOP_LEFT" prefHeight="34.0" prefWidth="229.0" promptText="enter a name" stylesheets="@style/styleafficher.css">
+                                    <VBox.margin>
+                                        <Insets left="70.0" right="50.0" top="10.0" />
+                                    </VBox.margin>
+                                    <styleClass>
+                                        <String fx:value="search" />
+                                        <String fx:value="shadow" />
+                                    </styleClass>
+                                </TextField>
+                                <!-- Add Text elements for error messages with a default font -->
+                                <Text fx:id="errorNom" fill="RED" wrappingWidth="181.5999755859375">
+                                    <VBox.margin>
+                                        <Insets left="100.0" top="10.0" />
+                                    </VBox.margin>
+                                </Text>
+
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The Base Price Of The Insurance" wrappingWidth="222.93671798706055">
+                                    <VBox.margin>
+                                        <Insets left="77.0" />
+                                    </VBox.margin>
+                                </Text>
+                                <TextField fx:id="amount" prefHeight="34.0" prefWidth="229.0" promptText="enter an address" stylesheets="@style/styleafficher.css">
+                                    <VBox.margin>
+                                        <Insets left="70.0" right="50.0" top="10.0" />
+                                    </VBox.margin>
+                                    <styleClass>
+                                        <String fx:value="search" />
+                                        <String fx:value="shadow" />
+                                    </styleClass>
+                                </TextField>
+
+
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance Image" wrappingWidth="169.33671188354492">
+                                    <VBox.margin>
+                                        <Insets left="77.0" />
+                                    </VBox.margin>
+                                </Text>
+                                <HBox spacing="10.0">
+                                    <ImageView fx:id="insuranceImageView" />
+                                    <Label fx:id="selectedImageLabel" />
+                                </HBox>
+                                 <Button onAction="#chooseImageAction" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Choose Image" textFill="WHITE" />
+                                <Text fx:id="errorimage" fill="RED" wrappingWidth="190.4000244140625">
+                                    <VBox.margin>
+                                        <Insets left="100.0" top="10.0" />
+                                    </VBox.margin>
+                                </Text>
+
+
+
+
+
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category" wrappingWidth="138.1367301940918">
+                                    <VBox.margin>
+                                        <Insets left="77.0" />
+                                    </VBox.margin>
+                                </Text>
+                                <ComboBox fx:id="categoryComboBox" prefHeight="34.0" prefWidth="229.0" promptText="Select category" stylesheets="@style/styleafficher.css">
+                                    <VBox.margin>
+                                        <Insets left="70.0" right="50.0" top="10.0" />
+                                    </VBox.margin>
+                                    <styleClass>
+                                        <String fx:value="search" />
+                                        <String fx:value="shadow" />
+                                    </styleClass>
+                                </ComboBox>
+
+                                <Text fx:id="errorCategory" fill="RED" wrappingWidth="196.00003051757812">
+                                    <VBox.margin>
+                                        <Insets left="100.0" top="10.0" />
+                                    </VBox.margin>
+                                </Text>
+
+
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Policy" wrappingWidth="105.3366813659668">
+                                    <VBox.margin>
+                                        <Insets left="77.0" />
+                                    </VBox.margin>
+                                </Text>
+                                <ComboBox fx:id="policeComboBox" prefHeight="34.0" prefWidth="229.0" promptText="Select police" stylesheets="@style/styleafficher.css">
+                                    <VBox.margin>
+                                        <Insets left="70.0" right="50.0" top="10.0" />
+                                    </VBox.margin>
+                                    <styleClass>
+                                        <String fx:value="search" />
+                                        <String fx:value="shadow" />
+                                    </styleClass>
+                                </ComboBox>
+
+                                <Text fx:id="errorpolicy" fill="RED" wrappingWidth="196.00003051757812">
+                                    <VBox.margin>
+                                        <Insets left="100.0" top="10.0" />
+                                    </VBox.margin>
+                                </Text>
+                </VBox>
+                            <VBox fx:id="fieldsContainer" alignment="CENTER" spacing="10.0">
+                                <!-- Dynamically added fields will appear here -->
+                            </VBox>
+                <VBox prefHeight="600.0" prefWidth="404.0">
+                    <!-- Save button -->
+                    <Button fx:id="save" mnemonicParsing="false" onAction="#addInsuranceAction" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Enregistrer" textFill="WHITE">
+                        <VBox.margin>
+                            <Insets left="150.0" top="160.0" />
+                        </VBox.margin>
+                        <font>
+                            <Font size="13.0" />
+                        </font>
+                    </Button>
+
+
+
+
+
+                    <Button fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addDynamicField" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Add Field" textFill="WHITE" />
+                                <Text fx:id="errorAmount" fill="RED" wrappingWidth="195.20001220703125">
+                                    <VBox.margin>
+                                        <Insets left="100.0" top="10.0" />
+                                    </VBox.margin>
+                                </Text>
+                </VBox>
+            </HBox>
+    </children>
+</VBox>
+        </center>
+        </BorderPane>
+        </children>
+        </AnchorPane>
