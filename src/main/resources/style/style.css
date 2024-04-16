@@ -1,0 +1,12 @@
+.button{
+    -fx-background-color:#F8C07F;
+    -fx-background-radius:8px;
+    -fx-text-fill:#fff;
+    -fx-font-size:14px;
+    -fx-font-family:"Arial";
+    -fx-cursor:hand;
+}
+
+.button:hover{
+    -fx-background-color:#F34C31;
+}

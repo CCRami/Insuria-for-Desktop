@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.LoginController">
+    <children>
+        <Text layoutX="730.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+        <TextField fx:id="mail" alignment="TOP_CENTER" layoutX="667.0" layoutY="182.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;">
+            <font>
+                <Font name="System Bold Italic" size="12.0" />
+            </font></TextField>
+        <Text layoutX="722.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+        <PasswordField fx:id="password" alignment="TOP_CENTER" layoutX="667.0" layoutY="282.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;">
+            <font>
+                <Font name="System Bold Italic" size="12.0" />
+            </font></PasswordField>
+        <Button fx:id="btn" layoutX="691.0" layoutY="338.0" mnemonicParsing="false" onAction="#login" prefHeight="16.0" prefWidth="107.0" style="-fx-background-color: #990000;" text="login" textFill="#ebe7e7" />
+        <Button fx:id="btnaz" layoutX="703.0" layoutY="410.0" mnemonicParsing="false" onAction="#AjouterUser" opacity="0.6" text="créer compte" textFill="#da1818">
+            <font>
+                <Font name="System Bold" size="11.0" />
+            </font></Button>
+        <Button fx:id="rest" layoutX="659.0" layoutY="374.0" mnemonicParsing="false" onAction="#gotoConfimer" opacity="0.6" prefWidth="169.0" text="mot de paase oublier" textFill="#ab0606" />
+        <AnchorPane prefHeight="676.0" prefWidth="251.0" style="-fx-background-color: #990000;">
+            <children>
+                <Text fill="#f0f0f0" layoutX="41.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO" textOrigin="BOTTOM" wrappingWidth="168.59765625">
+                    <font>
+                        <Font name="ArtifaktElement-Regular" size="26.0" />
+                    </font>
+                </Text>
+                <ImageView fitHeight="88.0" fitWidth="202.0" layoutX="24.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/logo.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="626.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/lock.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="625.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/email-icon.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

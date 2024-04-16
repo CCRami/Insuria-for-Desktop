@@ -1,0 +1,50 @@
+.search-box{
+    -fx-background-color:#FFFFFF ;
+    -fx-background-radius: 100;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.search-button{
+    -fx-background-color: #426B1F;
+    -fx-background-radius: 30;
+
+}
+
+.image-button{
+    -fx-background-color: #ecc70b;
+    -fx-background-radius: 30;
+
+}
+
+
+.right-bar{
+    -fx-background-color: #F8C07F;
+}
+
+.shadow {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10.0, 0.0, 0.0, 10.0);
+}
+
+.show-box{
+    -fx-background-color:#FFFFFF ;
+    -fx-background-radius: 80;
+}
+
+.ajouter-button{
+    -fx-background-color: #426B1F;
+    -fx-background-radius: 30;
+
+}
+
+.eco-card{
+    -fx-background-color: #e3e0e0;
+    -fx-background-radius: 30;
+}
+
+.search{
+    -fx-background-color: #fff7f7;
+    -fx-background-radius: 30;
+}
