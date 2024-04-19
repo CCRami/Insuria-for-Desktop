@@ -165,14 +165,6 @@ public class Addoffercat {
         }
     }
 
-    @FXML
-    void showAgence(MouseEvent event) {
 
-    }
-
-    @FXML
-    void showAvisAgence(MouseEvent event) {
-
-    }
 
 }
