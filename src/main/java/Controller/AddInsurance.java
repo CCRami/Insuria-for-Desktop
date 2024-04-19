@@ -21,6 +21,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -168,22 +173,40 @@ public class AddInsurance {
     public void chooseImageAction(ActionEvent actionEvent) {
         // Create a FileChooser
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose Image"); // Set the title of the file chooser dialog
+        fileChooser.setTitle("Choose Image");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif") // Limit selectable files to images
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
         );
 
         // Show the file chooser dialog
-        Stage stage = (Stage) save.getScene().getWindow(); // Assuming save button is in the same stage
+        Stage stage = (Stage) save.getScene().getWindow();
         File selectedFile = fileChooser.showOpenDialog(stage);
 
         // Check if a file was selected
         if (selectedFile != null) {
-            // Create an Image object from the selected file
-            Image image = new Image(selectedFile.toURI().toString());
+            try {
+                // Create the images directory if it doesn't exist
+                File imagesDir = new File("images");
+                if (!imagesDir.exists()) {
+                    imagesDir.mkdir();
+                }
 
-            // Set the Image to the insuranceImageView
-            insuranceImageView.setImage(image);
+                // Copy the selected image file to the images directory
+                Path sourcePath = selectedFile.toPath();
+                Path targetPath = Paths.get("images", selectedFile.getName());
+                Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
+
+                // Load the copied image and display it
+                Image image = new Image(targetPath.toUri().toString());
+                insuranceImageView.setImage(image);
+            } catch (IOException e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Error saving image: " + e.getMessage());
+                alert.showAndWait();
+            }
         }
     }
 

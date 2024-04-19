@@ -1,80 +1,95 @@
 package Controller;
 
+import Entity.Insurance;
 import Entity.InsuranceCategory;
 import Entity.police;
 import Service.InsuranceService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.BorderPane;
-import Entity.Insurance;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ShowInsurance {
 
     @FXML
-    private BorderPane rootPane;
+    private ListView<Insurance> insuranceListView;
 
     @FXML
-    private TableView<Insurance> InsuriaTab;
-
-    @FXML
-    private TableColumn<Insurance, String> nameins;
-
-    @FXML
-    private TableColumn<Insurance, Double> amount;
-    @FXML
-    private TableColumn<Insurance, String> insimage;
-    @FXML
-    private TableColumn<Insurance, ArrayList> doa;
-    @FXML
-    private TableColumn<Insurance, InsuranceCategory> catinsid;
-    @FXML
-    private TableColumn<Insurance, police> polid;
-
-    @FXML
-    private Button addinsurance;
+    private Button addInsuranceButton;
 
     @FXML
     private Button editButton;
 
     @FXML
     private Button deleteButton;
+
     private InsuranceService ins = new InsuranceService();
 
-    //public Insurance insuria = new Insurance(nameins, amount, insimage, doa, catinsid, polid);
-    @FXML
-    private void ajouterButton() {
+    public void initialize() {
+        // Set cell factory for the ListView to display Insurance objects
+        insuranceListView.setCellFactory(param -> new ListCell<Insurance>() {
+            @Override
+            protected void updateItem(Insurance item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null || item.getName_ins() == null) {
+                    setText(null);
+                } else {
+                    // Concatenate all the information into a single string
+                    String displayText = item.getName_ins() + " - " + item.getMontant() + " - " + item.getIns_image() + " - ";
+
+                    // Handle ArrayList doa
+                    ArrayList<String> doaList = item.getDoa();
+                    for (String doa : doaList) {
+                        displayText += doa + ", ";
+                    }
+
+                    // Handle InsuranceCategory and police
+                    displayText += item.getCatins_id() + " - " + item.getPol_id();
+
+                    // Set the text to display in the ListView
+                    setText(displayText);
+                }
+            }
+        });
+
+        // Populate ListView data
         try {
-            // Charger le fichier FXML de la nouvelle page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddInsurance.fxml"));
-            Parent root = loader.load();
-// Assuming you have access to the current scene
-            Scene currentScene = addinsurance.getScene();
-// Set the new root to the current scene
-
-
-            currentScene.setRoot(root);
-
-
-
-        } catch (Exception e) {
+            loadListViewData();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        // Handle ListView selection
+        insuranceListView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                Insurance selectedInsurance = insuranceListView.getSelectionModel().getSelectedItem();
+                // Here you can access the selected insurance attributes and perform any actions
+            }
+        });
     }
-    // You can add constructor or initialize method here if needed
-    private void loadTableData() {
+
+    private void loadListViewData() throws SQLException {
         ObservableList<Insurance> data = FXCollections.observableArrayList(ins.getAllInsurances());
-        InsuriaTab.setItems(data);
+        insuranceListView.setItems(data);
     }
 
+    @FXML
+    private void addInsuranceButtonClicked() {
+        // Handle add insurance button action here
+    }
 
+    @FXML
+    private void editButtonClicked() {
+        // Handle edit button action here
+    }
+
+    @FXML
+    private void deleteButtonClicked() {
+        // Handle delete button action here
+    }
 }
-

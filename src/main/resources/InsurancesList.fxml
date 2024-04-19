@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Rectangle?>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InsurancesList">
+    <children>
+            <!-- Insurance Image -->
+        <ImageView fx:id="insImage" styleClass="insImage" fitHeight="202.0" fitWidth="247.0" layoutX="36.0" layoutY="19.0">
+            <clip>
+                <Rectangle arcWidth="20" arcHeight="20" width="247" height="202" />
+            </clip>
+        </ImageView>
+
+        <Button fx:id="insButton" styleClass="insButton" layoutX="105.0" layoutY="131.0" style="-fx-background-color: #2CA2FB;">
+            <graphic>
+                <VBox spacing="5" style="-fx-background-color: rgba(0, 0, 0, 0.5);">
+                    <!-- Insurance Name -->
+                    <Label fx:id="insName" text="Insurance Name" textFill="WHITE" style="-fx-font-family: Arial; -fx-font-size: 20px;">
+                        <font>
+                            <Font size="20.0" />
+                        </font>
+                    </Label>
+                    <!-- Insurance Amount -->
+                    <Label fx:id="insAmount" prefHeight="30.0" prefWidth="176.0" text="Insurance Amount" textFill="WHITE" style="-fx-font-family: SansSerif; -fx-font-size: 20px;">
+                        <font>
+                            <Font size="20.0" />
+                        </font>
+                    </Label>
+                </VBox>
+            </graphic>
+        </Button>
+
+
+
+    </children>
+    <padding>
+        <Insets bottom="10" left="10" right="10" top="10" />
+    </padding>
+</AnchorPane>
