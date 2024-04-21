@@ -124,6 +124,20 @@ public class SinistreService implements Iservice<Sinistre> {
         }
         return false;
     }
+    public boolean isNameExist(String name) {
+        String sql = "SELECT COUNT(*) FROM Sinistre WHERE sin_name = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, name);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;  // Checks if the name is already taken
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 
 }

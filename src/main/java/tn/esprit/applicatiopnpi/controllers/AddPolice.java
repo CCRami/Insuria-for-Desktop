@@ -1,6 +1,7 @@
 package tn.esprit.applicatiopnpi.controllers;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -81,5 +82,11 @@ public class AddPolice {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void handleCancelAction(ActionEvent actionEvent) {
+        txtPoliceName.clear();
+        txtDescription.clear();
+        comboSinistre.getSelectionModel().clearSelection();
     }
 }

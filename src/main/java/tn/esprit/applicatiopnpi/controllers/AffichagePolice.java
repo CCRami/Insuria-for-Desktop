@@ -6,11 +6,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -31,7 +34,7 @@ import java.util.ResourceBundle;
 
 public class AffichagePolice implements Initializable {
     @FXML
-    private TableView<Police> policeTable;
+    private ListView<Police> policeList;
     @FXML
     private VBox contentArea;
 
@@ -48,103 +51,106 @@ public class AffichagePolice implements Initializable {
     private TableColumn<Police, Void> actionCol;
 
     private PoliceService policeService = new PoliceService(); // Assuming you have a service class to handle database operations
-    private void initializeActionColumn() {
-        actionCol.setCellFactory(param -> new TableCell<Police, Void>() {
-            private final Button editBtn = new Button("Edit");
-            private final Button deleteBtn = new Button("Delete");
-            private final HBox pane = new HBox(editBtn, deleteBtn);
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        initializeListView();
+        loadPoliceData();
+    }
 
-            {
-
-                deleteBtn.setOnAction(event -> {
-                    Police police  = getTableView().getItems().get(getIndex());
-                    deletePolice(police.getId()); // Utilise l'ID pour supprimer l'entrée
-                    getTableView().getItems().remove(police); // Met à jour l'interface immédiatement
-                });
-            }
+    private void initializeListView() {
+        policeList.setCellFactory(param -> new ListCell<Police>() {
             @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : pane);
+            protected void updateItem(Police police, boolean empty) {
+                super.updateItem(police, empty);
+                if (empty || police == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    HBox hbox = new HBox(10);
+                    hbox.setAlignment(Pos.CENTER_LEFT);
+                    Label nameLabel = new Label(police.getPoliceName());
+                    nameLabel.setMinWidth(185.0);
+                    nameLabel.setMaxWidth(185.0);
+                    Label descriptionLabel = new Label(police.getDescriptionPolice());
+                    descriptionLabel.setMinWidth(173.0);
+                    descriptionLabel.setMaxWidth(173.0);
+                    descriptionLabel.setWrapText(true); // Activer le retour à la ligne automatique
+                    descriptionLabel.setStyle("-fx-padding: 5px;");
+                    Label sinistreNameLabel = new Label(police.getSinistre() != null ? police.getSinistre().getSin_name() : "No Sinistre");
+                    sinistreNameLabel.setMinWidth(167.0);
+                    sinistreNameLabel.setMaxWidth(167.0);
+
+                    // Configuration des boutons avec icônes et texte
+                    ImageView editIcon = new ImageView(new Image(getClass().getResourceAsStream("/tn/esprit/applicatiopnpi/edit_icon.png")));
+                    editIcon.setFitHeight(20); // Taille de l'icône
+                    editIcon.setFitWidth(20);
+                    Button editButton = new Button("Edit", editIcon);
+                    editButton.getStyleClass().add("buttonn");
+
+                    ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/tn/esprit/applicatiopnpi/delet_icon.png")));
+                    deleteIcon.setFitHeight(20); // Taille de l'icône
+                    deleteIcon.setFitWidth(20);
+                    Button deleteButton = new Button("Delete", deleteIcon);
+                    deleteButton.getStyleClass().add("buttonn");
+
+                    HBox actionBox = new HBox(editButton, deleteButton);
+                    actionBox.setSpacing(10);
+                    actionBox.setMinWidth(150.0);
+                    actionBox.setMaxWidth(150.0);
+
+                    editButton.setOnAction(e -> openDialog(police));
+                    deleteButton.setOnAction(e -> {
+                        policeService.supprimer(police.getId());
+                        policeList.getItems().remove(police);
+                    });
+
+                    hbox.getChildren().addAll(nameLabel, descriptionLabel, sinistreNameLabel,actionBox);
+                    setGraphic(hbox);
+                }
             }
         });
-
-    }
-    private void deletePolice(int id) {
-        policeService.supprimer(id); // Ici, sinistreService doit être l'instance de ton service qui contient la méthode supprimer
-    }
-    public
-    void initialize(URL location, ResourceBundle resources) {
-        policeNameColumn.setCellValueFactory(new PropertyValueFactory<>("policeName"));
-        policeDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionPolice"));
-        sinistreNameColumn.setCellValueFactory(cellData -> {
-            Police police = cellData.getValue();
-            Sinistre sinistre = police.getSinistre();
-            if (sinistre != null) {
-                return new ReadOnlyStringWrapper(sinistre.getSin_name());
-            }
-            return new ReadOnlyStringWrapper(""); // Retourne une chaîne vide si aucun sinistre n'est associé
-        });
-
-
-
-        initializeActionColumn();
-        loadTableData();
     }
 
-    private void loadTableData() {
+    private void loadPoliceData() {
         ObservableList<Police> data = FXCollections.observableArrayList(policeService.getAll());
-        policeTable.setItems(data);
+        policeList.setItems(data);
     }
 
-    public void updateTable() {
-        ObservableList<Police> data = FXCollections.observableArrayList(policeService.getAll());
-        policeTable.setItems(data);
-    }
-
-
-
-
-
-
-    @FXML
-    private void handleAddAction(ActionEvent event) {
+    private void openDialog(Police police) {
+        // Open a dialog or another stage to edit Police
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/applicatiopnpi/AddPolice.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/applicatiopnpi/EditPolice.fxml"));
             Parent root = loader.load();
+            EditPolice controller = loader.getController();
+            controller.intData(police);
+            controller.setUpdateCallback(this::updatePoliceInListView);  // Utilisez la bonne méthode de callback
+
             Stage stage = new Stage();
+            stage.setTitle("Edit Police");
             stage.setScene(new Scene(root));
-            stage.setTitle("Add Police");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
-            loadTableData(); // Reload data after adding
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
-
-    @FXML
-    private void handleDeleteAction(ActionEvent event) {
-        Police selectedPolice = policeTable.getSelectionModel().getSelectedItem();
-        if (selectedPolice != null) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this police?", ButtonType.YES, ButtonType.NO);
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.YES) {
-                policeService.supprimer(selectedPolice.getId());
-                policeTable.getItems().remove(selectedPolice);
-                Alert infoAlert = new Alert(Alert.AlertType.INFORMATION, "Police deleted successfully.", ButtonType.OK);
-                infoAlert.showAndWait();
-            }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "No Police selected for deletion!", ButtonType.OK);
-            alert.showAndWait();
+    public void updatePoliceInListView(Police updatedPolice) {
+        // Mettre à jour un sinistre spécifique dans la ListView
+        ObservableList<Police> polices = policeList.getItems();
+        int index = polices.indexOf(updatedPolice);
+        if (index != -1) {
+            polices.set(index, updatedPolice);
+            policeList.refresh();
         }
     }
+    private void deletePolice(int id) {
+        policeService.supprimer(id); // Ici, sinistreService doit être l'instance de ton service qui contient la méthode supprimer
+    }
+
+
 
     @FXML
-    private void handleAdd(MouseEvent event) {
+    private void handleAddNew(MouseEvent event) {
         try {
             // Charger le fichier FXML pour ajouter un sinistre
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/applicatiopnpi/addPolice.fxml"));
@@ -160,4 +166,8 @@ public class AffichagePolice implements Initializable {
             e.printStackTrace();
         }
     }
+    private void openEditDialog(Sinistre sinistre) {
+
+    }
+
 }

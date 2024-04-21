@@ -53,7 +53,8 @@ public class PoliceService implements Iservice<Police> {
             e.printStackTrace();
         }
     }
-    public List<Police> getAll() {
+    @Override
+    public  List<Police> getAll() {
         List<Police> list = new ArrayList<>();
         String sql = "SELECT p.*, s.sin_name FROM police p LEFT JOIN sinistre s ON p.sinistre_id = s.id";
         try (Statement ste = connection.createStatement();

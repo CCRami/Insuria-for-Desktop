@@ -1,6 +1,8 @@
 tn\esprit\applicatiopnpi\utils\MyDatabase.class
 tn\esprit\applicatiopnpi\services\Iservice.class
+tn\esprit\applicatiopnpi\controllers\EditPolice.class
 tn\esprit\applicatiopnpi\test\HelloApplication.class
+tn\esprit\applicatiopnpi\controllers\EditPolice$1.class
 tn\esprit\applicatiopnpi\services\PoliceService.class
 tn\esprit\applicatiopnpi\models\Police.class
 tn\esprit\applicatiopnpi\models\Sinistre.class
