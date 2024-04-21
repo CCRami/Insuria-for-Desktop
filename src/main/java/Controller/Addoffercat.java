@@ -5,6 +5,7 @@ import Service.OffreCatService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -21,6 +22,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.geometry.Pos;
 import java.io.File;
+import javafx.application.Application;
+
 
 public class Addoffercat {
 
@@ -167,6 +170,33 @@ public class Addoffercat {
     }
 
 
+    public class Main extends Application {
+
+        @Override
+        public void start(Stage primaryStage) throws Exception {
+            // Assuming selectedFile is the file you want to load
+            File selectedFile = new File("path/to/your/image.jpg");
+
+            // Create an Image object from the selected file
+            Image image = new Image(selectedFile.toURI().toString());
+
+            // Create an ImageView to display the image
+            ImageView imageView = new ImageView(image);
+
+            // Create a StackPane to hold the ImageView
+            StackPane root = new StackPane();
+            root.getChildren().add(imageView);
+
+            // Create the scene and set it on the stage
+            Scene scene = new Scene(root, 400, 300);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }
+
+        public static void main(String[] args) {
+            launch(args);
+        }
+    }
 
 
 }

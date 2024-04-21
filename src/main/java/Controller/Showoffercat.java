@@ -64,14 +64,19 @@ public class Showoffercat  {
                             vbox.getChildren().addAll(nameLabel, descriptionLabel);
 
                             // Create an ImageView to display the image
-                            ImageView imageView = new ImageView();
-                            imageView.setFitWidth(100); // Set the width of the image
-                            imageView.setFitHeight(100); // Set the height of the image
-                            // Set the image (replace "item.getImagePath()" with the actual method to get the image path)
-                            imageView.setImage(new Image(item.getCatimg()));
+                            public class Showoffcat {
+                                @FXML
+                                private ImageView piccatoff; // Assuming you have an ImageView named piccatoff in your Showoffcat.fxml
 
-                            // Add the ImageView to the VBox
-                            vbox.getChildren().add(imageView);
+                                public void setImage(Image image) {
+                                    // Set the image to the ImageView in your Showoffcat layout
+                                    piccatoff.setImage(image);
+                                }
+                            }
+
+
+
+
 
                             // Create an HBox to hold the buttons
                             HBox buttonBox = new HBox();
