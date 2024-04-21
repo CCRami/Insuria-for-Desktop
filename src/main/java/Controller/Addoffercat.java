@@ -51,21 +51,23 @@ public class Addoffercat {
     @FXML
     private VBox vboxdash;
 
+    private File selectedFile;
     @FXML
     void addoffercat(ActionEvent event) {
+
         if (!isInputValid()) {
             return; // Exit the method if input is not valid
         }
         String nomcatof = catoffname.getText();
         String catoffdes = descatoff.getText();
-        Image image = piccatoff.getImage();
-        String catofImageUrl = image != null ? image.getUrl() : null;
+
+        // Obtain the file path of the selected image file
+        String catofImageUrl = selectedFile != null ? selectedFile.getAbsolutePath() : null;
 
         OfferCategory offcat = new OfferCategory(nomcatof, catoffdes, catofImageUrl );
 
         OffreCatService service = new OffreCatService();
         service.AddCatOff(offcat);
-
 
         catoffname.clear();
         descatoff.clear();
@@ -75,9 +77,7 @@ public class Addoffercat {
         alert.setHeaderText(null);
         alert.setContentText("Offer Category added successfully");
         alert.showAndWait();
-
-
-        }
+    }
 
     private boolean isInputValid() {
         boolean isValid = true;
@@ -121,14 +121,15 @@ public class Addoffercat {
         fileChooser.setTitle("Choose Image"); // Set the title of the file chooser dialog
         fileChooser.setInitialDirectory(new File("C:\\InsuriaJava\\offimg"));
 
-
-
         // Show the file chooser dialog
         Stage stage = (Stage) save.getScene().getWindow(); // Assuming save button is in the same stage
         File selectedFile = fileChooser.showOpenDialog(stage);
 
         // Check if a file was selected
         if (selectedFile != null) {
+            // Print out the selected file path for debugging
+            System.out.println("Selected file path: " + selectedFile.getAbsolutePath());
+
             // Create an Image object from the selected file
             Image image = new Image(selectedFile.toURI().toString());
 
@@ -164,6 +165,7 @@ public class Addoffercat {
             vboxdash.getChildren().add(stackPane);
         }
     }
+
 
 
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+
+
+<AnchorPane prefHeight="778.0" prefWidth="1254.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Showoffer">
+<stylesheets>
+    <URL value="@style/ShowInsuranceStyle.css" />
+</stylesheets>
+<children>
+    <Button fx:id="Addoffer" layoutX="587.0" layoutY="77.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="170.0" onAction="#AddoffButton" text="Add offer" />
+
+    <ListView fx:id="offreListView" layoutX="234.0" layoutY="166.0" prefHeight="530.0" prefWidth="808.0" />
+</children>
+</AnchorPane>

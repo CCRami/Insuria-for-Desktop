@@ -7,10 +7,7 @@ import Service.OffreService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -24,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.File;
 import java.util.List;
@@ -233,22 +231,49 @@ public class Addoffer {
         // Assuming OffreCatService is a class
         OffreCatService offreCatService = new OffreCatService();
         List<OfferCategory> categories = offreCatService.getAll();
+
+        // Clear existing items before adding new ones
+        categoryfComboBox.getItems().clear();
+
+        // Add the OfferCategory objects to the ComboBox
         categoryfComboBox.getItems().addAll(categories);
+
+        // Set the cell factory to display only the Categorie_name
+        categoryfComboBox.setCellFactory(new Callback<ListView<OfferCategory>, ListCell<OfferCategory>>() {
+            @Override
+            public ListCell<OfferCategory> call(ListView<OfferCategory> param) {
+                return new ListCell<OfferCategory>() {
+                    @Override
+                    protected void updateItem(OfferCategory item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setText(null);
+                        } else {
+                            setText(item.getCategorie_name());
+                        }
+                    }
+                };
+            }
+        });
+
+        // Set the cell factory to display only the Categorie_name when the ComboBox is showing
+        categoryfComboBox.setButtonCell(new ListCell<OfferCategory>() {
+            @Override
+            protected void updateItem(OfferCategory item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    setText(null);
+                } else {
+                    setText(item.getCategorie_name());
+                }
+            }
+        });
     }
+
+
 
 
 
 
 }
 
-   /* @FXML
-    void showAgence(MouseEvent event) {
-
-    }
-
-    @FXML
-    void showAvisAgence(MouseEvent event) {
-
-    }
-
-}*/

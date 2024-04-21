@@ -87,46 +87,8 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox layoutX="30.0" layoutY="484.0" onMouseClicked="#showAgence" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/Government_Agency_Symbol.png" />
-                            </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Agencies" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </HBox>
-                <HBox onMouseClicked="#showAvisAgence" prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/5569806.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets />
-                            </HBox.margin>
-                            <viewport>
-                                <Rectangle2D />
-                            </viewport>
-                        </ImageView>
-                        <Label text="Reviews" textFill="WHITE">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-                    <VBox.margin>
-                        <Insets right="88.0" />
-                    </VBox.margin>
-                </HBox>
+
+
 
             </children>
             <padding>
