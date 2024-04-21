@@ -26,18 +26,7 @@
         <VBox fx:id="contentArea" layoutX="433.0" layoutY="126.0" prefHeight="672.0" prefWidth="808.0" styleClass="white-bg, shadow">
             <children>
 
-                <HBox onMouseClicked="#handleAdd" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
-                            <image>
-                                <Image url="@images/edit_icon.png" />
-                            </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Add New" textFill="WHITE">
-                            <Font size="16.0" />
-                        </Label>
-                    </children>
-                </HBox>
+
 
                 <TableView fx:id="policeTable" VBox.vgrow="ALWAYS">
                     <columns>
@@ -49,6 +38,18 @@
                 </TableView>
                 <TextField fx:id="searchField" prefHeight="30.0" prefWidth="277.0" promptText="Search" styleClass="search"/>
             </children>
+            <HBox onMouseClicked="#handleAdd" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                <children>
+                    <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                        <image>
+                            <Image url="@images/edit_icon.png" />
+                        </image>
+                    </ImageView>
+                    <Label prefHeight="35.0" prefWidth="202.0" text="Add New" textFill="WHITE">
+                        <Font size="16.0" />
+                    </Label>
+                </children>
+            </HBox>
 
                 </VBox>
             </children>

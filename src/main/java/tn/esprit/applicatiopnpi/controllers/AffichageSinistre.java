@@ -1,22 +1,22 @@
 package tn.esprit.applicatiopnpi.controllers;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
+
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -25,139 +25,116 @@ import tn.esprit.applicatiopnpi.models.Sinistre;
 import tn.esprit.applicatiopnpi.services.SinistreService;
 
 public class AffichageSinistre implements Initializable {
-    @FXML private TableView<Sinistre> tab;
-    @FXML private TableColumn<Sinistre, String> nom;
-    @FXML private TableColumn<Sinistre, String> description_sinistre;
-    @FXML private TableColumn<Sinistre, String> path;
     @FXML
-    private TableColumn<Sinistre, Void> actionCol;
-
-
-    @FXML private TextField sinName;
-    @FXML private TextField sinDescription;
-    @FXML private TextField sinImagePath;
-
-    @FXML private Button addButton, deleteButton, editButton;
-    @FXML
-    ImageView eventView;
+    private ListView<Sinistre> tab;
 
 
 
-    @FXML
-    private BorderPane myBorderPane;
 
-    @FXML
-    private VBox vboxdash;
+
+
+
+
+
+
     @FXML
     private VBox contentArea;
 
 
     SinistreService sinistreService = new SinistreService();
 
-    int selectedId;
-    private void initializeActionColumn() {
-        actionCol.setCellFactory(param -> new TableCell<Sinistre, Void>() {
-            private final Button editBtn = new Button("Edit");
-            private final Button deleteBtn = new Button("Delete");
-            private final HBox pane = new HBox(editBtn, deleteBtn);
 
-            {
-                pane.setSpacing(10);
-                editBtn.setOnAction(event -> {
-                    Sinistre sinistre = getTableView().getItems().get(getIndex());
-                    openEditDialog(sinistre);
-                });
-                deleteBtn.setOnAction(event -> {
-                    Sinistre sinistre = getTableView().getItems().get(getIndex());
-                    deleteSinistre(sinistre.getId()); // Utilise l'ID pour supprimer l'entrée
-                    getTableView().getItems().remove(sinistre); // Met à jour l'interface immédiatement
-                });
-            }
+    private void initializeListView() {
+        tab.setCellFactory(param -> new ListCell<Sinistre>() {
             @Override
-            protected void updateItem(Void item, boolean empty) {
+            protected void updateItem(Sinistre item, boolean empty) {
                 super.updateItem(item, empty);
-                setGraphic(empty ? null : pane);
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    // Création d'un HBox pour contenir les labels et les boutons
+                    HBox hbox = new HBox(10); // Espace de 10px entre les éléments
+                    hbox.setAlignment(Pos.CENTER);
+
+                    Label nameLabel = new Label(item.getSin_name());
+                    nameLabel.setMinWidth(185.0);
+                    nameLabel.setMaxWidth(185.0);
+
+                    Label descriptionLabel = new Label(item.getDescription_sin());
+                    descriptionLabel.setMinWidth(173.0);
+                    descriptionLabel.setMaxWidth(173.0);
+                    descriptionLabel.setWrapText(true); // Activer le retour à la ligne automatique
+                    descriptionLabel.setStyle("-fx-padding: 5px;");
+
+                    Label pathLabel = new Label(item.getImage_path());
+                    pathLabel.setMinWidth(167.0);
+                    pathLabel.setMaxWidth(167.0);
+
+                    // Configuration des boutons avec icônes et texte
+                    ImageView editIcon = new ImageView(new Image(getClass().getResourceAsStream("/tn/esprit/applicatiopnpi/edit_icon.png")));
+                    editIcon.setFitHeight(20); // Taille de l'icône
+                    editIcon.setFitWidth(20);
+                    Button editButton = new Button("Edit", editIcon);
+                    editButton.getStyleClass().add("buttonn");
+
+                    ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/tn/esprit/applicatiopnpi/delet_icon.png")));
+                    deleteIcon.setFitHeight(20); // Taille de l'icône
+                    deleteIcon.setFitWidth(20);
+                    Button deleteButton = new Button("Delete", deleteIcon);
+                    deleteButton.getStyleClass().add("buttonn");
+
+                    HBox actionBox = new HBox(editButton, deleteButton);
+                    actionBox.setSpacing(10);
+                    actionBox.setMinWidth(150.0);
+                    actionBox.setMaxWidth(150.0);
+
+                    // Configuration des actions des boutons
+                    editButton.setOnAction(event -> openEditDialog(item));
+                    deleteButton.setOnAction(event -> {
+                        deleteSinistre(item.getId());
+                        tab.getItems().remove(item); // Mise à jour immédiate de l'interface
+                    });
+
+                    // Ajout des composants au HBox
+                    hbox.getChildren().addAll(nameLabel, descriptionLabel, pathLabel, actionBox);
+                    setGraphic(hbox); // Utiliser le HBox comme graphique pour la cellule
+                }
             }
         });
-
     }
+
+
 
     private void deleteSinistre(int id) {
         sinistreService.supprimer(id); // Ici, sinistreService doit être l'instance de ton service qui contient la méthode supprimer
     }
 
-            @Override
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
-        nom.setCellValueFactory(new PropertyValueFactory<>("sin_name"));
-        description_sinistre.setCellValueFactory(new PropertyValueFactory<>("description_sin"));
-        path.setCellValueFactory(new PropertyValueFactory<>("image_path"));
-
-        initializeActionColumn();
-        loadTableData();
-    }
-
-    private void loadTableData() {
         ObservableList<Sinistre> data = FXCollections.observableArrayList(sinistreService.getAll());
         tab.setItems(data);
+        initializeListView(); // Configurez le ListView avec un CellFactory personnalisé
     }
 
-    @FXML
-    private void addButtonAction(ActionEvent event) {
-        Sinistre sinistre = new Sinistre(0, sinName.getText(), sinDescription.getText(), sinImagePath.getText());
-        sinistreService.ajouter(sinistre);
-        updateTable();
-    }
 
-    @FXML
-    private void editButtonAction(ActionEvent event) {
-        Sinistre sinistre = tab.getSelectionModel().getSelectedItem();
-        sinistre.setSin_name(sinName.getText());
-        sinistre.setDescription_sin(sinDescription.getText());
-        sinistre.setImage_path(sinImagePath.getText());
-        sinistreService.modifier(sinistre);
-        updateTable();
-    }
 
-    @FXML
-    private void deleteButtonAction(ActionEvent event) {
-        int selectedId = tab.getSelectionModel().getSelectedItem().getId();
-        sinistreService.supprimer(selectedId);
-        updateTable();
-    }
 
-    public void updateTable() {
-        ObservableList<Sinistre> data = FXCollections.observableArrayList(sinistreService.getAll());
-        tab.setItems(data);
-    }
 
-    private void clearFields() {
-        sinName.clear();
-        sinDescription.clear();
-        sinImagePath.clear();
-    }
-    private void editSinistre(Sinistre sinistre) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/applicatiopnpi/EditSinistre.fxml"));
-            Parent root = loader.load();
 
-            EditSinister controller = loader.getController();
-            controller.initData(sinistre);
 
-            Stage stage = new Stage();
-            stage.setTitle("Edit Sinistre");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
+
+
+
+
     private void openEditDialog(Sinistre sinistre) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/applicatiopnpi/EditSinister.fxml"));
             Parent root = loader.load();
             EditSinister controller = loader.getController();
             controller.initData(sinistre);
-            controller.setUpdateCallback(this::updateSinistreInTableView);  // Utilisez la bonne méthode de callback
+            controller.setUpdateCallback(this::updateSinistreInListView);  // Utilisez la bonne méthode de callback
 
             Stage stage = new Stage();
             stage.setTitle("Edit Sinistre");
@@ -168,15 +145,14 @@ public class AffichageSinistre implements Initializable {
             e.printStackTrace();
         }
     }
-    public void updateSinistreInTableView(Sinistre updatedSinistre) {
+    public void updateSinistreInListView(Sinistre updatedSinistre) {
+        // Mettre à jour un sinistre spécifique dans la ListView
         ObservableList<Sinistre> sinistres = tab.getItems();
-        for (int i = 0; i < sinistres.size(); i++) {
-            if (sinistres.get(i).getId() == updatedSinistre.getId()) {
-                sinistres.set(i, updatedSinistre);
-                break;
-            }
+        int index = sinistres.indexOf(updatedSinistre);
+        if (index != -1) {
+            sinistres.set(index, updatedSinistre);
+            tab.refresh();
         }
-        tab.refresh();  // N'oubliez pas de rafraîchir la TableView
     }
 
 
@@ -199,6 +175,6 @@ public class AffichageSinistre implements Initializable {
     }
 
 
-
-
+    public void handleSearch(MouseEvent mouseEvent) {
+    }
 }

@@ -108,5 +108,22 @@ public class SinistreService implements Iservice<Sinistre> {
         }
         return list;
     }
+    public boolean isNameTaken(String name, int currentSinistreId) {
+        String sql = "SELECT COUNT(*) FROM sinistre WHERE sin_name = ? AND id != ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, name);
+            ps.setInt(2, currentSinistreId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;  // Vérifie si le nom est déjà pris
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
 }
