@@ -1,0 +1,34 @@
+
+.custom-button {
+    -fx-background-color: #051B46; /* Dark blue */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px; /* Rounded corners */
+    -fx-padding: 10px 20px; /* Padding for better readability */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10, 0.5 , 0 , 1 ); /* Shadow effect */
+    -fx-border-width: 1px;
+    -fx-border-color: #051B46; /* Same color as background for a seamless look */
+    -fx-cursor: hand; /* Cursor style on hover */
+    -fx-transition: all 0.3s; /* Smooth transition on hover */
+}
+
+.custom-button:hover {
+    -fx-background-color: #063A8F; /* Darker blue on hover */
+}
+
+.custom-list-view {
+    -fx-background-color: #f2f2f2; /* Light gray */
+    -fx-font-size: 14px;
+}
+.label {
+    -fx-font-size: 14px; /* Font size */
+    -fx-font-family: "Arial"; /* Font family */
+    -fx-text-fill: #333333; /* Text color */
+    -fx-padding: 5px; /* Padding around the text */
+    -fx-background-color: transparent; /* Transparent background */
+    -fx-border-color: #CCCCCC; /* Border color */
+    -fx-border-width: 1px; /* Border width */
+    -fx-border-radius: 3px; /* Border radius for rounded corners */
+}
+

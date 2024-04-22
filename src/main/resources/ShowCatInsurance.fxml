@@ -8,7 +8,7 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ShowInsurance" stylesheets="@style/dashboardDesign.css" prefHeight="778.0" prefWidth="1254.0">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ShowCatInsurance" stylesheets="@style/dashboardDesign.css" prefHeight="778.0" prefWidth="1254.0">
     <children>
         <!-- Centrage vertical et horizontal dans l'AnchorPane -->
         <VBox fx:id="contentArea" layoutX="223.0" layoutY="53.0" prefHeight="672.0" prefWidth="808.0" styleClass="white-bg, shadow" spacing="20" AnchorPane.bottomAnchor="53" AnchorPane.leftAnchor="223" AnchorPane.rightAnchor="223" AnchorPane.topAnchor="53">
@@ -19,11 +19,9 @@
                 </HBox>
             </children>
             <HBox spacing="10" style="-fx-padding: 10;">
-                <Label minWidth="185.0" maxWidth="185.0" text="Insurance Name" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" />
-                <Label minWidth="173.0" maxWidth="173.0" text="Insurane Base Price" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" />
-                <Label minWidth="185.0" maxWidth="185.0" text="DOA" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" />
-                <Label minWidth="173.0" maxWidth="173.0" text="Insurance Category" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" />
-                <Label minWidth="173.0" maxWidth="173.0" text="Insurance Plicy" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" />
+                <Label minWidth="185.0" maxWidth="185.0" text="Name" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" />
+                <Label minWidth="173.0" maxWidth="173.0" text="Description" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" />
+
                 <Label minWidth="150.0" maxWidth="150.0" text="Actions" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" />
             </HBox>
 
