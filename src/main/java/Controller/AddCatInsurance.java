@@ -42,10 +42,6 @@ public class AddCatInsurance {
             String namecat = CatinsuranceNameField.getText();
             String descins = desccatinsField.getText();
 
-
-
-
-
             InsuranceCategory inscat = new InsuranceCategory(namecat, descins );
 
             InsuranceCatService service = new InsuranceCatService();

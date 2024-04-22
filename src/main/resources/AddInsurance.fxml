@@ -97,153 +97,153 @@
                 <VBox fx:id="vboxdash" alignment="CENTER_RIGHT" prefHeight="810.0" prefWidth="1062.0">
                     <children>
 
+
+                         <VBox alignment="CENTER" prefHeight="502.0" prefWidth="758.0">
+
+                               <Text fill="#ff9b49" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a new Insurance" textAlignment="CENTER" wrappingWidth="296.5366973876953">
+                                   <VBox.margin>
+                                       <Insets bottom="44.0" left="33.0" top="55.0" />
+                                   </VBox.margin>
+                                   <font>
+                                       <Font name="Lucida Fax Demibold" size="24.0" />
+                                   </font>
+                               </Text>
+
+                             <VBox alignment="TOP_CENTER" prefHeight="93.0" prefWidth="363.0" />
+
+                             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name of the Insurance" wrappingWidth="188.53669357299805">
+                                 <VBox.margin>
+                                     <Insets left="77.0" />
+                                 </VBox.margin>
+                        <font>
+                           <Font name="Lucida Fax Regular" size="12.0" />
+                        </font>
+                             </Text>
+                             <TextField fx:id="nameins" alignment="TOP_LEFT" prefHeight="26.0" prefWidth="900.0" promptText="enter a name" stylesheets="@style/styleafficher.css">
+                                 <VBox.margin>
+                                     <Insets left="200.0" right="100.0" top="10.0" />
+                                 </VBox.margin>
+                                 <styleClass>
+                                     <String fx:value="search" />
+                                     <String fx:value="shadow" />
+                                 </styleClass>
+                        <padding>
+                           <Insets bottom="20.0" />
+                        </padding>
+                             </TextField>
+                             <!-- Add Text elements for error messages with a default font -->
+                             <Text fx:id="errorNom" fill="RED" wrappingWidth="181.5999755859375">
+                                 <VBox.margin>
+                                     <Insets left="370.0" top="10.0" />
+                                 </VBox.margin>
+                             </Text>
+
+                             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The Base Price Of The Insurance" wrappingWidth="222.93671798706055">
+                                 <VBox.margin>
+                                     <Insets left="77.0" />
+                                 </VBox.margin>
+                             </Text>
+                             <TextField fx:id="amount" prefHeight="50.0" prefWidth="341.0" promptText="enter an address" stylesheets="@style/styleafficher.css">
+                                 <VBox.margin>
+                                     <Insets left="370.0" right="350.0" top="10.0" />
+                                 </VBox.margin>
+                                 <styleClass>
+                                     <String fx:value="search" />
+                                     <String fx:value="shadow" />
+                                 </styleClass>
+                             </TextField>
+
+
+                             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance Image" wrappingWidth="169.33671188354492">
+                                 <VBox.margin>
+                                     <Insets left="77.0" />
+                                 </VBox.margin>
+                             </Text>
+                             <HBox spacing="10.0">
+                                 <ImageView fx:id="insuranceImageView" />
+                                 <Label fx:id="selectedImageLabel" />
+                             </HBox>
+                              <Button onAction="#chooseImageAction" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Choose Image" textFill="WHITE" />
+                             <Text fx:id="errorimage" fill="RED" wrappingWidth="190.4000244140625">
+                                 <VBox.margin>
+                                     <Insets left="100.0" top="10.0" />
+                                 </VBox.margin>
+                             </Text>
+
+
+
+
+
+                             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category" wrappingWidth="138.1367301940918">
+                                 <VBox.margin>
+                                     <Insets left="77.0" />
+                                 </VBox.margin>
+                             </Text>
+                             <ComboBox fx:id="categoryComboBox" prefHeight="34.0" prefWidth="229.0" promptText="Select category" stylesheets="@style/styleafficher.css">
+                                 <VBox.margin>
+                                     <Insets left="70.0" right="50.0" top="10.0" />
+                                 </VBox.margin>
+                                 <styleClass>
+                                     <String fx:value="search" />
+                                     <String fx:value="shadow" />
+                                 </styleClass>
+                             </ComboBox>
+
+                             <Text fx:id="errorCategory" fill="RED" wrappingWidth="196.00003051757812">
+                                 <VBox.margin>
+                                     <Insets left="100.0" top="10.0" />
+                                 </VBox.margin>
+                             </Text>
+
+
+                             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Policy" wrappingWidth="105.3366813659668">
+                                 <VBox.margin>
+                                     <Insets left="77.0" />
+                                 </VBox.margin>
+                             </Text>
+                             <ComboBox fx:id="policeComboBox" prefHeight="34.0" prefWidth="229.0" promptText="Select police" stylesheets="@style/styleafficher.css">
+                                 <VBox.margin>
+                                     <Insets left="70.0" right="50.0" top="10.0" />
+                                 </VBox.margin>
+                                 <styleClass>
+                                     <String fx:value="search" />
+                                     <String fx:value="shadow" />
+                                 </styleClass>
+                             </ComboBox>
+
+                             <Text fx:id="errorpolicy" fill="RED" wrappingWidth="196.00003051757812">
+                                 <VBox.margin>
+                                     <Insets left="100.0" top="10.0" />
+                                 </VBox.margin>
+                             </Text>
+                     <VBox.margin>
+                        <Insets left="200.0" right="200.0" />
+                     </VBox.margin>
+             </VBox>
+
                         <HBox prefHeight="643.0" prefWidth="778.0" styleClass="search-box" stylesheets="@style/styleafficher.css">
-
-
-                            <VBox alignment="CENTER" prefHeight="546.0" prefWidth="363.0">
-
-                                <VBox alignment="TOP_CENTER" prefHeight="93.0" prefWidth="363.0">
-                                    <children>
-
-                                        <Text fill="#ff9b49" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a new Insurance" textAlignment="CENTER" wrappingWidth="296.5366973876953">
-                                            <VBox.margin>
-                                                <Insets bottom="44.0" left="33.0" top="55.0" />
-                                            </VBox.margin>
-                                            <font>
-                                                <Font name="Lucida Fax Demibold" size="24.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </VBox>
-
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name of the Insurance" wrappingWidth="188.53669357299805">
-                                    <VBox.margin>
-                                        <Insets left="77.0" />
-                                    </VBox.margin>
-                           <font>
-                              <Font name="Lucida Fax Regular" size="12.0" />
-                           </font>
-                                </Text>
-                                <TextField fx:id="nameins" alignment="TOP_LEFT" prefHeight="34.0" prefWidth="229.0" promptText="enter a name" stylesheets="@style/styleafficher.css">
-                                    <VBox.margin>
-                                        <Insets left="70.0" right="50.0" top="10.0" />
-                                    </VBox.margin>
-                                    <styleClass>
-                                        <String fx:value="search" />
-                                        <String fx:value="shadow" />
-                                    </styleClass>
-                                </TextField>
-                                <!-- Add Text elements for error messages with a default font -->
-                                <Text fx:id="errorNom" fill="RED" wrappingWidth="181.5999755859375">
-                                    <VBox.margin>
-                                        <Insets left="100.0" top="10.0" />
-                                    </VBox.margin>
-                                </Text>
-
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The Base Price Of The Insurance" wrappingWidth="222.93671798706055">
-                                    <VBox.margin>
-                                        <Insets left="77.0" />
-                                    </VBox.margin>
-                                </Text>
-                                <TextField fx:id="amount" prefHeight="34.0" prefWidth="229.0" promptText="enter an address" stylesheets="@style/styleafficher.css">
-                                    <VBox.margin>
-                                        <Insets left="70.0" right="50.0" top="10.0" />
-                                    </VBox.margin>
-                                    <styleClass>
-                                        <String fx:value="search" />
-                                        <String fx:value="shadow" />
-                                    </styleClass>
-                                </TextField>
-
-
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance Image" wrappingWidth="169.33671188354492">
-                                    <VBox.margin>
-                                        <Insets left="77.0" />
-                                    </VBox.margin>
-                                </Text>
-                                <HBox spacing="10.0">
-                                    <ImageView fx:id="insuranceImageView" />
-                                    <Label fx:id="selectedImageLabel" />
-                                </HBox>
-                                 <Button onAction="#chooseImageAction" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Choose Image" textFill="WHITE" />
-                                <Text fx:id="errorimage" fill="RED" wrappingWidth="190.4000244140625">
-                                    <VBox.margin>
-                                        <Insets left="100.0" top="10.0" />
-                                    </VBox.margin>
-                                </Text>
-
-
-
-
-
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category" wrappingWidth="138.1367301940918">
-                                    <VBox.margin>
-                                        <Insets left="77.0" />
-                                    </VBox.margin>
-                                </Text>
-                                <ComboBox fx:id="categoryComboBox" prefHeight="34.0" prefWidth="229.0" promptText="Select category" stylesheets="@style/styleafficher.css">
-                                    <VBox.margin>
-                                        <Insets left="70.0" right="50.0" top="10.0" />
-                                    </VBox.margin>
-                                    <styleClass>
-                                        <String fx:value="search" />
-                                        <String fx:value="shadow" />
-                                    </styleClass>
-                                </ComboBox>
-
-                                <Text fx:id="errorCategory" fill="RED" wrappingWidth="196.00003051757812">
-                                    <VBox.margin>
-                                        <Insets left="100.0" top="10.0" />
-                                    </VBox.margin>
-                                </Text>
-
-
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Policy" wrappingWidth="105.3366813659668">
-                                    <VBox.margin>
-                                        <Insets left="77.0" />
-                                    </VBox.margin>
-                                </Text>
-                                <ComboBox fx:id="policeComboBox" prefHeight="34.0" prefWidth="229.0" promptText="Select police" stylesheets="@style/styleafficher.css">
-                                    <VBox.margin>
-                                        <Insets left="70.0" right="50.0" top="10.0" />
-                                    </VBox.margin>
-                                    <styleClass>
-                                        <String fx:value="search" />
-                                        <String fx:value="shadow" />
-                                    </styleClass>
-                                </ComboBox>
-
-                                <Text fx:id="errorpolicy" fill="RED" wrappingWidth="196.00003051757812">
-                                    <VBox.margin>
-                                        <Insets left="100.0" top="10.0" />
-                                    </VBox.margin>
-                                </Text>
-                </VBox>
                             <VBox fx:id="fieldsContainer" alignment="CENTER" spacing="10.0">
                                 <!-- Dynamically added fields will appear here -->
                             </VBox>
-                <VBox prefHeight="600.0" prefWidth="404.0">
-                    <!-- Save button -->
-                    <Button fx:id="save" mnemonicParsing="false" onAction="#addInsuranceAction" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Enregistrer" textFill="WHITE">
-                        <VBox.margin>
-                            <Insets left="150.0" top="160.0" />
-                        </VBox.margin>
-                        <font>
-                            <Font size="13.0" />
-                        </font>
-                    </Button>
-
-
-
-
-
-                    <Button fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addDynamicField" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Add Field" textFill="WHITE" />
+                <VBox prefHeight="250.0" prefWidth="407.0">
                                 <Text fx:id="errorAmount" fill="RED" wrappingWidth="195.20001220703125">
                                     <VBox.margin>
                                         <Insets left="100.0" top="10.0" />
                                     </VBox.margin>
                                 </Text>
                 </VBox>
+                 <!-- Save button -->
+                 <Button fx:id="save" mnemonicParsing="false" onAction="#addInsuranceAction" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Enregistrer" textFill="WHITE">
+                     <font>
+                         <Font size="13.0" />
+                     </font>
+                 </Button>
+
+   
+   
+   
+   
+                    <Button fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addDynamicField" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Add Field" textFill="WHITE" />
             </HBox>
     </children>
 </VBox>

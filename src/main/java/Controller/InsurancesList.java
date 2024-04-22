@@ -1,19 +1,24 @@
 package Controller;
 
 import Entity.Insurance;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import javafx.scene.input.MouseEvent;
-
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import javax.swing.*;
+import java.io.IOException;
+
 public class InsurancesList {
-
-
 
     @FXML
     private Label insName;
@@ -27,25 +32,75 @@ public class InsurancesList {
     @FXML
     private Label insAmount;
 
+    @FXML
+    private Button insButton;
+
+    @FXML
+    private AnchorPane rootPane; // Inject the root pane
+
+
+    private Insurance insurance;
+    @FXML
+    private ListView<Insurance> listView;
+
+    @FXML
+    private Label errorMessage;
 
 
     @FXML
-    private Button reviews;
+    private void handleInsuranceButtonClick(ActionEvent actionEvent) throws IOException {
+        if (insurance != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddCommande.fxml"));
+            AnchorPane addCommandeRoot = loader.load();
 
-    public void setData(Insurance insurance){
-        insName.setText(insurance.getName_ins());
+            // Obtain the controller instance
+            AddCommande addCommandeController = loader.getController();
 
-        String imageUrl = insurance.getIns_image();
-        try {
-            Image image = new Image(imageUrl);
-            insImage.setImage(image);
-        } catch (Exception e) {
-            System.err.println("Error loading image: " + e.getMessage());
-            e.printStackTrace(); // Print the full stack trace for debugging
-            // Optionally, provide a fallback image or handle the error gracefully
+            // Pass the selected insurance to the controller
+            addCommandeController.setInsurance(insurance);
+
+            // Get the current scene and stage
+            Scene currentScene = rootPane.getScene();
+            Stage stage = (Stage) currentScene.getWindow();
+
+            // Create a new scene with the AddCommande page
+            Scene addCommandeScene = new Scene(addCommandeRoot, currentScene.getWidth(), currentScene.getHeight());
+
+            // Set the new scene
+            stage.setScene(addCommandeScene);
+            stage.show();
+        } else {
+            errorMessage.setText("Please select an insurance.");
         }
-
-        insAmount.setText(String.valueOf(insurance.getMontant()));
     }
+
+
+
+
+
+
+
+
+
+
+    public void setData(Insurance insurance) {
+        this.insurance = insurance;
+        if (insurance != null) {
+            insName.setText(insurance.getName_ins());
+
+            String imageUrl = insurance.getIns_image();
+            try {
+                Image image = new Image(imageUrl);
+                insImage.setImage(image);
+            } catch (Exception e) {
+                System.err.println("Error loading image: " + e.getMessage());
+                e.printStackTrace(); // Print the full stack trace for debugging
+                // Optionally, provide a fallback image or handle the error gracefully
+            }
+
+            insAmount.setText(String.valueOf(insurance.getMontant()));
+        }
+    }
+
 
 }

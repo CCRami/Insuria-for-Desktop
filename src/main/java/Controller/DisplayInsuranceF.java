@@ -8,12 +8,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -48,7 +52,7 @@ public class DisplayInsuranceF implements Initializable{
         System.out.println("Initializing DisplayInsuranceF controller...");
 
         insurance = serviceInsurance.getAllInsurances();
-        System.out.println("Retrieved insurances: " + insurance.size());
+
         int column = 0;
         int row = 1;
         try {
@@ -77,4 +81,6 @@ public class DisplayInsuranceF implements Initializable{
             throw new RuntimeException("Erreur lors du chargement du FXML", e);
         }
     }
+
+
 }

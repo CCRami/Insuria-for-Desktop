@@ -1,39 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
 
+<?import java.net.URL?>
 <AnchorPane prefHeight="778.0" prefWidth="1254.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ShowInsurance">
+    <stylesheets>
+        <URL value="@style/ShowInsuranceStyle.css" />
+    </stylesheets>
     <children>
-        <!-- VBox to arrange elements vertically -->
-        <VBox layoutX="433.0" layoutY="10.0" spacing="10">
+        <Button fx:id="addinsurance" layoutX="587.0" layoutY="77.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="170.0" onAction="#AddInsButton" text="Add Insurance" />
 
-            <!-- Labels for input fields -->
-            <Label text="Insurance Name" />
-            <Label text="Amount" />
-            <Label text="Image" />
-            <Label text="Categories" />
-            <Label text="Police" />
-
-            <!-- Error messages -->
-            <Text fx:id="errorInsuranceName" fill="RED" wrappingWidth="181.6" />
-            <Text fx:id="errorInsuranceAmount" fill="RED" wrappingWidth="195.2" />
-            <Text fx:id="errorInsuranceImage" fill="RED" wrappingWidth="190.4" />
-            <Text fx:id="errorInsuranceCategories" fill="RED" wrappingWidth="195.2" />
-            <Text fx:id="errorInsurancePolice" fill="RED" wrappingWidth="195.2" />
-
-            <!-- Buttons -->
-            <Button fx:id="addinsurance" mnemonicParsing="false" text="Add Insurance" />
-            <Button fx:id="editButton" mnemonicParsing="false" text="Edit Insurance" />
-            <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete Insurance" />
-
-        </VBox>
-
-        <!-- ListView to display insurance details -->
-        <ListView fx:id="insuranceListView" layoutX="433.0" layoutY="160.0" prefHeight="530.0" prefWidth="808.0" />
+        <ListView fx:id="insuranceListView" layoutX="234.0" layoutY="166.0" prefHeight="530.0" prefWidth="808.0" />
     </children>
 </AnchorPane>
