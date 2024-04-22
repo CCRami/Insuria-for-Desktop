@@ -21,12 +21,11 @@ public class SignupController {
 
     private final UserService us=new UserService();
     @FXML
-    private RadioButton ensi;
+    private RadioButton Admin;
 
     @FXML
-    private RadioButton etu;
-    @FXML
-    private RadioButton rs;
+    private RadioButton Client;
+
 
     @FXML
     private TextField emailTF;
@@ -35,7 +34,7 @@ public class SignupController {
     private PasswordField mdpTF;
 
     @FXML
-    private TextField niveauTF;
+    private TextField DBTF;
 
     @FXML
     private TextField nomTF;
@@ -57,29 +56,26 @@ public class SignupController {
         }
         if(!isNumeric(telTF.getText())){
             AlertHelper.showAlert(Alert.AlertType.ERROR,  window, "Error",
-                    "numero de telephone Invalid .");
+                    "Invalid phone number .");
             return;
         }
-        if((emailTF.getText().equals("") &&mdpTF.getText().equals("")&&niveauTF.getText().equals("")&&nomTF.getText().equals(""))){
+        if((emailTF.getText().equals("") &&mdpTF.getText().equals("")&&DBTF.getText().equals("")&&nomTF.getText().equals(""))){
             AlertHelper.showAlert(Alert.AlertType.ERROR,  window, "Error",
-                    "pas de champ vide.");
+                    "Empty Fields .");
             return;
         }
         if (us.exsitemail(emailTF.getText())){
             AlertHelper.showAlert(Alert.AlertType.ERROR,  window, "Error",
-                    "user deja existe.");
+                    "User Already Exist.");
         }
         else {
-            if (rs.isSelected()) {
-                us.add(new User(nomTF.getText(), prenomTF.getText(), emailTF.getText(), mdpTF.getText(), Integer.parseInt(telTF.getText()), niveauTF.getText(), "responsable_societe"));
+
+            if (Admin.isSelected()) {
+                us.add(new User(nomTF.getText(), prenomTF.getText(), emailTF.getText(), mdpTF.getText(), Integer.parseInt(telTF.getText()), DBTF.getText(), "[\"ROLE_ADMIN\"]"));
             }
 
-            if (ensi.isSelected()) {
-                us.add(new User(nomTF.getText(), prenomTF.getText(), emailTF.getText(), mdpTF.getText(), Integer.parseInt(telTF.getText()), niveauTF.getText(), "admin"));
-            }
-
-            if (etu.isSelected()) {
-                us.add(new User(nomTF.getText(), prenomTF.getText(), emailTF.getText(), mdpTF.getText(), Integer.parseInt(telTF.getText()), niveauTF.getText(), "etudiant"));
+            if (Client.isSelected()) {
+                us.add(new User(nomTF.getText(), prenomTF.getText(), emailTF.getText(), mdpTF.getText(), Integer.parseInt(telTF.getText()), DBTF.getText(), "[\"ROLE_CLIENT\"]"));
             }
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
             Parent root = loader.load();

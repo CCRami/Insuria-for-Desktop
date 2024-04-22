@@ -74,6 +74,7 @@ public class UserService implements IUser<User>{
                 user.setPhone_number(rs.getInt("phone_number"));
                 user.setBirth_date(String.valueOf(rs.getDate("birth_date").toLocalDate()));
                 user.setRole(rs.getString("roles"));
+                user.setAvatar(rs.getString("avatar"));
                 user.setVerified(rs.getBoolean("is_verified"));
                 user.setBlocked(rs.getBoolean("is_blocked"));
                 userList.add(user);

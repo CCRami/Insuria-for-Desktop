@@ -118,17 +118,15 @@ public class User {
     }
 
     public String toString() {
-        return "Utilisateur{" +
-                "id=" + id +
-                ", nom='" + last_name + '\'' +
-                ", prenom='" + first_name + '\'' +
-                ", email='" + email + '\'' +
-                ", image='" + avatar + '\'' +
-                ", birth_date=" + birth_date +
-                ", isVerified=" + isVerified +
-                ", isBlocked='" + isBlocked + '\'' +
-                ", role='" + role + '\'' +
-                '}';
+        return  last_name + "   " +
+                first_name + "   " +
+                email + "   " +
+                phone_number + "   " +
+                birth_date + "   " +
+                isVerified + "   " +
+                isBlocked + "   " +
+                role
+                ;
     }
 
     public User(String nom, String prenom, String email, String mdp, int tel, String bd, String role) {

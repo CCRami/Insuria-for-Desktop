@@ -84,28 +84,28 @@ public class LoginController implements Initializable {
     @FXML
     void login(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserProfile.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
         Parent root = loader.load();
         us.displayAll();
         //  UserSession.cleanUserSession();
-        UserProfileController auc = loader.getController();
+        HomeController homec = loader.getController();
         System.out.println("hello");
         if (us.authenticate(mail.getText(), password.getText()) != 0) {
-            UserSession u = UserSession.getInstace(mail.getText(), us.role(us.authenticate(mail.getText(), password.getText())));
+            UserSession u = UserSession.getInstance(mail.getText(), us.role(us.authenticate(mail.getText(), password.getText())));
             System.out.println(u);
             if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_CLIENT\"]")) {
-                auc.setAfficherTF(" bienvnue Client");
+                homec.setEmailtxt(u.getUserName());
                 btn.getScene().setRoot(root);
                 //goToHome();
             } else if (us.role(us.authenticate(mail.getText(), password.getText())).equals("Admin")) {
-                auc.setAfficherTF(" bienvnue Admin");
+                homec.setEmailtxt(u.getUserName());
                 btn.getScene().setRoot(root);
                 //goToAdmin();
             }
 
             } else if (mail.getText().isEmpty() || password.getText().isEmpty()) {
                 AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                        "insert l'email et mot de passe.");
+                        "Empty Fields");
             } else {
                 AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
                         "Invalid email and password.");

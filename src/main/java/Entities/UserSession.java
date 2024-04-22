@@ -14,7 +14,7 @@ public final class UserSession {
         this.privileges = privileges;
     }
 
-    public static UserSession getInstace(String userName, String privileges) {
+    public static UserSession getInstance(String userName, String privileges) {
         if(instance == null) {
             instance = new UserSession(userName, privileges);
         }

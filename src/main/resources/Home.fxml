@@ -11,29 +11,35 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #051B46;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.HomeController">
     <children>
-        <AnchorPane prefHeight="519.0" prefWidth="262.0" style="-fx-background-color: #393351;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane prefHeight="519.0" prefWidth="262.0" style="-fx-background-color: #000E29;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <VBox layoutY="160.0" prefHeight="356.0" prefWidth="262.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="160.0" />
-                <Pane layoutY="86.0" prefHeight="61.0" prefWidth="262.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 5;">
+                <Pane layoutY="86.0" prefHeight="61.0" prefWidth="262.0" style="-fx-background-color: #2CA2FB; -fx-background-radius: 5;">
                     <children>
-                        <Label layoutX="25.0" layoutY="17.0" text="Home Space" textFill="WHITE">
+                        <Label layoutX="25.0" layoutY="17.0" text="Dashboard" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="18.0" />
                             </font>
                         </Label>
                     </children>
                 </Pane>
+            <Text fx:id="emailtxt" fill="WHITE" layoutX="18.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="225.76037216186523">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
             </children></AnchorPane>
-        <Pane layoutX="262.0" prefHeight="649.0" prefWidth="631.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
+        <Pane layoutX="262.0" prefHeight="649.0" prefWidth="631.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="-3.599999999999909" AnchorPane.topAnchor="0.0">
             <children>
-                <Pane layoutX="-25.0" layoutY="-178.0" prefHeight="303.0" prefWidth="467.0" rotate="41.6" style="-fx-background-color: #FA2C56; -fx-background-radius: 70;" />
-                <Pane layoutX="76.0" layoutY="106.0">
+                <Pane layoutX="-25.0" layoutY="-178.0" prefHeight="303.0" prefWidth="467.0" rotate="41.6" style="-fx-background-color: #FCAF3D; -fx-background-radius: 70;" />
+                <Pane layoutX="109.0" layoutY="106.0" prefHeight="230.0" prefWidth="200.0">
                     <children>
-                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
-                        <Circle layoutX="84.0" layoutY="87.0" radius="50.0" strokeType="INSIDE">
+                        <Button fx:id="userbtn" mnemonicParsing="false" onMouseClicked="#showUsers" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
+                        <Circle layoutX="100.0" layoutY="100.0" onMouseClicked="#showUsers" radius="75.0" strokeType="INSIDE">
                             <stroke>
                                 <LinearGradient endX="1.0" endY="1.0">
                                     <stops>
@@ -51,21 +57,21 @@
                                 </LinearGradient>
                             </fill>
                         </Circle>
-                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="66.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="63.0" layoutY="63.0" onMouseClicked="#showUsers" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../resources/icons8_Block_50px_1.png" />
+                                <Image url="@images/homme.png" />
                             </image>
                         </ImageView>
-                        <Label alignment="CENTER" layoutX="-6.0" layoutY="146.0" prefHeight="17.0" prefWidth="174.0" text="General" textFill="WHITE">
+                        <Label alignment="CENTER" layoutX="13.0" layoutY="190.0" onMouseClicked="#showUsers" prefHeight="20.0" prefWidth="174.0" text="User" textFill="WHITE">
                             <font>
                                 <Font name="Arial Bold" size="13.0" />
                             </font></Label>
                     </children>
                 </Pane>
-                <Pane layoutX="316.0" layoutY="106.0" prefHeight="202.0" prefWidth="179.0">
+                <Pane layoutX="384.0" layoutY="106.0" prefHeight="230.0" prefWidth="200.0">
                     <children>
-                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
-                        <Circle layoutX="84.0" layoutY="87.0" radius="50.0" strokeType="INSIDE">
+                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
+                        <Circle layoutX="100.0" layoutY="100.0" radius="75.0" strokeType="INSIDE">
                             <stroke>
                                 <LinearGradient endX="1.0" endY="1.0">
                                     <stops>
@@ -83,21 +89,21 @@
                                 </LinearGradient>
                             </fill>
                         </Circle>
-                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="66.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="63.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../resources/icons8_Car_52px_2.png" />
+                                <Image url="@images/fete.png" />
                             </image>
                         </ImageView>
-                        <Label alignment="CENTER" layoutX="1.0" layoutY="146.0" prefHeight="17.0" prefWidth="168.0" text="Transport" textFill="WHITE">
+                        <Label alignment="CENTER" layoutX="15.0" layoutY="190.0" prefHeight="20.0" prefWidth="168.0" text="Offer" textFill="WHITE">
                             <font>
                                 <Font name="Arial Bold" size="13.0" />
                             </font></Label>
                     </children>
                 </Pane>
-                <Pane layoutX="71.0" layoutY="354.0" prefHeight="202.0" prefWidth="179.0">
+                <Pane layoutX="109.0" layoutY="354.0" prefHeight="230.0" prefWidth="200.0">
                     <children>
-                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
-                        <Circle layoutX="84.0" layoutY="87.0" radius="50.0" strokeType="INSIDE">
+                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
+                        <Circle layoutX="100.0" layoutY="100.0" radius="75.0" strokeType="INSIDE">
                             <stroke>
                                 <LinearGradient endX="1.0" endY="1.0">
                                     <stops>
@@ -115,21 +121,21 @@
                                 </LinearGradient>
                             </fill>
                         </Circle>
-                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="66.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="63.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../resources/icons8_Shopping_Cart_50px_2.png" />
+                                <Image url="@images/produit.png" />
                             </image>
                         </ImageView>
-                        <Label alignment="CENTER" layoutX="3.0" layoutY="146.0" prefHeight="17.0" prefWidth="168.0" text="Shopping" textFill="WHITE">
+                        <Label alignment="CENTER" layoutX="14.0" layoutY="190.0" prefHeight="20.0" prefWidth="168.0" text="Products" textFill="WHITE">
                             <font>
                                 <Font name="Arial Bold" size="13.0" />
                             </font></Label>
                     </children>
                 </Pane>
-                <Pane layoutX="316.0" layoutY="354.0" prefHeight="202.0" prefWidth="179.0">
+                <Pane layoutX="384.0" layoutY="354.0" prefHeight="230.0" prefWidth="200.0">
                     <children>
-                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
-                        <Circle layoutX="84.0" layoutY="87.0" radius="50.0" stroke="#ff924f" strokeType="INSIDE">
+                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
+                        <Circle layoutX="100.0" layoutY="100.0" radius="75.0" stroke="#ff924f" strokeType="INSIDE">
                             <fill>
                                 <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">
                                     <stops>
@@ -140,21 +146,21 @@
                                 </LinearGradient>
                             </fill>
                         </Circle>
-                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="66.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="63.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../resources/icons8_Bill_50px_2.png" />
+                                <Image url="@images/grouper.png" />
                             </image>
                         </ImageView>
-                        <Label alignment="CENTER" layoutX="1.0" layoutY="146.0" prefHeight="17.0" prefWidth="168.0" text="Bill" textFill="WHITE">
+                        <Label alignment="CENTER" layoutX="15.0" layoutY="190.0" prefHeight="20.0" prefWidth="168.0" text="Agencies" textFill="WHITE">
                             <font>
                                 <Font name="Arial Bold" size="13.0" />
                             </font></Label>
                     </children>
                 </Pane>
-                <Pane layoutX="559.0" layoutY="354.0" prefHeight="202.0" prefWidth="179.0">
+                <Pane layoutX="657.0" layoutY="360.0" prefHeight="232.0" prefWidth="204.0">
                     <children>
-                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
-                        <Circle layoutX="84.0" layoutY="87.0" radius="50.0" strokeType="INSIDE">
+                        <Button layoutX="2.0" layoutY="1.0" mnemonicParsing="false" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
+                        <Circle layoutX="100.0" layoutY="100.0" radius="75.0" strokeType="INSIDE">
                             <fill>
                                 <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">
                                     <stops>
@@ -165,21 +171,21 @@
                                 </LinearGradient>
                             </fill>
                         </Circle>
-                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="66.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="63.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../resources/icons8_Broccoli_64px_2.png" />
+                                <Image url="@images/analyse.png" />
                             </image>
                         </ImageView>
-                        <Label alignment="CENTER" layoutX="1.0" layoutY="146.0" prefHeight="17.0" prefWidth="168.0" text="Grocery" textFill="WHITE">
+                        <Label alignment="CENTER" layoutX="15.0" layoutY="190.0" prefHeight="20.0" prefWidth="168.0" text="Policies" textFill="WHITE">
                             <font>
                                 <Font name="Arial Bold" size="13.0" />
                             </font></Label>
                     </children>
                 </Pane>
-                <Pane layoutX="559.0" layoutY="106.0" prefHeight="190.0" prefWidth="174.0">
+                <Pane layoutX="657.0" layoutY="106.0" prefHeight="230.0" prefWidth="200.0">
                     <children>
-                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="168.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
-                        <Circle layoutX="84.0" layoutY="87.0" radius="50.0" strokeType="INSIDE">
+                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
+                        <Circle layoutX="100.0" layoutY="100.0" radius="75.0" strokeType="INSIDE">
                             <fill>
                                 <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">
                                     <stops>
@@ -190,12 +196,12 @@
                                 </LinearGradient>
                             </fill>
                         </Circle>
-                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="66.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="63.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../resources/icons8_Play_Button_50px.png" />
+                                <Image url="@images/probleme.png" />
                             </image>
                         </ImageView>
-                        <Label alignment="CENTER" layoutX="1.0" layoutY="146.0" prefHeight="17.0" prefWidth="168.0" text="Entertainment" textFill="WHITE">
+                        <Label alignment="CENTER" layoutX="15.0" layoutY="190.0" prefHeight="20.0" prefWidth="168.0" text="Reclamation" textFill="WHITE">
                             <font>
                                 <Font name="Arial Bold" size="13.0" />
                             </font></Label>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.UserListController">
+    <children>
+        <ListView fx:id="listView" layoutX="14.0" layoutY="91.0" prefHeight="537.0" prefWidth="1000.0" />
+
+        <!-- Pagination Controls -->
+        <HBox layoutX="51.0" layoutY="650.0" spacing="10">
+            <Button fx:id="previousButton" onAction="#previousPage" text="Previous" />
+            <Button fx:id="nextButton" onAction="#nextPage" text="Next" />
+        </HBox>
+    </children>
+</AnchorPane>

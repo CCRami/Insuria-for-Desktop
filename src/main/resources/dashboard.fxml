@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.dashboard">
+<BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.dashboard">
     <left>
-        <VBox alignment="TOP_CENTER" prefHeight="810.0" prefWidth="253.0" style="-fx-background-color: #F8C07F;" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="250.0" style="-fx-background-color: #051B46;" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -28,111 +28,21 @@
                                 <Image url="@images/analyse.png" />
                             </image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Dashboard">
+                        <Label onMouseClicked="#showDash" prefHeight="35.0" prefWidth="202.0" text="Dashboard" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
                         </Label>
                     </children>
                 </HBox>
-                <HBox layoutX="30.0" layoutY="392.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                <HBox layoutX="30.0" layoutY="392.0" onMouseClicked="#showUsers" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
                     <children>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@images/homme.png" />
                             </image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Utilisateur">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </HBox>
-                <HBox layoutX="30.0" layoutY="416.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fx:id="eventView" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/fete.png" />
-                            </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Evenement">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </HBox>
-                <HBox layoutX="30.0" layoutY="438.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/probleme.png" />
-                            </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Reclamation">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </HBox>
-                <HBox layoutX="30.0" layoutY="461.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/produit.png" />
-                            </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Produits">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </HBox>
-                <HBox layoutX="30.0" layoutY="484.0" onMouseClicked="#showRestau" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/batiment-de-restauration.png" />
-                            </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Restaurants">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </HBox>
-                <HBox layoutX="30.0" layoutY="279.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/grouper.png" />
-                            </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Forum">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </HBox>
-                <HBox onMouseClicked="#showAvisRestau" prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="37.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/customer-review.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets />
-                            </HBox.margin>
-                        </ImageView>
-                        <Label text="Avis Restaurant">
-                            <HBox.margin>
-                                <Insets left="10.0" top="15.0" />
-                            </HBox.margin>
+                        <Label prefHeight="35.0" prefWidth="202.0" text="Users" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
