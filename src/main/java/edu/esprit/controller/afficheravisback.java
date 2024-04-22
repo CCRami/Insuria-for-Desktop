@@ -1,17 +1,26 @@
 package edu.esprit.controller;
 
+import edu.esprit.entities.Agence;
 import edu.esprit.entities.Avis;
+import edu.esprit.service.AgenceService;
 import edu.esprit.service.AvisService;
 import edu.esprit.util.DataSource;
+import edu.esprit.controller.avis;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,6 +32,9 @@ import java.util.ResourceBundle;
 public class afficheravisback  implements Initializable {
     @FXML
     private TableView<Avis> tab;
+    @FXML
+    private GridPane container;
+
 
 
     @FXML
@@ -41,17 +53,16 @@ public class afficheravisback  implements Initializable {
     private TableColumn<Avis, Integer> avis_id;
 
     @FXML
-        private TableColumn<Avis, Integer> agenceav_id;
+    private TableColumn<Avis, Integer> agenceav_id;
 
     @FXML
-    TextField  AVnote, AVdate, AVclient, AVAge;
+    TextField AVnote, AVdate, AVclient, AVAge;
 
     @FXML
     TextArea AVcommentaire;
 
 
-    @FXML
-    Button modif, supprimer, pdf;
+
 
     @FXML
     private Button ajouteragence;
@@ -66,18 +77,21 @@ public class afficheravisback  implements Initializable {
     private Label home_totalAvis;
     int selectedId;
 
-    AvisService s = new AvisService();
-    public Avis r = new Avis(commentaire, note, date_avis, avis_id, agenceav_id,etat);
+    //AvisService s = new AvisService();
+    public Avis r = new Avis(commentaire, note, date_avis, avis_id, agenceav_id, etat);
+    private final AvisService serviceAvis = new AvisService();
+    private List<Avis> avis;
     @FXML
-    public void homeTotalEmployees() {
+    public void home_totalEmployees() {
         String sql = "SELECT COUNT(id) FROM Agence";
-        this.cnx = DataSource.getInstance().getConnection();;
+        this.cnx = DataSource.getInstance().getConnection();
+        ;
         int countData = 0;
 
         try {
             this.pst = this.cnx.prepareStatement(sql);
 
-            for(this.result = this.pst.executeQuery(); this.result.next(); countData = this.result.getInt("COUNT(id)")) {
+            for (this.result = this.pst.executeQuery(); this.result.next(); countData = this.result.getInt("COUNT(id)")) {
             }
 
             this.home_totalEmployees.setText(String.valueOf(countData));
@@ -90,13 +104,14 @@ public class afficheravisback  implements Initializable {
     @FXML
     public void homeTotalAvis() {
         String sql = "SELECT COUNT(id) FROM Avis";
-        this.cnx = DataSource.getInstance().getConnection();;
+        this.cnx = DataSource.getInstance().getConnection();
+        ;
         int countData = 0;
 
         try {
             this.pst = this.cnx.prepareStatement(sql);
 
-            for(this.result = this.pst.executeQuery(); this.result.next(); countData = this.result.getInt("COUNT(id)")) {
+            for (this.result = this.pst.executeQuery(); this.result.next(); countData = this.result.getInt("COUNT(id)")) {
             }
 
             this.home_totalAvis.setText(String.valueOf(countData));
@@ -106,9 +121,46 @@ public class afficheravisback  implements Initializable {
 
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        commentaire.setCellValueFactory(new PropertyValueFactory<Avis, String>("commentaire"));
+        homeTotalAvis();home_totalEmployees();
+        avis = serviceAvis.getAllavis();
+        int column = 0;
+        int row = 1;
+        try {
+            for (Avis avis : avis) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/unAvis.fxml"));
+
+                try {
+                    Object anchorPane = fxmlLoader.load();
+                    avis age = fxmlLoader.getController();
+
+                    age.setData(avis);
+                    age.supprimer(avis.getIdAV());
+
+
+                    if (column == 3) {
+                        column = 0;
+                        row++;
+                    }
+
+
+                    container.add((Node) anchorPane, column++, row);
+                    GridPane.setMargin((Node) anchorPane, new Insets(10));
+                    // Assurez-vous que le bouton est récupéré correctement
+
+                } finally {
+                    // Assurez-vous de fermer les flux pour éviter les fuites de ressources
+                    fxmlLoader = null;
+                }
+
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Erreur lors du chargement du FXML", e);
+        }
+    }
+      /*  commentaire.setCellValueFactory(new PropertyValueFactory<Avis, String>("commentaire"));
         note.setCellValueFactory(new PropertyValueFactory<Avis, Integer>("note"));
         date_avis.setCellValueFactory(new PropertyValueFactory<Avis, String>("date_avis"));
         avis_id.setCellValueFactory(new PropertyValueFactory<Avis, Integer>("avis_id"));
@@ -162,5 +214,5 @@ public class afficheravisback  implements Initializable {
         AVdate.clear();
         AVclient.clear();
         AVAge.clear();
+    }*/
     }
-}

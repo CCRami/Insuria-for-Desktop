@@ -76,7 +76,7 @@ public class dashboard implements Initializable{
 
         try {
             // Load user.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Agencesback.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/agencedash.fxml"));
             Node eventFXML = loader.load();
 
             // Clear existing content from FieldHolder
@@ -91,11 +91,11 @@ public class dashboard implements Initializable{
     }
 
     @FXML
-    void showAvisByAgence(MouseEvent event) {
+    void showajouteragence(MouseEvent event) {
 
         try {
             // Load user.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/avisbackbyagence.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouteragence.fxml"));
             Node eventFXML = loader.load();
 
             // Clear existing content from FieldHolder

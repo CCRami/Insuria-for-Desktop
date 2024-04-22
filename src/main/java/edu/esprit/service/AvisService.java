@@ -69,7 +69,7 @@ public class AvisService implements IServiceAvis {
 */
 
     @Override
-    public void supprimerav(int id) {
+    public  void supprimerav(int id) {
         System.out.println( id );
         String req = "DELETE FROM Avis WHERE id = ?";
         try (PreparedStatement ps = cnx.prepareStatement(req)) {

@@ -55,14 +55,14 @@ public class AgenceService implements IService<Agence>{
     @Override
     public void modifierage(Agence agence) {
 
-        String req = "UPDATE agence SET nomage = ?, addresse = ?, email = ?, tel = ? ,create_at=? WHERE email = ?";
+        String req = "UPDATE agence SET nomage = ?, addresse = ?, email = ?, tel = ? ,create_at=? WHERE id = ?";
         try (PreparedStatement ps = cnx.prepareStatement(req)) {
             ps.setString(1, agence.getNomage());
             ps.setString(2, agence.getAddresse());
             ps.setString(3, agence.getEmail());
             ps.setInt(4, agence.getTel());
             ps.setString(5, agence.getCreate_at());
-            ps.setString(6, agence.getEmail());
+            ps.setInt(6, agence.getIdage());
 
 
             int rowsAffected = ps.executeUpdate();

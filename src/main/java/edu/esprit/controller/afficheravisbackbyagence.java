@@ -8,10 +8,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -51,8 +56,8 @@ public class afficheravisbackbyagence {
 
 
 
-
-
+    @FXML
+    private GridPane container;
     @FXML
     Button modif, supprimer, pdf;
 
@@ -74,6 +79,9 @@ public class afficheravisbackbyagence {
 
     AvisService s = new AvisService();
     public Avis r = new Avis(commentaire, note, date_avis, avis_id, agenceav_id,etat);
+
+    private final AvisService serviceAvis = new AvisService();
+    private List<Avis> avis;
     @FXML
     public void homeTotalEmployees() {
         String sql = "SELECT COUNT(id) FROM Agence";
@@ -114,6 +122,36 @@ public class afficheravisbackbyagence {
 
 
     public void initialize() {
+        homeTotalAvis();homeTotalEmployees();
+        avis = serviceAvis.getAllavisbyagence(Parametre2);
+        int column = 0;
+        int row = 1;
+        try {
+            for (Avis avis : avis) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/unAvis.fxml"));
+                try {
+                    Object anchorPane = fxmlLoader.load();
+                    avis age = fxmlLoader.getController();
+
+                    age.setData(avis);
+                    age.supprimer(avis.getIdAV());
+                    if (column == 3) {
+                        column = 0;
+                        row++;
+                    }
+
+                    container.add((Node) anchorPane, column++, row);
+                    GridPane.setMargin((Node) anchorPane, new Insets(10));
+
+                } finally {
+                    // Assurez-vous de fermer les flux pour éviter les fuites de ressources
+                    fxmlLoader = null;
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Erreur lors du chargement du FXML", e);
+        }
+        /*
         commentaire.setCellValueFactory(new PropertyValueFactory<Avis, String>("commentaire"));
         note.setCellValueFactory(new PropertyValueFactory<Avis, Integer>("note"));
         date_avis.setCellValueFactory(new PropertyValueFactory<Avis, String>("date_avis"));
@@ -150,7 +188,7 @@ public class afficheravisbackbyagence {
             }
         });
 
-        clearFields();
+        clearFields();*/
     }
 
     private void loadTableData() {

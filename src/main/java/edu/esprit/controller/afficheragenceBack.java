@@ -1,6 +1,5 @@
 package edu.esprit.controller;
 
-
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,10 +11,6 @@ import edu.esprit.entities.Agence;
 import edu.esprit.util.DataSource;
 
 
-
-
-
-import edu.esprit.util.DataSource;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,10 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import edu.esprit.entities.Agence;
 import edu.esprit.service.AgenceService;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 public class afficheragenceBack implements Initializable {
     @FXML
@@ -170,6 +162,34 @@ public class afficheragenceBack implements Initializable {
             e.printStackTrace();
         }
     }
+    Agence SelectedAgence;
+
+    @FXML
+    private void modifierButton() {
+        try {
+            // Charger le fichier FXML de la nouvelle page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/updateagence.fxml"));
+            Parent root = loader.load();
+// Assuming you have access to the current scene
+            updateagence controller = loader.getController();
+
+            // Appeler la méthode du contrôleur pour passer le paramètre selectedId
+            System.out.println("fff"+SelectedAgence);
+
+            controller.myparametre(SelectedAgence);
+            controller.initialize(SelectedAgence);
+            Scene currentScene = modif.getScene();
+// Set the new root to the current scene
+
+
+            currentScene.setRoot(root);
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 String selectedemail;
     @Override
@@ -186,61 +206,31 @@ String selectedemail;
         tab.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 Agence selectedAgence = tab.getSelectionModel().getSelectedItem();
+                 SelectedAgence = tab.getSelectionModel().getSelectedItem();
                 selectedId = selectedAgence.getIdage();
                 System.out.println(selectedId);
                 selectedemail= selectedAgence.getEmail();
-                Agenom.setText(selectedAgence.getNomage());
-                Ageadresse.setText(selectedAgence.getAddresse());
-                Agedate.setText(selectedAgence.getCreate_at());
-                Ageemail.setText(selectedAgence.getEmail());
-                Agephone.setText(String.valueOf(selectedAgence.getTel()));
+
             }
         });
 
-        modif.setOnAction(new EventHandler<ActionEvent>() {
-          @Override
-            public void handle(ActionEvent actionEvent) {
 
-              Agence agence = new Agence(nomage, addresse, email, tel, creation);
-                agence.setIdage(selectedId);
-                agence.setTel(Integer.parseInt(Agephone.getText()));
-                agence.setNomage(Agenom.getText());
-                agence.setCreate_at(Agedate.getText());
-                agence.setAddresse(Ageadresse.getText());
-                agence.setEmail(Ageemail.getText());
-                s.modifierage(agence);
-              System.out.println(agence);
-                updateTable_r();
-                clearFields();
-            }
-        });
 
         supprimer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 s.supprimerage(selectedId);
                 updateTable_r();
-                clearFields();
+
             }
         });
 
-        /*pdf.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.setTitle("Save PDF");
-                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF files (.pdf)", ".pdf"));
-
-                File file = fileChooser.showSaveDialog(null);
-                if (file != null) {
-                    generatePdf(file.getAbsolutePath());
-                }
-            }
-        });*/
 
 
-        clearFields();
+
+
     }
+
 
     private void loadTableData() {
         ObservableList<Agence> data = FXCollections.observableArrayList(s.getAll());
@@ -252,13 +242,6 @@ String selectedemail;
         tab.getItems().setAll(agences);
     }
 
-    private void clearFields() {
-        Agephone.clear();
-        Ageemail.clear();
-        Agenom.clear();
-        Ageadresse.clear();
-        Agedate.clear();
-    }
 
 
 }
