@@ -1,13 +1,21 @@
 package Controllers.User;
 
 import Entities.User;
+import Services.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class UserListViewCell extends ListCell<User> {
@@ -42,6 +50,10 @@ public class UserListViewCell extends ListCell<User> {
     @FXML
     private GridPane gridPane;
 
+    @FXML
+    private Button deletebtn;
+    @FXML
+    private Button updatebtn;
     private int pageIndex;
     private int itemsPerPage;
 
@@ -86,8 +98,43 @@ public class UserListViewCell extends ListCell<User> {
             label7.setText(String.valueOf(user.isVerified()));
             label8.setText(String.valueOf(user.isBlocked()));
             label9.setText(user.getRole());
+
+            updatebtn.setOnAction(event -> {
+                try {
+                    showedituser(user);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            deletebtn.setOnAction(event -> {
+                UserService userService = new UserService();
+                userService.delete(user);
+                ListView<User> listView = (ListView<User>) getListView();
+                listView.getItems().remove(user);
+                listView.refresh();
+            });
             setText(null);
             setGraphic(gridPane);
         }
     }
+    public void showedituser(User user) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditUser.fxml"));
+            Parent root = loader.load();
+            EditUserController controller = loader.getController();
+            controller.initData(user);
+            //controller.setUpdateCallback(UserListController::updateUserlistview);  // Utilisez la bonne méthode de callback
+
+            Stage stage = new Stage();
+            stage.setTitle("Edit User");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            ListView<User> listView = (ListView<User>) getListView();
+            listView.refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

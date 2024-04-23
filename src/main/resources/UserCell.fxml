@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -50,11 +52,33 @@
       <Label alignment="CENTER" styleClass="data-label" text="Phone Number" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
       <Label alignment="CENTER" styleClass="data-label" text="Verified" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
       <Label alignment="CENTER" styleClass="data-label" text="Blocked" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
-      <Label alignment="CENTER" styleClass="data-label" text="Roles" GridPane.columnIndex="5" />
+      <Label alignment="CENTER" styleClass="data-label" text="Roles" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
       <Label alignment="CENTER" styleClass="data-label" text="Avatar" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="20.0" />
          </GridPane.margin>
       </Label>
+        <Button fx:id="updatebtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" styleClass="data-label" text="Update" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+            <graphic>
+                <ImageView fitHeight="20.0" fitWidth="20.0">
+                    <Image url="https://i.imgur.com/a6yY3Py.png" />
+                </ImageView>
+            </graphic>
+            <GridPane.margin>
+                <Insets left="15.0" />
+            </GridPane.margin>
+        </Button>
+        <Button fx:id="deletebtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" styleClass="data-label" text="Delete" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <graphic>
+                <ImageView fitHeight="20.0" fitWidth="20.0">
+                    <Image url="https://i.imgur.com/9jTIw5D.png" />
+                </ImageView>
+            </graphic>
+            <GridPane.margin>
+                <Insets right="10.0" />
+            </GridPane.margin>
+        </Button>
+
+        <Label alignment="CENTER" blendMode="DARKEN" text="Actions" textFill="RED" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
     </children>
 </GridPane>

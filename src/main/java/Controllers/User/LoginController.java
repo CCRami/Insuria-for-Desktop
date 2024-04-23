@@ -89,15 +89,15 @@ public class LoginController implements Initializable {
         us.displayAll();
         //  UserSession.cleanUserSession();
         HomeController homec = loader.getController();
-        System.out.println("hello");
         if (us.authenticate(mail.getText(), password.getText()) != 0) {
             UserSession u = UserSession.getInstance(mail.getText(), us.role(us.authenticate(mail.getText(), password.getText())));
             System.out.println(u);
             if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_CLIENT\"]")) {
                 homec.setEmailtxt(u.getUserName());
+                homec.email=u.getUserName();
                 btn.getScene().setRoot(root);
                 //goToHome();
-            } else if (us.role(us.authenticate(mail.getText(), password.getText())).equals("Admin")) {
+            } else if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_ADMIN\"]")) {
                 homec.setEmailtxt(u.getUserName());
                 btn.getScene().setRoot(root);
                 //goToAdmin();

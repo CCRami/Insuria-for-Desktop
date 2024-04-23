@@ -35,7 +35,7 @@ public class UserService implements IUser<User>{
 
 
     public void delete(User user) {
-        String requete = "DELETE FROM utilisateur WHERE id = " + user.getId();
+        String requete = "DELETE FROM user WHERE id = " + user.getId();
 
         try {
             ste = conn.createStatement();
@@ -47,7 +47,8 @@ public class UserService implements IUser<User>{
 
 
     public void update(User user) {
-        String requete = "UPDATE user SET last_name='" + user.getLast_name() + "',first_name='" + user.getFirst_name() + "',birth_date='"+user.getBirth_date()+"',phone_number='"+user.getPhone_number()+"' where id= " + user.getId();
+        System.out.println(user.getBirth_date());
+        String requete = "UPDATE user SET last_name='" + user.getLast_name() + "',first_name='" + user.getFirst_name() +"',phone_number='"+user.getPhone_number()+"' where id= " + user.getId();
         try {
             ste = conn.createStatement();
             ste.executeUpdate(requete);
@@ -89,7 +90,6 @@ public class UserService implements IUser<User>{
     public User displayByid(int id) {
         User user = null;
         String query = "SELECT * FROM user WHERE id = " + id;
-
         try {
             ste = conn.createStatement();
             ResultSet rs = ste.executeQuery(query);
@@ -109,7 +109,6 @@ public class UserService implements IUser<User>{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         return user;
     }
     public int authenticate(String email, String password) {
@@ -203,4 +202,5 @@ public class UserService implements IUser<User>{
         }
         return false;
     }
+
 }

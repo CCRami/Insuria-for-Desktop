@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 public class UserListController implements Initializable {
 
     @FXML
-    private ListView<User> listView;
+    public ListView<User> listView;
 
     private ObservableList<User> allUsers;
 
@@ -57,7 +57,7 @@ public class UserListController implements Initializable {
             updatePaginationButtons();
         }
     }
-    private void loadPage(int pageIndex) {
+    public void loadPage(int pageIndex) {
         int fromIndex = pageIndex * itemsPerPage;
         int toIndex = Math.min(fromIndex + itemsPerPage, allUsers.size());
         ObservableList<User> pageUsers = FXCollections.observableArrayList(allUsers.subList(fromIndex, toIndex));
@@ -73,4 +73,14 @@ public class UserListController implements Initializable {
         previousButton.setDisable(currentPageIndex == 0);
         nextButton.setDisable(currentPageIndex == getLastPageIndex());
     }
+    public void updateUserlistview(User updatedUser) {
+        // Mettre à jour un sinistre spécifique dans la ListView
+        ObservableList<User> Users = listView.getItems();
+        int index = Users.indexOf(updatedUser);
+        if (index != -1) {
+            Users.set(index, updatedUser);
+            listView.refresh();
+        }
+    }
+
 }

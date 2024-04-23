@@ -7,12 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Window;
 import Services.UserService;
-import javafx.scene.control.PasswordField;
 
 import java.io.IOException;
 import java.util.regex.Pattern;
@@ -34,7 +31,10 @@ public class SignupController {
     private PasswordField mdpTF;
 
     @FXML
-    private TextField DBTF;
+    private PasswordField mdpTF1;
+
+    @FXML
+    private DatePicker DBTF;
 
     @FXML
     private TextField nomTF;
@@ -49,21 +49,36 @@ public class SignupController {
     Window window;
     @FXML
     void AjouterUser(ActionEvent event) throws IOException {
-
+        if(emailTF.getText().equals("") || mdpTF.getText().equals("")|| DBTF.getValue().toString().equals("")|| nomTF.getText().equals("")|| prenomTF.getText().equals("")){
+            AlertHelper.showAlert(Alert.AlertType.ERROR,  window, "Error",
+                    "Empty Fields .");
+            return;
+        }
+        System.out.println(emailTF.getText());
         if(!patternMatches(emailTF.getText())){
             AlertHelper.showAlert(Alert.AlertType.ERROR,  window, "Error",
                     "Invalid email .");
+            return;
         }
+        System.out.println(telTF.getText());
         if(!isNumeric(telTF.getText())){
             AlertHelper.showAlert(Alert.AlertType.ERROR,  window, "Error",
                     "Invalid phone number .");
             return;
         }
-        if((emailTF.getText().equals("") &&mdpTF.getText().equals("")&&DBTF.getText().equals("")&&nomTF.getText().equals(""))){
+        if(mdpTF.getText().length()<8){
             AlertHelper.showAlert(Alert.AlertType.ERROR,  window, "Error",
-                    "Empty Fields .");
+                    "Password must be at least 8 characters .");
             return;
         }
+        if(!mdpTF.getText().equals(mdpTF1.getText())){
+            AlertHelper.showAlert(Alert.AlertType.ERROR,  window, "Error",
+                    "Passwords do not match .");
+            return;
+        }
+        System.out.println("test2");
+
+        System.out.println("test3");
         if (us.exsitemail(emailTF.getText())){
             AlertHelper.showAlert(Alert.AlertType.ERROR,  window, "Error",
                     "User Already Exist.");
@@ -71,11 +86,14 @@ public class SignupController {
         else {
 
             if (Admin.isSelected()) {
-                us.add(new User(nomTF.getText(), prenomTF.getText(), emailTF.getText(), mdpTF.getText(), Integer.parseInt(telTF.getText()), DBTF.getText(), "[\"ROLE_ADMIN\"]"));
+                us.add(new User(nomTF.getText(), prenomTF.getText(), emailTF.getText(), mdpTF.getText(), Integer.parseInt(telTF.getText()), DBTF.getValue().toString(), "[\"ROLE_ADMIN\"]"));
+                AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "User Signed Up", "User Signed Up successfully");
             }
 
             if (Client.isSelected()) {
-                us.add(new User(nomTF.getText(), prenomTF.getText(), emailTF.getText(), mdpTF.getText(), Integer.parseInt(telTF.getText()), DBTF.getText(), "[\"ROLE_CLIENT\"]"));
+                us.add(new User(nomTF.getText(), prenomTF.getText(), emailTF.getText(), mdpTF.getText(), Integer.parseInt(telTF.getText()), DBTF.getValue().toString(), "[\"ROLE_CLIENT\"]"));
+                AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "User Signed Up", "User Signed Up successfully");
+
             }
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
             Parent root = loader.load();
@@ -85,11 +103,7 @@ public class SignupController {
         }
     }
 
-    @FXML
-    void supprimer(ActionEvent event) {
 
-        us.delete(new User(Integer.parseInt(IDFX.getText())));
-    }
     public boolean patternMatches(String emailAddress) {
         final String regex = "^(.+)@(.+)$";
         return Pattern.compile(regex) .matcher(emailAddress) .matches(); }

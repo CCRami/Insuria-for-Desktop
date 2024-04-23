@@ -1,6 +1,7 @@
 package Controllers;
 
 
+import Controllers.User.HomeController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -80,6 +81,7 @@ public class dashboard {
         try {
             // Load user.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
+
             Node eventFXML = loader.load();
 
             // Get the current stage
