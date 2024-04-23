@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.afficherReclamationBack">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="778.0" prefWidth="1254.0">
+         <children>
+            <AnchorPane layoutX="255.2" layoutY="51.2" prefHeight="598.0" prefWidth="685.0" stylesheets="@../../../../../Desktop/pidev/src/main/resources/style/dashboardDesign.css" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="51.0">
+               <styleClass>
+                  <String fx:value="white-bg" />
+                  <String fx:value="shadow" />
+               </styleClass>
+               <children>
+                  <Text fill="#1d4fac" layoutX="82.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="    Label              :">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#1d4fac" layoutX="102.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Claim      :" AnchorPane.bottomAnchor="370.4" AnchorPane.leftAnchor="105.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#1d4fac" layoutX="105.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contenu          :">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#1d4fac" layoutX="105.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Sinistre   :">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#1d4fac" layoutX="105.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer            :">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="dateReclamation" layoutX="278.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="label" wrappingWidth="186.84808349609375" />
+                  <Text fx:id="label" layoutX="278.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="label" wrappingWidth="186.84808349609375" />
+                  <Text fx:id="dateSinistre" layoutX="278.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="label" wrappingWidth="186.84808349609375" />
+                  <Text fx:id="reponse" fill="WHITE" layoutX="453.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="label" wrappingWidth="22.84808349609375" />
+                  <Text fx:id="contenu" layoutX="278.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="label" wrappingWidth="338.9366455078125" />
+                  <ChoiceBox fx:id="choixReponse" layoutX="278.0" layoutY="336.0" prefWidth="150.0" style="-fx-background-color: #aac7fc;" />
+                  <Text fx:id="choixerror" fill="#fc0202" layoutX="263.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="160.3125" />
+                  <Button fx:id="enregistre" layoutX="135.0" layoutY="430.0" mnemonicParsing="false" onAction="#enregistreAction" prefHeight="43.0" prefWidth="142.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Enregistrer" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="108.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/ajouter.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="cancel" layoutX="300.0" layoutY="430.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="43.0" prefWidth="142.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Cancel" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                  </Button>
+                  <Text layoutX="256.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Compensation !" wrappingWidth="229.3367919921875">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="43.0" fitWidth="33.0" layoutX="217.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/analyse.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
