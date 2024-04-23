@@ -126,7 +126,7 @@ public class Addoffercat {
         // Create a FileChooser
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Image"); // Set the title of the file chooser dialog
-        fileChooser.setInitialDirectory(new File("C:\\InsuriaJava\\offimg"));
+        fileChooser.setInitialDirectory(new File("C:\\Insuria Java\\Insuria-for-Desktop\\src\\main\\resources\\images"));
 
 
 
