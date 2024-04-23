@@ -56,12 +56,11 @@ public class OfferCategory {
 
     @Override
     public String toString() {
-        return "OfferCategory{" +
-                "id=" + id +
-                ", categorie_name='" + categorie_name + '\'' +
-                ", description_cat='" + description_cat + '\'' +
-                ", catimg='" + catimg + '\'' +
-                '}';
+        return
+
+                " " + categorie_name + '\''
+
+        ;
     }
 
 

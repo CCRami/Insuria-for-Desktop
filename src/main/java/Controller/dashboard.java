@@ -90,4 +90,48 @@ public class dashboard implements Initializable{
         }
     }
 
+
+
+    @FXML
+    void showOffre(MouseEvent event) {
+
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Showoffer.fxml"));
+            Node eventFXML = loader.load();
+
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    void showCatOffre(MouseEvent event) {
+
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Showoffcat.fxml"));
+            Node eventFXML = loader.load();
+
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
+
+
+
 }
+

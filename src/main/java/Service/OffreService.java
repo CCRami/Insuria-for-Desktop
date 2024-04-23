@@ -32,7 +32,7 @@ public class OffreService {
         }
     }
     public void updateOffre(Offre of) {
-        String sql = "UPDATE offre SET advantage=?, conditions=?, duration=?, discount=?, offreimg=?, categorie_id=? WHERE offre_id=?";
+        String sql = "UPDATE offre SET advantage=?, conditions=?, duration=?, discount=?, offreimg=?, categorie_id=? WHERE id=?";
         try {
             pst = cnx.prepareStatement(sql);
             pst.setString(1, of.getAdvantage());
@@ -41,22 +41,24 @@ public class OffreService {
             pst.setDouble(4, of.getDiscount());
             pst.setString(5, of.getOffreimg());
             pst.setInt(6, of.getId_catoff().getId());
+            pst.setInt(7,of.getId_off());
             pst.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void deleteOffre(int offreId) {
-        String sql = "DELETE FROM offre WHERE offre_id=?";
+    public void deleteOffre(int Id_off) {
+        String sql = "DELETE FROM offre WHERE id=?";
         try {
             pst = cnx.prepareStatement(sql);
-            pst.setInt(1, offreId);
+            pst.setInt(1, Id_off);
             pst.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 
 
 
@@ -68,15 +70,16 @@ public class OffreService {
             ResultSet rs=ste.executeQuery(sql);
             while (rs.next()) {
                 OffreCatService OffreCatService = new OffreCatService();
-                OfferCategory cat = OffreCatService.getOfferCategoryById(rs.getInt("catofId"));
+                OfferCategory cat = OffreCatService.getOfferCategoryById(rs.getInt("categorie_id")); // Update column name here
 
 
-                listoff.add(new Offre(rs.getInt("id_off"), rs.getString("advantage"), rs.getString("conditions"), rs.getString("duration"),rs.getDouble("discount"),rs.getString("offreimg"), cat));
+                listoff.add(new Offre(rs.getInt("id"), rs.getString("advantage"), rs.getString("conditions"), rs.getString("duration"),rs.getDouble("discount"),rs.getString("offreimg"), cat));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return listoff;
     }
+
 }
 

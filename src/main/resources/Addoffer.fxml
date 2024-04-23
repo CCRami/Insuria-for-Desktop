@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -73,6 +74,58 @@
                                 </Label>
                             </children>
                         </HBox>
+                        <HBox onMouseClicked="#showCatOffre" prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
+                            <children>
+                                <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@images/5569806.png" />
+                                    </image>
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                    <viewport>
+                                        <Rectangle2D />
+                                    </viewport>
+                                </ImageView>
+                                <Label text="Offre Category" textFill="WHITE">
+                                    <HBox.margin>
+                                        <Insets left="10.0" />
+                                    </HBox.margin>
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                            <VBox.margin>
+                                <Insets right="88.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox onMouseClicked="#showOffre" prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
+                            <children>
+                                <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@images/5569806.png" />
+                                    </image>
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                    <viewport>
+                                        <Rectangle2D />
+                                    </viewport>
+                                </ImageView>
+                                <Label text="Offre" textFill="WHITE">
+                                    <HBox.margin>
+                                        <Insets left="10.0" />
+                                    </HBox.margin>
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                            <VBox.margin>
+                                <Insets right="88.0" />
+                            </VBox.margin>
+                        </HBox>
                         <HBox layoutX="30.0" layoutY="461.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
                             <children>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -102,7 +155,7 @@
                     <children>
 
                         <HBox prefHeight="643.0" prefWidth="778.0" styleClass="show-box" stylesheets="@style/styleafficher.css">
-                            <VBox alignment="CENTER" prefHeight="546.0" prefWidth="363.0">
+                            <VBox alignment="CENTER" prefHeight="818.0" prefWidth="363.0">
                                 <VBox alignment="TOP_CENTER" prefHeight="93.0" prefWidth="363.0">
                                     <children>
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ADD a new Category offer" textAlignment="CENTER" wrappingWidth="296.5366973876953">
@@ -215,15 +268,11 @@
 
 
 
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Offcat Image" wrappingWidth="114.13669967651367">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Offer Image" wrappingWidth="114.13669967651367">
                                     <VBox.margin>
                                         <Insets left="77.0" />
                                     </VBox.margin>
                                 </Text>
-                                <HBox spacing="10.0">
-                                    <ImageView fx:id="offerimg" />
-                                    <Label fx:id="selectedImageLabel" />
-                                </HBox>
                                  <Button alignment="CENTER" onAction="#chooseImageAction" prefHeight="25.0" prefWidth="208.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Choose Image" textFill="WHITE" />
                                 <Text fx:id="erroroffreimg" fill="RED" wrappingWidth="190.4000244140625">
                                     <VBox.margin>
@@ -265,7 +314,7 @@
 
 
                             </VBox>
-                            <VBox prefHeight="600.0" prefWidth="404.0">
+                            <VBox prefHeight="675.0" prefWidth="403.0">
 
                                 <Button fx:id="save" mnemonicParsing="false" onAction="#addoffer" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Enregistrer" textFill="WHITE">
                                     <VBox.margin>
@@ -275,6 +324,10 @@
                                         <Font size="13.0" />
                                     </font>
                                 </Button>
+                                <HBox spacing="10.0">
+                                    <ImageView fx:id="offerimg" />
+                                    <Label fx:id="selectedImageLabel" />
+                                </HBox>
                             </VBox>
                         </HBox>
                     </children></VBox>

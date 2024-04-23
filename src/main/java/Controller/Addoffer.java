@@ -6,7 +6,9 @@ import Service.OffreCatService;
 import Service.OffreService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,6 +26,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class Addoffer {
@@ -85,7 +88,7 @@ public class Addoffer {
         Image image = offerimg.getImage();
         String ofImageUrl = image != null ? image.getUrl() : null;
         OfferCategory selectedCategory = categoryfComboBox.getSelectionModel().getSelectedItem();
-        Offre off = new Offre(advantageof, conditionof, durationof, discountValue, ofImageUrl,selectedCategory);
+        Offre off = new Offre(advantageof, conditionof, durationof, discountValue, ofImageUrl, selectedCategory);
 
         OffreService service = new OffreService();
         service.AddOff(off);
@@ -106,7 +109,6 @@ public class Addoffer {
     }
 
 
-
     private boolean isInputValid() {
         boolean isValid = true;
 
@@ -115,7 +117,7 @@ public class Addoffer {
             // If advantage input is empty
             erroradvantage.setText("Category offer name is required");
             isValid = false; // Flag indicating input is invalid
-        } else if (!advantage.getText().matches("^[a-zA-Z]+$")) {
+        } else if (!advantage.getText().matches("^[a-zA-Z ]+$")) {
             // If advantage input contains non-alphabetic characters
             erroradvantage.setText("Category offer name should not contain numbers");
             isValid = false; // Flag indicating input is invalid
@@ -128,14 +130,13 @@ public class Addoffer {
             // If condition input is empty
             errorcondition.setText("Description is required");
             isValid = false; // Flag indicating input is invalid
-        } else if (!condition.getText().matches("^[a-zA-Z]+$")) {
+        } else if (!condition.getText().matches("^[a-zA-Z ]+$")) {
             // If condition input contains non-alphabetic characters
             errorcondition.setText("Description should not contain numbers");
             isValid = false; // Flag indicating input is invalid
         } else {
             errorcondition.setText(""); // Clear error message if input is valid
         }
-
 
 
         if (discount.getText().isEmpty()) {
@@ -162,8 +163,6 @@ public class Addoffer {
         } else {
             errorduration.setText(""); // Clear error message if input is valid
         }
-
-
 
 
         return isValid;
@@ -220,8 +219,6 @@ public class Addoffer {
     }
 
 
-
-
     @FXML
     private void initialize() {
         populateCategoryfComboBox();
@@ -269,6 +266,47 @@ public class Addoffer {
             }
         });
     }
+
+
+    @FXML
+    void showOffre(MouseEvent event) {
+
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Showoffer.fxml"));
+            Node eventFXML = loader.load();
+
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    void showCatOffre(MouseEvent event) {
+
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Showoffcat.fxml"));
+            Node eventFXML = loader.load();
+
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
+
 
 
 

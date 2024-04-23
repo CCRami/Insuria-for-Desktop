@@ -92,20 +92,20 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox onMouseClicked="#showAvisAgence" prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
+                <HBox onMouseClicked="#showCatOffre" prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
                     <children>
-                        <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="40.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@images/5569806.png" />
                             </image>
                             <HBox.margin>
                                 <Insets />
                             </HBox.margin>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
+                            <viewport>
+                                <Rectangle2D />
+                            </viewport>
                         </ImageView>
-                        <Label text="Reviews" textFill="WHITE">
+                        <Label text="Offre Category" textFill="WHITE">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
@@ -114,9 +114,35 @@
                             </font>
                         </Label>
                     </children>
-               <VBox.margin>
-                  <Insets right="88.0" />
-               </VBox.margin>
+                    <VBox.margin>
+                        <Insets right="88.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox onMouseClicked="#showOffre" prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
+                    <children>
+                        <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/5569806.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <viewport>
+                                <Rectangle2D />
+                            </viewport>
+                        </ImageView>
+                        <Label text="Offre" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets right="88.0" />
+                    </VBox.margin>
                 </HBox>
             </children>
             <padding>

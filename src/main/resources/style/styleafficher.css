@@ -30,7 +30,7 @@
 
 .show-box{
     -fx-background-color:#FFFFFF ;
-    -fx-background-radius: 80;
+    -fx-background-radius: 60;
 }
 
 .ajouter-button{
@@ -48,3 +48,11 @@
     -fx-background-color: #fff7f7;
     -fx-background-radius: 30;
 }
+.card{-fx-background-color: #051B46;
+
+    -fx-background-radius: 30;
+
+    -fx-border-color:#051B46; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10.0, 0.0, 0.0, 10.0);
+
+
+ }

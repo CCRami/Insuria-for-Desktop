@@ -72,7 +72,7 @@ public class OffreCatService {
 
     public OfferCategory getOfferCategoryById(int catofId) {
         OfferCategory offerCategory = null;
-        String sql = "SELECT * FROM offre_category WHERE id = ?";
+        String sql = "SELECT * FROM categorie_offre WHERE id = ?";
         try {
             PreparedStatement pst = cnx.prepareStatement(sql);
             pst.setInt(1, catofId);

@@ -4,7 +4,9 @@ import Entity.OfferCategory;
 import Service.OffreCatService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -22,6 +24,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.geometry.Pos;
 import java.io.File;
+import java.io.IOException;
+
 import javafx.application.Application;
 
 
@@ -54,23 +58,21 @@ public class Addoffercat {
     @FXML
     private VBox vboxdash;
 
-    private File selectedFile;
     @FXML
     void addoffercat(ActionEvent event) {
-
         if (!isInputValid()) {
             return; // Exit the method if input is not valid
         }
         String nomcatof = catoffname.getText();
         String catoffdes = descatoff.getText();
-
-        // Obtain the file path of the selected image file
-        String catofImageUrl = selectedFile != null ? selectedFile.getAbsolutePath() : null;
+        Image image = piccatoff.getImage();
+        String catofImageUrl = image != null ? image.getUrl() : null;
 
         OfferCategory offcat = new OfferCategory(nomcatof, catoffdes, catofImageUrl );
 
         OffreCatService service = new OffreCatService();
         service.AddCatOff(offcat);
+
 
         catoffname.clear();
         descatoff.clear();
@@ -80,6 +82,8 @@ public class Addoffercat {
         alert.setHeaderText(null);
         alert.setContentText("Offer Category added successfully");
         alert.showAndWait();
+
+
     }
 
     private boolean isInputValid() {
@@ -90,7 +94,7 @@ public class Addoffercat {
             // If catoffname input is empty
             errorcattoffname.setText("Category offer name is required");
             isValid = false; // Flag indicating input is invalid
-        } else if (!catoffname.getText().matches("^[a-zA-Z]+$")) {
+        } else if (!catoffname.getText().matches("^[a-zA-Z ]+$")) {
             // If catoffname input contains non-alphabetic characters
             errorcattoffname.setText("Category offer name should not contain numbers");
             isValid = false; // Flag indicating input is invalid
@@ -103,7 +107,7 @@ public class Addoffercat {
             // If descatoff input is empty
             errordescatoff.setText("Description is required");
             isValid = false; // Flag indicating input is invalid
-        } else if (!descatoff.getText().matches("^[a-zA-Z]+$")) {
+        } else if (!descatoff.getText().matches("^[a-zA-Z ]+$")) {
             // If descatoff input contains non-alphabetic characters
             errordescatoff.setText("Description should not contain numbers");
             isValid = false; // Flag indicating input is invalid
@@ -124,15 +128,14 @@ public class Addoffercat {
         fileChooser.setTitle("Choose Image"); // Set the title of the file chooser dialog
         fileChooser.setInitialDirectory(new File("C:\\InsuriaJava\\offimg"));
 
+
+
         // Show the file chooser dialog
         Stage stage = (Stage) save.getScene().getWindow(); // Assuming save button is in the same stage
         File selectedFile = fileChooser.showOpenDialog(stage);
 
         // Check if a file was selected
         if (selectedFile != null) {
-            // Print out the selected file path for debugging
-            System.out.println("Selected file path: " + selectedFile.getAbsolutePath());
-
             // Create an Image object from the selected file
             Image image = new Image(selectedFile.toURI().toString());
 
@@ -169,34 +172,43 @@ public class Addoffercat {
         }
     }
 
+    @FXML
+    void showOffre(MouseEvent event) {
 
-    public class Main extends Application {
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Showoffer.fxml"));
+            Node eventFXML = loader.load();
 
-        @Override
-        public void start(Stage primaryStage) throws Exception {
-            // Assuming selectedFile is the file you want to load
-            File selectedFile = new File("path/to/your/image.jpg");
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
 
-            // Create an Image object from the selected file
-            Image image = new Image(selectedFile.toURI().toString());
-
-            // Create an ImageView to display the image
-            ImageView imageView = new ImageView(image);
-
-            // Create a StackPane to hold the ImageView
-            StackPane root = new StackPane();
-            root.getChildren().add(imageView);
-
-            // Create the scene and set it on the stage
-            Scene scene = new Scene(root, 400, 300);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        }
-
-        public static void main(String[] args) {
-            launch(args);
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
         }
     }
 
+
+    @FXML
+    void showCatOffre(MouseEvent event) {
+
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Showoffcat.fxml"));
+            Node eventFXML = loader.load();
+
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
 
 }
