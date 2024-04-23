@@ -3,10 +3,7 @@ package tn.esprit.applicatiopnpi.controllers;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import tn.esprit.applicatiopnpi.models.Police;
 import tn.esprit.applicatiopnpi.models.Sinistre;
 import tn.esprit.applicatiopnpi.services.PoliceService;
@@ -16,6 +13,9 @@ import javafx.collections.FXCollections;
 import java.util.List;
 
 public class AddPolice {
+    @FXML private Label errorName;
+    @FXML private Label errorDescription;
+    @FXML private Label errorSinistre;
 
     @FXML
     private TextField txtPoliceName;
@@ -51,22 +51,24 @@ public class AddPolice {
 
     @FXML
     private void handleSaveAction() {
-        Police newPolice = new Police();
-        newPolice.setPoliceName(txtPoliceName.getText().trim());
-        newPolice.setDescriptionPolice(txtDescription.getText().trim());
+        if (validateInput()) {
+            Police newPolice = new Police();
+            newPolice.setPoliceName(txtPoliceName.getText().trim());
+            newPolice.setDescriptionPolice(txtDescription.getText().trim());
 
-        Sinistre selectedSinistre = comboSinistre.getSelectionModel().getSelectedItem();
-        if (selectedSinistre != null) {
-            newPolice.setSinistre(selectedSinistre);
-            try {
-                policeService.add(newPolice);
-                showAlert("Success", "Police added successfully!");
-                clearForm();
-            } catch (Exception e) {
-                showAlert("Error", "Failed to add new police: " + e.getMessage());
+            Sinistre selectedSinistre = comboSinistre.getSelectionModel().getSelectedItem();
+            if (selectedSinistre != null) {
+                newPolice.setSinistre(selectedSinistre);
+                try {
+                    policeService.add(newPolice);
+                    showAlert("Success", "Police added successfully!");
+                    clearForm();
+                } catch (Exception e) {
+                    showAlert("Error", "Failed to add new police: " + e.getMessage());
+                }
+            } else {
+                showAlert("Error", "No Sinistre selected. Please select a Sinistre before saving.");
             }
-        } else {
-            showAlert("Error", "No Sinistre selected. Please select a Sinistre before saving.");
         }
     }
 
@@ -74,6 +76,9 @@ public class AddPolice {
         txtPoliceName.clear();
         txtDescription.clear();
         comboSinistre.getSelectionModel().clearSelection();
+        errorName.setText("");
+        errorDescription.setText("");
+        errorSinistre.setText("");
     }
 
     private void showAlert(String title, String message) {
@@ -88,5 +93,54 @@ public class AddPolice {
         txtPoliceName.clear();
         txtDescription.clear();
         comboSinistre.getSelectionModel().clearSelection();
+        errorName.setText("");
+        errorDescription.setText("");
+        errorSinistre.setText("");
     }
+    private boolean validateInput() {
+        boolean isValid = true;
+        String name = txtPoliceName.getText().trim();
+        if (name.isEmpty()) {
+            errorName.setText("Name field cannot be empty!");
+            isValid = false;
+        } else {
+            if (Character.isLowerCase(name.charAt(0))) {
+                errorName.setText("Name must start with an uppercase letter!");
+                isValid = false;
+            }
+            if (name.length() > 30) {
+                errorName.setText("Name must not exceed 30 characters!");
+                isValid = false;
+            }
+            if (sinistreService.isNameExist(name)) {
+                errorName.setText("Name must be unique!");
+                isValid = false;
+            }
+        }
+        if (txtDescription.getText().trim().isEmpty()) {
+            errorDescription.setText("Description field cannot be empty!");
+            isValid = false;
+        } else {
+            String description = txtDescription.getText().trim();
+
+            // Check if the description exceeds 400 characters
+            if (description.length() > 400) {
+                errorDescription.setText("Description must not exceed 400 characters!");
+                isValid = false;
+            }
+            // Check if the description starts with an uppercase letter
+            else if (!Character.isUpperCase(description.charAt(0))) {
+                errorDescription.setText("Description must start with an uppercase letter!");
+                isValid = false;
+            }
+            // Check if the description ends with a period
+            else if (!description.endsWith(".")) {
+                errorDescription.setText("Description must end with a period!");
+                isValid = false;
+            }
+        }
+
+        return isValid;
+    }
+
 }

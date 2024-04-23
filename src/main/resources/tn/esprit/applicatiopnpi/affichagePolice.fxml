@@ -21,23 +21,23 @@
                         <graphic>
                             <ImageView fitWidth="20" fitHeight="20">
                                 <image>
-                                    <Image url="@images/add.png" />
+                                    <Image url="@images/chercher.png" />
                                 </image>
                             </ImageView>
                         </graphic>
                     </Button>
                 </HBox>
                 <HBox spacing="10" style="-fx-padding: 10;">
-                    <Label minWidth="185.0" maxWidth="185.0" text="Name" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" />
-                    <Label minWidth="173.0" maxWidth="173.0" text="Description" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" />
-                    <Label minWidth="167.0" maxWidth="167.0" text="Image Path" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" />
-                    <Label minWidth="150.0" maxWidth="150.0" text="Actions" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" />
+                    <Label minWidth="185.0" maxWidth="185.0" text="Name" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29; -fx-alignment: center;" />
+                    <Label minWidth="173.0" maxWidth="173.0" text="Description" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29; -fx-alignment: center;" />
+                    <Label minWidth="167.0" maxWidth="167.0" text="Associated Sinister" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29; -fx-alignment: center;" />
+                    <Label minWidth="150.0" maxWidth="150.0" text="Actions" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29; -fx-alignment: center;" />
                 </HBox>
                 <ListView fx:id="policeList" VBox.vgrow="ALWAYS" styleClass="list-view">
                     <!-- The ListView can be populated with custom cells defined in Java code -->
                 </ListView>
                 <HBox alignment="CENTER" style="-fx-padding: 20;">
-                    <Button text="Add New" onMouseClicked="#handleAddNew" styleClass="button1" minWidth="202.0">
+                    <Button text="Add New Policie" onMouseClicked="#handleAddNew" styleClass="button1" minWidth="202.0">
                         <graphic>
                             <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                                 <image>

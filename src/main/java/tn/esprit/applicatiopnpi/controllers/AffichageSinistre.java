@@ -76,13 +76,13 @@ public class AffichageSinistre implements Initializable {
                     editIcon.setFitHeight(20); // Taille de l'icône
                     editIcon.setFitWidth(20);
                     Button editButton = new Button("Edit", editIcon);
-                    editButton.getStyleClass().add("buttonn");
+                    editButton.getStyleClass().add("button2");
 
                     ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/tn/esprit/applicatiopnpi/delet_icon.png")));
                     deleteIcon.setFitHeight(20); // Taille de l'icône
                     deleteIcon.setFitWidth(20);
                     Button deleteButton = new Button("Delete", deleteIcon);
-                    deleteButton.getStyleClass().add("buttonn");
+                    deleteButton.getStyleClass().add("button2");
 
                     HBox actionBox = new HBox(editButton, deleteButton);
                     actionBox.setSpacing(10);

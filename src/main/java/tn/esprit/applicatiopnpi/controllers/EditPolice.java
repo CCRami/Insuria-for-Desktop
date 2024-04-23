@@ -3,10 +3,7 @@ package tn.esprit.applicatiopnpi.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import tn.esprit.applicatiopnpi.models.Police;
 import tn.esprit.applicatiopnpi.models.Sinistre;
@@ -17,6 +14,9 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class EditPolice {
+    @FXML private Label errorName;
+    @FXML private Label errorDescription;
+    @FXML private Label errorSinistre;
     @FXML
     private TextField txtPoliceName;
     @FXML
@@ -33,8 +33,7 @@ public class EditPolice {
         currentPolice = police;
         txtPoliceName.setText(police.getPoliceName());
         txtDescription.setText(police.getDescriptionPolice());
-        initializeComboBox(); // Prepare the ComboBox with Sinistre data
-        // Set the selection to the Sinistre associated with this Police
+        initializeComboBox();
         if (police.getSinistre() != null) {
             comboSinistre.getSelectionModel().select(police.getSinistre());
         }
@@ -45,7 +44,7 @@ public class EditPolice {
         List<Sinistre> sinistres = sinistreService.getAll();
         comboSinistre.getItems().setAll(sinistres);
         ObservableList<Sinistre> observableSinistres = FXCollections.observableArrayList(sinistres);
-        // Use a cell factory to define how the list cells in the combo box should be displayed
+
         comboSinistre.setConverter(new javafx.util.StringConverter<Sinistre>() {
             @Override
             public String toString(Sinistre sinistre) {
@@ -61,18 +60,24 @@ public class EditPolice {
 
 
     public void handleUpdateAction() {
-        // Validate input before proceeding
+        // Validate input before proceeding with the update
         if (!validateInput()) {
-            showError("Please fill in all fields correctly.");
-            return;
+            return;  // Stop the update if validation fails
         }
 
+        // Proceed if validation is successful
         currentPolice.setPoliceName(txtPoliceName.getText().trim());
         currentPolice.setDescriptionPolice(txtDescription.getText().trim());
-        currentPolice.setSinistre(comboSinistre.getSelectionModel().getSelectedItem());
+        Sinistre selectedSinistre = comboSinistre.getSelectionModel().getSelectedItem();
 
+        if (selectedSinistre == null) {
+            showAlert("Error", "No Sinistre selected. Please select a Sinistre before saving.");
+            return;  // Stop the update if no Sinistre is selected
+        }
+
+        currentPolice.setSinistre(selectedSinistre);
         try {
-            policeService.modifier(currentPolice);
+            policeService.moddifier(currentPolice);
             if (updateCallback != null) {
                 updateCallback.accept(currentPolice);
             }
@@ -82,9 +87,61 @@ public class EditPolice {
         }
     }
 
-    private boolean validateInput() {
-        return !txtPoliceName.getText().trim().isEmpty() && !txtDescription.getText().trim().isEmpty() && comboSinistre.getSelectionModel().getSelectedItem() != null;
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
+
+    private boolean validateInput() {
+        boolean isValid = true;
+        String name = txtPoliceName.getText().trim();
+        if (name.isEmpty()) {
+            errorName.setText("Name field cannot be empty!");
+            isValid = false;
+        } else {
+            if (Character.isLowerCase(name.charAt(0))) {
+                errorName.setText("Name must start with an uppercase letter!");
+                isValid = false;
+            }
+            if (name.length() > 30) {
+                errorName.setText("Name must not exceed 30 characters!");
+                isValid = false;
+            }
+            if (sinistreService.isNameExist(name)) {
+                errorName.setText("Name must be unique!");
+                isValid = false;
+            }
+        }
+        if (txtDescription.getText().trim().isEmpty()) {
+            errorDescription.setText("Description field cannot be empty!");
+            isValid = false;
+        } else {
+            String description = txtDescription.getText().trim();
+
+            // Check if the description exceeds 400 characters
+            if (description.length() > 400) {
+                errorDescription.setText("Description must not exceed 400 characters!");
+                isValid = false;
+            }
+            // Check if the description starts with an uppercase letter
+            else if (!Character.isUpperCase(description.charAt(0))) {
+                errorDescription.setText("Description must start with an uppercase letter!");
+                isValid = false;
+            }
+            // Check if the description ends with a period
+            else if (!description.endsWith(".")) {
+                errorDescription.setText("Description must end with a period!");
+                isValid = false;
+            }
+        }
+
+
+        return isValid;
+    }
+
 
     public void handleCancelAction() {
         closeStage();

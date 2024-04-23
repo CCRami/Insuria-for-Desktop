@@ -5,9 +5,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.applicatiopnpi.controllers.AddPolice" stylesheets="@style/dashboardDesign.css" >
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.applicatiopnpi.controllers.AddPolice" stylesheets="@style/dashboardDesign.css">
     <children>
-        <VBox alignment="CENTER" spacing="50" layoutX="20" layoutY="20" styleClass="white-bg, shadow" prefHeight="700.0" prefWidth="700.0">
+        <VBox alignment="CENTER" spacing="50" layoutX="20" layoutY="20" styleClass="white-bg shadow" prefHeight="700.0" prefWidth="700.0">
             <children>
                 <HBox alignment="CENTER">
                     <children>
@@ -28,12 +28,13 @@
                     <children>
                         <Label text="Police Name:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                         <TextField fx:id="txtPoliceName" promptText="Enter police name" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-
-                        <Label text="Description:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                        <TextField fx:id="txtDescription" promptText="Enter description" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-
-                        <Label text="Sinistre:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                        <ComboBox fx:id="comboSinistre" promptText="Select Sinistre" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        <Label fx:id="errorName" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <Label text="Description:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <TextField fx:id="txtDescription" promptText="Enter description" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        <Label fx:id="errorDescription" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <Label text="Sinistre:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                        <ComboBox fx:id="comboSinistre" promptText="Select Sinistre" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                        <Label fx:id="errorSinistre" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
                     </children>
                 </GridPane>
                 <HBox spacing="20.0" alignment="CENTER">

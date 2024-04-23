@@ -50,28 +50,28 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox layoutX="30.0" layoutY="438.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                <HBox layoutX="30.0" layoutY="438.0" onMouseClicked="#showPoliceF" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
                     <children>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@images/probleme.png" />
                             </image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Reclamation" textFill="WHITE">
+                        <Label prefHeight="35.0" prefWidth="202.0" text="PolicieFront" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
                         </Label>
                     </children>
                 </HBox>
-                <HBox layoutX="30.0" layoutY="461.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                <HBox layoutX="30.0" layoutY="461.0" onMouseClicked="#showSinitreF" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
                     <children>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@images/produit.png" />
                             </image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Produits" textFill="WHITE">
+                        <Label prefHeight="35.0" prefWidth="202.0" text="SiniterFront" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
@@ -82,21 +82,21 @@
                     <children>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/Government_Agency_Symbol.png" />
+                                <Image url="@images/contrat.png" />
                             </image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Police" textFill="WHITE">
+                        <Label prefHeight="35.0" prefWidth="202.0" text="Policie" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
                         </Label>
                     </children>
                 </HBox>
-                <HBox  onMouseClicked="#showSinistre" prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
+                <HBox  onMouseClicked="#showSinistre" prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css" spacing="20.0">
                     <children>
-                        <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/5569806.png" />
+                                <Image url="@images/attention.png" />
                             </image>
                             <HBox.margin>
                                 <Insets />
@@ -105,10 +105,8 @@
                                 <Rectangle2D />
                             </viewport>
                         </ImageView>
-                        <Label text="Reviews" textFill="WHITE">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
+                        <Label text="Sinister" textFill="WHITE" prefWidth="202.0">
+
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>

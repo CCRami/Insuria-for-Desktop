@@ -34,25 +34,25 @@ public class EditSinister {
         sinDescriptionField.setText(sinistre.getDescription_sin());
         sinImagePathField.setText(sinistre.getImage_path());
 
-        // Charger et afficher l'image si le chemin n'est pas vide
+
         if (sinistre.getImage_path() != null && !sinistre.getImage_path().isEmpty()) {
             File imageFile = new File(sinistre.getImage_path());
-            if (imageFile.exists()) { // Vérifiez que le fichier existe avant de tenter de le charger
+            if (imageFile.exists()) {
                 Image image = new Image(imageFile.toURI().toString());
                 imageView.setImage(image);
             } else {
-                imageView.setImage(null); // Aucune image ou chemin invalide
+                imageView.setImage(null);
                 System.out.println("Image file not found: " + sinistre.getImage_path());
             }
         } else {
-            imageView.setImage(null); // Aucun chemin d'image fourni
+            imageView.setImage(null);
         }
     }
 
 
     @FXML
     private void handleSave() {
-        if (validateInput()) {  // Assurez-vous que la validation retourne true avant de continuer
+        if (validateInput()) {
             currentSinistre.setSin_name(sinNameField.getText().trim());
             currentSinistre.setDescription_sin(sinDescriptionField.getText().trim());
             currentSinistre.setImage_path(sinImagePathField.getText().trim());
@@ -62,9 +62,9 @@ public class EditSinister {
                 if (updateCallback != null) {
                     updateCallback.accept(currentSinistre);
                 }
-                closeStage();  // Fermer la fenêtre uniquement si la mise à jour est réussie
+                closeStage();
             } catch (Exception e) {
-                // Gérer l'exception, par exemple afficher un message d'erreur
+
                 showError("Failed to update Sinistre: " + e.getMessage());
             }
         }
@@ -96,7 +96,27 @@ public class EditSinister {
         if (description.isEmpty()) {
             errorDescription.setText("Description cannot be empty!");
             isValid = false;
+        } else {
+
+            description = description.trim();
+
+            // Check if the description exceeds 400 characters
+            if (description.length() > 400) {
+                errorDescription.setText("Description must not exceed 400 characters!");
+                isValid = false;
+            }
+
+            else if (!Character.isUpperCase(description.charAt(0))) {
+                errorDescription.setText("Description must start with an uppercase letter!");
+                isValid = false;
+            }
+
+            else if (!description.endsWith(".")) {
+                errorDescription.setText("Description must end with a period!");
+                isValid = false;
+            }
         }
+
 
         if (imagePath.isEmpty()) {
             errorImagePath.setText("Image path cannot be empty!");
@@ -144,15 +164,7 @@ public class EditSinister {
         this.updateCallback = callback;
     }
 
-    public void saveChanges() {
-        // Enregistre les modifications dans la base de données
-        service.modifier(currentSinistre);
-        // Appelle le callback pour mettre à jour l'affichage
-        if (updateCallback != null) {
-            updateCallback.accept(currentSinistre);
-        }
 
-    }
     /**
      * Checks if the given name is unique in the system.
      * @param name The name to check.

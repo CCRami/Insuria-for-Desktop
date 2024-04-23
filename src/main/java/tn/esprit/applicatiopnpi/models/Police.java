@@ -65,7 +65,7 @@ public class Police {
                 "id=" + id +
                 ", policeName='" + policeName + '\'' +
                 ", descriptionPolice='" + descriptionPolice + '\'' +
-                ", sinistre=" + (sinistre != null ? sinistre.getSin_name() : "null") +
+                ", sinistre=" + (sinistre != null ? sinistre.getSin_name() : "null" ) +
                 '}';
     }
 }

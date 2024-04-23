@@ -8,4 +8,5 @@ public interface Iservice<T>{
     void supprimer(int id);
     List<T> getAll();
 
+
 }

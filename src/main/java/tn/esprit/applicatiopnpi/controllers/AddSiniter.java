@@ -15,99 +15,68 @@ import tn.esprit.applicatiopnpi.models.Sinistre;
 import tn.esprit.applicatiopnpi.services.SinistreService;
 
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
+import java.net.URL;
 
 public class AddSiniter {
-    @FXML
-    private TextField nameField;
-    @FXML
-    private TextArea descriptionField;
-    @FXML
-    private TextField imagePathField;
-    @FXML
-    private BorderPane myBorderPane;
-    @FXML
-    private ImageView imageView;
-    @FXML
-    private Label errorName;
-    @FXML
-    private Label errorDescription;
-    @FXML
-    private Label errorImagePath;
+    @FXML private TextField nameField;
+    @FXML private TextArea descriptionField;
+    @FXML private TextField imagePathField;
+    @FXML private ImageView imageView;
+    @FXML private Label errorName;
+    @FXML private Label errorDescription;
+    @FXML private Label errorImagePath;
 
-
-    @FXML
-    private VBox vboxdash;
-    SinistreService sinistreService = new SinistreService();
+    private SinistreService sinistreService = new SinistreService();
 
     @FXML
     private void handleSave(ActionEvent event) {
-        boolean isValid = validateInput(); // Assume this method sets error labels appropriately
-
-        if (isValid) {
-            String name = nameField.getText().trim();
-            String description = descriptionField.getText().trim();
-            String imagePath = imagePathField.getText().trim();
-
+        if (validateInput()) {
             Sinistre newSinistre = new Sinistre();
-            newSinistre.setSin_name(name);
-            newSinistre.setDescription_sin(description);
-            newSinistre.setImage_path(imagePath);
+            newSinistre.setSin_name(nameField.getText().trim());
+            newSinistre.setDescription_sin(descriptionField.getText().trim());
+            newSinistre.setImage_path(imagePathField.getText().replace("\\", "/").trim());
 
             try {
                 sinistreService.add(newSinistre);
-                clearFields(); // Clear the fields after successful addition
+                clearFields();
             } catch (RuntimeException e) {
-                errorName.setText("Failed to add Sinistre: " + e.getMessage()); // Display error message
+                errorName.setText("Failed to add Sinistre: " + e.getMessage());
             }
         }
     }
-
-    private void clearFields() {
-        nameField.clear();
-        descriptionField.clear();
-        imagePathField.clear();
-        errorName.setText("");
-        errorDescription.setText("");
-        errorImagePath.setText("");
-    }
-
-
-
 
     @FXML
     private void handleBrowse(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Image File");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
-        File file = fileChooser.showOpenDialog(null); // Cela ouvre le dialogue pour choisir le fichier
+        File file = fileChooser.showOpenDialog(null);
         if (file != null) {
-            imagePathField.setText(file.getAbsolutePath()); // Met à jour le TextField avec le chemin du fichier
-
-            Image image = new Image(file.toURI().toString(), true); // Crée un nouvel objet Image
-            imageView.setImage(image); // Met à jour l'ImageView avec l'image choisie
+            imagePathField.setText(file.getAbsolutePath().replace("\\", "/"));
+            try {
+                Image image = new Image(file.toURI().toURL().toExternalForm());
+                imageView.setImage(image);
+            } catch (Exception e) {
+                showAlert("Loading Error", "Failed to load the image file.");
+                imagePathField.setText("");
+            }
         }
     }
 
     @FXML
     private void handleCancel(ActionEvent event) {
-        // Clear all input fields
+        clearFields();
+    }
+
+    private void clearFields() {
         nameField.clear();
         descriptionField.clear();
         imagePathField.clear();
-
-        // Clear all error messages
+        imageView.setImage(null);
         errorName.setText("");
         errorDescription.setText("");
         errorImagePath.setText("");
-
-        // Clear the image displayed in the ImageView
-        if (imageView != null) {
-            imageView.setImage(null);
-        }
     }
-
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -116,41 +85,49 @@ public class AddSiniter {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
     private boolean validateInput() {
         boolean isValid = true;
-        errorName.setText("");
-        errorDescription.setText("");
-        errorImagePath.setText("");
-
         String name = nameField.getText().trim();
         if (name.isEmpty()) {
             errorName.setText("Name field cannot be empty!");
             isValid = false;
         } else {
-            // Check if the first character is uppercase
             if (Character.isLowerCase(name.charAt(0))) {
                 errorName.setText("Name must start with an uppercase letter!");
                 isValid = false;
             }
-
-            // Check if the length is more than 30 characters
             if (name.length() > 30) {
                 errorName.setText("Name must not exceed 30 characters!");
                 isValid = false;
             }
-
-            // Check for uniqueness
             if (sinistreService.isNameExist(name)) {
                 errorName.setText("Name must be unique!");
                 isValid = false;
             }
         }
-
         if (descriptionField.getText().trim().isEmpty()) {
             errorDescription.setText("Description field cannot be empty!");
             isValid = false;
-        }
+        } else {
+            String description = descriptionField.getText().trim();
 
+            // Check if the description exceeds 400 characters
+            if (description.length() > 400) {
+                errorDescription.setText("Description must not exceed 400 characters!");
+                isValid = false;
+            }
+            // Check if the description starts with an uppercase letter
+            else if (!Character.isUpperCase(description.charAt(0))) {
+                errorDescription.setText("Description must start with an uppercase letter!");
+                isValid = false;
+            }
+            // Check if the description ends with a period
+            else if (!description.endsWith(".")) {
+                errorDescription.setText("Description must end with a period!");
+                isValid = false;
+            }
+        }
         if (imagePathField.getText().trim().isEmpty()) {
             errorImagePath.setText("Image path cannot be empty!");
             isValid = false;
@@ -158,8 +135,4 @@ public class AddSiniter {
 
         return isValid;
     }
-
-
-
-
 }
