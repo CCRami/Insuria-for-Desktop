@@ -8,11 +8,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 
 import javafx.scene.image.ImageView;
@@ -24,14 +28,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
+
 
 public class Ajouteragence {
 
@@ -105,6 +113,62 @@ public class Ajouteragence {
 
         }
 
+
+    }
+    private String extractAddressNameFromURL(String url) {
+        // L'adresse est souvent contenue entre les balises "/place/" et "/"
+        int placeIndex = url.indexOf("/place/");
+        if (placeIndex != -1) {
+            int startIndex = placeIndex + "/place/".length();
+            int endIndex = url.indexOf("/", startIndex);
+            if (endIndex != -1) {
+                String addressNameEncoded = url.substring(startIndex, endIndex);
+                try {
+                    // Décoder les caractères encodés en UTF-8
+                    return URLDecoder.decode(addressNameEncoded, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    // Gérer l'exception d'encodage non pris en charge
+                    e.printStackTrace();
+                }
+            }
+        }
+        return "";
+    }
+
+    private void saveAddressName(String address) {
+        System.out.println("Adresse enregistrée : " + address);
+    }
+
+
+    @FXML
+    private void addressChoose() throws IOException {
+        WebView webView = new WebView();
+        WebEngine webEngine = webView.getEngine();
+
+        // Charger Google Maps
+        webEngine.load("https://www.google.com/maps");
+
+        // Ajouter un écouteur de changement d'URL
+        webEngine.locationProperty().addListener((observable, oldValue, newValue) -> {
+            // Vérifier si l'URL contient des informations d'adresse
+            if (newValue.startsWith("https://www.google.com/maps/place/")) {
+                // Extraire le nom de l'adresse de l'URL
+                String addressName = extractAddressNameFromURL(newValue);
+                // Enregistrer le nom de l'adresse dans votre application
+                saveAddressName(addressName);
+                adresse.setText(addressName);
+            }
+
+        });
+
+        StackPane root = new StackPane();
+        root.getChildren().add(webView);
+
+        Scene scene = new Scene(root, 800, 600);
+        Stage primaryStage = new Stage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Google Maps in JavaFX");
+        primaryStage.show();
 
     }
 

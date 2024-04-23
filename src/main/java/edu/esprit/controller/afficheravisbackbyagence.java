@@ -1,5 +1,6 @@
-package edu.esprit.controller;
+/*package edu.esprit.controller;
 
+import edu.esprit.entities.Agence;
 import edu.esprit.entities.Avis;
 import edu.esprit.service.AvisService;
 import edu.esprit.util.DataSource;
@@ -75,7 +76,7 @@ public class afficheravisbackbyagence {
     int selectedId;
 
 
-    int Parametre1; int Parametre2;
+    Agence Parametre1; Agence Parametre2;
 
     AvisService s = new AvisService();
     public Avis r = new Avis(commentaire, note, date_avis, avis_id, agenceav_id,etat);
@@ -188,7 +189,7 @@ public class afficheravisbackbyagence {
             }
         });
 
-        clearFields();*/
+        clearFields();
     }
 
     private void loadTableData() {
@@ -214,7 +215,7 @@ public class afficheravisbackbyagence {
 
 
 
-    public void myparametre(int id) {
+   /* public void myparametre(int id) {
         // Utilisez le paramètre comme vous le souhaitez ici
         System.out.println("Selected ID: " + id);
         this.Parametre2=id;
@@ -225,3 +226,4 @@ public class afficheravisbackbyagence {
 
     }
 }
+*/

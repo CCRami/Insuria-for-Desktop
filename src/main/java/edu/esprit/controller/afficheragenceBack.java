@@ -128,12 +128,12 @@ public class afficheragenceBack implements Initializable {
             Parent root = loader.load();
 
             // Obtenez le contrôleur associé à la nouvelle page
-            afficheravisbackbyagence controller = loader.getController();
+            //afficheravisbackbyagence controller = loader.getController();
 
             // Appeler la méthode du contrôleur pour passer le paramètre selectedId
             System.out.println("fff"+selectedId);
-            controller.myparametre(selectedId);
-            controller.initialize();// Assuming you have access to the current scene
+            //controller.myparametre(selectedId);
+          // controller.initialize();// Assuming you have access to the current scene
             Scene currentScene = consulteravis.getScene();
             // Set the new root to the current scene
             currentScene.setRoot(root);

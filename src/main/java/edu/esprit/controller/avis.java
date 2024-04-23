@@ -1,0 +1,74 @@
+package edu.esprit.controller;
+import edu.esprit.entities.Avis;
+import edu.esprit.service.AgenceService;
+import edu.esprit.service.AvisService;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.ResourceBundle;
+
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+
+public class avis {
+    @FXML
+    private VBox agevbox;
+    AvisService s = new AvisService();
+    @FXML
+    private Label clientname;
+
+    @FXML
+    private Label comment;
+
+    @FXML
+    private Button supprimer;
+
+    @FXML
+    private Label nomagence;
+
+    @FXML
+    private Label note;
+
+    @FXML
+    private Label creation;
+    public void setData(Avis avis){
+        clientname.setText(String.valueOf(avis.getAvis_id()));
+        comment.setText(avis.getCommentaire());
+        note.setText(String.valueOf(avis.getNote()));
+        nomagence.setText(avis.getAgenceav_id().getNomage());
+        creation.setText(avis.getDate_avis());
+    }
+
+    public void supprimer(int id) {
+        System.out.println(id);
+        supprimer.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                System.out.println(id);
+                s.supprimerav(id);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("review deleted successfully");
+                alert.showAndWait();
+
+
+
+
+            }
+        });
+
+
+    }
+
+
+}

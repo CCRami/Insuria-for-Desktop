@@ -3,7 +3,7 @@ import javafx.scene.control.TableColumn;
 
 public class Avis {
     private int idAV;
-    private int agenceav_id;
+    private Agence agenceav_id;
     private int avis_id;
 
     private  String commentaire;
@@ -11,6 +11,10 @@ public class Avis {
     private int note;
     private boolean etat;
     private String date_avis;
+
+    public Avis(String comment, int note, int i, Agence agence, String creation) {
+    }
+
 
     public int getIdAV() {
         return idAV;
@@ -20,11 +24,11 @@ public class Avis {
         this.idAV = idAV;
     }
 
-    public int getAgenceav_id() {
+    public Agence getAgenceav_id() {
         return agenceav_id;
     }
 
-    public void setAgenceav_id(int agenceav_id) {
+    public void setAgenceav_id(Agence agenceav_id) {
         this.agenceav_id = agenceav_id;
     }
 
@@ -68,7 +72,7 @@ public class Avis {
         this.date_avis = date_avis;
     }
 
-    public Avis (String commentaire, int note, String date_avis, int avis_id, int agenceav_id, boolean etat){
+    public Avis (String commentaire, int note, String date_avis, int avis_id, Agence agenceav_id, boolean etat){
         this.idAV=idAV;
         this.commentaire=commentaire;
         this.note=note;
@@ -79,16 +83,18 @@ public class Avis {
 
     }
 
-    public Avis (int idAV, String commentaire, int note, String date_avis, int avis_id, int agenceav_id, boolean etat){
+    public Avis (int idAV, String commentaire, int note, String date_avis, int avis_id, Object agenceav_id, boolean etat){
         this.idAV=idAV;
         this.commentaire=commentaire;
         this.note=note;
         this.date_avis=date_avis;
         this.avis_id=avis_id;
-        this.agenceav_id=agenceav_id;
+        this.agenceav_id= (Agence) agenceav_id;
         this.etat=etat;
 
     }
+
+
 
 
     public Avis (TableColumn<Avis, String> commentaire, TableColumn<Avis, Integer> note, TableColumn<Avis, String> date_avis, TableColumn<Avis, Integer> avis_id, TableColumn<Avis, Integer> agenceav_id, TableColumn<Avis, Boolean> etat){

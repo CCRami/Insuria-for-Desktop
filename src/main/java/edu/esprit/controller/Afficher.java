@@ -55,6 +55,7 @@ public class Afficher implements Initializable {
                     Age age = fxmlLoader.getController();
                     System.out.println(agences);
                     age.setData(agence);
+                    age.Rateus1(agence);
 
                     if (column == 3) {
                         column = 0;

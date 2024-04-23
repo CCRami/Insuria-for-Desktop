@@ -126,7 +126,30 @@ public class AgenceService implements IService<Agence>{
     }
     @Override
     public Agence getOneById(int id) {
-        return null;
+
+        Agence agence = null;
+        String sql = "SELECT * FROM Agence WHERE id = ?";
+        try (PreparedStatement pst = cnx.prepareStatement(sql)) {
+            pst.setInt(1, id);
+            try (ResultSet resultSet = pst.executeQuery()) {
+                if (resultSet.next()) {
+                    // Assuming Agence constructor takes necessary parameters
+                    agence = new Agence(
+                            resultSet.getInt("id"),
+                            resultSet.getString("nomage"),
+                            resultSet.getString("addresse"),
+                            resultSet.getString("email"),
+                            resultSet.getInt("tel"),
+                            resultSet.getString("create_at")
+
+                            // Add other fields as needed
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error fetching Agence by ID: " + e.getMessage(), e);
+        }
+        return agence;
     }
     @Override
     public Agence getbyid(int id) {

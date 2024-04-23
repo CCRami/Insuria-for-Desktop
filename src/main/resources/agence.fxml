@@ -78,7 +78,7 @@
                   </HBox>
                   <HBox prefHeight="62.0" prefWidth="382.0">
                      <children>
-                        <Button fx:id="Rateus" mnemonicParsing="false" prefHeight="44.0" prefWidth="118.0" style="-fx-background-color: #2CA2FB;" styleClass="ajouter-button" text="Rate us" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="Rateus11" mnemonicParsing="false" prefHeight="44.0" prefWidth="118.0" style="-fx-background-color: #2CA2FB;" styleClass="ajouter-button" text="Rate us" textAlignment="CENTER" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="55.0" />
                            </HBox.margin>

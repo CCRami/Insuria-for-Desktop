@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.esprit.entities.Agence;
 import edu.esprit.entities.Avis;
 import edu.esprit.util.DataSource;
 
@@ -11,36 +12,42 @@ public class AvisService implements IServiceAvis {
     private Connection cnx;
     private Statement ste;
     private PreparedStatement pst;
-    public AvisService(){
+
+    public AvisService() {
         cnx = DataSource.getInstance().getConnection();
     }
 
     private static final int STATIC_USER_ID = 2;
-    private static  boolean ETAT = false;
+    private static boolean ETAT = false;
+    public Agence agence;
+
     @Override
-    public void ajouteravis(Avis avis) {
+    public void ajouteravis(Avis avis, Agence agence) {
+        System.out.println("bb"+avis.getCommentaire());
+        System.out.println("bb"+avis);
 
 
-            String req = "INSERT INTO avis(commentaire, note, date_avis,avis_id,agenceav_id,etat) VALUES (?, ?, ?,?,?,?)";
-            try (PreparedStatement ps = cnx.prepareStatement(req)) {
-                ps.setString(1, avis.getCommentaire());
-                ps.setInt(2, avis.getNote());
-                ps.setString(3, avis.getDate_avis());
-                ps.setInt(4, STATIC_USER_ID);
-                ps.setInt(5, avis.getAgenceav_id());
-                ps.setBoolean(5,ETAT);
+        String req = "INSERT INTO avis(commentaire, note, date_avis,avis_id,agenceav_id,etat) VALUES (?, ?, ?,?,?,?)";
+        try (PreparedStatement ps = cnx.prepareStatement(req)) {
+            ps.setString(1, avis.getCommentaire());
+            ps.setInt(2, avis.getNote());
+            ps.setString(3, avis.getDate_avis());
+            ps.setInt(4, STATIC_USER_ID);
+            ps.setObject(5, agence);
+            ps.setBoolean(6, ETAT);
 
-                ps.executeUpdate();
+            ps.executeUpdate();
 
 
+            System.out.println("Avis added!");
+        } catch (SQLException e) {
 
-                System.out.println("Avis added!");
-            } catch (SQLException e) {
-
-                e.printStackTrace();
-            }
+            e.printStackTrace();
+        }
 
     }
+
+
 
 
     /*@Override
@@ -69,8 +76,8 @@ public class AvisService implements IServiceAvis {
 */
 
     @Override
-    public  void supprimerav(int id) {
-        System.out.println( id );
+    public void supprimerav(int id) {
+        System.out.println(id);
         String req = "DELETE FROM Avis WHERE id = ?";
         try (PreparedStatement ps = cnx.prepareStatement(req)) {
             ps.setInt(1, id);
@@ -94,104 +101,61 @@ public class AvisService implements IServiceAvis {
         return null;
     }*/
 
-
-   public List<Avis> getAllavis() {
-       List<Avis> list=new ArrayList<>();
-       String sql="select * from Avis ";
-       try{ste=cnx.createStatement();
-           ResultSet res=ste.executeQuery(sql);
-           while (res.next()){
-               int id = res.getInt(1);
-               String commentaire = res.getString(2);
-               int note = res.getInt(3);
-               String date_avis = res.getString(4);
-               int avis_id= res.getInt(5);
-
-               int agenceav_id = res.getInt(6);
-                boolean etat= res.getBoolean(7);
-               list.add(new Avis(id,commentaire, note, date_avis, avis_id ,agenceav_id,etat));
-           }
-       }catch (SQLException e) {
-           throw new RuntimeException(e);
-       }
-       return list;
-    }
-
-    public List<Avis> getAllavisbyagence(int Parametre) {
-        System.out.println("ff"+ Parametre );
-        List<Avis> list=new ArrayList<>();
-
-        String sql="select * from Avis WHERE agenceav_id=?";
-
-        try{//ste=cnx.createStatement();
-
-            PreparedStatement pst = cnx.prepareStatement(sql);
-            pst.setInt(1, Parametre);
-            ResultSet res = pst.executeQuery();
-            while (res.next()){
-                int id = res.getInt(1);
-                String commentaire = res.getString(2);
-                int note = res.getInt(3);
-                String date_avis = res.getString(4);
-                int avis_id= res.getInt(5);
-
-                int agenceav_id = res.getInt(6);
-                boolean etat= res.getBoolean(7);
-                list.add(new Avis(id,commentaire, note, date_avis, avis_id ,agenceav_id,etat));
-            }
-        }catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println( list );return list;
-    }
-/*public List<Avis> getAllAvis() {
+    AgenceService s = new AgenceService();
+    public List<Avis> getAllavis() {
         List<Avis> list = new ArrayList<>();
-        String sql = "SELECT A.*, C.nom AS nom_client, AG.nom AS nom_agence " +
-                "FROM Avis A " +
-                "INNER JOIN Client C ON A.client_id = C.id " +
-                "INNER JOIN Agence AG ON A.agence_id = AG.id";
+        String sql = "select * from Avis ";
         try {
             ste = cnx.createStatement();
             ResultSet res = ste.executeQuery(sql);
             while (res.next()) {
-                int id = res.getInt("id");
-                String commentaire = res.getString("commentaire");
-                int note = res.getInt("note");
-                String dateAvis = res.getString("date_avis");
-                int avisId = res.getInt("avis_id");
-                int agenceId = res.getInt("agence_id");
-                String nomAgence = res.getString("nom_agence");
-                int clientId = res.getInt("client_id");
-                String nomClient = res.getString("nom_client");
-                boolean etat = res.getBoolean("etat");
-
-                list.add(new Avis(id, commentaire, note, dateAvis, avisId, agenceId, nomAgence, clientId, nomClient, etat));
+                int id = res.getInt(1);
+                String commentaire = res.getString(2);
+                int note = res.getInt(3);
+                String date_avis = res.getString(4);
+                int avis_id = res.getInt(5);
+                int agenceav_id = res.getInt(6);
+                Agence agence = s.getOneById(agenceav_id);
+                //int agenceav_id =res.getInt(6);
+                boolean etat = res.getBoolean(7);
+                list.add(new Avis(id, commentaire, note, date_avis, avis_id,  agence, etat));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return list;
-    }*/
+    }
 
-   /* public List<AvisRestau> getAllByRestaurant(int idR) {
-        List<AvisRestau> avisList = new ArrayList<>();
-        String req = "SELECT * FROM AvisRestau WHERE idR = ?";
-        try (PreparedStatement ps = cnx.prepareStatement(req)) {
-            ps.setInt(1, idR);
+    public List<Avis> getAllavisbyagence(Agence Parametre) {
+        System.out.println("ff" + Parametre);
+        List<Avis> list = new ArrayList<>();
 
-            try (ResultSet res = ps.executeQuery()) {
-                while (res.next()) {
-                    int idA = res.getInt("idA");
-                    String commentaire = res.getString("commentaire");
+        String sql = "select * from Avis WHERE agenceav_id=?";
 
-                    AvisRestau avis = new AvisRestau(idA, idR, commentaire);
-                    avisList.add(avis);
-                }
+        try {//ste=cnx.createStatement();
+
+            PreparedStatement pst = cnx.prepareStatement(sql);
+            pst.setInt(1, Parametre.getIdage());
+            ResultSet res = pst.executeQuery();
+            while (res.next()) {
+                int id = res.getInt(1);
+                String commentaire = res.getString(2);
+                int note = res.getInt(3);
+                String date_avis = res.getString(4);
+                int avis_id = res.getInt(5);
+                Object agenceav_id =res.getObject(6);
+
+                 //Parametre = res.get(6);
+                boolean etat = res.getBoolean(7);
+                list.add(new Avis(id, commentaire, note, date_avis, avis_id, Parametre, etat));
             }
         } catch (SQLException e) {
-            // Handle or log the exception
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return avisList;
-    }*/
+        System.out.println(list);
+        return list;
+    }
+
 }
+
+

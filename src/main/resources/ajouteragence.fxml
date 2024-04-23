@@ -184,6 +184,7 @@
                                     <String fx:value="shadow" />
                                 </styleClass>
                             </TextField>
+                        <Button fx:id="chooseAdress" mnemonicParsing="false" onAction="#addressChoose" text="Button" />
                             <Text fx:id="errorAdresse" fill="RED" wrappingWidth="195.20001220703125">
                                 <VBox.margin>
                                     <Insets left="100.0" top="10.0" />
