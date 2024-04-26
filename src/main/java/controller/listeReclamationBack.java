@@ -1,27 +1,37 @@
 package controller;
-import controller.CreationListCell;
+import entity.Indemnissation;
 import entity.Reclamation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import services.IndemnisationService;
 import services.ReclamationService;
 
 import javafx.fxml.Initializable;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class listeReclamationBack implements Initializable {
-
+    @FXML
+    private HBox rec;
+    @FXML
+    private HBox compensation;
     @FXML
     private VBox contentArea;
+   IndemnisationService indemnisationService=new IndemnisationService();
 
     @FXML
     private ListView<Reclamation> recList;
@@ -69,20 +79,65 @@ public class listeReclamationBack implements Initializable {
 
                     Button button;
                     if (rec.getReponse().equals("refused") || rec.getReponse().equals("accepted")) {
-                        button = new Button("Button 1");
+                        button = new Button("Show Compensation");
                     } else {
-                        button = new Button("Button 2");
+                        button = new Button("Show Claim");
                     }
                     button.setOnAction(event -> {
-                        if (button.getText().equals("Button 1")) {
 
+                            if (button.getText().equals("show Claim")) {
+                                // Logique pour Button 1
+                                Reclamation reclamation = getItem();
+                                try {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherReclamaationBack.fxml"));
+                                    Parent root = loader.load();
+                                    afficherReclamationBack controller = loader.getController();
+                                    controller.initData(reclamation);
+                                    Stage stage = new Stage();
+                                    stage.setScene(new Scene(root));
+                                    stage.show();
+                                    Stage currentStage = (Stage) button.getScene().getWindow();
+                                    currentStage.close();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                    // Gérer l'erreur si nécessaire
+                                }
+                            } else if (button.getText().equals("Show Compensation")) {
+                                // Logique pour Button 2
+                                Reclamation reclamation = getItem();
+                                int id;
+                                try {
+                                    id = service.selectId(reclamation);
+                                } catch (SQLException e) {
+                                    throw new RuntimeException(e);
+                                }
+                                System.out.println(id);
 
-                        } else if (button.getText().equals("Button 2")) {
-                            // Action pour Button 2
-                            System.out.println("Button 2 clicked!");
-                            // Autres actions pour Button 2
-                        }
-                    });
+                                Indemnissation ind;
+                                try {
+                                    ind = indemnisationService.afficherUneIndemnisation(id);
+                                } catch (SQLException e) {
+                                    throw new RuntimeException(e);
+                                }
+
+                                try {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/showCompensationBack.fxml"));
+                                    Parent root = loader.load();
+
+                                    showCompensation controller = loader.getController();
+                                    controller.iniData(ind);
+
+                                    Stage stage = new Stage();
+                                    stage.setScene(new Scene(root));
+                                    stage.show();
+
+                                    Stage currentStage = (Stage) button.getScene().getWindow();
+                                    currentStage.close();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                     hbox.getChildren().addAll(libelleLabel, datReclamationLabel, dateSinistreLabel, reponseLabel, button);
                     setGraphic(hbox);
                 }
@@ -96,5 +151,44 @@ public class listeReclamationBack implements Initializable {
     }
 
     public void refreshList() {
+    }
+    @FXML
+    void showCompensations(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/indemnisationsBack.fxml"));
+            Parent root = loader.load();
+
+            // Utilisez votre objet Stage pour afficher la nouvelle interface
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Fermez la fenêtre actuelle
+            Node source = (Node) event.getSource();
+            Stage currentStage = (Stage) source.getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void showReclamations(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/listReclamationBack.fxml"));
+            Parent root = loader.load();
+
+            // Utilisez votre objet Stage pour afficher la nouvelle interface
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Fermez la fenêtre actuelle
+            Node source = (Node) event.getSource();
+            Stage currentStage = (Stage) source.getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
