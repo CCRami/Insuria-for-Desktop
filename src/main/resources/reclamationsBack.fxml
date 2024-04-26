@@ -29,6 +29,7 @@
                         <TableColumn fx:id="libelle" prefWidth="185.60003662109375" text="Label" />
                         <TableColumn fx:id="dateReclamation" prefWidth="173.5999755859375" text="Date Claim" />
                         <TableColumn fx:id="dateSinistre" prefWidth="167.20001220703125" text="Date Sinistre" />
+                        <TableColumn fx:id="indemnisation" prefWidth="75.0" text="Column X" />
                         <TableColumn fx:id="reponse" minWidth="7.199951171875" prefWidth="132.79998779296875" text="Answer" />
                      </columns>
                   </TableView>

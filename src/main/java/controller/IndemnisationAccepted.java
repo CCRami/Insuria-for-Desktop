@@ -5,12 +5,17 @@ import entity.Indemnissation;
 import entity.Reclamation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import services.IndemnisationService;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -63,7 +68,7 @@ private Reclamation rec;
 
 
     @FXML
-    void enregistreAction(ActionEvent event) {
+    void enregistreAction(ActionEvent event) throws IOException {
 
         if (isInputValid()) {
             String montantText = montant.getText();
@@ -77,22 +82,13 @@ private Reclamation rec;
             try {
                 service.modifierIndemnisation(selectedIndemnisation);
 
-               selectedReclaamtion.setIndemnisation(selectedIndemnisation);
-                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                successAlert.setTitle("Success");
-                successAlert.setHeaderText(null);
-                successAlert.setContentText("sinistre added successfully");
-                successAlert.showAndWait();
+                selectedReclaamtion.setIndemnisation(selectedIndemnisation);
+                System.out.println(selectedReclaamtion);
+                System.out.println(selectedReclaamtion.getIndemnisation());
 
             } catch (SQLException e) {
-                // Afficher une alerte en cas d'erreur
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                errorAlert.setTitle("Error");
-                errorAlert.setHeaderText(null);
-                errorAlert.setContentText("An error occurred while editing the sinistre.");
-                errorAlert.showAndWait();
-                System.out.println("Error editing reclamation: " + e.getMessage());
-            }
+
+
 
             montant.clear();
             beneficitaire.clear();
@@ -100,11 +96,25 @@ private Reclamation rec;
             msgError.setText("");
             dateError.setText("");
             montantError.setText("");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamationsBack.fxml"));
+            Parent root = loader.load();
+            listeReclamationBack controller = loader.getController();
+            controller.refreshList();
+
+            // Affichez l'alerte de succès
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Success");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Indemnisation ajoutée avec succès.");
+            successAlert.showAndWait();
+
+            // Fermez la fenêtre actuelle
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.close();
 
 
 
-
-        }}
+        }}}
 
     private boolean isInputValid() {
         boolean isValid = true;

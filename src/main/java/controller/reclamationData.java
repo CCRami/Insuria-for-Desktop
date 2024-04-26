@@ -1,5 +1,6 @@
 package controller;
 
+import entity.Indemnissation;
 import entity.Reclamation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import services.IndemnisationService;
 import services.ReclamationService;
 
 import java.io.IOException;
@@ -41,7 +43,8 @@ public class reclamationData {
     private Button show;
 
     private Reclamation reclamation;
-
+    private  Indemnissation ind;
+    private int id;
     public void setData(Reclamation reclamation) {
         this.reclamation = reclamation;
         label.setText(reclamation.getLibelle());
@@ -55,7 +58,7 @@ public class reclamationData {
 
 
     ReclamationService service = new ReclamationService();
-    reclamationsFront recF = new reclamationsFront();
+    IndemnisationService is = new IndemnisationService();
 
     @FXML
     void delete(ActionEvent event) {
@@ -88,21 +91,44 @@ public class reclamationData {
         }
     }
 
+    
     @FXML
     void show(ActionEvent event) {
 
 
-        int indemnisation = reclamation.getIndemnisation().getId();
+        try {
+            id = service.selectId(reclamation);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(id);
+        try {
+            ind = is.afficherUneIndemnisation(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(ind);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/showCompensationBack.fxml"));
+            Parent root = loader.load();
 
-        if (indemnisation != 0) {
-            // Afficher les détails de l'indemnisation
-            System.out.println("Montant de l'indemnisation : ");
 
-            // Autres opérations pour afficher les détails de l'indemnisation
-        } else {
-            System.out.println("Aucune indemnisation associée à cette réclamation.");
-            // Gérer le cas où aucune indemnisation n'est associée à cette réclamation
+            showCompensation controller = loader.getController();
+
+            controller.iniData(ind);
+
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
         }
 
     }
+
 }

@@ -18,5 +18,6 @@ public interface IServiceIndemnisation <K,T> {
 
 
 
-    void afficherIndemnisationParReclamation(K k) throws SQLException;
+
+    Indemnissation afficherUneIndemnisation(int id) throws SQLException;
 }

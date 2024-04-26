@@ -4,12 +4,16 @@ package controller;
 import entity.Indemnissation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import services.IndemnisationService;
 
-public class showCompensation {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class showCompensation  {
     private Text choixerror;
 
     @FXML
@@ -36,15 +40,14 @@ public class showCompensation {
     private Indemnissation selectedIndemnisation;
 
     public void iniData(Indemnissation indemnisation) {
-        if (indemnisation != null) {
-            selectedIndemnisation = indemnisation;
+
+            this.selectedIndemnisation = indemnisation;
 
             montant.setText(String.valueOf(selectedIndemnisation.getMontant()));
             date.setText(selectedIndemnisation.getDate());
             msg.setText(selectedIndemnisation.getBeneficitaire());
-        } else {
 
-            }
     }
+
 
 }

@@ -120,6 +120,21 @@ public class ReclamationService implements IServiceReclamation<Reclamation>{
         return reclamations;
     }
 
-
-
-}
+    @Override
+    public int selectId(Reclamation reclamation) throws SQLException {
+        String req = "SELECT indemnisation_id FROM reclamation WHERE id = ?";
+        try (PreparedStatement pre = cnx.prepareStatement(req)) {
+            pre.setInt(1, reclamation.getId());
+            try (ResultSet rs = pre.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("indemnisation_id");
+                } else {
+                    // Gérer le cas où aucun résultat n'est trouvé
+                    return -1; // Ou une autre valeur par défaut appropriée
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }}

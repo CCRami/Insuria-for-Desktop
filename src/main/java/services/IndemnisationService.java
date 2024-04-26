@@ -9,13 +9,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IndemnisationService implements IServiceIndemnisation<Reclamation, Indemnissation>{
+public class IndemnisationService implements IServiceIndemnisation<Reclamation, Indemnissation> {
     private Connection cnx;
     private Statement ste;
 
     public IndemnisationService() {
         cnx = DataSource.getInstance().getConnection();
     }
+
     @Override
     public int addIndemnisation(Indemnissation indemnisation) throws SQLException {
         String sql = "INSERT INTO indemnissation (montant, date, beneficitaire) VALUES (?, ?, ?)";
@@ -41,12 +42,6 @@ public class IndemnisationService implements IServiceIndemnisation<Reclamation, 
     }
 
 
-
-
-
-
-
-
     @Override
     public void modifierIndemnisation(Indemnissation indemnisation) throws SQLException {
         String sql = "UPDATE indemnissation SET montant = ?, date = ?, beneficitaire = ? WHERE id = ?";
@@ -70,78 +65,78 @@ public class IndemnisationService implements IServiceIndemnisation<Reclamation, 
     }
 
 
+    @Override
+    public void supprimerIndemnisation(int idIndemnisation) throws SQLException {
+        try {
+            // Mettre à jour la réclamation qui a une indemnisation avec l'ID spécifique
+            String miseAJourReclamationSql = "UPDATE reclamation SET indemnisation = NULL WHERE idIndemnisation = ?";
+            try (PreparedStatement miseAJourReclamationStatement = cnx.prepareStatement(miseAJourReclamationSql)) {
+                miseAJourReclamationStatement.setInt(1, idIndemnisation);
+                int rowsAffected = miseAJourReclamationStatement.executeUpdate();
 
-@Override
-public void supprimerIndemnisation(int idIndemnisation) throws SQLException {
-    try {
-        // Mettre à jour la réclamation qui a une indemnisation avec l'ID spécifique
-        String miseAJourReclamationSql = "UPDATE reclamation SET indemnisation = NULL WHERE idIndemnisation = ?";
-        try (PreparedStatement miseAJourReclamationStatement = cnx.prepareStatement(miseAJourReclamationSql)) {
-            miseAJourReclamationStatement.setInt(1, idIndemnisation);
-            int rowsAffected = miseAJourReclamationStatement.executeUpdate();
+                if (rowsAffected > 0) {
+                    System.out.println("Réclamation mise à jour avec succès.");
+                } else {
+                    System.out.println("Aucune réclamation trouvée avec une indemnisation ayant l'ID spécifié.");
+                }
+            }
 
-            if (rowsAffected > 0) {
-                System.out.println("Réclamation mise à jour avec succès.");
-            } else {
-                System.out.println("Aucune réclamation trouvée avec une indemnisation ayant l'ID spécifié.");
+            // Supprimez l'indemnisation de la base de données
+            String suppressionIndemnisationSql = "DELETE FROM indemnissation WHERE id = ?";
+            try (PreparedStatement suppressionIndemnisationStatement = cnx.prepareStatement(suppressionIndemnisationSql)) {
+                suppressionIndemnisationStatement.setInt(1, idIndemnisation);
+                int rowsAffected = suppressionIndemnisationStatement.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    System.out.println("Indemnisation supprimée avec succès.");
+                } else {
+                    System.out.println("Aucune indemnisation trouvée avec l'ID spécifié.");
+                }
+            }
+        } catch (SQLException e) {
+            // Gestion des exceptions
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public List<Indemnissation> afficherIndemnisation() throws SQLException {
+        List<Indemnissation> indemnisations = new ArrayList<>();
+        String req = "SELECT * FROM indemnissation";
+        try (PreparedStatement pre = cnx.prepareStatement(req); ResultSet rs = pre.executeQuery()) {
+            while (rs.next()) {
+                Indemnissation indemnisation = new Indemnissation();
+                indemnisation.setId(rs.getInt("id"));
+                indemnisation.setMontant(rs.getFloat("montant"));
+                indemnisation.setDate(rs.getString("date"));
+                indemnisation.setBeneficitaire(rs.getString("beneficitaire"));
+
+
+                indemnisations.add(indemnisation);
             }
         }
+        return indemnisations;
+    }
 
-        // Supprimez l'indemnisation de la base de données
-        String suppressionIndemnisationSql = "DELETE FROM indemnissation WHERE id = ?";
-        try (PreparedStatement suppressionIndemnisationStatement = cnx.prepareStatement(suppressionIndemnisationSql)) {
-            suppressionIndemnisationStatement.setInt(1, idIndemnisation);
-            int rowsAffected = suppressionIndemnisationStatement.executeUpdate();
 
-            if (rowsAffected > 0) {
-                System.out.println("Indemnisation supprimée avec succès.");
-            } else {
-                System.out.println("Aucune indemnisation trouvée avec l'ID spécifié.");
+    @Override
+
+    public Indemnissation afficherUneIndemnisation(int id) throws SQLException {
+        Indemnissation indemnisation = null; // Initialiser à null pour le cas où aucune indemnisation n'est trouvée
+        String req = "SELECT * FROM indemnissation WHERE id = ?";
+        try (PreparedStatement pre = cnx.prepareStatement(req)) {
+            pre.setInt(1, id);
+            try (ResultSet rs = pre.executeQuery()) {
+                if (rs.next()) {
+                    indemnisation = new Indemnissation();
+                    indemnisation.setId(rs.getInt("id"));
+                    indemnisation.setMontant(rs.getFloat("montant"));
+                    indemnisation.setDate(rs.getString("date"));
+                    indemnisation.setBeneficitaire(rs.getString("beneficitaire"));
+                }
             }
         }
-    } catch (SQLException e) {
-        // Gestion des exceptions
-        e.printStackTrace();
+        return indemnisation;
     }
-}
-
-
-@Override
-public List<Indemnissation> afficherIndemnisation() throws SQLException {
-    List<Indemnissation> indemnisations = new ArrayList<>();
-    String req = "SELECT * FROM indemnissation";
-    try (PreparedStatement pre = cnx.prepareStatement(req); ResultSet rs = pre.executeQuery()) {
-        while (rs.next()) {
-            Indemnissation indemnisation = new Indemnissation();
-            indemnisation.setId(rs.getInt("id"));
-            indemnisation.setMontant(rs.getFloat("montant"));
-            indemnisation.setDate(rs.getString("date"));
-            indemnisation.setBeneficitaire(rs.getString("beneficitaire"));
-
-
-            indemnisations.add(indemnisation);
-        }
-    }
-    return indemnisations;
-}
-
-
-
-
-@Override
-
-public void afficherIndemnisationParReclamation(Reclamation rec) throws SQLException {
-    Indemnissation indemnisation = rec.getIndemnisation();
-
-    // Vérification si l'indemnisation est associée à la réclamation
-    if (indemnisation != null) {
-        // Affichage de la représentation textuelle de l'indemnisation
-        System.out.println("Indemnisation associée à la réclamation :");
-        System.out.println(indemnisation.toString());
-    } else {
-        // Si aucune indemnisation n'est associée à la réclamation, afficher un message
-        System.out.println("Aucune indemnisation associée à la réclamation.");
-    }
-}
-
 }

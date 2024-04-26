@@ -21,4 +21,5 @@ public interface IServiceReclamation<T> {
     List<T> afficherReclamations() throws SQLException;
 
 
+    int selectId(Reclamation reclamation) throws SQLException;
 }
