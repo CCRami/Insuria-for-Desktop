@@ -72,7 +72,7 @@ public class addReclamation {
             String dateSinistre = date.getValue().toString();
 
 
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
             String dateReclamation = format.format(new Date());
 
             // Créez votre objet Reclamation avec les données récupérées

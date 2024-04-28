@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class listeReclamationBack implements Initializable {
@@ -53,6 +54,17 @@ public class listeReclamationBack implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
+        // Add a listener to the search field's text property
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                rechercherRec();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
     private void initializeListView() {
@@ -74,12 +86,12 @@ public class listeReclamationBack implements Initializable {
                     datReclamationLabel.setMaxWidth(173.0);
                     datReclamationLabel.setStyle("-fx-padding: 2px;");
                     Label dateSinistreLabel = new Label(rec.getDateSinitre().toString());
-                    dateSinistreLabel.setMinWidth(173.0);
-                    dateSinistreLabel.setMaxWidth(173.0);
+                    dateSinistreLabel.setMinWidth(150.0);
+                    dateSinistreLabel.setMaxWidth(150.0);
                     dateSinistreLabel.setStyle("-fx-padding: 2px;");
                     Label reponseLabel = new Label(rec.getReponse());
                     reponseLabel.setMinWidth(100.0);
-                    reponseLabel.setMaxWidth(160.0);
+                    reponseLabel.setMaxWidth(180.0);
 
                     Button button;
                     if (rec.getReponse().equals("refused") || rec.getReponse().equals("accepted")) {
@@ -218,5 +230,33 @@ public class listeReclamationBack implements Initializable {
     } catch (IOException e) {
         e.printStackTrace();
     }}
+
+
+
+    @FXML
+    private void rechercherRec() throws SQLException {
+        // Effacer les éléments existants de la ListView
+        recList.getItems().clear();
+
+        // Récupérer le terme de recherche saisi par l'utilisateur
+        String searchTerm = searchField.getText().trim().toLowerCase();
+
+        // Récupérer tous les reclamations depuis la base de données
+        List<Reclamation> reclamationsList = service.afficherReclamations();
+
+        // Si le champ de recherche est vide, afficher tous les reclamations
+        if (searchTerm.isEmpty()) {
+            recList.getItems().addAll(reclamationsList);
+        } else {
+            // Sinon, filtrer les événements qui correspondent au terme de recherche
+            for (Reclamation recla : reclamationsList) {
+                // Vous pouvez adapter cette condition en fonction de votre logique de recherche
+                if (recla.getLibelle().toLowerCase().contains(searchTerm)|| recla.getDateReclamation().contains(searchTerm)) {
+                    recList.getItems().add(recla);
+                }
+            }
+        }
+    }
+
 
 }

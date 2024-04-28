@@ -40,10 +40,13 @@ private Reclamation selectedReclamation;
                 service.modifierIndemnisation(selectedIndemnisation);
 selectedReclamation.setIndemnisation(selectedIndemnisation);
                System.out.println(selectedReclamation.getIndemnisation());
+
+                String emailValue = "farah.adad2001@gmail.com";
+                MailService.sendConfirmationEmail(emailValue);
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Success");
                 successAlert.setHeaderText(null);
-                successAlert.setContentText(" added successfully");
+                successAlert.setContentText(" added successfully , an email has been sent");
                 successAlert.showAndWait();
 
             } catch (SQLException e) {
