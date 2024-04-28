@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -69,52 +70,56 @@ private Reclamation rec;
 
     @FXML
     void enregistreAction(ActionEvent event) throws IOException {
-
         if (isInputValid()) {
             String montantText = montant.getText();
             selectedIndemnisation.setMontant(Float.parseFloat(montantText));
             selectedIndemnisation.setDate(date.getValue().toString());
             selectedIndemnisation.setBeneficitaire(beneficitaire.getText());
 
-
             IndemnisationService service = new IndemnisationService();
 
             try {
                 service.modifierIndemnisation(selectedIndemnisation);
 
+                // Assuming selectedReclaamtion is initialized elsewhere
                 selectedReclaamtion.setIndemnisation(selectedIndemnisation);
-                System.out.println(selectedReclaamtion);
-                System.out.println(selectedReclaamtion.getIndemnisation());
+
+                String emailValue = "farah.adad2001@gmail.com";
+                MailService.sendConfirmationEmail(emailValue);
+
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Success");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Indemnisation ajoutée avec succès. Email has been sent.");
+                successAlert.showAndWait();
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/listeReclamationBack.fxml"));
+                Parent root = loader.load();
+
+                // Close the current window
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.close();
+
+                // Show the new FXML
+                Stage newStage = new Stage();
+                newStage.setScene(new Scene(root));
+                newStage.show();
 
             } catch (SQLException e) {
+                // Handle SQLException appropriately, e.g., logging or displaying an error message
+                e.printStackTrace();
 
+                // Clear input fields and error messages
+                montant.clear();
+                beneficitaire.clear();
+                date.getEditor().clear();
+                msgError.setText("");
+                dateError.setText("");
+                montantError.setText("");
+            }
+        }
+    }
 
-
-            montant.clear();
-            beneficitaire.clear();
-            date.getEditor().clear();
-            msgError.setText("");
-            dateError.setText("");
-            montantError.setText("");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamationsBack.fxml"));
-            Parent root = loader.load();
-            listeReclamationBack controller = loader.getController();
-            controller.refreshList();
-
-            // Affichez l'alerte de succès
-            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-            successAlert.setTitle("Success");
-            successAlert.setHeaderText(null);
-            successAlert.setContentText("Indemnisation ajoutée avec succès.");
-            successAlert.showAndWait();
-
-            // Fermez la fenêtre actuelle
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.close();
-
-
-
-        }}}
 
     private boolean isInputValid() {
         boolean isValid = true;

@@ -13,7 +13,7 @@
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="778.0" prefWidth="1254.0">
          <children>
-            <AnchorPane layoutX="255.2" layoutY="51.2" prefHeight="598.0" prefWidth="685.0" stylesheets="@../../../../../Desktop/pidev/src/main/resources/style/dashboardDesign.css" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="51.0">
+            <AnchorPane layoutX="255.2" layoutY="51.2" prefHeight="598.0" prefWidth="685.0" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="51.0">
                <styleClass>
                   <String fx:value="white-bg" />
                   <String fx:value="shadow" />

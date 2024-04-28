@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.listeReclamationBack">
+<AnchorPane prefHeight="830.0" prefWidth="1159.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.listeReclamationBack">
    <children>
       <VBox fx:id="contentArea" layoutX="233.0" layoutY="63.0" prefHeight="672.0" prefWidth="808.0" spacing="20" styleClass="white-bg, shadow" AnchorPane.leftAnchor="300.0">
          <children>
@@ -40,13 +40,13 @@
                   <Label maxWidth="162.0" minWidth="150.0" prefHeight="20.0" prefWidth="162.0" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" text="Actions" />
                </children>
             </HBox>
-            <ListView fx:id="recList" styleClass="list-view" VBox.vgrow="ALWAYS">
+            <ListView fx:id="recList" prefHeight="462.0" prefWidth="838.0" styleClass="list-view" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin></ListView>
             <HBox alignment="CENTER" style="-fx-padding: 20;">
                <children>
-                  <Button minWidth="202.0" styleClass="button1" text="Add New">
+                  <Button fx:id="add" minWidth="202.0" onAction="#addAction" styleClass="button1" text="Add New">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                            <image>
