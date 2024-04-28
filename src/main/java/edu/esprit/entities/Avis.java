@@ -1,6 +1,6 @@
 package edu.esprit.entities;
 import javafx.scene.control.TableColumn;
-
+import edu.esprit.entities.Agence;
 public class Avis {
     private int idAV;
     private Agence agenceav_id;
@@ -12,8 +12,10 @@ public class Avis {
     private boolean etat;
     private String date_avis;
 
-    public Avis(String comment, int note, int i, Agence agence, String creation) {
+   /* public Avis(String comment, int note, int i, Agence agence, String creation) {
     }
+
+    */
 
 
     public int getIdAV() {
@@ -78,7 +80,7 @@ public class Avis {
         this.note=note;
         this.date_avis=date_avis;
         this.avis_id=avis_id;
-        this.agenceav_id=agenceav_id;
+        this.agenceav_id=  agenceav_id;
         this.etat=etat;
 
     }

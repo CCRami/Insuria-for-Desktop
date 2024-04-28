@@ -17,15 +17,15 @@ public class AvisService implements IServiceAvis {
         cnx = DataSource.getInstance().getConnection();
     }
 
-    private static final int STATIC_USER_ID = 2;
+    private static  int STATIC_USER_ID = 111;
     private static boolean ETAT = false;
     public Agence agence;
 
     @Override
-    public void ajouteravis(Avis avis, Agence agence) {
+    public void ajouteravis(Avis avis) {
         System.out.println("bb"+avis.getCommentaire());
         System.out.println("bb"+avis);
-
+        System.out.println("bb"+avis.getAgenceav_id().getIdage());
 
         String req = "INSERT INTO avis(commentaire, note, date_avis,avis_id,agenceav_id,etat) VALUES (?, ?, ?,?,?,?)";
         try (PreparedStatement ps = cnx.prepareStatement(req)) {
@@ -33,7 +33,7 @@ public class AvisService implements IServiceAvis {
             ps.setInt(2, avis.getNote());
             ps.setString(3, avis.getDate_avis());
             ps.setInt(4, STATIC_USER_ID);
-            ps.setObject(5, agence);
+            ps.setObject(5, avis.getAgenceav_id().getIdage());
             ps.setBoolean(6, ETAT);
 
             ps.executeUpdate();

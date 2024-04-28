@@ -13,8 +13,15 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
+import java.awt.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+import edu.esprit.Helper.AlertHelper;
+
+import javafx.stage.Window;
 
 public class Ajouteravis {
     @FXML
@@ -69,10 +76,10 @@ public class Ajouteravis {
         rating=5;
     }
     @FXML
-    public void initialize( ) {
+    public void initialize(Agence agence ) {
         assert commentArea != null : "fx:id=\"commentArea\" was not injected: check your FXML file 'ajouteragence.fxml'.";
         assert ajouteravi != null : "fx:id=\"save\" was not injected: check your FXML file 'ajouteragence.fxml'.";
-
+Parametre2=agence;
     }
     @FXML
     private Text errorNom;
@@ -80,7 +87,7 @@ public class Ajouteravis {
         boolean isValid = true;
 
         // Validate and display error messages
-        if (commentArea.getText().isEmpty() || !commentArea.getText().matches("^[a-zA-Z]+$")) {
+        if (commentArea.getText().isEmpty() ) {
             errorNom.setText("Comment is required ");
             isValid = false;
         } else {
@@ -92,12 +99,48 @@ public class Ajouteravis {
         return isValid;
     }
 
+    private Runnable closeCallback;
+
+    public void setCloseCallback(Runnable callback) {
+        this.closeCallback = callback;
+    }
+
+    public String bad_words(String badWord) {
+
+        List<String> badListW = Arrays.asList("fuck", "bitch","motherfucker","merde","putin");
+        String badNew = "";
+        List<String> newList = new ArrayList<>();
+        for (String str : badListW) {
+            if (badWord.contains(str)) {
+                badNew += "" + str;
+                if (str.length() >= 1) {
+                    StringBuilder result = new StringBuilder();
+                    result.append(str.charAt(0));
+                    for (int i = 0; i < str.length() - 2; ++i) {
+                        result.append("*");
+                    }
+                    result.append(str.charAt(str.length() - 1));
+                    str = result.toString();
+                    if (!str.isEmpty()) {
+                        System.out.println("ATTENTION !! Vous avez écrit un gros mot  : " + result + " .C'est un avertissement ! Priére d'avoir un peu de respect ! Votre description sera envoyée comme suit :");
+                        System.out.println(badWord.replace(badNew, "") + " ");
+                        AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error",
+                                "ATTENTION !! Vous avez écrit un gros mot");
+                    }
+                }
+
+            }
+        }
+        return (badWord.replace(badNew, "") + " ");
+    }
+
 
     @FXML
     void ajouterav(ActionEvent event) {
 
         if (isInputValid()) {
             String commentaire = commentArea.getText();
+            commentaire = bad_words(commentaire);
             int note = rating;
             Agence agence =Parametre2;
             System.out.println("aa"+commentaire);
@@ -108,10 +151,11 @@ public class Ajouteravis {
             Avis avis =new Avis(commentaire,note,creation,111,agence,false);
             System.out.println("dd"+avis);
             AvisService service = new AvisService();
-           service.ajouteravis(avis,Parametre2);
+           service.ajouteravis(avis);
 
 
             commentArea.clear();
+
 
 
 
@@ -120,8 +164,17 @@ public class Ajouteravis {
             alert.setHeaderText(null);
             alert.setContentText("review added successfully");
             alert.showAndWait();
+            commentArea.setDisable(true);
+            star1.setDisable(true);
+            star2.setDisable(true);
 
+            star3.setDisable(true);
 
+            star4.setDisable(true);
+
+            star5.setDisable(true);
+
+            //dialogStage.close();
 
         }
 

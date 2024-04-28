@@ -1,251 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="950.0" style="-fx-background-color: white;" styleClass="right-bar" stylesheets="@style/styleafficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.Ajouteragence">
+<AnchorPane prefHeight="778.0" prefWidth="1254.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficheragenceBack">
     <children>
-        <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0">
-            <left>
-                <VBox alignment="TOP_CENTER" prefHeight="810.0" prefWidth="253.0" style="-fx-background-color: #051B46;" BorderPane.alignment="CENTER">
-                    <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/logo.png" />
-                            </image>
-                            <VBox.margin>
-                                <Insets bottom="60.0" top="40.0" />
-                            </VBox.margin>
-                        </ImageView>
-                        <HBox prefHeight="45.0" prefWidth="200.0" spacing="20.0">
-                            <children>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@images/analyse.png" />
-                                    </image>
-                                </ImageView>
-                                <Label prefHeight="35.0" prefWidth="202.0" text="Dashboard" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="16.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                        <HBox layoutX="30.0" layoutY="392.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                            <children>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@images/homme.png" />
-                                    </image>
-                                </ImageView>
-                                <Label prefHeight="35.0" prefWidth="202.0" text="Utilisateur" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="16.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                        <HBox layoutX="30.0" layoutY="438.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                            <children>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@images/probleme.png" />
-                                    </image>
-                                </ImageView>
-                                <Label prefHeight="35.0" prefWidth="202.0" text="Reclamation" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="16.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                        <HBox layoutX="30.0" layoutY="461.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                            <children>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@images/produit.png" />
-                                    </image>
-                                </ImageView>
-                                <Label prefHeight="35.0" prefWidth="202.0" text="Produits" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="16.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                        <HBox layoutX="30.0" layoutY="484.0" onMouseClicked="#showAgence" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                            <children>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@images/Government_Agency_Symbol.png" />
-                                    </image>
-                                </ImageView>
-                                <Label prefHeight="35.0" prefWidth="202.0" text="Agencies" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="16.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                        <HBox onMouseClicked="#showAvisAgence" prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
-                            <children>
-                                <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@images/5569806.png" />
-                                    </image>
-                                    <HBox.margin>
-                                        <Insets />
-                                    </HBox.margin>
-                                    <viewport>
-                                        <Rectangle2D />
-                                    </viewport>
-                                </ImageView>
-                                <Label text="Reviews" textFill="WHITE">
-                                    <HBox.margin>
-                                        <Insets left="10.0" />
-                                    </HBox.margin>
-                                    <font>
-                                        <Font name="System Bold" size="16.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                            <VBox.margin>
-                                <Insets right="88.0" />
-                            </VBox.margin>
-                        </HBox>
+        <AnchorPane layoutX="157.0" layoutY="179.0" prefHeight="598.0" prefWidth="958.0" stylesheets="@style/dashboardDesign.css">
+            <styleClass>
+                <String fx:value="white-bg" />
+                <String fx:value="shadow" />
+            </styleClass>
+            <children>
+                <ListView fx:id="listView" layoutX="84.0" layoutY="74.0" prefHeight="400" prefWidth="800">
+                    <!-- Vous pouvez configurer une cellule personnalisée ici si nécessaire -->
+                </ListView>
+                <TextField fx:id="addEmployee_search" layoutX="84.0" layoutY="14.0" prefHeight="30.0" prefWidth="277.0" promptText="Search" styleClass="search" stylesheets="@style/dashboardDesign.css" />
 
-                    </children>
-                    <padding>
-                        <Insets left="20.0" right="20.0" />
-                    </padding>
-                </VBox>
-            </left>
-            <center>
-                <VBox fx:id="vboxdash" prefHeight="810.0" prefWidth="1062.0">
-               <children>
-            
-                    <HBox prefHeight="643.0" prefWidth="778.0" styleClass="show-box" stylesheets="@style/styleafficher.css">
-                        <VBox prefHeight="546.0" prefWidth="363.0">
-                            <VBox alignment="TOP_CENTER" prefHeight="93.0" prefWidth="363.0">
-                                <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ADD a new agency" textAlignment="CENTER" wrappingWidth="296.5366973876953">
-                                        <VBox.margin>
-                                            <Insets bottom="44.0" left="33.0" top="55.0" />
-                                        </VBox.margin>
-                                        <font>
-                                            <Font size="24.0" />
-                                        </font>
-                                    </Text>
-                                </children>
-                            </VBox>
-                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="name of agency" wrappingWidth="138.93671798706055">
-                                <VBox.margin>
-                                    <Insets left="77.0" />
-                                </VBox.margin>
-                            </Text>
-                            <TextField fx:id="nom" alignment="TOP_LEFT" prefHeight="34.0" prefWidth="229.0" promptText="enter a name" stylesheets="@style/styleafficher.css">
-                                <VBox.margin>
-                                    <Insets left="70.0" right="50.0" top="10.0" />
-                                </VBox.margin>
-                                <styleClass>
-                                    <String fx:value="search" />
-                                    <String fx:value="shadow" />
-                                </styleClass>
-                            </TextField>
-                            <!-- Add Text elements for error messages with a default font -->
-                            <Text fx:id="errorNom" fill="RED" wrappingWidth="181.5999755859375">
-                                <VBox.margin>
-                                    <Insets left="100.0" top="10.0" />
-                                </VBox.margin>
-                        </Text>
-                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="adress of agency" wrappingWidth="141.33674240112305">
-                                <VBox.margin>
-                                    <Insets left="77.0" />
-                                </VBox.margin>
-                            </Text>
-                            <TextField fx:id="adresse" prefHeight="34.0" prefWidth="229.0" promptText="enter an address" stylesheets="@style/styleafficher.css">
-                                <VBox.margin>
-                                    <Insets left="70.0" right="50.0" top="10.0" />
-                                </VBox.margin>
-                                <styleClass>
-                                    <String fx:value="search" />
-                                    <String fx:value="shadow" />
-                                </styleClass>
-                            </TextField>
-                        <Button fx:id="chooseAdress" mnemonicParsing="false" onAction="#addressChoose" text="Button" />
-                            <Text fx:id="errorAdresse" fill="RED" wrappingWidth="195.20001220703125">
-                                <VBox.margin>
-                                    <Insets left="100.0" top="10.0" />
-                                </VBox.margin>
-                        </Text>
-                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="114.13669967651367">
-                                <VBox.margin>
-                                    <Insets left="77.0" />
-                                </VBox.margin>
-                            </Text>
-                            <TextField fx:id="emailage" prefHeight="34.0" prefWidth="229.0" promptText="enter an email" stylesheets="@style/styleafficher.css">
-                                <VBox.margin>
-                                    <Insets left="70.0" right="50.0" top="10.0" />
-                                </VBox.margin>
-                                <styleClass>
-                                    <String fx:value="shadow" />
-                                    <String fx:value="search" />
-                                </styleClass>
-                            </TextField>
-                            <Text fx:id="errorEmail" fill="RED" wrappingWidth="190.4000244140625">
-                                <VBox.margin>
-                                    <Insets left="100.0" top="10.0" />
-                                </VBox.margin>
-                        </Text>
-                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number" wrappingWidth="138.1367301940918">
-                                <VBox.margin>
-                                    <Insets left="77.0" />
-                                </VBox.margin>
-                            </Text>
-                            <TextField fx:id="phone" prefHeight="34.0" prefWidth="229.0" promptText="enter a phone number" stylesheets="@style/styleafficher.css">
-                                <VBox.margin>
-                                    <Insets left="70.0" right="50.0" top="10.0" />
-                                </VBox.margin>
-                                <styleClass>
-                                    <String fx:value="search" />
-                                    <String fx:value="shadow" />
-                                </styleClass>
-                            </TextField>
-                            <Text fx:id="errorPhone" fill="RED" wrappingWidth="196.00003051757812">
-                                <VBox.margin>
-                                    <Insets left="100.0" top="10.0" />
-                                </VBox.margin>
-                        </Text>
-                        </VBox>
-                        <VBox prefHeight="600.0" prefWidth="404.0">
-            
-                            <Button fx:id="save" mnemonicParsing="false" onAction="#ajouteragenceAction" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Enregistrer" textFill="WHITE">
-                                <VBox.margin>
-                                    <Insets left="150.0" top="160.0" />
-                                </VBox.margin>
-                                <font>
-                                    <Font size="13.0" />
-                                </font>
-                            </Button>
-                        </VBox>
-                     <VBox.margin>
-                        <Insets left="111.0" />
-                     </VBox.margin>
-                    </HBox>
-               </children></VBox>
-            </center>
-        </BorderPane>
+                <!-- Boîte d'actions pour les boutons -->
+                <HBox layoutX="404.0" layoutY="515.0" spacing="10">
+                    <Button fx:id="modif" text="Edit" textFill="WHITE" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" />
+                    <Button fx:id="supprimer" text="Delete" textFill="#f7f5f5" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" />
+                    <Button fx:id="consulteravis" text="Consulter avis" textFill="#f7f5f5" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" />
+                </HBox>
+
+                <!-- Bouton d'ajout d'agence -->
+                <Button fx:id="ajouteragence" layoutX="766.0" layoutY="14.0" mnemonicParsing="false" onAction="#ajouterButton" prefHeight="43.0" prefWidth="123.0" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Add agency" textFill="#fffbfb" />
+
+                <!-- Icône de recherche -->
+                <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="323.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../../../../../pidevjava/pidev/src/main/resources/images/search_104498.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+
+        <!-- Les deux autres AnchorPane restent inchangés -->
+        <AnchorPane layoutX="254.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
+            <children>
+                <Label layoutX="77.0" layoutY="92.0" text="Total Agencies" textFill="WHITE">
+                    <font>
+                        <Font name="Tahoma" size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="home_totalEmployees" alignment="CENTER_RIGHT" layoutX="87.0" layoutY="14.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="25.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+
+        <AnchorPane layoutX="611.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
+            <children>
+                <Label layoutX="77.0" layoutY="97.0" text="Total Reviews" textFill="WHITE">
+                    <font>
+                        <Font name="Tahoma" size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="home_totalAvis" alignment="CENTER_RIGHT" layoutX="87.0" layoutY="19.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="25.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
     </children>
 </AnchorPane>

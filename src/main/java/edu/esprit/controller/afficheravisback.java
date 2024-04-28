@@ -8,6 +8,8 @@ import edu.esprit.util.DataSource;
 import edu.esprit.controller.avis;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -15,10 +17,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,12 +39,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
-public class afficheravisback  implements Initializable {
+public class afficheravisback  {
     @FXML
     private TableView<Avis> tab;
-    @FXML
-    private GridPane container;
+
 
 
 
@@ -75,7 +86,16 @@ public class afficheravisback  implements Initializable {
 
     @FXML
     private Label home_totalAvis;
+    @FXML
+    private ListView<Avis> tab1;
+    @FXML
+    private VBox contentArea;
+    @FXML
+    private GridPane container;
     int selectedId;
+    @FXML
+    private AnchorPane AA;
+
 
     //AvisService s = new AvisService();
     public Avis r = new Avis(commentaire, note, date_avis, avis_id, agenceav_id, etat);
@@ -102,6 +122,32 @@ public class afficheravisback  implements Initializable {
     }
 
     @FXML
+    private TextField searchField;
+    @FXML
+    void aa(KeyEvent event) {
+      /*  FilteredList<Avis> filteredList = new FilteredList<>(data, avis -> true);
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(avis -> {
+                // Si la recherche est vide, affichez tous les avis
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Convertir le texte de recherche en minuscule pour comparaison
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                // Filtrer les avis par nom d'agence, commentaire, ou note
+                return avis.getAgenceav_id().getNomage().toLowerCase().contains(lowerCaseFilter) ||
+                        avis.getCommentaire().toLowerCase().contains(lowerCaseFilter) ||
+                        String.valueOf(avis.getNote()).contains(lowerCaseFilter);
+            });
+
+            tab1.setItems(filteredList);
+
+
+        });*/
+    }
+    @FXML
     public void homeTotalAvis() {
         String sql = "SELECT COUNT(id) FROM Avis";
         this.cnx = DataSource.getInstance().getConnection();
@@ -120,45 +166,194 @@ public class afficheravisback  implements Initializable {
         }
 
     }
+    private void initializeListView() {
+        tab1.setCellFactory(param -> new ListCell<Avis>() {
+            @Override
+            protected void updateItem(Avis item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    home_totalEmployees();
+                    homeTotalAvis();
+
+                    // Création d'un HBox pour contenir les labels et les boutons
+                    HBox hbox = new HBox(5); // Espace de 10px entre les éléments
+                    hbox.setAlignment(Pos.CENTER_LEFT);
+
+                    Label nameLabel = new Label(item.getAgenceav_id().getNomage());
+                    nameLabel.setMinWidth(150);
+                    nameLabel.setMaxWidth(150);
+                    Label conditionLabel = new Label();
+                if(item.getNote()==1){
+conditionLabel.setText("★");
+                    conditionLabel.setMinWidth(170);
+                    conditionLabel.setMaxWidth(180);
+                    conditionLabel.setWrapText(true); // Activer le retour à la ligne automatique
+                    conditionLabel.setStyle("-fx-padding: 10px; -fx-text-fill: gold;");}
+                    if(item.getNote()==2){
+                        conditionLabel.setText("★★");
+                        conditionLabel.setMinWidth(170);
+                        conditionLabel.setMaxWidth(180);
+                        conditionLabel.setWrapText(true); // Activer le retour à la ligne automatique
+                        conditionLabel.setStyle("-fx-padding: 10px; -fx-text-fill: gold;");}
+                    if(item.getNote()==3){ conditionLabel.setText("★★★");
+
+                        conditionLabel.setMinWidth(170);
+                        conditionLabel.setMaxWidth(180);
+                        conditionLabel.setWrapText(true); // Activer le retour à la ligne automatique
+                        conditionLabel.setStyle("-fx-padding: 10px; -fx-text-fill: gold;");}
+                    if(item.getNote()==4){ conditionLabel.setText("★★★★");
+
+                        conditionLabel.setMinWidth(170);
+                        conditionLabel.setMaxWidth(180);
+                        conditionLabel.setWrapText(true); // Activer le retour à la ligne automatique
+                        conditionLabel.setStyle("-fx-padding: 10px; -fx-text-fill: gold;");}
+                    if(item.getNote()==5){ conditionLabel.setText("★★★★★");
+
+                        conditionLabel.setMinWidth(170);
+                        conditionLabel.setMaxWidth(180);
+                        conditionLabel.setWrapText(true); // Activer le retour à la ligne automatique
+                        conditionLabel.setStyle("-fx-padding: 10px; -fx-text-fill: gold;");}
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        homeTotalAvis();home_totalEmployees();
-        avis = serviceAvis.getAllavis();
-        int column = 0;
-        int row = 1;
-        try {
-            for (Avis avis : avis) {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/unAvis.fxml"));
-
-                try {
-                    Object anchorPane = fxmlLoader.load();
-                    avis age = fxmlLoader.getController();
-
-                    age.setData(avis);
-                    age.supprimer(avis.getIdAV());
 
 
-                    if (column == 3) {
-                        column = 0;
-                        row++;
-                    }
+                    Label durationlabel = new Label(item.getCommentaire());
+                    durationlabel.setMinWidth(250);
+                    durationlabel.setMaxWidth(260);
+                    durationlabel.setWrapText(true); // Activer le retour à la ligne automatique
+                    durationlabel.setStyle("-fx-padding: 10px;");
 
 
-                    container.add((Node) anchorPane, column++, row);
-                    GridPane.setMargin((Node) anchorPane, new Insets(10));
-                    // Assurez-vous que le bouton est récupéré correctement
 
-                } finally {
-                    // Assurez-vous de fermer les flux pour éviter les fuites de ressources
-                    fxmlLoader = null;
+                    Label discountLabel = new Label(String.valueOf(item.getAvis_id()));
+                    discountLabel.setMinWidth(120);
+                    discountLabel.setMaxWidth(120);
+                    discountLabel.setWrapText(true); // Activer le retour à la ligne automatique
+                    discountLabel.setStyle("-fx-padding: 10px;");
+
+                    Label dateLabel = new Label(item.getDate_avis());
+                    dateLabel.setMinWidth(170);
+                    dateLabel.setMaxWidth(180);
+                    dateLabel.setWrapText(true); // Activer le retour à la ligne automatique
+                    dateLabel.setStyle("-fx-padding: 10px;");
+
+
+
+
+                    // Configuration des boutons avec icônes et texte
+
+                    ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/icons8-delete-24.png")));
+                    deleteIcon.setFitHeight(20); // Taille de l'icône
+                    deleteIcon.setFitWidth(20);
+                    Button deleteButton = new Button("Delete");
+                    deleteIcon.setId("update");
+                    deleteButton.getStyleClass().add("buttonn");
+
+
+                    HBox actionBox = new HBox( deleteButton);
+                    actionBox.setSpacing(5);
+                    actionBox.setMinWidth(300);
+                    actionBox.setMaxWidth(300);
+
+
+
+
+                    deleteButton.setOnAction(event -> {
+                        serviceAvis.supprimerav(item.getIdAV());
+                        //List<Avis> agences =  serviceAvis.getAllavis();
+                       // tab1.getItems();
+                        updateTable_r();
+                        contentArea.setVisible(false);
+                        contentArea.setVisible(true);
+                      //  tab1.getItems().remove(item); // Mise à jour immédiate de l'interface
+                  });
+
+                    // Ajout des composants au HBox
+                    hbox.getChildren().addAll(nameLabel, conditionLabel,durationlabel,discountLabel,dateLabel, actionBox);
+                    setGraphic(hbox); // Utiliser le HBox comme graphique pour la cellule
                 }
 
             }
-        } catch (IOException e) {
-            throw new RuntimeException("Erreur lors du chargement du FXML", e);
-        }
+        });
+    }
+
+
+
+    public void initialize() {
+        home_totalEmployees();
+        homeTotalAvis();
+
+        ObservableList<Avis> data = FXCollections.observableArrayList(serviceAvis.getAllavis());
+        tab1.setItems(data);
+        System.out.println("rr"+data);
+        tab1.setItems(data);
+      initializeListView();
+// Créer une FilteredList à partir de data
+        FilteredList<Avis> filteredList = new FilteredList<>(data, avis -> true);
+        searchField.setOnKeyReleased(e->{
+
+
+                    searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+                        filteredList.setPredicate(avis -> {
+                            // Si la recherche est vide, affichez tous les avis
+                            if (newValue == null || newValue.isEmpty()) {
+                                return true;
+                            }
+
+                            // Convertir le texte de recherche en minuscule pour comparaison
+                            String lowerCaseFilter = newValue.toLowerCase();
+
+                            // Filtrer les avis par nom d'agence, commentaire, ou note
+                            return avis.getAgenceav_id().getNomage().toLowerCase().contains(lowerCaseFilter) ||
+                                    avis.getCommentaire().toLowerCase().contains(lowerCaseFilter) ||
+                                    String.valueOf(avis.getNote()).contains(lowerCaseFilter);
+                        });
+
+                        tab1.setItems(filteredList);
+
+
+                    });
+            //ok let's check it
+        });
+        // Associer le champ de recherche au filtre de la FilteredList
+        /*searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(avis -> {
+                // Si la recherche est vide, affichez tous les avis
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Convertir le texte de recherche en minuscule pour comparaison
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                // Filtrer les avis par nom d'agence, commentaire, ou note
+                return avis.getAgenceav_id().getNomage().toLowerCase().contains(lowerCaseFilter) ||
+                        avis.getCommentaire().toLowerCase().contains(lowerCaseFilter) ||
+                        String.valueOf(avis.getNote()).contains(lowerCaseFilter);
+            });
+            tab1.setItems(filteredList);
+
+
+            //initialize();
+           // tab1.refresh();
+
+
+        });*/
+
+        // Lier la FilteredList à la ListView
+
+
+
+    }
+
+    public void updateTable_r() {
+
+        ObservableList<Avis> data = FXCollections.observableArrayList(serviceAvis.getAllavis());
+
+        tab1.setItems(data);
     }
       /*  commentaire.setCellValueFactory(new PropertyValueFactory<Avis, String>("commentaire"));
         note.setCellValueFactory(new PropertyValueFactory<Avis, Integer>("note"));

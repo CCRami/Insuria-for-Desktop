@@ -3,7 +3,9 @@ package edu.esprit.entities;
 import edu.esprit.service.MyListener;
 import javafx.scene.control.TableColumn;
 
-public class Agence {
+import java.io.Serializable;
+
+public class Agence implements Serializable {
     private int idage ;
     private String nomage;
     private String addresse;

@@ -72,5 +72,64 @@
             </Label>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="list" layoutX="13.0" layoutY="13.0" prefHeight="785.0" prefWidth="1262.0" visible="false">
+         <children>
+            <AnchorPane layoutX="261.0" layoutY="179.0" prefHeight="598.0" prefWidth="958.0" stylesheets="@style/dashboardDesign.css">
+               <styleClass>
+                  <String fx:value="white-bg" />
+                  <String fx:value="shadow" />
+               </styleClass>
+               <children>
+                  <TableView fx:id="tab1" layoutX="84.0" layoutY="74.0" styleClass="shadow">
+                     <columns>
+                        <TableColumn fx:id="nomage1" prefWidth="197.60003662109375" text="name of agency" />
+                        <TableColumn fx:id="addresse1" prefWidth="128.0" text="adresse" />
+                        <TableColumn fx:id="email1" prefWidth="137.60003662109375" text="email" />
+                        <TableColumn fx:id="tel1" minWidth="0.0" prefWidth="178.4000244140625" text="phone" />
+                        <TableColumn fx:id="creation1" minWidth="0.0" prefWidth="161.5999755859375" text="creation date" />
+                     </columns>
+                  </TableView>
+                  <TextField fx:id="addEmployee_search1" layoutX="84.0" layoutY="14.0" prefHeight="30.0" prefWidth="277.0" promptText="Seach" styleClass="search" stylesheets="@style/dashboardDesign.css" />
+                  <Button fx:id="supprimer1" layoutX="602.0" layoutY="515.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="123.0" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Delete" textFill="#f7f5f5" />
+                  <Button fx:id="ajouteragence1" layoutX="766.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="43.0" prefWidth="123.0" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Add agency" textFill="#fffbfb" />
+                  <Button fx:id="modif1" layoutX="404.0" layoutY="515.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="43.0" prefWidth="123.0" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Edit" textFill="WHITE" />
+                  <Button fx:id="consulteravis1" layoutX="201.0" layoutY="515.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="43.0" prefWidth="123.0" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Consulter avis" textFill="#f7f5f5" />
+                  <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="323.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../pidevjava/pidev/src/main/resources/images/search_104498.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="389.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
+               <children>
+                  <Label layoutX="77.0" layoutY="92.0" text="Total Agencies" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="home_totalEmployees1" alignment="CENTER_RIGHT" layoutX="87.0" layoutY="14.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="807.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
+               <children>
+                  <Label layoutX="77.0" layoutY="97.0" text="Total Reviews" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="home_totalAvis1" alignment="CENTER_RIGHT" layoutX="87.0" layoutY="19.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

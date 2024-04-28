@@ -18,6 +18,7 @@ public interface IService<T> {
 
     List<T> getAll();
 
+
     Agence getOneById(int id);
 
     T getbyid(int id);

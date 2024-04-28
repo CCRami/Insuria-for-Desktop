@@ -102,7 +102,7 @@ public class AgenceService implements IService<Agence>{
     }
 
     @Override
-    public List<Agence> getAll() {
+    public  List<Agence> getAll() {
         List<Agence> list=new ArrayList<>();
         String sql="select * from Agence ";
         try{ste=cnx.createStatement();
@@ -124,6 +124,7 @@ public class AgenceService implements IService<Agence>{
         return list;
 
     }
+
     @Override
     public Agence getOneById(int id) {
 

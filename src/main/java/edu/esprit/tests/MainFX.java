@@ -12,9 +12,10 @@ import java.awt.*;
 public class MainFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficheragences.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboard.fxml"));
         Parent root = loader.load();
         //dashboard
+       // afficheravis
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Insuria");

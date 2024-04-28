@@ -76,9 +76,9 @@ public class dashboard implements Initializable{
 
         try {
             // Load user.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouteravis.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/agencedash.fxml"));
             Node eventFXML = loader.load();
-
+//afficheragences
             // Clear existing content from FieldHolder
             vboxdash.getChildren().clear();
 

@@ -6,6 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -41,10 +44,51 @@
                               <Font size="24.0" />
                            </font>
                         </Text>
-                        <Label fx:id="note" text="Label" textFill="WHITE">
+                        <Label fx:id="note" text="★" textFill="GOLD">
                            <font>
                               <Font size="24.0" />
                            </font>
+                        </Label>
+                        <Label fx:id="note1" text="★" textFill="GOLD">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="note2" text="★" textFill="GOLD">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="note3" text="★" textFill="GOLD">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="note4" text="★">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.32195121951219513">
+                                       <color>
+                                          <Color red="1.0" green="0.843137264251709" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
                         </Label>
                      </children>
                   </HBox>

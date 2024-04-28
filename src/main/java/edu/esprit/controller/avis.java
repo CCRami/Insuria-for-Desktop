@@ -39,11 +39,58 @@ public class avis {
     private Label note;
 
     @FXML
+    private Label note1;
+
+    @FXML
+    private Label note2;
+
+    @FXML
+    private Label note3;
+
+    @FXML
+    private Label note4;
+
+    @FXML
     private Label creation;
     public void setData(Avis avis){
         clientname.setText(String.valueOf(avis.getAvis_id()));
         comment.setText(avis.getCommentaire());
-        note.setText(String.valueOf(avis.getNote()));
+        int notea = avis.getNote();
+        if(notea==1){
+            note.setVisible(true);
+            note1.setVisible(false);
+            note2.setVisible(false);
+            note3.setVisible(false);
+            note4.setVisible(false);}
+        if(notea==2){
+            note.setVisible(true);
+            note1.setVisible(true);
+            note2.setVisible(false);
+            note3.setVisible(false);
+            note4.setVisible(false);
+        }
+            if(notea==3){
+                note.setVisible(true);
+                note1.setVisible(true);
+                note2.setVisible(true);
+                note3.setVisible(false);
+                note4.setVisible(false);
+            }
+                if(notea==4){
+                    note.setVisible(true);
+                    note1.setVisible(true);
+                    note2.setVisible(true);
+                    note3.setVisible(true);
+                    note4.setVisible(false);
+                }
+                    if(notea==5){
+                        note.setVisible(true);
+                        note1.setVisible(true);
+                        note2.setVisible(true);
+                        note3.setVisible(true);
+                        note4.setVisible(true);
+                    }
+
         nomagence.setText(avis.getAgenceav_id().getNomage());
         creation.setText(avis.getDate_avis());
     }
