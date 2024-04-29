@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import java.lang.String?>
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import java.lang.String ?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Showoffer" stylesheets="@style/dashboardDesign.css" prefHeight="778.0" prefWidth="2000.0">
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<AnchorPane prefHeight="1180.0" prefWidth="1998.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Showoffer">
     <children>
-        <VBox fx:id="contentArea" layoutX="223.0" layoutY="53.0" prefHeight="672.0" prefWidth="1500.0" styleClass="white-bg, shadow" spacing="20" AnchorPane.bottomAnchor="53" AnchorPane.leftAnchor="223" AnchorPane.rightAnchor="223" AnchorPane.topAnchor="53">
+        <VBox fx:id="contentArea" layoutX="223.0" layoutY="53.0" prefHeight="672.0" prefWidth="1500.0" spacing="20" styleClass="white-bg, shadow" AnchorPane.bottomAnchor="53" AnchorPane.leftAnchor="223" AnchorPane.rightAnchor="223" AnchorPane.topAnchor="53">
             <children>
-                <HBox styleClass="searchBox" alignment="CENTER" spacing="8">
-                    <TextField fx:id="searchField" prefHeight="30.0" prefWidth="230.0" promptText="Search" styleClass="searchInput"/>
+                <HBox alignment="CENTER" spacing="8" styleClass="searchBox">
+                    <TextField fx:id="searchField" prefWidth="200" promptText="Search..." />
                     <Button styleClass="searchButton">
                         <graphic>
-                            <ImageView fitWidth="20" fitHeight="20">
+                            <ImageView fitHeight="20" fitWidth="20">
                                 <image>
                                     <Image url="@images/add.png" />
                                 </image>
@@ -27,19 +30,24 @@
                         </graphic>
                     </Button>
                 </HBox>
+                <ComboBox fx:id="sortComboBox" promptText="Trier par">
+                    <items>
+
+                    </items>
+                </ComboBox>
                 <HBox spacing="10" style="-fx-padding: 10;">
-                    <Label minWidth="170.0" maxWidth="180.0" text="Advantage" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" />
-                    <Label minWidth="170.0" maxWidth="180.0" text="Condition" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" />
-                    <Label minWidth="170.0" maxWidth="180.0" text="Duration" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" />
-                    <Label minWidth="170.0" maxWidth="180.0" text="Discount" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" />
-                    <Label minWidth="170.0" maxWidth="180.0" text="Image " style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" />
+                    <Label maxWidth="180.0" minWidth="170.0" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" text="Advantage" />
+                    <Label maxWidth="180.0" minWidth="170.0" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" text="Condition" />
+                    <Label maxWidth="180.0" minWidth="170.0" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" text="Duration" />
+                    <Label maxWidth="180.0" minWidth="170.0" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" text="Discount" />
+                    <Label maxWidth="180.0" minWidth="170.0" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" text="Image " />
 
                 </HBox>
-                <ListView fx:id="tab" VBox.vgrow="ALWAYS" styleClass="list-view">
+                <ListView fx:id="tab" prefHeight="1230.0" prefWidth="1512.0" styleClass="list-view" VBox.vgrow="ALWAYS">
                     <!-- The ListView can be populated with custom cells defined in Java code -->
                 </ListView>
                 <HBox alignment="CENTER" style="-fx-padding: 20;">
-                    <Button text="Add New Offer" onMouseClicked="#handleAddNew" styleClass="button1" minWidth="202.0">
+                    <Button minWidth="202.0" onMouseClicked="#handleAddNew" styleClass="button1" text="Add New Offer">
                         <graphic>
                             <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                                 <image>
@@ -49,6 +57,7 @@
                         </graphic>
                     </Button>
                 </HBox>
+                <Pagination fx:id="pagination" />
             </children>
         </VBox>
     </children>

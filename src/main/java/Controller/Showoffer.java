@@ -1,53 +1,68 @@
 package Controller;
 
+import Entity.OfferCategory;
 import Entity.Offre;
 import Service.OffreService;
-import javafx.application.Platform;
+import java.util.Comparator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Pagination;
 
 
 public class Showoffer implements Initializable {
+    @FXML
+    public ListView<Offre> listView;
+
+    private ObservableList<Offre> allUsers;
+
+    @FXML
+    private Button nextButton;
+    private final int itemsPerPage = 7;
+    private int currentPageIndex = 0;
+    @FXML
+    private Button previousButton;
     @FXML
     private ListView<Offre> tab;
 
 
     @FXML
     private VBox contentArea;
+    @FXML
+    private ComboBox<String> sortComboBox;
+
+    private ObservableList<Offre> allOffres;
 
 
     OffreService offreService = new OffreService();
+    private FilteredList<Offre> filteredoffres;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private Pagination pagination;
+
+
+    private static final int ITEMS_PER_PAGE = 3;
 
 
     private void initializeListView() {
@@ -101,13 +116,13 @@ public class Showoffer implements Initializable {
                     ImageView editIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/edit_icon.png")));
                     editIcon.setFitHeight(20); // Taille de l'icône
                     editIcon.setFitWidth(20);
-                    Button editButton = new Button("Edit", editIcon);
+                    Button editButton = new Button("", editIcon);
                     editButton.getStyleClass().add("buttonn");
 
                     ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/delet_icon.png")));
                     deleteIcon.setFitHeight(20); // Taille de l'icône
                     deleteIcon.setFitWidth(20);
-                    Button deleteButton = new Button("Delete", deleteIcon);
+                    Button deleteButton = new Button("", deleteIcon);
                     deleteButton.getStyleClass().add("buttonn");
 
                     HBox actionBox = new HBox(editButton, deleteButton);
@@ -141,6 +156,42 @@ public class Showoffer implements Initializable {
         ObservableList<Offre> data = FXCollections.observableArrayList(offreService.getAll());
         tab.setItems(data);
         initializeListView(); // Configurez le ListView avec un CellFactory personnalisé
+        allOffres = FXCollections.observableArrayList(offreService.getAll());
+        tab.setItems(allOffres);
+
+        sortComboBox.getItems().addAll("Avantage (A-Z)", "Duration (A-Z)");
+        sortComboBox.setValue("Avantage (A-Z)");
+
+        sortComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if ("Avantage (A-Z)".equals(newValue)) {
+                allOffres.sort(Comparator.comparing(Offre::getAdvantage));
+            } else if ("Duration (LOW-HIGH)".equals(newValue)) {
+                allOffres.sort(Comparator.comparing(Offre::getDuration));
+            }
+            tab.refresh(); // Refresh the ListView after sorting
+        });
+
+        allOffres = FXCollections.observableArrayList(offreService.getAll());
+        filteredoffres= new FilteredList<>(allOffres, p -> true);
+        tab.setItems(filteredoffres);
+
+        // Apply search filter when text changes in the searchField
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredoffres.setPredicate(offre -> {
+                if (newValue == null || newValue.trim().isEmpty()) {
+                    return true; // Display all items if the search text is empty
+                }
+
+                String searchText = newValue.toLowerCase();
+
+                // Check if any attribute of Offre contains the search text
+                return offre.getAdvantage().toLowerCase().contains(searchText)
+                        || offre.getConditions().toLowerCase().contains(searchText)
+                        || offre.getDuration().toLowerCase().contains(searchText)
+                        || String.valueOf(offre.getDiscount()).toLowerCase().contains(searchText);
+            });
+        });
+
     }
 
 
@@ -194,6 +245,6 @@ public class Showoffer implements Initializable {
     }
 
 
-    public void handleSearch(MouseEvent mouseEvent) {
-    }
+
+
 }

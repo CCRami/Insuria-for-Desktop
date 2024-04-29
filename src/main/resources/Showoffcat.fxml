@@ -10,13 +10,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.ComboBox?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Showoffercat" stylesheets="@style/dashboardDesign.css" prefHeight="778.0" prefWidth="1254.0">
     <children>
         <VBox fx:id="contentArea" layoutX="223.0" layoutY="53.0" prefHeight="672.0" prefWidth="808.0" styleClass="white-bg, shadow" spacing="20" AnchorPane.bottomAnchor="53" AnchorPane.leftAnchor="223" AnchorPane.rightAnchor="223" AnchorPane.topAnchor="53">
             <children>
                 <HBox styleClass="searchBox" alignment="CENTER" spacing="8">
-                    <TextField fx:id="searchField" prefHeight="30.0" prefWidth="230.0" promptText="Search" styleClass="searchInput"/>
+                    <TextField fx:id="searchField" prefWidth="200" promptText="Search..." />
                     <Button styleClass="searchButton">
                         <graphic>
                             <ImageView fitWidth="20" fitHeight="20">
@@ -27,10 +28,15 @@
                         </graphic>
                     </Button>
                 </HBox>
+                <ComboBox fx:id="sortComboBox" promptText="Trier par">
+                    <items>
+
+                    </items>
+                </ComboBox>
                 <HBox spacing="10" style="-fx-padding: 10;">
-                    <Label minWidth="185.0" maxWidth="185.0" text="Category name" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" />
-                    <Label minWidth="173.0" maxWidth="300.0" text="Description" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" />
-                    <Label minWidth="173.0" maxWidth="300.0" text="Image" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" />
+                    <Label minWidth="170.0" maxWidth="180.0" text="Category name" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" />
+                    <Label minWidth="170.0" maxWidth="200.0" text="Description" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" />
+                    <Label minWidth="170.0" maxWidth="180.0" text="Image" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" />
 
 
                 </HBox>

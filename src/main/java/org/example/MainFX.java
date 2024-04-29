@@ -17,6 +17,7 @@ public class MainFX extends Application {
         stage.setScene(scene);
         stage.setTitle("Insuria");
         stage.show();
+
     }
 
     public static void main(String[] args) {

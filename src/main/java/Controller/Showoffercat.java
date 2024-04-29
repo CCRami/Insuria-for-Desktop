@@ -6,6 +6,7 @@ import Entity.Offre;
 import Service.OffreCatService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,10 +14,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -26,6 +24,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 
@@ -39,7 +38,15 @@ public class Showoffercat implements Initializable {
     private VBox contentArea;
 
 
+    @FXML
+    private ComboBox<String> sortComboBox;
+
     OffreCatService offreCatService = new OffreCatService();
+
+    private ObservableList<OfferCategory> allCategories;
+    private FilteredList<OfferCategory> filteredCategories;
+    @FXML
+    private TextField searchField;
 
 
     private void initializeListView() {
@@ -56,18 +63,18 @@ public class Showoffercat implements Initializable {
                     hbox.setAlignment(Pos.CENTER);
 
                     Label catnameLabel = new Label(item.getCategorie_name());
-                    catnameLabel.setMinWidth(185.0);
-                    catnameLabel.setMaxWidth(185.0);
+                    catnameLabel.setMinWidth(170);
+                    catnameLabel.setMaxWidth(180);
 
                     Label descriptioncatLabel = new Label(item.getDescription_cat());
-                    descriptioncatLabel.setMinWidth(173.0);
-                    descriptioncatLabel.setMaxWidth(173.0);
+                    descriptioncatLabel.setMinWidth(170);
+                    descriptioncatLabel.setMaxWidth(200);
                     descriptioncatLabel.setWrapText(true); // Activer le retour à la ligne automatique
                     descriptioncatLabel.setStyle("-fx-padding: 5px;");
 
                     ImageView imageView = new ImageView(new Image(item.getCatimg()));
-                    imageView.setFitWidth(100); // Set the width of the image
-                    imageView.setFitHeight(100); // Set the height of the image
+                    imageView.setFitWidth(170); // Set the width of the image
+                    imageView.setFitHeight(180); // Set the height of the image
                     Label imageLabel = new Label();
                     imageLabel.setGraphic(imageView);
 
@@ -75,13 +82,13 @@ public class Showoffercat implements Initializable {
                     ImageView editIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/edit_icon.png")));
                     editIcon.setFitHeight(20); // Taille de l'icône
                     editIcon.setFitWidth(20);
-                    Button editButton = new Button("Edit", editIcon);
+                    Button editButton = new Button("", editIcon);
                     editButton.getStyleClass().add("buttonn");
 
                     ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/delet_icon.png")));
                     deleteIcon.setFitHeight(20); // Taille de l'icône
                     deleteIcon.setFitWidth(20);
-                    Button deleteButton = new Button("Delete", deleteIcon);
+                    Button deleteButton = new Button("", deleteIcon);
                     deleteButton.getStyleClass().add("buttonn");
 
                     HBox actionBox = new HBox(editButton, deleteButton);
@@ -114,6 +121,38 @@ public class Showoffercat implements Initializable {
         ObservableList<OfferCategory> data = FXCollections.observableArrayList(offreCatService.getAll());
         tab.setItems(data);
         initializeListView(); // Configurez le ListView avec un CellFactory personnalisé
+        allCategories = FXCollections.observableArrayList(offreCatService.getAll());
+        tab.setItems(allCategories);
+
+        sortComboBox.getItems().addAll("Name (A-Z)","Description (A-Z)");
+        sortComboBox.setValue("Name (A-Z)");
+
+        sortComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if ("Name (A-Z)".equals(newValue)) {
+                allCategories.sort(Comparator.comparing(OfferCategory::getCategorie_name));
+            }else if ("Description (A-Z)".equals(newValue)) {
+                allCategories.sort(Comparator.comparing(OfferCategory::getDescription_cat));
+            }
+            tab.refresh(); // Refresh the ListView after sorting
+        });
+        allCategories = FXCollections.observableArrayList(offreCatService.getAll());
+        filteredCategories = new FilteredList<>(allCategories, p -> true);
+        tab.setItems(filteredCategories);
+
+        // Apply search filter when text changes in the searchField
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredCategories.setPredicate(category -> {
+                if (newValue == null || newValue.trim().isEmpty()) {
+                    return true; // Display all items if the search text is empty
+                }
+
+                String searchText = newValue.toLowerCase();
+
+                // Check if category name or description contains the search text
+                return category.getCategorie_name().toLowerCase().contains(searchText)
+                        || category.getDescription_cat().toLowerCase().contains(searchText);
+            });
+        });
     }
 
 
