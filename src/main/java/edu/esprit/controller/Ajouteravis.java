@@ -107,7 +107,7 @@ Parametre2=agence;
 
     public String bad_words(String badWord) {
 
-        List<String> badListW = Arrays.asList("fuck", "bitch","motherfucker","merde","putin");
+        List<String> badListW = Arrays.asList("fuck", "bitch","motherfucker","merde","putin","mo8t","bhim");
         String badNew = "";
         List<String> newList = new ArrayList<>();
         for (String str : badListW) {

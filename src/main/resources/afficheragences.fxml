@@ -1,57 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="789.0" prefWidth="1563.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.Afficher">
     <children>
         <VBox layoutX="-3.0" prefHeight="806.0" prefWidth="1563.0">
             <children>
-            <HBox prefHeight="82.0" prefWidth="1514.0" style="-fx-background-color: #051B46;">
-               <children>
-                  <ImageView fitHeight="118.0" fitWidth="349.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/logo.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="44.0" right="1.0" top="11.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #051B46;" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Agencies" textFill="WHITE">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="332.0" right="55.0" top="33.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="aviss" mnemonicParsing="false" onAction="#aviss2" prefHeight="26.0" prefWidth="158.0" style="-fx-background-color: #051B46;" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Reviews" textFill="WHITE">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="100.0" top="33.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
                 <HBox alignment="CENTER" prefHeight="611.0" prefWidth="1563.0" VBox.vgrow="ALWAYS">
                <children>
                   <VBox prefHeight="665.0" prefWidth="1509.0">
                      <children>
                         <TextField fx:id="addEmployee_search1" prefHeight="34.0" prefWidth="932.0" promptText="Seach" styleClass="search" stylesheets="@style/dashboardDesign.css">
                            <VBox.margin>
-                              <Insets bottom="6.0" left="66.0" right="1100.0" />
+                              <Insets bottom="6.0" left="66.0" right="1100.0" top="33.0" />
                            </VBox.margin>
                         </TextField>
                               <ScrollPane fx:id="scroll" prefHeight="610.0" prefWidth="1414.0" styleClass="transparent" stylesheets="@style/styleafficher.css">
@@ -70,7 +38,7 @@
                   </VBox>
                </children>
                <VBox.margin>
-                  <Insets top="11.0" />
+                  <Insets top="44.0" />
                </VBox.margin>
                 </HBox>
             </children>

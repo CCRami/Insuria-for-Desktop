@@ -346,6 +346,8 @@ public class agencedash implements  Initializable{
         primaryStage.show();
 
     }
+    @FXML
+    private TextField searchField;
     private boolean isInputValid1() {
         boolean isValid = true;
 
@@ -506,13 +508,12 @@ consulter.setVisible(false);
             alert.setHeaderText(null);
             alert.setContentText("agency updated successfully");
             alert.showAndWait();
-            updateTable_r();
 
+            updateTable_r();
             aajouter.setVisible(false);
             update.setVisible(false);
             listt.setVisible(true);
             consulter.setVisible(false);
-
 
 
         }
@@ -733,7 +734,7 @@ consulter.setVisible(false);
                         listt.setVisible(false);
                         consulter.setVisible(false);
 
-                        // updateTable_r();
+
                      //   tab1.getItems();
                         //availableBooks_btn.setStyle("-fx-background-color:linear-gradient(to top right, #72513c, #ab853e);");
                         //dashboard_btn.setStyle("-fx-background-color: transparent");
@@ -787,7 +788,8 @@ consulter.setVisible(false);
 
                  deleteButton.setOnAction(event -> {
                         s.supprimerage(item.getIdage());
-                        tab1.getItems().remove(item); // Mise à jour immédiate de l'interface
+                     updateTable_r();
+                     //  tab1.getItems().remove(item); // Mise à jour immédiate de l'interface
                     });
 
                     // Ajout des composants au HBox
@@ -849,6 +851,34 @@ consulter.setVisible(false);
 
             }
         });*/
+        FilteredList<Agence> filteredList = new FilteredList<>(data, avis -> true);
+        searchField.setOnKeyReleased(e->{
+
+
+            searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+                filteredList.setPredicate(avis -> {
+                    // Si la recherche est vide, affichez tous les avis
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+
+                    // Convertir le texte de recherche en minuscule pour comparaison
+                    String lowerCaseFilter = newValue.toLowerCase();
+
+                    // Filtrer les avis par nom d'agence, commentaire, ou note
+                    return avis.getNomage().toLowerCase().contains(lowerCaseFilter) ||
+                            avis.getEmail().toLowerCase().contains(lowerCaseFilter) ||
+                            avis.getAddresse().toLowerCase().contains(lowerCaseFilter)||
+
+                            String.valueOf(avis.getTel()).contains(lowerCaseFilter);
+                });
+
+                tab1.setItems(filteredList);
+
+
+            });
+            //ok let's check it
+        });
 
         assert adresse != null : "fx:id=\"adresse\" was not injected: check your FXML file 'ajouteragence.fxml'.";
         assert emailage != null : "fx:id=\"email\" was not injected: check your FXML file 'ajouteragence.fxml'.";
@@ -881,8 +911,9 @@ consulter.setVisible(false);
     }*/
 
     public void updateTable_r() {
-        List<Agence> agences =  s.getAll();
-        tab1.getItems().setAll(agences);
+        ObservableList<Agence> data = FXCollections.observableArrayList(s.getAll());
+
+        tab1.setItems(data);
     }
 
 
@@ -991,7 +1022,7 @@ consulter.setVisible(false);
             update.setVisible(false);
             listt.setVisible(true);
             consulter.setVisible(false);
-
+            updateTable_r();
             homeTotalEmployees1();
             homeTotalAvis1();
             // updateTable_r();
