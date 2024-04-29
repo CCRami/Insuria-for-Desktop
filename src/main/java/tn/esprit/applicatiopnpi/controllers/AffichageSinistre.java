@@ -1,10 +1,13 @@
 package tn.esprit.applicatiopnpi.controllers;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,11 +32,12 @@ public class AffichageSinistre implements Initializable {
     private ListView<Sinistre> tab;
 
 
+    @FXML
+    private TextField searchField;
 
 
 
-
-
+    private FilteredList<Sinistre> filteredData;
 
 
 
@@ -114,8 +118,43 @@ public class AffichageSinistre implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<Sinistre> data = FXCollections.observableArrayList(sinistreService.getAll());
         tab.setItems(data);
-        initializeListView(); // Configurez le ListView avec un CellFactory personnalisé
+        initializeListView();
+        // Configurez le ListView avec un CellFactory personnalisé
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                rechercherSIN();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
     }
+    @FXML
+    private void rechercherSIN() throws SQLException {
+        // Clear existing items from the ListView
+        tab.getItems().clear();
+
+        // Fetch the search term entered by the user
+        String searchTerm = searchField.getText().trim().toLowerCase();
+
+        // Fetch all sinistres from the database
+        List<Sinistre> sinistreList = sinistreService.getAll(); // Assuming afficherSinistres() is the correct method
+
+        // If the search field is empty, display all sinistres
+        if (searchTerm.isEmpty()) {
+            tab.getItems().addAll(sinistreList);
+        } else {
+            // Otherwise, filter sinistres that match the search term
+            for (Sinistre sinistre : sinistreList) {
+                // Adapt this condition based on your search logic
+                if (sinistre.getSin_name().toLowerCase().contains(searchTerm)
+                        || sinistre.getDescription_sin().toLowerCase().contains(searchTerm)) {
+                    tab.getItems().add(sinistre);
+                }
+            }
+        }
+    }
+
+
 
 
 

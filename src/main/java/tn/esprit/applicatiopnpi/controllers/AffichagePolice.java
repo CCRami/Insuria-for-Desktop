@@ -27,6 +27,7 @@ import tn.esprit.applicatiopnpi.services.PoliceService;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -37,24 +38,49 @@ public class AffichagePolice implements Initializable {
     private ListView<Police> policeList;
     @FXML
     private VBox contentArea;
+    @FXML
+    private TextField searchField;
 
 
-    @FXML
-    private TableColumn<Police, String> policeNameColumn;
 
-    @FXML
-    private TableColumn<Police, String> policeDescriptionColumn;
-
-    @FXML
-    private TableColumn<Police, String> sinistreNameColumn; // Assuming there is a Sinistre name field
-    @FXML
-    private TableColumn<Police, Void> actionCol;
 
     private PoliceService policeService = new PoliceService(); // Assuming you have a service class to handle database operations
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeListView();
         loadPoliceData();
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                rechercherPol();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+    @FXML
+    private void rechercherPol() throws SQLException {
+        // Clear existing items from the ListView
+        policeList.getItems().clear();
+
+        // Fetch the search term entered by the user
+        String searchTerm = searchField.getText().trim().toLowerCase();
+
+        // Fetch all sinistres from the database
+        List<Police> sinistreList = policeService.getAll(); // Assuming afficherSinistres() is the correct method
+
+        // If the search field is empty, display all sinistres
+        if (searchTerm.isEmpty()) {
+            policeList.getItems().addAll(sinistreList);
+        } else {
+            // Otherwise, filter sinistres that match the search term
+            for (Police police : sinistreList) {
+                // Adapt this condition based on your search logic
+                if (police.getPoliceName().toLowerCase().contains(searchTerm)
+                        || police.getDescriptionPolice().toLowerCase().contains(searchTerm)) {
+                    policeList.getItems().add(police);
+                }
+            }
+        }
     }
 
     private void initializeListView() {
@@ -143,9 +169,7 @@ public class AffichagePolice implements Initializable {
             policeList.refresh();
         }
     }
-    private void deletePolice(int id) {
-        policeService.supprimer(id); // Ici, sinistreService doit être l'instance de ton service qui contient la méthode supprimer
-    }
+
 
 
 
@@ -166,8 +190,6 @@ public class AffichagePolice implements Initializable {
             e.printStackTrace();
         }
     }
-    private void openEditDialog(Sinistre sinistre) {
 
-    }
 
 }
