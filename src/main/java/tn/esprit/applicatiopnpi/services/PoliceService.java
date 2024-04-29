@@ -91,7 +91,39 @@ public class PoliceService implements Iservice<Police> {
         System.out.println("Total police loaded: " + list.size());
         return list;
     }
+    /**
+     * Fetches all policies associated with a given sinistre ID.
+     * @param sinistreId The ID of the sinistre to filter the policies by.
+     * @return A list of Police objects associated with the sinistre.
+     */
+    public List<Police> getPoliciesBySinistre(int sinistreId) {
+        List<Police> policies = new ArrayList<>();
+        String query = "SELECT p.*, s.sin_name, s.description_sin FROM police p LEFT JOIN sinistre s ON p.sinistre_id = s.id WHERE p.sinistre_id = ?";
 
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, sinistreId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String policeName = rs.getString("police_name");
+                String description = rs.getString("description_police");
+                String sinName = rs.getString("sin_name");
+                String sindescription = rs.getString("description_sin");
+
+                Sinistre sinistre = new Sinistre();
+                sinistre.setSin_name(sinName);
+                sinistre.setDescription_sin(sindescription);
+
+                Police police = new Police(id, policeName, description, sinistre);
+                policies.add(police);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Proper error handling should be implemented
+        }
+
+        return policies;
+    }
 
 
 

@@ -15,7 +15,7 @@ public class Police {
 
     // Relation ManyToOne avec Sinistre
     @ManyToOne
-    @JoinColumn(name = "sinistre_id") // nom de la colonne dans la base de données
+    @JoinColumn(name = "sinistre_id")
     private Sinistre sinistre;
 
     public Police() {}

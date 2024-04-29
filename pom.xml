@@ -25,6 +25,7 @@
       <version>17.0.6</version>
     </dependency>
 
+
 <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
@@ -41,6 +42,11 @@
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.33</version>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>itextpdf</artifactId>
+      <version>5.5.13</version> <!-- Assurez-vous d'utiliser la dernière version disponible -->
     </dependency>
     <!-- Hibernate Core -->
     <dependency>
@@ -61,10 +67,19 @@
       <groupId>com.mchange</groupId>
       <artifactId>c3p0</artifactId>
       <version>0.9.5.5</version>
+
     </dependency>
 
 
+
   </dependencies>
+  <repositories>
+    <repository>
+      <id>itext</id>
+      <name>iText Repository - releases</name>
+      <url>https://repo.itextsupport.com/releases</url>
+    </repository>
+  </repositories>
 
   <build>
     <plugins>

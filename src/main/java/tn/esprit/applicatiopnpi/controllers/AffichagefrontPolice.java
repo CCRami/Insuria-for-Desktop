@@ -1,6 +1,7 @@
 package tn.esprit.applicatiopnpi.controllers;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -8,6 +9,7 @@ import javafx.scene.layout.VBox;
 import tn.esprit.applicatiopnpi.models.Police;
 import tn.esprit.applicatiopnpi.models.Sinistre;
 import tn.esprit.applicatiopnpi.services.PoliceService;
+import tn.esprit.applicatiopnpi.services.SinistreService;
 
 import java.util.List;
 
@@ -16,18 +18,45 @@ public class AffichagefrontPolice {
     private VBox cardsContainer; // This is the main container in FXML
 
     private PoliceService policeService = new PoliceService();
+    private SinistreService sinistreService = new SinistreService();
+    @FXML
+    private HBox sinistreFilterBox;
 
     @FXML
     public void initialize() {
+        populateSinistreFilters();
         loadPolice();
+    }
+    private void populateSinistreFilters() {
+        // Create an "All" button to display all policies
+        Button allButton = new Button("All");
+        allButton.setOnAction(event -> loadPolice());
+        sinistreFilterBox.getChildren().add(allButton);
+
+        // Populate buttons for each sinistre
+        List<Sinistre> sinistres = sinistreService.getAll(); // Assume this fetches all Sinistres
+        for (Sinistre sinistre : sinistres) {
+            Button sinistreButton = new Button(sinistre.getSin_name());
+            int sinistreId = sinistre.getId(); // Assuming getId() is a method that returns the sinistre's ID
+            sinistreButton.setOnAction(event -> {
+                System.out.println("Filtering policies for sinistre ID: " + sinistreId);
+                filterPoliciesBySinistre(sinistreId);
+            });
+            sinistreFilterBox.getChildren().add(sinistreButton);
+        }
     }
 
     private void loadPolice() {
+        cardsContainer.getChildren().clear();
         List<Police> polices = policeService.getAll(); // Assume this method fetches all Police entries
+        createAndDisplayPoliceCards(polices);
+    }
+    private void createAndDisplayPoliceCards(List<Police> polices) {
         HBox currentHBox = null;
         for (int i = 0; i < polices.size(); i++) {
             if (i % 3 == 0) { // Every three police records, start a new HBox
                 currentHBox = new HBox(20); // 20 is the spacing between each card
+                currentHBox.setAlignment(Pos.CENTER); // Ensure alignment is set if needed
                 cardsContainer.getChildren().add(currentHBox);
             }
             VBox policeBox = createPoliceCard(polices.get(i));
@@ -95,5 +124,15 @@ public class AffichagefrontPolice {
             btn.setText("More Details");
         }
     }
-    }
+    private void filterPoliciesBySinistre(int sinistreId) {
+        // Clear the current display
+        cardsContainer.getChildren().clear();
 
+        // Fetch filtered policies
+        List<Police> filteredPolicies = policeService.getPoliciesBySinistre(sinistreId);
+        System.out.println("Found " + filteredPolicies.size() + " policies for sinistre ID: " + sinistreId);
+
+        // Use the createAndDisplayPoliceCards method to add filtered policies to the UI
+        createAndDisplayPoliceCards(filteredPolicies);
+    }
+}
