@@ -57,7 +57,7 @@
                         </graphic>
                     </Button>
                 </HBox>
-                <Pagination fx:id="pagination" />
+
             </children>
         </VBox>
     </children>

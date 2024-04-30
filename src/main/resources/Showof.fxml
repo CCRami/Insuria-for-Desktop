@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,35 +14,31 @@
 <AnchorPane prefHeight="789.0" prefWidth="1563.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Showof">
     <children>
         <VBox layoutX="-3.0" prefHeight="806.0" prefWidth="1563.0">
+            <!-- Header Section -->
             <children>
-                <HBox prefHeight="82.0" prefWidth="1514.0" style="-fx-background-color: #051B46;">
-                    <children>
-                        <ImageView fitHeight="118.0" fitWidth="349.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/logo.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets left="44.0" right="1.0" top="11.0" />
-                            </HBox.margin>
-                        </ImageView>
-                    </children>
+                <HBox prefHeight="82.0" prefWidth="1514.0" style="-fx-background-color: #051B46;" spacing="10" alignment="CENTER">
+                    <ImageView fitHeight="80.0" fitWidth="160.0">
+                        <image>
+                            <Image url="@images/logo.png" />
+                        </image>
+                    </ImageView>
+                    <!-- Add more header elements here if needed -->
                 </HBox>
+
+                <!-- Content Section -->
                 <HBox alignment="CENTER" prefHeight="665.0" prefWidth="1514.0" VBox.vgrow="ALWAYS">
                     <children>
                         <ScrollPane fx:id="scroll" prefHeight="476.0" prefWidth="1558.0" styleClass="transparent" stylesheets="@style/styleafficher.css">
-                            <content>
-                                <GridPane fx:id="container" prefHeight="8.0" prefWidth="5.0">
-                                    <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                    </rowConstraints>
-                                </GridPane>
-                            </content>
+                            <Pagination fx:id="pagination" />
                             <HBox.margin>
                                 <Insets left="150.0" top="200.0" />
                             </HBox.margin>
                         </ScrollPane>
                     </children>
                 </HBox>
+
+                <!-- Pagination Section -->
+
             </children>
         </VBox>
     </children>

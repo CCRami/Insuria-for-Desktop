@@ -29,8 +29,16 @@
             <artifactId>javafx-controls</artifactId>
             <version>21.0.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>8.21.0</version>
+        </dependency>
+
+
 
     </dependencies>
+
     <build>
         <plugins>
             <plugin>

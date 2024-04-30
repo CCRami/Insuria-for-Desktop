@@ -5,14 +5,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="789.0" prefWidth="1563.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Showcat">
+<AnchorPane prefHeight="1382.0" prefWidth="1903.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Showcat">
     <children>
-        <VBox layoutX="-3.0" prefHeight="806.0" prefWidth="1563.0">
+        <VBox layoutX="-3.0" prefHeight="972.0" prefWidth="1853.0">
             <children>
                 <HBox prefHeight="82.0" prefWidth="1514.0" style="-fx-background-color: #051B46;">
                     <children>
@@ -26,16 +24,9 @@
                         </ImageView>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="665.0" prefWidth="1514.0" VBox.vgrow="ALWAYS">
+                <HBox alignment="CENTER" prefHeight="1251.0" prefWidth="1861.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <ScrollPane fx:id="scroll" prefHeight="476.0" prefWidth="1558.0" styleClass="transparent" stylesheets="@style/styleafficher.css">
-                            <content>
-                                <GridPane fx:id="container" prefHeight="8.0" prefWidth="5.0">
-                                    <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                    </rowConstraints>
-                                </GridPane>
-                            </content>
+                        <ScrollPane fx:id="scroll" prefHeight="613.0" prefWidth="1637.0" styleClass="transparent" stylesheets="@style/styleafficher.css">
                             <HBox.margin>
                                 <Insets left="150.0" top="200.0" />
                             </HBox.margin>
