@@ -32,3 +32,28 @@
     -fx-border-radius: 3px; /* Border radius for rounded corners */
 }
 
+.insButton {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
+    -fx-opacity: 0; /* Initially hide the button */
+    -fx-transition: opacity 0.3s;
+}
+
+.insButton:hover {
+    -fx-opacity: 1; /* Show the button on hover */
+}
+
+.insImage {
+    -fx-fit-height: 400; /* Set the height of the image */
+    -fx-fit-width: 500; /* Set the width of the image */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 0);
+    -fx-cursor: hand; /* Change cursor to hand on hover */
+}
+
+

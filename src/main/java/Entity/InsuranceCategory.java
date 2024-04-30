@@ -16,6 +16,10 @@ public class InsuranceCategory {
         this.desc_cat_ins = desc_cat_ins;
     }
 
+    public InsuranceCategory(int catinsIdValue) {
+        this.id = catinsIdValue;
+    }
+
     public int getId() {
         return id;
     }

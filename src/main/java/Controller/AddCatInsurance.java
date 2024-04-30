@@ -54,7 +54,7 @@ public class AddCatInsurance {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setHeaderText(null);
-            alert.setContentText("agency added successfully");
+            alert.setContentText("Category added successfully");
             alert.showAndWait();
 
 
@@ -65,15 +65,29 @@ public class AddCatInsurance {
     }
 
     private boolean isInputValid() {
-        // Perform validation checks here
-        // For example, you could check if the input fields are not empty
+        String catName = CatinsuranceNameField.getText();
+        String catDesc = desccatinsField.getText();
 
-        if (CatinsuranceNameField.getText().isEmpty() || desccatinsField.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Please fill in all fields");
-            alert.showAndWait();
+        if (catName.isEmpty() || catDesc.isEmpty()) {
+            showAlert("Error", "Please fill in all fields");
+            return false;
+        }
+
+        // Additional validation checks
+        if (catName.length() > 50) { // Example: Limiting the length to 50 characters
+            showAlert("Error", "Insurance name is too long. Maximum 50 characters allowed.");
+            return false;
+        }
+
+        // Check if the insurance name contains numbers
+        if (containsNumbers(catName)) {
+            showAlert("Error", "Insurance name should not contain numbers.");
+            return false;
+        }
+
+        // Example of format check using regex (assuming catDesc should not contain special characters)
+        if (!catDesc.matches("[a-zA-Z0-9 ]+")) {
+            showAlert("Error", "Description should contain only letters, numbers, and spaces.");
             return false;
         }
 
@@ -81,6 +95,24 @@ public class AddCatInsurance {
 
         return true;
     }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    private boolean containsNumbers(String input) {
+        for (char c : input.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 
 }

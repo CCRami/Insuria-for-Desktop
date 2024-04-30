@@ -5,17 +5,22 @@ import Entity.Insurance;
 import Service.CommandeService;
 import Service.InsuranceService;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 
 public class AddCommande {
 
@@ -44,8 +49,6 @@ public class AddCommande {
 
     private Insurance insurance;
 
-
-
     public void setInsurance(Insurance insurance) {
         if (insurance != null) {
             // Call getInsuranceById method to fetch insurance details including DOA
@@ -66,23 +69,30 @@ public class AddCommande {
         }
     }
 
-
-
-
-
     private void displayDoaForm(ArrayList<String> doaDetails) {
         // Clear existing input fields
         doaFormContainer.getChildren().clear();
-        System.out.println("DOA Details: " + doaDetails); // Debug statement
         if (doaDetails != null && !doaDetails.isEmpty()) {
-            System.out.println("DOA Details size: " + doaDetails.size()); // Debug statement
+            GridPane gridPane = new GridPane();
+            gridPane.setAlignment(Pos.CENTER);
+            gridPane.setHgap(10);
+            gridPane.setVgap(10);
+            gridPane.setPadding(new Insets(10));
+
+            int row = 0;
             for (String detail : doaDetails) {
-                System.out.println("DOA Detail: " + detail); // Debug statement
                 Label label = new Label(detail + ":");
+                label.getStyleClass().add("label"); // Apply label style
+
                 TextField textField = new TextField();
                 textField.setPromptText("Enter " + detail);
-                doaFormContainer.getChildren().addAll(label, textField);
+                textField.getStyleClass().add("text-field"); // Apply text field style
+
+                gridPane.addRow(row++, label, textField);
             }
+
+            doaFormContainer.getChildren().add(gridPane);
+            doaFormContainer.getStylesheets().add(getClass().getResource("/style/style.css").toExternalForm()); // Add CSS file
         } else {
             Text message = new Text("No DOA details available.");
             message.setStyle("-fx-fill: red;");
@@ -90,20 +100,31 @@ public class AddCommande {
         }
     }
 
-
     public Map<String, String> gatherDoaInput() {
         Map<String, String> doaInput = new HashMap<>();
-
-        for (int i = 0; i < doaFormContainer.getChildren().size(); i += 2) {
-            Label label = (Label) doaFormContainer.getChildren().get(i);
-            TextField textField = (TextField) doaFormContainer.getChildren().get(i + 1);
-            String key = label.getText().replace(":", "");
-            String value = textField.getText();
-            doaInput.put(key, value);
+        if (doaFormContainer.getChildren().get(0) instanceof GridPane) {
+            GridPane gridPane = (GridPane) doaFormContainer.getChildren().get(0);
+            for (int i = 0; i < gridPane.getChildren().size(); i += 2) {
+                Label label = (Label) gridPane.getChildren().get(i);
+                TextField textField = (TextField) gridPane.getChildren().get(i + 1);
+                String key = label.getText().replace(":", "");
+                String value = textField.getText();
+                doaInput.put(key, value);
+            }
         }
-
         return doaInput;
     }
+
+    public ArrayList<String> convertDoaInputToList(Map<String, String> doaInput) {
+        ArrayList<String> doaList = new ArrayList<>();
+        for (Map.Entry<String, String> entry : doaInput.entrySet()) {
+            doaList.add(entry.getKey() + ": " + entry.getValue());
+        }
+        return doaList;
+    }
+
+
+
 
 
     @FXML
@@ -111,8 +132,7 @@ public class AddCommande {
         String insValue = insValueField.getText();
 
         // Check if Ins Value is empty
-
-
+        if (!insValue.isEmpty()) {
             // Gather DOA input details
             Map<String, String> doaInput = gatherDoaInput();
 
@@ -133,7 +153,7 @@ public class AddCommande {
                         insValueFloat, // Ins Value
                         new Date(), // Date effet (current date)
                         null, // Date exp (null for now)
-                        new ArrayList<>(doaInput.values()), // DOA Full
+                        convertDoaInputToList(doaInput), // DOA Full
                         insurance, // DOA com ID
                         null, // User ID (null for now)
                         insValueFloat // Ins Value again
@@ -146,12 +166,47 @@ public class AddCommande {
                 CommandeService commandeService = new CommandeService();
                 commandeService.addCommande(commande);
 
+                // Navigate to the new page
+                navigateToCommandeDetailsPage(commande); // You need to implement this method
+
                 // Print success message
                 System.out.println("Commande saved successfully!");
             } else {
                 // Print error message if insurance is null
                 System.out.println("Insurance is null");
             }
+        } else {
+            // Print error message if Ins Value is empty
+            System.out.println("Ins Value is empty");
         }
     }
+
+    private void navigateToCommandeDetailsPage(Commande commande) {
+        try {
+            // Load the FXML file for the commande details page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayMyCommande.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller instance from the loader
+            CommandDetails controller = loader.getController();
+
+            // Pass the commande object to the controller
+            controller.initData(commande);
+
+            // Create a new scene with the loaded FXML content
+            Scene scene = new Scene(root);
+
+            // Get the stage from the current scene
+            Stage stage = (Stage) insValueField.getScene().getWindow();
+
+            // Set the scene to the stage
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+}
 

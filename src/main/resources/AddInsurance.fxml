@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -18,79 +17,6 @@
 <AnchorPane prefHeight="700.0" prefWidth="950.0" style="-fx-background-color: white;" styleClass="right-bar" stylesheets="@style/styleafficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddInsurance">
     <children>
         <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0">
-            <left>
-                <VBox alignment="TOP_CENTER" prefHeight="810.0" prefWidth="253.0" style="-fx-background-color: #051B46;" BorderPane.alignment="CENTER">
-                    <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/logo.png" />
-                            </image>
-                            <VBox.margin>
-                                <Insets bottom="60.0" top="40.0" />
-                            </VBox.margin>
-                        </ImageView>
-                        <HBox spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                            <children>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@images/analyse.png" />
-                                    </image>
-                                </ImageView>
-                                <Label text="Dashboard" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="16.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                        <HBox spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                            <children>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@images/homme.png" />
-                                    </image>
-                                </ImageView>
-                                <Label text="Utilisateur" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="16.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                        <HBox spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                            <children>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@images/probleme.png" />
-                                    </image>
-                                </ImageView>
-                                <Label text="Reclamation" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="16.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                        <HBox spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                            <children>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@images/produit.png" />
-                                    </image>
-                                </ImageView>
-                                <Label text="Produits" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="16.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                    </children>
-                    <padding>
-                        <Insets left="20.0" right="20.0" />
-                    </padding>
-                </VBox>
-            </left>
 
             <center>
 
@@ -145,12 +71,15 @@
                              </Text>
                              <TextField fx:id="amount" prefHeight="50.0" prefWidth="341.0" promptText="enter an address" stylesheets="@style/styleafficher.css">
                                  <VBox.margin>
-                                     <Insets left="370.0" right="350.0" top="10.0" />
+                                     <Insets left="200.0" right="100.0" top="10.0" />
                                  </VBox.margin>
                                  <styleClass>
                                      <String fx:value="search" />
                                      <String fx:value="shadow" />
                                  </styleClass>
+                        <padding>
+                           <Insets top="20.0" />
+                        </padding>
                              </TextField>
 
 
@@ -231,6 +160,19 @@
                                         <Insets left="100.0" top="10.0" />
                                     </VBox.margin>
                                 </Text>
+   
+      
+      
+      
+      
+                       <Button fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addDynamicField" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Add Field" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets left="150.0" />
+                           </VBox.margin>
+                        </Button>
+                        <HBox.margin>
+                           <Insets left="100.0" />
+                        </HBox.margin>
                 </VBox>
                  <!-- Save button -->
                  <Button fx:id="save" mnemonicParsing="false" onAction="#addInsuranceAction" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Enregistrer" textFill="WHITE">
@@ -238,12 +180,9 @@
                          <Font size="13.0" />
                      </font>
                  </Button>
-
-   
-   
-   
-   
-                    <Button fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addDynamicField" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Add Field" textFill="WHITE" />
+                     <VBox.margin>
+                        <Insets left="100.0" />
+                     </VBox.margin>
             </HBox>
     </children>
 </VBox>

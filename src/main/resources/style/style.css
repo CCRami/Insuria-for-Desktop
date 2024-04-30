@@ -10,3 +10,24 @@
 .button:hover{
     -fx-background-color:#F34C31;
 }
+/* Define styles for labels */
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+/* Define styles for text fields */
+.text-field {
+    -fx-prompt-text-fill: #999;
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+    -fx-background-radius: 20px; /* Set background corner radius */
+    -fx-border-radius: 20px; /* Set border corner radius */
+    -fx-background-color: #f4f4f4; /* Set background color */
+    -fx-border-color: #ccc; /* Set border color */
+    -fx-border-width: 1px; /* Set border width */
+}
+/* styles.css */
+
+

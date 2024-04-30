@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?> <!-- Add Button for category selection -->
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.control.TextField?>
+
 <AnchorPane prefHeight="789.0" prefWidth="1563.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DisplayInsuranceF">
     <children>
         <VBox layoutX="-3.0" prefHeight="806.0" prefWidth="1563.0">
@@ -21,13 +25,27 @@
                             <image>
                                 <Image url="@images/logo.png" />
                             </image>
-
                         </ImageView>
                     </children>
                 </HBox>
+                <VBox spacing="10" alignment="CENTER">
+                    <FlowPane fx:id="categoryFlowPane" prefWidth="1000" styleClass="search-button"  stylesheets="@style/styleafficher.css">
+                        <!-- Add buttons for categories -->
+                    </FlowPane>
+                    <HBox spacing="10" alignment="CENTER">
+                        <HBox spacing="10" alignment="CENTER">
+                            <Button text="▲" style="-fx-background-color: transparent;" onAction="#increasePrice" />
+                            <Button text="▼" style="-fx-background-color: transparent;" onAction="#decreasePrice" />
+
+                        </HBox>
+
+                        <Button text="All" onAction="#handleAllButtonAction" />
+                    </HBox>
+                </VBox>
+
                 <HBox alignment="CENTER" prefHeight="665.0" prefWidth="1514.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <Label text="Placeholder Label" textFill="WHITE"/>
+
                         <ScrollPane fx:id="scroll" prefHeight="476.0" prefWidth="1558.0" styleClass="transparent" stylesheets="@style/styleafficher.css">
                             <content>
                                 <GridPane fx:id="container" prefHeight="8.0" prefWidth="5.0">
@@ -36,7 +54,6 @@
                                     </rowConstraints>
                                 </GridPane>
                             </content>
-
                         </ScrollPane>
                     </children>
                 </HBox>

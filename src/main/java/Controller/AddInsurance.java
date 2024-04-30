@@ -58,6 +58,8 @@ public class AddInsurance {
     private InsuranceService insuranceService;
     private policeService policeService;
 
+    private String path;
+
     public AddInsurance() {
         this.insuranceCatService = new InsuranceCatService();
         this.insuranceService = new InsuranceService();
@@ -122,8 +124,9 @@ public class AddInsurance {
 
             }
 
-            Image image = insuranceImageView.getImage();
-            String insuranceImageUrl = image != null ? image.getUrl() : null;
+
+
+            String insuranceImageUrl = path;
 
             // Get selected InsuranceCategory
             InsuranceCategory selectedCategory = categoryComboBox.getSelectionModel().getSelectedItem();
@@ -131,7 +134,7 @@ public class AddInsurance {
             // Get selected police
             police selectedPolice = policeComboBox.getSelectionModel().getSelectedItem();
 
-            // Initialize ArrayList for dynamic fields
+
             ArrayList<String> dynamicFields = new ArrayList<>();
 
             // Add dynamic field values to the ArrayList
@@ -185,33 +188,96 @@ public class AddInsurance {
         // Check if a file was selected
         if (selectedFile != null) {
             try {
-                // Create the images directory if it doesn't exist
-                File imagesDir = new File("images");
-                if (!imagesDir.exists()) {
-                    imagesDir.mkdir();
-                }
-
-                // Copy the selected image file to the images directory
-                Path sourcePath = selectedFile.toPath();
-                Path targetPath = Paths.get("images", selectedFile.getName());
-                Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
-
-                // Load the copied image and display it
-                Image image = new Image(targetPath.toUri().toString());
+                // Load the selected image directly without saving it
+                Image image = new Image(selectedFile.toURI().toString());
+                path=selectedFile.getAbsolutePath();
+                // Set fit width and fit height properties to adjust appearance
                 insuranceImageView.setImage(image);
-            } catch (IOException e) {
+                insuranceImageView.setFitWidth(50); // Set your desired width
+                insuranceImageView.setFitHeight(50); // Set your desired height
+                insuranceImageView.setPreserveRatio(true); // Maintain aspect ratio
+
+            } catch (Exception e) {
                 e.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText(null);
-                alert.setContentText("Error saving image: " + e.getMessage());
+                alert.setContentText("Error loading image: " + e.getMessage());
                 alert.showAndWait();
             }
         }
     }
 
+
+
+
+
+
     private boolean isInputValid() {
-        // Perform input validation here if needed
+        String insuranceName = nameins.getText().trim();
+        String amountText = amount.getText().trim();
+
+        // Check if insurance name is empty
+        if (insuranceName.isEmpty()) {
+            showAlert("Error", "Please enter the insurance name.");
+            return false;
+        }
+
+        // Check if amount is empty
+        if (amountText.isEmpty()) {
+            showAlert("Error", "Please enter the insurance amount.");
+            return false;
+        }
+
+        // Check if amount is a valid number
+        try {
+            float insuranceAmount = Float.parseFloat(amountText);
+            if (insuranceAmount <= 0) {
+                showAlert("Error", "Please enter a valid insurance amount greater than zero.");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            showAlert("Error", "Please enter a valid number for the insurance amount.");
+            return false;
+        }
+
+        // Check if an insurance category is selected
+        if (categoryComboBox.getSelectionModel().isEmpty()) {
+            showAlert("Error", "Please select an insurance category.");
+            return false;
+        }
+
+        // Check if a police is selected
+        if (policeComboBox.getSelectionModel().isEmpty()) {
+            showAlert("Error", "Please select a police.");
+            return false;
+        }
+
+        for (Node node : fieldsContainer.getChildren()) {
+            if (node instanceof HBox) {
+                HBox hBox = (HBox) node;
+                for (Node childNode : hBox.getChildren()) {
+                    if (childNode instanceof TextField) {
+                        TextField textField = (TextField) childNode;
+                        String fieldValue = textField.getText().trim();
+                        if (fieldValue.isEmpty()) {
+                            showAlert("Error", "Please enter a value for all dynamic fields.");
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
         return true;
     }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
 }

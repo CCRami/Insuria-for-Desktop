@@ -35,6 +35,10 @@ public class Commande {
         this.ins_value = ins_value;
     }
 
+    public Commande() {
+
+    }
+
     public int getId() {
         return id;
     }

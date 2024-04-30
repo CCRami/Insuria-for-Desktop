@@ -43,7 +43,7 @@ public class InsuranceService {
     }
 
 
-    // Utility method to convert ArrayList<String> to JSON string
+
     private String convertToJson(ArrayList<String> dynamicFields) {
         // Using a simple approach here, you can use a JSON library for more complex structures
         StringBuilder jsonBuilder = new StringBuilder("[");
@@ -62,20 +62,27 @@ public class InsuranceService {
 
 
     public void updateInsurance(Insurance insurance) {
-        String sql = "UPDATE assurance SET name_ins = ?, montant = ?, ins_image = ?, catins_id = ?, pol_id = ? WHERE id = ?";
+        String sql = "UPDATE assurance SET name_ins = ?, montant = ?, ins_image = ?, cat_a_id = ?, pol_id = ?, doa = ? WHERE id = ?";
         try {
             pst = cnx.prepareStatement(sql);
             pst.setString(1, insurance.getName_ins());
             pst.setFloat(2, insurance.getMontant());
             pst.setString(3, insurance.getIns_image());
-            pst.setInt(4, insurance.getCatins_id().getId()); 
+            pst.setInt(4, insurance.getCatins_id().getId());
             pst.setInt(5, insurance.getPol_id().getId());
-            pst.setInt(6, insurance.getId());
+
+            // Convert ArrayList<String> to JSON string for DOA
+            String doaJson = convertToJson(insurance.getDoa());
+            System.out.println("DOA JSON before update: " + doaJson); // Debug statement
+            pst.setString(6, doaJson);
+
+            pst.setInt(7, insurance.getId());
             pst.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 
     public void deleteInsurance(int insuranceId) {
         String sql = "DELETE FROM assurance WHERE id = ?";
@@ -147,8 +154,7 @@ public class InsuranceService {
 
 
 
-    // Utility method to parse JSON string to ArrayList<String>
-    // Utility method to parse JSON string to ArrayList<String>
+
     private ArrayList<String> parseJson(String json) {
         ArrayList<String> dynamicFields = new ArrayList<>();
         try {

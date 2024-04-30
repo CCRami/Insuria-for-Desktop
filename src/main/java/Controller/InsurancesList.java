@@ -88,9 +88,9 @@ public class InsurancesList {
         if (insurance != null) {
             insName.setText(insurance.getName_ins());
 
-            String imageUrl = insurance.getIns_image();
             try {
-                Image image = new Image(imageUrl);
+                String imagePath = "file:///" + insurance.getIns_image().replace(" ", "%20");
+                Image image = new Image(imagePath);
                 insImage.setImage(image);
             } catch (Exception e) {
                 System.err.println("Error loading image: " + e.getMessage());

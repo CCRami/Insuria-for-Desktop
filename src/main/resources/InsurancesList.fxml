@@ -9,7 +9,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
+<?import java.net.URL?>
 <AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InsurancesList">
+    <stylesheets>
+        <URL value="@style/ShowInsuranceStyle.css" />
+    </stylesheets>
     <children>
         <!-- Insurance Image -->
         <ImageView fx:id="insImage" fitHeight="242.0" fitWidth="309.0" layoutX="36.0" layoutY="19.0" styleClass="insImage">
@@ -19,23 +23,28 @@
         </ImageView>
 
         <Button fx:id="insButton" layoutX="120.0" layoutY="161.0" style="-fx-background-color: #2CA2FB;" styleClass="insButton" onAction="#handleInsuranceButtonClick">
+
             <graphic>
                 <!-- Wrap labels inside a VBox -->
                 <VBox spacing="5">
                     <!-- Insurance Name -->
-                    <Label fx:id="insName" style="-fx-font-family: 'Verdana'; -fx-font-size: 20px;" text="Insurance Name" textFill="WHITE">
+                    <Label fx:id="insName" style="-fx-font-family: 'Verdana'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-border-width: 0;">
                         <font>
                             <Font size="20.0" />
                         </font>
                     </Label>
-                    <!-- Insurance Amount -->
-                    <Label fx:id="insAmount" prefHeight="30.0" prefWidth="176.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 20px;" text="Insurance Amount" textFill="WHITE">
+
+                    <Label fx:id="insAmount" prefHeight="30.0" prefWidth="176.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-border-width: 0;">
                         <font>
                             <Font size="20.0" />
                         </font>
                     </Label>
+
                 </VBox>
             </graphic>
+            <text>
+                 ---►
+            </text>
         </Button>
     </children>
     <padding>
