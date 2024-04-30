@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="809.0" prefWidth="1535.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.applicatiopnpi.controllers.dashboardFront">
+    <center>
+        <VBox fx:id="vboxdash" prefHeight="810.0" prefWidth="1062.0" BorderPane.alignment="CENTER" />
+    </center>
+    <top>
+        <HBox prefHeight="114.0" prefWidth="1535.0" style="-fx-background-color: #051B46;" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="109.0" fitWidth="255.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/logo.png" />
+                    </image>
+                </ImageView>
+                <HBox prefHeight="114.0" prefWidth="171.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                    <children>
+                        <Label prefHeight="35.0" prefWidth="130.0" text="Assurances" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="33.0" left="44.0" top="22.0" />
+                    </HBox.margin>
+                </HBox>
+                <HBox  prefHeight="114.0" prefWidth="162.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                    <children>
+                        <Label prefHeight="35.0" prefWidth="120.0" text="Agencies" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="33.0" left="33.0" top="22.0" />
+                    </HBox.margin>
+                </HBox>
+                <HBox minHeight="33.0"  prefHeight="70.0" prefWidth="162.0" styleClass="button" stylesheets="@style/style.css">
+                    <children>
+                        <Label text="Reviews" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="33.0" top="22.0" />
+                    </HBox.margin>
+                </HBox>
+                <HBox prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                    <children>
+                        <MenuButton mnemonicParsing="false" prefHeight="37.0" prefWidth="126.0" style="-fx-background-color: #051B46;" text="Polices" textFill="WHITE">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Polices" onAction="#showPolice" />
+                                <MenuItem mnemonicParsing="false" text="Sinistres" onAction="#showSinistre" />
+                            </items>
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </MenuButton>
+                    </children>
+                    <padding>
+                        <Insets bottom="33.0" left="44.0" right="0" top="22.0" />
+                    </padding>
+                </HBox>
+
+                <HBox prefHeight="114.0" prefWidth="153.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                    <children>
+                        <Label prefHeight="35.0" prefWidth="187.0" text="Offer" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="33.0" top="22.0" />
+                    </HBox.margin>
+                </HBox>
+                <ImageView fitHeight="77.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+
+                    <HBox.margin>
+                        <Insets left="22.0" top="22.0" />
+                    </HBox.margin>
+                </ImageView>
+            </children>
+        </HBox>
+    </top>
+</BorderPane>

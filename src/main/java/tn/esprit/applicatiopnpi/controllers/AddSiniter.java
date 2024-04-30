@@ -1,5 +1,11 @@
 package tn.esprit.applicatiopnpi.controllers;
 
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.Version;
+import com.restfb.exception.FacebookOAuthException;
+import com.restfb.types.FacebookType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -27,7 +33,19 @@ public class AddSiniter {
     @FXML private Label errorImagePath;
 
     private SinistreService sinistreService = new SinistreService();
+    private void postToFacebook(String message) {
+        // Utilisez le jeton d'accès pour créer une instance de FacebookClient
+        String accessToken = "EAAF8tZAjICZBsBO1bhWbyIQnMMo0OJGopDxWWEi3yNys2w0c8vOFLWZAr4u1mDodZBkEdS0bf3zfbZBLYGjfg4uI2oJ1slQeNJbT9AkZBxIcKoCA2CkCQxHjBhXIoBgfgeJpOZAd8hB2S340eOPbm17yq4HwTyUkeTuydktAsiWh24KXxfQWZAvof5MbnJXkD6gZD";  // Vous devez sécuriser ce jeton, par exemple, le stocker de manière sécurisée et le charger de la configuration
+        FacebookClient facebookClient = new DefaultFacebookClient(accessToken, Version.LATEST);
 
+        try {
+            facebookClient.publish("me/feed", FacebookType.class, Parameter.with("message", message));
+        } catch (FacebookOAuthException e) {
+            showAlert("Error Posting to Facebook", "Failed to post to Facebook: " + e.getErrorMessage());
+        } catch (Exception e) {
+            showAlert("Error", "An unexpected error occurred: " + e.getMessage());
+        }
+    }
     @FXML
     private void handleSave(ActionEvent event) {
         if (validateInput()) {
@@ -38,6 +56,9 @@ public class AddSiniter {
 
             try {
                 sinistreService.add(newSinistre);
+                // Préparez un message ou utilisez une description du sinistre
+                String fbMessage = "Nouveau sinistre ajouté : " + newSinistre.getSin_name() + " - " + newSinistre.getDescription_sin();
+                postToFacebook(fbMessage);  // Publier sur Facebook
                 clearFields();
             } catch (RuntimeException e) {
                 errorName.setText("Failed to add Sinistre: " + e.getMessage());

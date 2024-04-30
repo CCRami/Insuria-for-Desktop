@@ -2,6 +2,7 @@ package tn.esprit.applicatiopnpi.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Pagination;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -13,32 +14,46 @@ import java.util.List;
 
 public class AffichagefrontSinistre {
     @FXML
-    private VBox mainContainer; // This is the main container in FXML
+    private VBox mainContainer; // Main container in FXML
+    @FXML
+    private Pagination pagination;
 
     private SinistreService sinistreService = new SinistreService();
+    private static final int ITEMS_PER_PAGE = 3;
 
     @FXML
     public void initialize() {
-        loadSinistres();
+        setupPagination();
     }
 
-    private void loadSinistres() {
+    private void setupPagination() {
         List<Sinistre> sinistres = sinistreService.getAll();
+        int pageCount = (int) Math.ceil(sinistres.size() / (double) ITEMS_PER_PAGE);
+        pagination.setPageCount(pageCount);
+        pagination.setPageFactory(this::createPage);
+    }
+
+    private VBox createPage(int pageIndex) {
+        List<Sinistre> sinistres = sinistreService.getAll();
+        int startIndex = pageIndex * ITEMS_PER_PAGE;
+        int endIndex = Math.min(startIndex + ITEMS_PER_PAGE, sinistres.size());
+        VBox box = new VBox(10);
         HBox currentHBox = null;
-        for (int i = 0; i < sinistres.size(); i++) {
-            if (i % 3 == 0) {  // Every three sinistres, start a new HBox
+        for (int i = startIndex; i < endIndex; i++) {
+            if ((i % 3) == 0) {
                 currentHBox = new HBox(20); // 20 is the spacing between each VBox
-                mainContainer.getChildren().add(currentHBox);
+                box.getChildren().add(currentHBox);
             }
             VBox sinistreBox = createSinistreCard(sinistres.get(i));
             if (currentHBox != null) {
                 currentHBox.getChildren().add(sinistreBox);
             }
         }
+        return box;
     }
 
     private VBox createSinistreCard(Sinistre sinistre) {
-        VBox card = new VBox(10); // Added spacing between elements
+        VBox card = new VBox(10);
         card.getStyleClass().add("card");
 
         ImageView imageView = new ImageView(new Image(sinistre.getImage_path()));
@@ -52,13 +67,13 @@ public class AffichagefrontSinistre {
         Label descriptionLabel = new Label(sinistre.getDescription_sin());
         descriptionLabel.setWrapText(true);
         descriptionLabel.getStyleClass().add("card__description");
-        descriptionLabel.setPrefWidth(280); // Ensuring it's wide enough to display content
-        descriptionLabel.setMinHeight(Label.USE_PREF_SIZE); // Ensure label expands to fit content
+        descriptionLabel.setPrefWidth(280);
+        descriptionLabel.setMinHeight(Label.USE_PREF_SIZE);
 
         VBox contentBox = new VBox(titleLabel, descriptionLabel);
         contentBox.getStyleClass().add("card__content");
-        contentBox.setSpacing(5); // Adjust spacing between title and description
-        contentBox.setVisible(false); // Initially hidden
+        contentBox.setSpacing(5);
+        contentBox.setVisible(false);
 
         card.getChildren().addAll(imageView, contentBox);
         card.setOnMouseEntered(e -> contentBox.setVisible(true));
@@ -66,7 +81,4 @@ public class AffichagefrontSinistre {
 
         return card;
     }
-
-
-
 }

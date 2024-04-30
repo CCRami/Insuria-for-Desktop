@@ -13,9 +13,11 @@ tn\esprit\applicatiopnpi\controllers\AddPolice$1.class
 tn\esprit\applicatiopnpi\models\Police.class
 tn\esprit\applicatiopnpi\models\Sinistre.class
 tn\esprit\applicatiopnpi\controllers\AffichagefrontPolice.class
+tn\esprit\applicatiopnpi\controllers\dashboardFront.class
 tn\esprit\applicatiopnpi\test\Main.class
 tn\esprit\applicatiopnpi\controllers\AffichagePolice$1.class
 tn\esprit\applicatiopnpi\controllers\AffichageSinistre$1.class
 tn\esprit\applicatiopnpi\services\SinistreService.class
 tn\esprit\applicatiopnpi\controllers\AddPolice.class
 tn\esprit\applicatiopnpi\controllers\EditSinister.class
+tn\esprit\applicatiopnpi\controllers\AffichagefrontPolice$FooterPageEvent.class

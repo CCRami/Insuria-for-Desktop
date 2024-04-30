@@ -124,6 +124,55 @@ public class PoliceService implements Iservice<Police> {
 
         return policies;
     }
+    /**
+     * Gets the total number of police records in the database.
+     * @return the total number of police records.
+     */
+    public int getNumberOfPolicies() {
+        int count = 0;
+        String sql = "SELECT COUNT(*) FROM police";
+        try (Statement ste = connection.createStatement(); ResultSet res = ste.executeQuery(sql)) {
+            if (res.next()) {
+                count = res.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public List<Police> getPoliceByPage(int pageIndex, int pageSize) {
+        List<Police> polices = new ArrayList<>();
+        String sql = "SELECT * FROM police ORDER BY id LIMIT ? OFFSET ?";
+        int offset = pageIndex * pageSize;
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, pageSize);
+            stmt.setInt(2, offset);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    polices.add(mapRowToPolice(rs));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return polices;
+    }
+    private Police mapRowToPolice(ResultSet rs) throws SQLException {
+        Police police = new Police();
+        police.setId(rs.getInt("id"));
+        police.setPoliceName(rs.getString("police_name"));
+        police.setDescriptionPolice(rs.getString("description_police"));
+        Sinistre sinistre = new Sinistre();
+        sinistre.setSin_name(rs.getString("sin_name"));
+        sinistre.setDescription_sin(rs.getString("description_sin"));
+        police.setSinistre(sinistre);
+        return police;
+    }
+
+
+
+
 
 
 

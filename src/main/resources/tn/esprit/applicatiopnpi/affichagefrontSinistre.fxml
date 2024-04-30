@@ -6,6 +6,7 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Pagination?>
 <VBox fx:id="mainContainer" alignment="CENTER_RIGHT" spacing="10" style="-fx-padding: 20 20 20 70;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.applicatiopnpi.controllers.AffichagefrontSinistre" stylesheets="@style/dashboardDesign.css">
     <children>
 
@@ -20,9 +21,11 @@
                         <Image url="@images/warnig.png"/> <!-- Ensure the path to your image is correct -->
                     </image>
                 </ImageView>
+
             </children>
         </HBox>
 
 
     </children>
+    <Pagination fx:id="pagination" />
 </VBox>
