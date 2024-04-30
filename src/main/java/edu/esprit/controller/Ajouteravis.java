@@ -112,7 +112,7 @@ Parametre2=agence;
         List<String> newList = new ArrayList<>();
         for (String str : badListW) {
             if (badWord.contains(str)) {
-                badNew += "" + str;
+                badNew += " " + str;
                 if (str.length() >= 1) {
                     StringBuilder result = new StringBuilder();
                     result.append(str.charAt(0));

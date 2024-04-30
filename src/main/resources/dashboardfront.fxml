@@ -23,17 +23,13 @@
                         <Image url="@images/logo.png" />
                     </image>
                 </ImageView>
-                <HBox prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                <HBox prefHeight="114.0" prefWidth="171.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
                     <children>
-                  <MenuButton mnemonicParsing="false" prefHeight="37.0" prefWidth="126.0" style="-fx-background-color: #051B46;" text="Assurances" textFill="WHITE">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="auto" />
-                      <MenuItem mnemonicParsing="false" text="Home" />
-                    </items>
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </MenuButton>
+                        <Label prefHeight="35.0" prefWidth="130.0" text="Assurances" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
                     </children>
                <HBox.margin>
                   <Insets bottom="33.0" left="44.0" top="22.0" />
@@ -66,13 +62,17 @@
                   <Insets bottom="33.0" top="22.0" />
                </HBox.margin>
                 </HBox>
-                <HBox prefHeight="114.0" prefWidth="171.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                <HBox prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
                     <children>
-                        <Label prefHeight="35.0" prefWidth="130.0" text="Polices" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
+                  <MenuButton mnemonicParsing="false" prefHeight="37.0" prefWidth="126.0" style="-fx-background-color: #051B46;" text="Polices" textFill="WHITE">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Polices" />
+                      <MenuItem mnemonicParsing="false" text="Sinistres" />
+                    </items>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </MenuButton>
                     </children>
                <HBox.margin>
                   <Insets bottom="33.0" left="44.0" top="22.0" />
