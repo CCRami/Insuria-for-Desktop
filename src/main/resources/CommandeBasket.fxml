@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controller.CommandeBasket"
+            prefHeight="778.0" prefWidth="1254.0">
+
+    <ScrollPane fitToHeight="true" fitToWidth="true">
+        <VBox spacing="10" styleClass="basket-container">
+            <Label text="Selected Insurances:" styleClass="basket-label"/>
+            <ListView fx:id="selectedCommandesListView" prefHeight="400.0">
+                <cellFactory>
+                    <PropertyValueFactory property="id" />
+                </cellFactory>
+            </ListView>
+            <Button text="View Selected Insurances" onAction="#handleCheckout"/>
+        </VBox>
+    </ScrollPane>
+
+</AnchorPane>
