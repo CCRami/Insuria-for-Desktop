@@ -2,14 +2,18 @@ package Controllers.User;
 
 import Entities.User;
 import Services.UserService;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -28,15 +32,24 @@ public class UserListController implements Initializable {
     private final int itemsPerPage = 7;
     private int currentPageIndex = 0;
 
+    @FXML
+    private TextField searchtf;
+
     public UserListController() {
         UserService userService = new UserService();
         List<User> users = userService.displayAll();
-        allUsers = FXCollections.observableArrayList(users);
+        allUsers = FXCollections.observableArrayList(users);    
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadPage(0);
+        searchtf.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                search(newValue);
+            }
+        });
     }
 
     @FXML
@@ -73,14 +86,21 @@ public class UserListController implements Initializable {
         previousButton.setDisable(currentPageIndex == 0);
         nextButton.setDisable(currentPageIndex == getLastPageIndex());
     }
-    public void updateUserlistview(User updatedUser) {
-        // Mettre à jour un sinistre spécifique dans la ListView
-        ObservableList<User> Users = listView.getItems();
-        int index = Users.indexOf(updatedUser);
-        if (index != -1) {
-            Users.set(index, updatedUser);
-            listView.refresh();
-        }
-    }
 
+    private void search(String query) {
+        if (query == null || query.isEmpty()) {
+            loadPage(currentPageIndex);
+            return;
+        }
+
+        List<User> searchResults = new ArrayList<>();
+        for (User user : allUsers) {
+            String fullName = user.getFirst_name() + " " + user.getLast_name();
+            if (fullName.toLowerCase().contains(query.toLowerCase())) {
+                searchResults.add(user);
+            }
+        }
+        ObservableList<User> searchResultsList = FXCollections.observableArrayList(searchResults);
+        listView.setItems(searchResultsList);
+    }
 }

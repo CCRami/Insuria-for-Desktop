@@ -17,14 +17,13 @@ public class User {
 
     }
 
-    public User(String nom, String prenom, String email, String mdp, int id,int tel, boolean state, String image, String role) {
+    public User(String nom, String prenom, String email, String mdp, int tel, boolean state, String image, String role) {
         this.last_name = nom;
         this.first_name = prenom;
         this.email = email;
         this.isVerified = state;
         this.role = role;
         this.password = mdp;
-        this.id = id;
         this.avatar = image;
         this.phone_number = tel;
     }
@@ -129,7 +128,7 @@ public class User {
                 ;
     }
 
-    public User(String nom, String prenom, String email, String mdp, int tel, String bd, String role) {
+    public User(String nom, String prenom, String email, String mdp, int tel, String bd, String role, Boolean isv, Boolean isb, String image) {
         this.last_name = nom;
         this.first_name = prenom;
         this.email = email;
@@ -137,8 +136,9 @@ public class User {
         this.role = role;
         this.password = mdp;
         this.phone_number = tel;
-        this.isVerified=false;
-        this.isBlocked=false;
+        this.isVerified= isv;
+        this.isBlocked=isb;
+        this.avatar = image;
     }
 
     public User(int id,String nom,String prenom) {

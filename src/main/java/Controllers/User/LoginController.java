@@ -44,7 +44,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
 
     }
 
@@ -91,7 +91,6 @@ public class LoginController implements Initializable {
         HomeController homec = loader.getController();
         if (us.authenticate(mail.getText(), password.getText()) != 0) {
             UserSession u = UserSession.getInstance(mail.getText(), us.role(us.authenticate(mail.getText(), password.getText())));
-            System.out.println(u);
             if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_CLIENT\"]")) {
                 homec.setEmailtxt(u.getUserName());
                 homec.email=u.getUserName();
@@ -108,7 +107,7 @@ public class LoginController implements Initializable {
                         "Empty Fields");
             } else {
                 AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                        "Invalid email and password.");
+                        "Invalid email or password.");
 
             }
         }

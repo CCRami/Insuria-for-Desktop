@@ -95,9 +95,9 @@ public class UserListViewCell extends ListCell<User> {
                 avatar.setFitWidth(100);
             }
             label6.setText(user.getBirth_date());
-            label7.setText(String.valueOf(user.isVerified()));
-            label8.setText(String.valueOf(user.isBlocked()));
-            label9.setText(user.getRole());
+            label7.setText(user.isVerified() == 1 ? "Verified" : "Not Verified");
+            label8.setText(user.isBlocked() == 1 ? "Blocked" : "Not Blocked");
+            label9.setText(user.getRole().equals("[\"ROLE_ADMIN\"]") ? "Admin" : "User");
 
             updatebtn.setOnAction(event -> {
                 try {

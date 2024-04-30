@@ -13,58 +13,59 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="style/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.SignupController">
     <children>
-        <TextField fx:id="nomTF" layoutX="833.0" layoutY="330.0" prefHeight="34.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
-        <TextField fx:id="prenomTF" layoutX="643.0" layoutY="331.0" prefHeight="34.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
-        <TextField fx:id="telTF" layoutX="640.0" layoutY="401.0" prefHeight="34.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
-        <Button layoutX="774.0" layoutY="606.0" mnemonicParsing="false" onAction="#AjouterUser" prefHeight="43.0" prefWidth="102.0" style="-fx-background-color: #051B46;" text="Sign Up" textFill="WHITE">
+        <TextField fx:id="nomTF" layoutX="845.0" layoutY="243.0" prefHeight="34.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+        <TextField fx:id="prenomTF" layoutX="655.0" layoutY="244.0" prefHeight="34.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+        <TextField fx:id="telTF" layoutX="652.0" layoutY="314.0" prefHeight="34.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+        <Button layoutX="786.0" layoutY="519.0" mnemonicParsing="false" onAction="#AjouterUser" prefHeight="43.0" prefWidth="102.0" style="-fx-background-color: #051B46;" text="Sign Up" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Button>
-        <Label layoutX="836.0" layoutY="309.0" prefHeight="19.0" prefWidth="102.0" text="Last Name*">
+        <Label layoutX="848.0" layoutY="222.0" prefHeight="19.0" prefWidth="102.0" text="Last Name*">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font></Label>
-        <Label layoutX="645.0" layoutY="310.0" text="First Name*">
+        <Label layoutX="657.0" layoutY="223.0" text="First Name*">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font></Label>
-        <Label layoutX="834.0" layoutY="378.0" text="Password*">
+        <Label layoutX="846.0" layoutY="291.0" text="Password*">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font></Label>
-        <Label layoutX="649.0" layoutY="378.0" text="Phone Number*">
+        <Label layoutX="661.0" layoutY="291.0" text="Phone Number*">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font></Label>
-        <Label layoutX="638.0" layoutY="555.0" text="Date of Birth*">
+        <Label layoutX="650.0" layoutY="468.0" text="Date of Birth*">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-        <TextField fx:id="emailTF" layoutX="640.0" layoutY="468.0" prefHeight="34.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
-        <Label layoutX="655.0" layoutY="449.0" text="Email*">
+        <TextField fx:id="emailTF" layoutX="652.0" layoutY="381.0" prefHeight="34.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+        <Label layoutX="667.0" layoutY="362.0" text="Email*">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font></Label>
-        <Label layoutX="787.0" layoutY="231.0" text="Role*">
+        <Label layoutX="799.0" layoutY="144.0" text="Role*">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font></Label>
-        <RadioButton fx:id="Client" layoutX="699.0" layoutY="264.0" mnemonicParsing="false" text="Client">
+        <RadioButton fx:id="Client" layoutX="711.0" layoutY="177.0" mnemonicParsing="false" text="Client">
             <toggleGroup>
                 <ToggleGroup fx:id="r1" />
             </toggleGroup>
         </RadioButton>
-        <RadioButton fx:id="Admin" layoutX="843.0" layoutY="264.0" mnemonicParsing="false" text="Admin" toggleGroup="$r1" />
-        <Text fill="#051b46" layoutX="734.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
+        <RadioButton fx:id="Admin" layoutX="855.0" layoutY="177.0" mnemonicParsing="false" text="Admin" toggleGroup="$r1" />
+        <Text fill="#051b46" layoutX="746.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
             <font>
                 <Font name="System Bold" size="39.0" />
             </font>
         </Text>
-        <AmbientLight color="CHARTREUSE" layoutX="542.0" layoutY="176.0" lightOn="true" />
-        <PasswordField fx:id="mdpTF" layoutX="830.0" layoutY="408.0" prefHeight="28.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+        <AmbientLight color="CHARTREUSE" layoutX="554.0" layoutY="89.0" lightOn="true" />
+        <PasswordField fx:id="mdpTF" layoutX="842.0" layoutY="321.0" prefHeight="28.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
       <AnchorPane layoutX="-1.0" prefHeight="720.0" prefWidth="262.0" style="-fx-background-color: #051B46;">
          <children>
             <Text fill="#f0f0f0" layoutX="41.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO" textOrigin="BOTTOM" wrappingWidth="168.59765625">
@@ -79,12 +80,18 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <DatePicker fx:id="DBTF" layoutX="783.0" layoutY="553.0" />
-      <Label layoutX="833.0" layoutY="449.0" text="Confrim Password*">
+      <DatePicker fx:id="DBTF" layoutX="795.0" layoutY="466.0" />
+      <Label layoutX="845.0" layoutY="362.0" text="Confrim Password*">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <PasswordField fx:id="mdpTF1" layoutX="833.0" layoutY="474.0" prefHeight="28.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+      <PasswordField fx:id="mdpTF1" layoutX="845.0" layoutY="387.0" prefHeight="28.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+      <Button fx:id="googlebtn" layoutX="717.0" layoutY="584.0" mnemonicParsing="false" onAction="#ggsignup" prefHeight="43.0" prefWidth="239.0" style="-fx-background-color: #051B46;" text="Or Sign Up with Google" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <WebView fx:id="webView" layoutX="268.0" layoutY="97.0" prefHeight="610.0" prefWidth="1006.0" visible="false" />
     </children>
 </AnchorPane>

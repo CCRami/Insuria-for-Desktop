@@ -12,73 +12,76 @@
 
 <GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="219.0" prefWidth="967.0" stylesheets="style/cellstyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="256.3999725341797" minWidth="10.0" prefWidth="256.3999725341797" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.80003662109374" minWidth="10.0" prefWidth="156.80003662109374" />
-      <ColumnConstraints maxWidth="190.5999938964843" minWidth="1.5999877929687614" prefWidth="131.80001220703127" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.99999999999994" minWidth="4.8000061035156705" prefWidth="90.39998779296877" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.79999999999995" minWidth="0.0" prefWidth="83.80001220703127" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.6000122070312" minWidth="212.80002441406248" prefWidth="250.39998779296877" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="256.3999725341797" minWidth="10.0" prefWidth="198.39999084472657" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.0000091552734" minWidth="10.0" prefWidth="196.80000000000004" />
+      <ColumnConstraints maxWidth="190.5999938964843" minWidth="1.5999877929687614" prefWidth="133.39999999999998" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.99999999999994" minWidth="4.8000061035156705" prefWidth="107.20004882812498" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.79999999999995" minWidth="0.0" prefWidth="121.39997558593745" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.6000122070312" minWidth="209.60000000000002" prefWidth="212.00002441406252" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Label fx:id="label1" text="fname" GridPane.rowIndex="1" />
-        <Label fx:id="label2" text="lname" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+        <Label fx:id="label1" alignment="CENTER_RIGHT" text="fname" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+        <Label fx:id="label2" text="lname" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
          <GridPane.margin>
             <Insets right="35.0" />
          </GridPane.margin></Label>
-        <Label fx:id="label3" text="email" GridPane.rowIndex="3" />
-      <ImageView fx:id="avatar" fitHeight="206.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-        <Label fx:id="label4" text="phone_number" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-        <Label fx:id="label6" text="birth_date" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-        <Label fx:id="label7" text="isver" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-        <Label fx:id="label8" text="isblock" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-        <Label fx:id="label9" prefHeight="74.0" prefWidth="250.0" text="roles" wrapText="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
+        <Label fx:id="label3" prefHeight="18.0" prefWidth="212.0" text="email" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <ImageView fx:id="avatar" fitHeight="206.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="label4" text="phone_number" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+        <Label fx:id="label6" text="birth_date" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+        <Label fx:id="label7" text="isver" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+        <Label fx:id="label8" text="isblock" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+        <Label fx:id="label9" prefHeight="39.0" prefWidth="122.0" text="roles" wrapText="true" GridPane.columnIndex="5">
          <font>
             <Font size="11.0" />
          </font></Label>
-      <Label id="labels" fx:id="label11" alignment="CENTER" styleClass="data-label" text="Email" GridPane.rowIndex="2" />
-      <Label id="labels" fx:id="label21" alignment="CENTER" styleClass="data-label" text="Last Name" GridPane.halignment="RIGHT">
-         <GridPane.margin>
-            <Insets right="35.0" />
-         </GridPane.margin>
-      </Label>
-      <Label alignment="CENTER" styleClass="data-label" text="First Name" />
-      <Label alignment="CENTER" styleClass="data-label" text="Birth Date" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-      <Label alignment="CENTER" styleClass="data-label" text="Phone Number" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Label alignment="CENTER" styleClass="data-label" text="Verified" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-      <Label alignment="CENTER" styleClass="data-label" text="Blocked" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
-      <Label alignment="CENTER" styleClass="data-label" text="Roles" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
-      <Label alignment="CENTER" styleClass="data-label" text="Avatar" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets left="20.0" />
-         </GridPane.margin>
-      </Label>
-        <Button fx:id="updatebtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" styleClass="data-label" text="Update" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+        <Button fx:id="updatebtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" styleClass="data-label" text="Update" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
             <graphic>
                 <ImageView fitHeight="20.0" fitWidth="20.0">
                     <Image url="https://i.imgur.com/a6yY3Py.png" />
                 </ImageView>
             </graphic>
             <GridPane.margin>
-                <Insets left="15.0" />
+                <Insets />
             </GridPane.margin>
         </Button>
-        <Button fx:id="deletebtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" styleClass="data-label" text="Delete" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+        <Button fx:id="deletebtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" styleClass="data-label" text="Delete" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
             <graphic>
                 <ImageView fitHeight="20.0" fitWidth="20.0">
                     <Image url="https://i.imgur.com/9jTIw5D.png" />
                 </ImageView>
             </graphic>
             <GridPane.margin>
-                <Insets right="10.0" />
+                <Insets />
             </GridPane.margin>
         </Button>
-
-        <Label alignment="CENTER" blendMode="DARKEN" text="Actions" textFill="RED" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+      <Button fx:id="verifybtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" styleClass="data-label" text="Verify" GridPane.columnIndex="5" GridPane.rowIndex="1">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="https://i.imgur.com/a6yY3Py.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <GridPane.margin>
+            <Insets left="15.0" />
+         </GridPane.margin>
+      </Button>
+      <Button fx:id="blockbtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" styleClass="data-label" text="Block" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="https://i.imgur.com/a6yY3Py.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </Button>
     </children>
 </GridPane>

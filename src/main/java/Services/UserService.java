@@ -21,7 +21,7 @@ public class UserService implements IUser<User>{
     }
     public void add(User user) {
         String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-        String request = "insert into user (last_name,first_name,email,password,phone_number,birth_date,roles,is_verified,is_blocked) values ('" + user.getLast_name() + "','" + user.getFirst_name() + "','" + user.getEmail() + "','" + hashedPassword + "'," + user.getPhone_number() + ",'" + user.getBirth_date() + "','" + user.getRole() + "','"+ user.isVerified() +"','"+ user.isBlocked() +"')";
+        String request = "insert into user (last_name,first_name,email,password,phone_number,birth_date,roles,is_verified,is_blocked,avatar) values ('" + user.getLast_name() + "','" + user.getFirst_name() + "','" + user.getEmail() + "','" + hashedPassword + "'," + user.getPhone_number() + ",'" + user.getBirth_date() + "','" + user.getRole() + "','"+ user.isVerified() +"','"+ user.isBlocked() +"','"+ user.getAvatar() +"')";
 
 
         try {

@@ -1,5 +1,6 @@
 package Controllers.User;
 import Controllers.dashboard;
+import Entities.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,6 +29,8 @@ public class HomeController {
 
     @FXML
     void showUsers(MouseEvent event) {
+
+        System.out.println(UserSession.getInstance("",""));
 
         try {
             // Load user.fxml
