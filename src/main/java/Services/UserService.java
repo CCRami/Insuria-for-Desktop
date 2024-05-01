@@ -7,7 +7,6 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.List;
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class UserService implements IUser<User>{
@@ -202,5 +201,55 @@ public class UserService implements IUser<User>{
         }
         return false;
     }
+    public int getUserIdByEmail(String email) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT id FROM user WHERE email = ?");
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0; // User not found
+    }
+    public void verify(User u) {
+        String requete = "UPDATE user SET is_verified = 1 WHERE id = " + u.getId();
+        try {
+            ste = conn.createStatement();
+            ste.executeUpdate(requete);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void block(User u) {
+        String requete = "UPDATE user SET is_blocked = 1 WHERE id = " + u.getId();
+        try {
+            ste = conn.createStatement();
+            ste.executeUpdate(requete);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void unverify(User u) {
+        String requete = "UPDATE user SET is_verified = 0 WHERE id = " + u.getId();
+        try {
+            ste = conn.createStatement();
+            ste.executeUpdate(requete);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void unblock(User u) {
+        String requete = "UPDATE user SET is_blocked = 0 WHERE id = " + u.getId();
+        try {
+            ste = conn.createStatement();
+            ste.executeUpdate(requete);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

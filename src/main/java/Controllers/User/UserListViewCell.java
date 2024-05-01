@@ -2,6 +2,8 @@ package Controllers.User;
 
 import Entities.User;
 import Services.UserService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -54,6 +56,12 @@ public class UserListViewCell extends ListCell<User> {
     private Button deletebtn;
     @FXML
     private Button updatebtn;
+
+    @FXML
+    private Button blockbtn;
+
+    @FXML
+    private Button verifybtn;
     private int pageIndex;
     private int itemsPerPage;
 
@@ -97,7 +105,48 @@ public class UserListViewCell extends ListCell<User> {
             label6.setText(user.getBirth_date());
             label7.setText(user.isVerified() == 1 ? "Verified" : "Not Verified");
             label8.setText(user.isBlocked() == 1 ? "Blocked" : "Not Blocked");
-            label9.setText(user.getRole().equals("[\"ROLE_ADMIN\"]") ? "Admin" : "User");
+            label9.setText(user.getRole());
+            int fromIndex = pageIndex * itemsPerPage;
+            int toIndex = Math.min(fromIndex + itemsPerPage,FXCollections.observableArrayList(new UserService().displayAll()).size());
+            if (user.isVerified() == 1) {
+                verifybtn.setStyle("-fx-background-color: #4CAF50");
+                verifybtn.setText(user.isVerified() == 1 ? "Unverify" : "Verify");
+                verifybtn.setOnAction(event -> {
+                    UserService userService = new UserService();
+                    userService.unverify(user);
+                    System.out.println("Unverify");
+                    getListView().setItems(FXCollections.observableArrayList(new UserService().displayAll().subList(fromIndex, toIndex)));
+                });
+            } else {
+                verifybtn.setStyle("-fx-background-color: #f44336");
+                verifybtn.setText(user.isVerified() == 1 ? "Unverify" : "Verify");
+                verifybtn.setOnAction(event -> {
+                    UserService userService = new UserService();
+                    userService.verify(user);
+                    System.out.println("verify");
+                    getListView().setItems(FXCollections.observableArrayList(new UserService().displayAll().subList(fromIndex, toIndex)));
+                });
+            }
+
+            if (user.isBlocked() == 1) {
+                blockbtn.setStyle("-fx-background-color: #4CAF50");
+                blockbtn.setText(user.isBlocked() == 1 ? "Unblock" : "Block");
+                blockbtn.setOnAction(event -> {
+                    UserService userService = new UserService();
+                    userService.unblock(user);
+                    System.out.println("Unblock");
+                    getListView().setItems(FXCollections.observableArrayList(new UserService().displayAll().subList(fromIndex, toIndex)));
+                });
+            } else {
+                blockbtn.setStyle("-fx-background-color: #f44336");
+                blockbtn.setText(user.isBlocked() == 1 ? "Unblock" : "Block");
+                blockbtn.setOnAction(event -> {
+                    UserService userService = new UserService();
+                    userService.block(user);
+                    System.out.println("block");
+                    getListView().setItems(FXCollections.observableArrayList(new UserService().displayAll().subList(fromIndex, toIndex)));
+                });
+            }
 
             updatebtn.setOnAction(event -> {
                 try {
@@ -116,6 +165,11 @@ public class UserListViewCell extends ListCell<User> {
             setText(null);
             setGraphic(gridPane);
         }
+    }
+
+    public  void refresh(){
+        ListView<User> listView = (ListView<User>) getListView();
+        listView.refresh();
     }
     public void showedituser(User user) throws IOException {
         try {

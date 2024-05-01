@@ -6,39 +6,39 @@ public final class UserSession {
 
     private static UserSession instance;
 
-    public static String userName;
-    private static String privileges;
+    public static String email;
+    private static String id;
 
-    private UserSession(String userName, String privileges) {
-        this.userName = userName;
-        this.privileges = privileges;
+    private UserSession(String email, String id) {
+        this.email = email;
+        this.id = id;
     }
 
-    public static UserSession getInstance(String userName, String privileges) {
+    public static UserSession getInstance(String email, String id) {
         if(instance == null) {
-            instance = new UserSession(userName, privileges);
+            instance = new UserSession(email, id);
         }
         return instance;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getEamil() {
+        return email;
     }
 
-    public String getPrivileges() {
-        return privileges;
+    public String getId() {
+        return id;
     }
 
     public static void cleanUserSession() {
-        userName = "";// or null
-        privileges = String.valueOf(new HashSet<>());// or null
+        email = "";// or null
+        id = "";// or null
     }
 
     @Override
     public String toString() {
         return "UserSession{" +
-                "userName='" + userName + '\'' +
-                ", privileges=" + privileges +
+                "email='" + email + '\'' +
+                ", id=" + id +
                 '}';
     }
 }

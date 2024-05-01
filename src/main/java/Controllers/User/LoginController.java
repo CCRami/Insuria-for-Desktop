@@ -1,11 +1,43 @@
 package Controllers.User;
 
 
+import com.google.api.client.googleapis.auth.oauth2.*;
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.util.store.FileDataStoreFactory;
+
+import Entities.User;
+import helper.AlertHelper;
+import javafx.concurrent.Worker;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.web.WebView;
+import javafx.stage.Window;
+import Services.UserService;
+
+
+
+import java.net.URLDecoder;
+import java.security.GeneralSecurityException;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Collections;
+
 //import entities.UserSession;
 import Controllers.User.UserProfileController;
 import Controllers.dashboard;
+import Entities.User;
 import Entities.UserSession;
+import com.google.api.client.googleapis.auth.oauth2.*;
 import helper.AlertHelper;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,16 +47,44 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.web.WebView;
 import javafx.stage.Window;
 import Services.UserService;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.security.GeneralSecurityException;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 
 public class LoginController implements Initializable {
     private final UserService us=new UserService();
+
+    private static final String CLIENT_SECRET = "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";
+    private static final String REDIRECT_URI = "http://127.0.0.1/connect/google/check"; // Redirect URI for Google OAuth
+    private static final String APPLICATION_NAME = "Insuria"; // Your application name
+    private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
+
+    private static final String CLIENT_ID = "72213814901-54pea0l9jdmqta8acugefrhjvm90oi1g.apps.googleusercontent.com";
+    private static final String[] SCOPES = {"https://www.googleapis.com/auth/userinfo.email",
+            "https://www.googleapis.com/auth/userinfo.profile"};
+
+    private static final NetHttpTransport HTTP_TRANSPORT;
+
+    static {
+        try {
+            HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        } catch (GeneralSecurityException | IOException e) {
+            throw new RuntimeException("Error initializing HTTP Transport", e);
+        }
+    }
+
+    private GoogleAuthorizationCodeFlow flow;
 
     @FXML
     private Button rest;
@@ -37,6 +97,11 @@ public class LoginController implements Initializable {
     @FXML
     private TextField mail;
 
+    @FXML
+    private WebView webView;
+
+    @FXML
+    private Button gglog;
 
     @FXML
     private PasswordField password;
@@ -69,15 +134,15 @@ public class LoginController implements Initializable {
 
 
     void goToHome() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserProfile.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
         Parent root=loader.load();
-        dashboard auc= loader.getController();
+        HomeController auc= loader.getController();
         rest.getScene().setRoot(root);
     }
     void goToAdmin() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserProfile.fxml"));
         Parent root=loader.load();
-        dashboard auc=loader.getController();
+        HomeController auc=loader.getController();
         rest.getScene().setRoot(root);
     }
 
@@ -87,30 +152,155 @@ public class LoginController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
         Parent root = loader.load();
         us.displayAll();
-        //  UserSession.cleanUserSession();
-        HomeController homec = loader.getController();
-        if (us.authenticate(mail.getText(), password.getText()) != 0) {
-            UserSession u = UserSession.getInstance(mail.getText(), us.role(us.authenticate(mail.getText(), password.getText())));
-            if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_CLIENT\"]")) {
-                homec.setEmailtxt(u.getUserName());
-                homec.email=u.getUserName();
-                btn.getScene().setRoot(root);
-                //goToHome();
-            } else if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_ADMIN\"]")) {
-                homec.setEmailtxt(u.getUserName());
-                btn.getScene().setRoot(root);
-                //goToAdmin();
+        UserSession.cleanUserSession();
+        if (us.displayByid(us.getUserIdByEmail(mail.getText())) != null) {
+
+            if (us.displayByid(us.getUserIdByEmail(mail.getText())).isBlocked()==1) {
+
+                if (us.displayByid(us.getUserIdByEmail(mail.getText())).isVerified()==0) {
+                if (us.authenticate(mail.getText(), password.getText()) != 0) {
+                    UserSession u = UserSession.getInstance(mail.getText(), Integer.toString(us.getUserIdByEmail(mail.getText())));
+                    if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_CLIENT\"]")) {
+                        btn.getScene().setRoot(root);
+                    } else if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_ADMIN\"]")) {
+                        btn.getScene().setRoot(root);
+                    }
+
+                } else if (mail.getText().isEmpty() || password.getText().isEmpty()) {
+                    AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                            "Empty Fields");
+                } else {
+                    AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                            "Invalid email or password.");
+
+                }
             }
-
-            } else if (mail.getText().isEmpty() || password.getText().isEmpty()) {
+            else {
                 AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                        "Empty Fields");
-            } else {
+                        "This account is not verified yet. Please check your email.");
+            }
+            }
+            else {
                 AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                        "Invalid email or password.");
+                        "This account is blocked. Please contact the administrator.");
+            }
+        } else {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                    "This email is not registered yet. Please sign up first.");
 
+        }
+    }
+
+        @FXML
+        void logingg(ActionEvent event) {
+            try {
+                initiateGoogleSignup();
+            } catch (IOException e) {
+                e.printStackTrace();
+                AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error", "Failed to initiate Google signup");
             }
         }
+
+    private void initiateGoogleSignup() throws IOException {
+        flow = new GoogleAuthorizationCodeFlow.Builder(
+                HTTP_TRANSPORT, JSON_FACTORY, getClientSecrets(), Arrays.asList(SCOPES))
+                .setAccessType("offline")
+                .setApprovalPrompt("force")
+                .build();
+        String url = flow.newAuthorizationUrl().setRedirectUri(REDIRECT_URI).build();
+
+        webView.setVisible(true);
+        // Load the authorization URL into the WebView
+        webView.getEngine().load(url);
+
+        // Add a listener to detect when the WebView finishes loading
+        webView.getEngine().getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == Worker.State.SUCCEEDED) {
+                String currentUrl = webView.getEngine().getLocation();
+                if (currentUrl != null && currentUrl.startsWith(REDIRECT_URI)) {
+                    handleRedirectUrl(currentUrl);
+                }
+            }
+        });
+    }
+
+    private void handleRedirectUrl(String redirectUrl) {
+
+        String authorizationCode = extractAuthorizationCode(redirectUrl);
+
+        if (authorizationCode != null) {
+            handleGoogleCallback(authorizationCode);
+        } else {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error", "Failed to extract authorization code");
+        }
+    }
+
+    public void handleGoogleCallback(String authorizationCode) {
+        try {
+            GoogleTokenResponse tokenResponse = new GoogleAuthorizationCodeTokenRequest(
+                    HTTP_TRANSPORT, JSON_FACTORY, CLIENT_ID, CLIENT_SECRET, authorizationCode, REDIRECT_URI)
+                    .execute();
+
+            // Now you have the access token, you can use it to make requests on behalf of the user
+            String idTokenString = tokenResponse.getIdToken();
+            GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(HTTP_TRANSPORT, JSON_FACTORY)
+                    .setAudience(Collections.singletonList(CLIENT_ID))
+                    .build();
+
+            GoogleIdToken idToken = verifier.verify(idTokenString);
+            if (idToken != null) {
+                GoogleIdToken.Payload payload = idToken.getPayload();
+
+                // Extract user information from the ID token payload
+                System.out.println(payload);
+                String email = payload.getEmail();
+                if (us.exsitemail(email)) {
+                    System.out.println("User already exists");
+                    UserSession.cleanUserSession();
+                    UserSession u = UserSession.getInstance(email, Integer.toString(us.getUserIdByEmail(email)));
+                    if (us.role(us.getUserIdByEmail(email)).equals("[\"ROLE_CLIENT\"]")) {
+                        goToHome();
+                        System.out.println("User is a client");
+                    } else if (us.role(us.getUserIdByEmail(email)).equals("[\"ROLE_ADMIN\"]")) {
+                        goToHome();
+                        System.out.println("User is an admin");
+                    }
+                }
+                } else {
+                AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                        "This email is not registered yet. Please sign up first.");
+                }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error", "Failed to retrieve access token");
+        } catch (GeneralSecurityException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private String extractAuthorizationCode(String redirectUrl) {
+
+        String[] parts = redirectUrl.split("\\?");
+        if (parts.length > 1) {
+            String[] queryParams = parts[1].split("&");
+            for (String param : queryParams) {
+                String[] keyValue = param.split("=");
+                if (keyValue.length == 2 && keyValue[0].equals("code")) {
+                    System.out.println(keyValue[1]);
+                    return URLDecoder.decode(keyValue[1]);
+                }
+            }
+        }
+        return null;
+    }
+
+    private static GoogleClientSecrets getClientSecrets() throws IOException {
+        String clientSecretJson = "{\"installed\":{\"client_id\":\"" + CLIENT_ID + "\",\"client_secret\":\"" + CLIENT_SECRET + "\",\"redirect_uris\":[\"" + REDIRECT_URI + "\"]}}";
+        return GoogleClientSecrets.load(JSON_FACTORY, new StringReader(clientSecretJson));
+    }
+
+
     }
 
 

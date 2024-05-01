@@ -78,6 +78,7 @@ public class UserListController implements Initializable {
         listView.setCellFactory(userListView -> new UserListViewCell(pageIndex, itemsPerPage));
     }
 
+
     private int getLastPageIndex() {
         return (int) Math.ceil((double) allUsers.size() / itemsPerPage) - 1;
     }
