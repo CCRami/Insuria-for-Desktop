@@ -74,6 +74,11 @@
             <artifactId>google-http-client-jackson2</artifactId>
             <version>1.15.0-rc</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.8.1</version>
+        </dependency>
 
     </dependencies>
     <build>

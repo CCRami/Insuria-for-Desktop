@@ -1,4 +1,5 @@
 package Controllers.User;
+import Services.MailService;
 import com.google.api.client.googleapis.auth.oauth2.*;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -21,6 +22,7 @@ import javafx.scene.web.WebView;
 import javafx.stage.Window;
 import Services.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import java.awt.*;
 import java.io.*;
@@ -58,11 +60,6 @@ public class SignupController {
 
     private GoogleAuthorizationCodeFlow flow;
 
-    @FXML
-    private RadioButton Admin;
-
-    @FXML
-    private RadioButton Client;
 
 
     @FXML
@@ -129,17 +126,11 @@ public class SignupController {
                     "User Already Exist.");
         }
         else {
-
-            if (Admin.isSelected()) {
-                us.add(new User(nomTF.getText(), prenomTF.getText(), emailTF.getText(), mdpTF.getText(), Integer.parseInt(telTF.getText()), DBTF.getValue().toString(), "[\"ROLE_ADMIN\"]", true, false, null));
-                AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "User Signed Up", "User Signed Up successfully");
-            }
-
-            if (Client.isSelected()) {
-                us.add(new User(nomTF.getText(), prenomTF.getText(), emailTF.getText(), mdpTF.getText(), Integer.parseInt(telTF.getText()), DBTF.getValue().toString(), "[\"ROLE_CLIENT\"]", true, false, null));
-                AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "User Signed Up", "User Signed Up successfully");
-
-            }
+            User u=new User(nomTF.getText(), prenomTF.getText(), emailTF.getText(), mdpTF.getText(), Integer.parseInt(telTF.getText()), DBTF.getValue().toString(), "[\"ROLE_CLIENT\"]", false, false, null, RandomStringUtils.randomAlphanumeric(103));
+            us.add(u);
+            AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "User Signed Up", "User Signed Up successfully");
+            String emailValue = emailTF.getText();
+            MailService.sendConfirmationEmail(emailValue,u);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
             Parent root = loader.load();
             LoginController auc = loader.getController();
@@ -230,14 +221,13 @@ public class SignupController {
                 String firstName = (String) payload.get("given_name");
                 String lastName = (String) payload.get("family_name");
                 String avatarUrl = (String) payload.get("picture");
-                us.add(new User(firstName, lastName, email, idTokenString,0, LocalDate.now().toString(), "[\"ROLE_CLIENT\"]", true, false, avatarUrl));
+                us.add(new User(firstName, lastName, email, idTokenString,0, LocalDate.now().toString(), "[\"ROLE_CLIENT\"]", true, false, avatarUrl, RandomStringUtils.randomAlphanumeric(103)));
             } else {
                 System.out.println("Invalid ID token.");
             }
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
             Parent root = loader.load();
-            LoginController loginController = loader.getController();
             emailTF.getScene().setRoot(root);
 
         } catch (IOException e) {

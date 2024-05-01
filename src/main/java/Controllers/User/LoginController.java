@@ -16,9 +16,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.web.WebView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import Services.UserService;
 
@@ -43,9 +45,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebView;
 import javafx.stage.Window;
@@ -149,40 +149,42 @@ public class LoginController implements Initializable {
     @FXML
     void login(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
-        Parent root = loader.load();
-        us.displayAll();
         UserSession.cleanUserSession();
-        if (us.displayByid(us.getUserIdByEmail(mail.getText())) != null) {
+        if (mail.getText().isEmpty() || password.getText().isEmpty())
+        AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                "Empty Fields");
+        else if (us.displayByid(us.getUserIdByEmail(mail.getText())) != null) {
+            if (us.authenticate(mail.getText(), password.getText()) != 0) {
 
-            if (us.displayByid(us.getUserIdByEmail(mail.getText())).isBlocked()==1) {
+            if (us.displayByid(us.getUserIdByEmail(mail.getText())).isBlocked()==0) {
 
-                if (us.displayByid(us.getUserIdByEmail(mail.getText())).isVerified()==0) {
-                if (us.authenticate(mail.getText(), password.getText()) != 0) {
+                if (us.displayByid(us.getUserIdByEmail(mail.getText())).isVerified()==1) {
+
                     UserSession u = UserSession.getInstance(mail.getText(), Integer.toString(us.getUserIdByEmail(mail.getText())));
                     if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_CLIENT\"]")) {
-                        btn.getScene().setRoot(root);
+                        goToHome();
                     } else if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_ADMIN\"]")) {
-                        btn.getScene().setRoot(root);
+                        goToHome();
                     }
 
-                } else if (mail.getText().isEmpty() || password.getText().isEmpty()) {
-                    AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                            "Empty Fields");
-                } else {
-                    AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                            "Invalid email or password.");
 
-                }
             }
+
             else {
                 AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
                         "This account is not verified yet. Please check your email.");
+                showconfirmation();
             }
             }
             else {
                 AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
                         "This account is blocked. Please contact the administrator.");
+            }
+
+            } else {
+                AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                        "Invalid email or password.");
+
             }
         } else {
             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
@@ -255,15 +257,21 @@ public class LoginController implements Initializable {
                 System.out.println(payload);
                 String email = payload.getEmail();
                 if (us.exsitemail(email)) {
-                    System.out.println("User already exists");
-                    UserSession.cleanUserSession();
-                    UserSession u = UserSession.getInstance(email, Integer.toString(us.getUserIdByEmail(email)));
-                    if (us.role(us.getUserIdByEmail(email)).equals("[\"ROLE_CLIENT\"]")) {
-                        goToHome();
-                        System.out.println("User is a client");
-                    } else if (us.role(us.getUserIdByEmail(email)).equals("[\"ROLE_ADMIN\"]")) {
-                        goToHome();
-                        System.out.println("User is an admin");
+                    if (us.displayByid(us.getUserIdByEmail(email)).isBlocked()==0) {
+                        System.out.println("User already exists");
+                        UserSession.cleanUserSession();
+                        UserSession u = UserSession.getInstance(email, Integer.toString(us.getUserIdByEmail(email)));
+                        if (us.role(us.getUserIdByEmail(email)).equals("[\"ROLE_CLIENT\"]")) {
+                            goToHome();
+                            System.out.println("User is a client");
+                        } else if (us.role(us.getUserIdByEmail(email)).equals("[\"ROLE_ADMIN\"]")) {
+                            goToHome();
+                            System.out.println("User is an admin");
+                        }
+                    }
+                    else {
+                        AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                                "This account is blocked. Please contact the administrator.");
                     }
                 }
                 } else {
@@ -298,6 +306,21 @@ public class LoginController implements Initializable {
     private static GoogleClientSecrets getClientSecrets() throws IOException {
         String clientSecretJson = "{\"installed\":{\"client_id\":\"" + CLIENT_ID + "\",\"client_secret\":\"" + CLIENT_SECRET + "\",\"redirect_uris\":[\"" + REDIRECT_URI + "\"]}}";
         return GoogleClientSecrets.load(JSON_FACTORY, new StringReader(clientSecretJson));
+    }
+
+    public void showconfirmation() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ConfirmEmail.fxml"));
+            Parent root = loader.load();
+            ConfirmEmailController controller = loader.getController();
+            Stage stage = new Stage();
+            stage.setTitle("Confirm Email");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

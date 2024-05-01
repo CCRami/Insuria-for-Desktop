@@ -20,7 +20,7 @@ public class UserService implements IUser<User>{
     }
     public void add(User user) {
         String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-        String request = "insert into user (last_name,first_name,email,password,phone_number,birth_date,roles,is_verified,is_blocked,avatar) values ('" + user.getLast_name() + "','" + user.getFirst_name() + "','" + user.getEmail() + "','" + hashedPassword + "'," + user.getPhone_number() + ",'" + user.getBirth_date() + "','" + user.getRole() + "','"+ user.isVerified() +"','"+ user.isBlocked() +"','"+ user.getAvatar() +"')";
+        String request = "insert into user (last_name,first_name,email,password,phone_number,birth_date,roles,is_verified,is_blocked,avatar,secret) values ('" + user.getLast_name() + "','" + user.getFirst_name() + "','" + user.getEmail() + "','" + hashedPassword + "'," + user.getPhone_number() + ",'" + user.getBirth_date() + "','" + user.getRole() + "','"+ user.isVerified() +"','"+ user.isBlocked() +"','"+ user.getAvatar() +"','"+ user.getSecret() +"')";
 
 
         try {
@@ -104,6 +104,8 @@ public class UserService implements IUser<User>{
                 user.setRole(rs.getString("roles"));
                 user.setVerified(rs.getBoolean("is_verified"));
                 user.setBlocked(rs.getBoolean("is_blocked"));
+                user.setAvatar(rs.getString("avatar"));
+                user.setSecret(rs.getString("secret"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -250,6 +252,22 @@ public class UserService implements IUser<User>{
             throw new RuntimeException(e);
         }
     }
-
+    public String updateVerifiedBySecret(String secret) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM user WHERE secret = ?");
+            stmt.setString(1, secret);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                PreparedStatement updateStmt = conn.prepareStatement("UPDATE user SET is_verified = 1 WHERE secret = ?");
+                updateStmt.setString(1, secret);
+                updateStmt.executeUpdate();
+                return "User verified successfully";
+            } else {
+                return "Secret not found";
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

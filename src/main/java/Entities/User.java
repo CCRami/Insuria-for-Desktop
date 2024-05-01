@@ -13,6 +13,8 @@ public class User {
     private String role;
     private int phone_number;
     private String password;
+
+    private String secret;
     public User() {
 
     }
@@ -26,6 +28,15 @@ public class User {
         this.password = mdp;
         this.avatar = image;
         this.phone_number = tel;
+
+    }
+
+    public String getSecret() {
+        return secret;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
     }
 
     public int getId() {
@@ -128,7 +139,7 @@ public class User {
                 ;
     }
 
-    public User(String nom, String prenom, String email, String mdp, int tel, String bd, String role, Boolean isv, Boolean isb, String image) {
+    public User(String nom, String prenom, String email, String mdp, int tel, String bd, String role, Boolean isv, Boolean isb, String image, String secret) {
         this.last_name = nom;
         this.first_name = prenom;
         this.email = email;
@@ -139,6 +150,7 @@ public class User {
         this.isVerified= isv;
         this.isBlocked=isb;
         this.avatar = image;
+        this.secret= secret;
     }
 
     public User(int id,String nom,String prenom) {
