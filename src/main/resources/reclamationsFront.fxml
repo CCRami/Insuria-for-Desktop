@@ -2,6 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,29 +13,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="806.0" prefWidth="1544.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.reclamationsFront">
+<AnchorPane prefHeight="729.0" prefWidth="1005.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.reclamationsFront">
    <children>
-      <VBox prefHeight="806.0" prefWidth="1563.0">
+      <VBox prefHeight="806.0" prefWidth="1510.0">
          <children>
-            <HBox prefHeight="82.0" prefWidth="1514.0" style="-fx-background-color: #051B46;">
+            <HBox alignment="CENTER" prefHeight="736.0" prefWidth="1505.0" VBox.vgrow="ALWAYS">
                <children>
-                  <ImageView fitHeight="118.0" fitWidth="349.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/logo.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="44.0" right="1.0" top="11.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="665.0" prefWidth="1514.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <Pagination fx:id="pagination" />
+                  <Pagination fx:id="pagination" prefHeight="596.0" prefWidth="178.0">
+                     <padding>
+                        <Insets bottom="20.0" />
+                     </padding>
+                  </Pagination>
                </children>
             </HBox>
 
-            <Button fx:id="ajout" mnemonicParsing="false" onAction="#ajout" prefHeight="49.0" prefWidth="118.0" style="-fx-background-color: #2CA2FB;" styleClass="ajouter-button" text="Add" textFill="WHITE">
+            <Button fx:id="ajout" mnemonicParsing="false" onAction="#ajout" prefHeight="34.0" prefWidth="118.0" style="-fx-background-color: #2CA2FB;" styleClass="ajouter-button" text="Add" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>
@@ -44,10 +39,97 @@
                   </ImageView>
                </graphic>
                <VBox.margin>
-                  <Insets bottom="20.0" left="400.0" />
+                  <Insets bottom="30.0" left="700.0" />
                </VBox.margin>
             </Button>
          </children>
       </VBox>
+      <HBox layoutY="-2.0" prefHeight="116.0" prefWidth="1511.0" style="-fx-background-color: #051B46;">
+         <children>
+            <ImageView fitHeight="96.0" fitWidth="249.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo.png" />
+               </image>
+            </ImageView>
+            <HBox prefHeight="114.0" prefWidth="171.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <Label prefHeight="35.0" prefWidth="130.0" text="Assurances" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="33.0" left="44.0" top="22.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox prefHeight="114.0" prefWidth="162.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <Label prefHeight="35.0" prefWidth="120.0" text="Agencies" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="33.0" left="33.0" top="22.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox minHeight="33.0" prefHeight="70.0" prefWidth="162.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <Label text="Reviews" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="33.0" top="22.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <MenuButton mnemonicParsing="false" prefHeight="37.0" prefWidth="126.0" style="-fx-background-color: #051B46;" text="Polices" textFill="WHITE">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Polices" />
+                        <MenuItem mnemonicParsing="false" text="Sinistres" />
+                     </items>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </MenuButton>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="33.0" left="44.0" top="22.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox prefHeight="114.0" prefWidth="153.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <Label prefHeight="35.0" prefWidth="187.0" text="Offer" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="33.0" top="22.0" />
+               </HBox.margin>
+            </HBox>
+            <ImageView fitHeight="77.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/homme.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="22.0" top="22.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
