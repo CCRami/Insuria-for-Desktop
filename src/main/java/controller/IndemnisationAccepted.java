@@ -10,7 +10,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -85,7 +87,7 @@ private Reclamation rec;
                 selectedReclaamtion.setIndemnisation(selectedIndemnisation);
 
                 String emailValue = "farah.adad2001@gmail.com";
-                MailService.sendConfirmationEmail(emailValue);
+                MailService.sendConfirmationEmail(emailValue,selectedReclaamtion);
 
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Success");
@@ -93,7 +95,7 @@ private Reclamation rec;
                 successAlert.setContentText("Indemnisation ajoutée avec succès. Email has been sent.");
                 successAlert.showAndWait();
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/listeReclamationBack.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/listReclamationBack.fxml"));
                 Parent root = loader.load();
 
                 // Close the current window
@@ -118,6 +120,39 @@ private Reclamation rec;
                 montantError.setText("");
             }
         }
+    }
+    @FXML
+    private HBox compensation;
+
+
+    @FXML
+    void showCompensations(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/indemnisationsBack.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) enregistre.getScene().getWindow(); // Obtenez la référence à la fenêtre actuelle
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'erreur si nécessaire
+        }
+
+    }
+
+    @FXML
+    void showReclamations(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/listReclamationBack.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) enregistre.getScene().getWindow(); // Obtenez la référence à la fenêtre actuelle
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'erreur si nécessaire
+        }
+
     }
 
 

@@ -5,12 +5,20 @@ import entity.Indemnissation;
 import entity.Reclamation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import services.IndemnisationService;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class indemnisationRefused {
@@ -31,18 +39,18 @@ private Reclamation selectedReclamation;
     private Text msgError;
 
     @FXML
-    void enregistreRefusedAction(ActionEvent event) {
+    void enregistreRefusedAction(ActionEvent event) throws IOException {
         if(itsCorrect()){
             selectedIndemnisation.setBeneficitaire(beneficitaire.getText());
             IndemnisationService service = new IndemnisationService();
 
             try {
                 service.modifierIndemnisation(selectedIndemnisation);
-selectedReclamation.setIndemnisation(selectedIndemnisation);
+                  selectedReclamation.setIndemnisation(selectedIndemnisation);
                System.out.println(selectedReclamation.getIndemnisation());
 
                 String emailValue = "farah.adad2001@gmail.com";
-                MailService.sendConfirmationEmail(emailValue);
+                MailService.sendConfirmationEmail(emailValue,selectedReclamation);
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Success");
                 successAlert.setHeaderText(null);
@@ -59,6 +67,19 @@ selectedReclamation.setIndemnisation(selectedIndemnisation);
                 System.out.println("Error editing reclamation: " + e.getMessage());
             }
 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/listReclamationBack.fxml"));
+            Parent root = loader.load();
+
+            // Close the current window
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.close();
+
+            // Show the new FXML
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(root));
+            newStage.show();
+
+
             beneficitaire.clear();
 
             msgError.setText("");
@@ -68,6 +89,37 @@ selectedReclamation.setIndemnisation(selectedIndemnisation);
 
 
         }
+    }
+    @FXML
+    private Button enregistre;
+    @FXML
+    void showCompensations(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/indemnisationsBack.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) enregistre.getScene().getWindow(); // Obtenez la référence à la fenêtre actuelle
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'erreur si nécessaire
+        }
+
+    }
+
+    @FXML
+    void showReclamations(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/listReclamationBack.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) enregistre.getScene().getWindow(); // Obtenez la référence à la fenêtre actuelle
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'erreur si nécessaire
+        }
+
     }
     private boolean itsCorrect() {
         boolean coorect =true ;

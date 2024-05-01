@@ -30,7 +30,7 @@
                <children>
                   <Pagination fx:id="pagination" />
                </children>
-            </HBox> 
+            </HBox>
 
             <Button fx:id="ajout" mnemonicParsing="false" onAction="#ajout" prefHeight="49.0" prefWidth="118.0" style="-fx-background-color: #2CA2FB;" styleClass="ajouter-button" text="Add" textFill="WHITE">
                <font>

@@ -56,7 +56,7 @@ public class dashboard implements Initializable{
     void showReclamations(MouseEvent event) {
         try {
             // Load user.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamationsBack.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/listReclamationBack.fxml"));
             Node eventFXML = loader.load();
 
             // Clear existing content from FieldHolder

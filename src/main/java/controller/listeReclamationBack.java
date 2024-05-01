@@ -149,9 +149,9 @@ public class listeReclamationBack implements Initializable {
                                 } catch (SQLException e) {
                                     throw new RuntimeException(e);
                                 }
-
+                               if(ind.getMontant()!=0.0){
                                 try {
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/showCompensationBack.fxml"));
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/showCompensationAccepted.fxml"));
                                     Parent root = loader.load();
 
                                     showCompensation controller = loader.getController();
@@ -166,6 +166,29 @@ public class listeReclamationBack implements Initializable {
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
+                            }
+                            else{
+
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/showCompensationRefused.fxml"));
+                                   Parent root = null;
+                                   try {
+                                       root = loader.load();
+                                   } catch (IOException e) {
+                                       throw new RuntimeException(e);
+                                   }
+
+                                   showCompensationRefused controller = loader.getController();
+                                    controller.iniData(ind);
+
+                                    Stage stage = new Stage();
+                                    stage.setScene(new Scene(root));
+                                    stage.show();
+
+                                    Stage currentStage = (Stage) button.getScene().getWindow();
+                                    currentStage.close();
+
+                            }
+
                             }
                         });
                     hbox.getChildren().addAll(libelleLabel, datReclamationLabel, dateSinistreLabel, reponseLabel, button);

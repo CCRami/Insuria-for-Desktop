@@ -25,7 +25,10 @@
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
                      </font></Button>
-                  <Button fx:id="filtrageREfused" mnemonicParsing="false" onAction="#filtrerReclamationsRefusees" style="-fx-background-color: #051B46;" text="Refused" textFill="WHITE" />
+                  <Button fx:id="filtrageREfused" mnemonicParsing="false" onAction="#filtrerReclamationsRefusees" style="-fx-background-color: #051B46;" text="Refused" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
                </children>
             </HBox>
             <HBox spacing="10" style="-fx-padding: 10;">

@@ -44,8 +44,7 @@ public class showCompensation  {
             Stage stage = (Stage) enrecancelgistre.getScene().getWindow(); // Obtenez la référence à la fenêtre actuelle
             stage.setScene(new Scene(root));
             stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e) {            e.printStackTrace();
             // Gérer l'erreur si nécessaire
         }
     }

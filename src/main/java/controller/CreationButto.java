@@ -15,7 +15,7 @@ public class CreationButto extends javafx.scene.control.TableCell<Indemnissation
         firstButton.setOnAction(event -> {
             Indemnissation ind = getTableView().getItems().get(getIndex());
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/showCompensationBack.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/showCompensationAccepted.fxml"));
                 Parent root = loader.load();
                 showCompensation controller = loader.getController(); // Assurez-vous que le contrôleur est correctement nommé
                 controller.iniData(ind); // Transférez l'indemnisation à l'interface d'affichage

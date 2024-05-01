@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
@@ -14,45 +19,45 @@
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="778.0" prefWidth="1254.0">
          <children>
-            <AnchorPane layoutX="255.2" layoutY="51.2" prefHeight="598.0" prefWidth="927.0" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="51.0">
+            <AnchorPane layoutX="255.2" layoutY="51.2" prefHeight="768.0" prefWidth="927.0" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="0.0">
                <styleClass>
                   <String fx:value="white-bg" />
                   <String fx:value="shadow" />
                </styleClass>
                <children>
-                  <Text fill="#1d4fac" layoutX="82.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="    Label              :">
+                  <Text fill="#1d4fac" layoutX="191.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="    Label              :">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Text fill="#1d4fac" layoutX="102.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Claim      :" AnchorPane.bottomAnchor="370.4" AnchorPane.leftAnchor="105.0">
+                  <Text fill="#1d4fac" layoutX="209.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Claim      :" AnchorPane.bottomAnchor="403.9765625" AnchorPane.leftAnchor="209.0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Text fill="#1d4fac" layoutX="105.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contenu          :">
+                  <Text fill="#1d4fac" layoutX="209.0" layoutY="479.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contenu          :">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Text fill="#1d4fac" layoutX="105.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Sinistre   :">
+                  <Text fill="#1d4fac" layoutX="209.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Sinistre   :">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Text fill="#1d4fac" layoutX="105.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer            :">
+                  <Text fill="#1d4fac" layoutX="209.0" layoutY="580.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer            :">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="dateReclamation" layoutX="278.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="label" wrappingWidth="186.84808349609375" />
-                  <Text fx:id="label" layoutX="278.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="label" wrappingWidth="186.84808349609375" />
-                  <Text fx:id="dateSinistre" layoutX="278.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="label" wrappingWidth="186.84808349609375" />
+                  <Text fx:id="dateReclamation" layoutX="458.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="label" wrappingWidth="186.84808349609375" />
+                  <Text fx:id="label" layoutX="458.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="label" wrappingWidth="186.84808349609375" />
+                  <Text fx:id="dateSinistre" layoutX="458.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="label" wrappingWidth="186.84808349609375" />
                   <Text fx:id="reponse" fill="WHITE" layoutX="453.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="label" wrappingWidth="22.84808349609375" />
-                  <Text fx:id="contenu" layoutX="278.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="label" wrappingWidth="338.9366455078125" />
-                  <ChoiceBox fx:id="choixReponse" layoutX="278.0" layoutY="336.0" prefWidth="150.0" style="-fx-background-color: #aac7fc;" />
-                  <Text fx:id="choixerror" fill="#fc0202" layoutX="263.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="160.3125" />
-                  <Button fx:id="enregistre" layoutX="124.0" layoutY="521.0" mnemonicParsing="false" onAction="#enregistreAction" prefHeight="43.0" prefWidth="142.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Enregistrer" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                  <Text fx:id="contenu" layoutX="458.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="label" wrappingWidth="338.9366455078125" />
+                  <ChoiceBox fx:id="choixReponse" layoutX="463.0" layoutY="558.0" prefWidth="150.0" style="-fx-background-color: #aac7fc;" />
+                  <Text fx:id="choixerror" fill="#fc0202" layoutX="458.0" layoutY="608.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="160.3125" />
+                  <Button fx:id="enregistre" layoutX="235.0" layoutY="666.0" mnemonicParsing="false" onAction="#enregistreAction" prefHeight="43.0" prefWidth="142.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Enregistrer" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
@@ -64,7 +69,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="cancel" layoutX="292.0" layoutY="521.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="43.0" prefWidth="142.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Cancel" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                  <Button fx:id="cancel" layoutX="422.0" layoutY="666.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="43.0" prefWidth="142.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Cancel" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
@@ -79,10 +84,141 @@
                         <Image url="@images/analyse.png" />
                      </image>
                   </ImageView>
-                  <WebView fx:id="map" layoutX="498.0" layoutY="128.0" prefHeight="367.0" prefWidth="400.0" />
+                  <WebView fx:id="map" layoutX="111.0" layoutY="112.0" prefHeight="158.0" prefWidth="654.0" />
+                  <Text fill="#1d4fac" layoutX="211.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image             :">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="path" layoutX="458.0" layoutY="528.0" onMouseClicked="#ouvrirImage" strokeType="OUTSIDE" strokeWidth="0.0" text="label" wrappingWidth="211.19061279296886" />
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
+      <VBox alignment="TOP_CENTER" layoutX="30.0" layoutY="30.0" prefHeight="810.0" prefWidth="253.0" style="-fx-background-color: #051B46;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="60.0" top="40.0" />
+               </VBox.margin>
+            </ImageView>
+            <HBox prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/analyse.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" prefWidth="202.0" text="Dashboard" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="30.0" layoutY="392.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/homme.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" prefWidth="202.0" text="Utilisateur" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="rec" layoutX="30.0" layoutY="438.0" onMouseClicked="#showReclamations" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/probleme.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" prefWidth="202.0" text="Claim" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="30.0" layoutY="461.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/produit.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" prefWidth="202.0" text="Produits" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="30.0" layoutY="484.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/Government_Agency_Symbol.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" prefWidth="202.0" text="Agencies" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/5569806.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+                  <Label text="Reviews" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets right="88.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox fx:id="compensation" layoutX="30.0" layoutY="281.0" onMouseClicked="#showCompensations" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/ajouter.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" prefWidth="202.0" text="Compensation" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </VBox>
    </children>
 </AnchorPane>

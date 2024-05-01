@@ -43,8 +43,9 @@ public class reclamationData {
     private Button show;
 
     private Reclamation reclamation;
-    private  Indemnissation ind;
+    private Indemnissation ind;
     private int id;
+
     public void setData(Reclamation reclamation) {
         this.reclamation = reclamation;
         label.setText(reclamation.getLibelle());
@@ -91,7 +92,7 @@ public class reclamationData {
         }
     }
 
-    
+
     @FXML
     void show(ActionEvent event) {
 
@@ -108,27 +109,51 @@ public class reclamationData {
             throw new RuntimeException(e);
         }
         System.out.println(ind);
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/showCompensationBack.fxml"));
-            Parent root = loader.load();
+        if (reclamation.getReponse().equals("refused")) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/showCompensationRefused.fxml"));
+                Parent root = loader.load();
 
 
-            showCompensation controller = loader.getController();
+                showCompensationRefused controller = loader.getController();
 
-            controller.iniData(ind);
-
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
+                controller.iniData(ind);
 
 
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+                Stage currentStage = (Stage) show.getScene().getWindow();
+                currentStage.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
 
+            }
+        } else if (reclamation.getReponse().equals("accepted")) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/showCompensationAccepted.fxml"));
+                Parent root = loader.load();
+
+
+                showCompensationAccepted controller = loader.getController();
+
+                controller.iniData(ind);
+
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+                Stage currentStage = (Stage) show.getScene().getWindow();
+                currentStage.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
         }
 
     }
 
 }
+
