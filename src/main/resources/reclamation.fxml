@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="458.0" prefWidth="427.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.reclamationData">
    <children>
-      <VBox fx:id="agevbox" layoutX="10.0" layoutY="10.0" prefHeight="290.0" prefWidth="412.0" style="-fx-background-color: #051B46;" styleClass="show-box" stylesheets="@../../../../../Downloads/wetransfer_pidev_2024-04-16_2104/pidev/src/main/resources/style/styleafficher.css" AnchorPane.topAnchor="210.0">
+      <VBox fx:id="agevbox" layoutX="10.0" layoutY="10.0" prefHeight="290.0" prefWidth="412.0" style="-fx-background-color: #051B46;" styleClass="show-box" stylesheets="@style/styleafficher.css" AnchorPane.topAnchor="210.0">
          <children>
             <Label fx:id="nom" alignment="CENTER" prefHeight="52.0" prefWidth="390.0" text="Claim" textAlignment="CENTER" textFill="WHITE">
                <font>

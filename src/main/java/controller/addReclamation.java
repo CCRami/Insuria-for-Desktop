@@ -50,6 +50,8 @@ public class addReclamation {
 
     @FXML
     private Text errorDate;
+    @FXML
+    private Text errorImage;
 
     @FXML
     private Text errorLabel;
@@ -100,7 +102,8 @@ String image =(imagePath.getText().replace("\\", "/").trim());
              nom.clear();
             contenu.clear();
             date.getEditor().clear();
-
+            imagePath.clear();
+            imageV.setImage(null);
             errorContenu.setText("");
             errorDate.setText("");
             errorLabel.setText("");
@@ -167,16 +170,14 @@ latitude.clear();
         if (imagePath.getText().trim().isEmpty()) {
             errorImage.setText("Image path cannot be empty!");
             isValid = false;
-        }
-        else {
-            // Clear the error message
+        } else {
+            // Clear the error message if the input is valid
             errorImage.setText("");
         }
         return isValid;
 
     }
-    @FXML
-    private Text errorImage;
+
     @FXML
     void retour(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamationsFront.fxml"));

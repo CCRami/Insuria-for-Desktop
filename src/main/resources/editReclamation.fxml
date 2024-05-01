@@ -137,7 +137,7 @@
                   <Insets bottom="33.0" left="44.0" top="22.0" />
                </HBox.margin>
             </HBox>
-            <HBox onMouseClicked="#showAgence" prefHeight="114.0" prefWidth="162.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+            <HBox prefHeight="114.0" prefWidth="162.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
                <children>
                   <Label prefHeight="35.0" prefWidth="120.0" text="Agencies" textFill="WHITE">
                      <font>
@@ -149,7 +149,7 @@
                   <Insets bottom="33.0" left="33.0" top="22.0" />
                </HBox.margin>
             </HBox>
-            <HBox minHeight="33.0" onMouseClicked="#showAvisAgence" prefHeight="70.0" prefWidth="162.0" styleClass="button" stylesheets="@style/style.css">
+            <HBox minHeight="33.0" prefHeight="70.0" prefWidth="162.0" styleClass="button" stylesheets="@style/style.css">
                <children>
                   <Label text="Reviews" textFill="WHITE">
                      <HBox.margin>
@@ -197,7 +197,7 @@
             </HBox>
             <ImageView fitHeight="77.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../pidevjava/pidev/src/main/resources/images/Capture%20d'écran%202024-04-30%20003615.png" />
+                  <Image url="@images/homme.png" />
                </image>
                <HBox.margin>
                   <Insets left="22.0" top="22.0" />
