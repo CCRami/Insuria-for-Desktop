@@ -103,7 +103,7 @@ public class indemnisationsBack implements Initializable {
     @FXML
     void showReclamations(MouseEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamationsBack.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/listReclamationBack.fxml"));
             Parent root = loader.load();
 
             // Utilisez votre objet Stage pour afficher la nouvelle interface

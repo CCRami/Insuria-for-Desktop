@@ -11,11 +11,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import services.IndemnisationService;
 import services.ReclamationService;
@@ -24,16 +23,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
-
 public class afficherReclamationBack implements Initializable {
     private Reclamation selectedReclamation;
 
         private Stage stage;
 
 
+    @FXML
+    private WebView map;
+    private WebEngine webEngine;
         @FXML
     private HBox reclamations;
     @FXML
@@ -78,6 +78,11 @@ ReclamationService service=new ReclamationService();
         contenu.setText(selectedReclamation.getContenu_rec());
         reponse.setText(selectedReclamation.getReponse());
 
+
+        double latitude = Double.parseDouble(selectedReclamation.getLatitude());
+        double longitude = Double.parseDouble(selectedReclamation.getLongitude());
+
+        updateMap(latitude, longitude);
     }
 
     @FXML
@@ -178,10 +183,29 @@ ReclamationService service=new ReclamationService();
 
 
 
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        webEngine = map.getEngine();
+        URL mapUrl = getClass().getResource("/map.html");
+        if (mapUrl != null) {
+            map.getEngine().load(mapUrl.toExternalForm());
+        } else {
+            System.err.println("Erreur : Impossible de charger le fichier map.html");
+        }
         choixReponse.getItems().addAll(rep);
     }
+
+
+
+    private void updateMap(Double latitude, Double longitude) {
+        String script = String.format("updateMapEvent(%f, %f);", latitude, longitude);
+        webEngine.executeScript(script);
+    }
+
+
 }
 
 

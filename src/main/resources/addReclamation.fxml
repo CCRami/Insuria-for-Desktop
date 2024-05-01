@@ -22,12 +22,12 @@
                     <children>
 
                               <HBox prefHeight="643.0" prefWidth="778.0" styleClass="show-box" stylesheets="@style/styleafficher.css">
-                     <VBox prefHeight="643.0" prefWidth="883.0">
+                     <VBox prefHeight="643.0" prefWidth="785.0">
                         <padding>
                            <Insets left="250.0" />
                         </padding>
                         <children>
-                           <HBox prefHeight="150.0" prefWidth="719.0">
+                           <HBox prefHeight="71.0" prefWidth="633.0">
                               <children>
                                  <ImageView fx:id="retour" fitHeight="36.0" fitWidth="34.0" onMouseClicked="#retour" pickOnBounds="true" preserveRatio="true" styleClass="ajouter-button">
                                     <image>
@@ -52,20 +52,23 @@
                                  </Text>
                               </children>
                               <VBox.margin>
-                                 <Insets top="20.0" />
+                                 <Insets left="-50.0" top="20.0" />
                               </VBox.margin>
+                              <padding>
+                                 <Insets left="-50.0" />
+                              </padding>
                            </HBox>
                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Label" wrappingWidth="138.93671798706055">
                               <VBox.margin>
-                                 <Insets left="100.0" top="20.0" />
+                                 <Insets top="10.0" />
                               </VBox.margin>
                               <font>
                                  <Font size="20.0" />
                               </font>
                            </Text>
-                           <TextField fx:id="nom" alignment="TOP_LEFT" prefHeight="38.0" prefWidth="234.0" promptText="enter a label" stylesheets="@style/styleafficher.css">
+                           <TextField fx:id="nom" alignment="TOP_LEFT" prefHeight="50.0" prefWidth="234.0" promptText="enter a label" stylesheets="@style/styleafficher.css">
                               <VBox.margin>
-                                 <Insets left="200.0" right="200.0" top="10.0" />
+                                 <Insets left="100.0" right="150.0" top="5.0" />
                               </VBox.margin>
                               <styleClass>
                                  <String fx:value="search" />
@@ -79,15 +82,15 @@
                            </Text>
                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Content" wrappingWidth="141.33674240112305">
                               <VBox.margin>
-                                 <Insets left="100.0" />
+                                 <Insets />
                               </VBox.margin>
                               <font>
                                  <Font size="20.0" />
                               </font>
                            </Text>
-                           <TextField fx:id="contenu" prefHeight="105.0" prefWidth="209.0" promptText="enter a Content" stylesheets="@style/styleafficher.css">
+                           <TextField fx:id="contenu" prefHeight="102.0" prefWidth="246.0" promptText="enter a Content" stylesheets="@style/styleafficher.css">
                               <VBox.margin>
-                                 <Insets left="200.0" right="200.0" top="10.0" />
+                                 <Insets left="100.0" right="150.0" />
                               </VBox.margin>
                               <styleClass>
                                  <String fx:value="search" />
@@ -101,15 +104,15 @@
                            </Text>
                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Sinistre" wrappingWidth="114.13669967651367">
                               <VBox.margin>
-                                 <Insets left="100.0" />
+                                 <Insets />
                               </VBox.margin>
                               <font>
                                  <Font size="20.0" />
                               </font>
                            </Text>
-                           <DatePicker fx:id="date" prefHeight="36.0" prefWidth="223.0">
+                           <DatePicker fx:id="date" prefHeight="26.0" prefWidth="254.0">
                               <VBox.margin>
-                                 <Insets left="200.0" right="50.0" top="10.0" />
+                                 <Insets left="120.0" right="50.0" />
                               </VBox.margin>
                               <styleClass>
                                  <String fx:value="search" />
@@ -121,9 +124,37 @@
                                  <Insets left="100.0" top="10.0" />
                               </VBox.margin>
                            </Text>
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Latitude" wrappingWidth="114.13669967651367">
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Text>
+                           <TextField fx:id="latitude" alignment="TOP_LEFT" layoutX="460.0" layoutY="159.0" prefHeight="50.0" prefWidth="286.0" promptText="enter Latitdue" stylesheets="@style/styleafficher.css">
+                              <styleClass>
+                                 <String fx:value="search" />
+                                 <String fx:value="shadow" />
+                              </styleClass>
+                              <VBox.margin>
+                                 <Insets left="100.0" right="150.0" />
+                              </VBox.margin>
+                           </TextField>
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Longitude" wrappingWidth="114.13669967651367">
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Text>
+                           <TextField fx:id="longitude" alignment="TOP_LEFT" layoutX="460.0" layoutY="485.0" prefHeight="50.0" prefWidth="234.0" promptText="enter longitude" stylesheets="@style/styleafficher.css">
+                              <styleClass>
+                                 <String fx:value="search" />
+                                 <String fx:value="shadow" />
+                              </styleClass>
+                              <VBox.margin>
+                                 <Insets left="100.0" right="150.0" top="10.0" />
+                              </VBox.margin>
+                           </TextField>
                            <Button fx:id="add" mnemonicParsing="false" onAction="#ajouterReclamationAction" prefHeight="43.0" prefWidth="142.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Enregistrer" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
                               <VBox.margin>
-                                 <Insets left="250.0" top="90.0" />
+                                 <Insets left="300.0" top="50.0" />
                               </VBox.margin>
                               <font>
                                  <Font name="System Bold Italic" size="16.0" />
@@ -138,6 +169,28 @@
                            </Button>
                         </children>
                      </VBox>
+                     <TextField fx:id="imagePath" editable="false" prefHeight="26.0" prefWidth="230.0" styleClass="search" stylesheets="@style/styleafficher.css">
+                        <HBox.margin>
+                           <Insets left="10.0" top="470.0" />
+                        </HBox.margin>
+                     </TextField>
+                     <ImageView fx:id="imageV" fitHeight="211.0" fitWidth="327.0" pickOnBounds="true" preserveRatio="true">
+                        <HBox.margin>
+                           <Insets left="-300.0" top="200.0" />
+                        </HBox.margin>
+                     </ImageView>
+                     <Button fx:id="ajouterIMage" mnemonicParsing="false" onAction="#ajouterIMage" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Add Image" textFill="WHITE">
+                        <HBox.margin>
+                           <Insets left="-180.0" top="420.0" />
+                        </HBox.margin>
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Button>
+                     <Text fx:id="errorImage" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="204.5366930961609">
+                        <HBox.margin>
+                           <Insets left="-150120.0" top="450.0" />
+                        </HBox.margin></Text>
                         </HBox>
                     </children>
             </VBox>
@@ -158,4 +211,5 @@
          </top>
         </BorderPane>
     </children>
+   
 </AnchorPane>

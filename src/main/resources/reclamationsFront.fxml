@@ -2,17 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.reclamationsFront">
+<AnchorPane prefHeight="806.0" prefWidth="1544.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.reclamationsFront">
    <children>
       <VBox prefHeight="806.0" prefWidth="1563.0">
          <children>
@@ -30,20 +28,10 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="665.0" prefWidth="1514.0" VBox.vgrow="ALWAYS">
                <children>
-                  <ScrollPane fx:id="scroll" prefHeight="560.0" prefWidth="1459.0" styleClass="transparent" stylesheets="@../../../../../Downloads/wetransfer_pidev_2024-04-16_2104/pidev/src/main/resources/style/styleafficher.css">
-                     <content>
-                        <GridPane fx:id="container" prefHeight="8.0" prefWidth="5.0">
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                           </rowConstraints>
-                        </GridPane>
-                     </content>
-                     <HBox.margin>
-                        <Insets left="50.0" top="80.0" />
-                     </HBox.margin>
-                  </ScrollPane>
+                  <Pagination fx:id="pagination" />
                </children>
-            </HBox>
+            </HBox> 
+
             <Button fx:id="ajout" mnemonicParsing="false" onAction="#ajout" prefHeight="49.0" prefWidth="118.0" style="-fx-background-color: #2CA2FB;" styleClass="ajouter-button" text="Add" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="13.0" />

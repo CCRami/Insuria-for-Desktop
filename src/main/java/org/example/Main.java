@@ -29,12 +29,5 @@ public class Main {
         String dateSinistre = date1.format(formatter);
 
 
-        Reclamation rec1 = new Reclamation("hh", "kk", "Currently being processed", dateSinistre, dateRc);
-        ReclamationService rs = new ReclamationService();
-        try {
-            rs.addReclamation(rec1);
-        } catch (SQLException e) {
-            System.out.println("Error adding packs: " + e.getMessage());
-        }
-        rs.afficherReclamations().forEach(System.out::println);
+
     }}

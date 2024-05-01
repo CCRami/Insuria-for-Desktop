@@ -12,14 +12,17 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.ReclamationService;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -30,6 +33,8 @@ public class addReclamation {
 
     @FXML
     private Button add;
+    @FXML
+    private TextField imagePath;
 
     @FXML
     private BorderPane borderPane;
@@ -53,6 +58,11 @@ public class addReclamation {
     private TextField nom;
 
     @FXML
+    private TextField latitude;
+
+    @FXML
+    private TextField longitude;
+    @FXML
     private VBox vboxdash;
 
     @FXML
@@ -70,13 +80,13 @@ public class addReclamation {
             String label=nom.getText();
             String contenuRec = contenu.getText();
             String dateSinistre = date.getValue().toString();
-
-
+         String lon =longitude.getText();
+            String lan =latitude.getText();
             SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
             String dateReclamation = format.format(new Date());
-
+String image =(imagePath.getText().replace("\\", "/").trim());
             // Créez votre objet Reclamation avec les données récupérées
-            Reclamation reclamation = new Reclamation(label,contenuRec, "Currently being processed",dateSinistre, dateReclamation);
+            Reclamation reclamation = new Reclamation(label,contenuRec, "Currently being processed",dateSinistre, dateReclamation,lan,lon,image);
 
             // Créez une instance de votre service de Reclamation
             ReclamationService service = new ReclamationService();
@@ -90,10 +100,14 @@ public class addReclamation {
              nom.clear();
             contenu.clear();
             date.getEditor().clear();
+
             errorContenu.setText("");
             errorDate.setText("");
             errorLabel.setText("");
+            errorImage.setText("");
 
+longitude.clear();
+latitude.clear();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setHeaderText(null);
@@ -111,26 +125,15 @@ public class addReclamation {
         }
     }
 
-    @FXML
-    private void afficherReclamations() {
-        try {
-            // Load user.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamationsFront.fxml"));
-            Node eventFXML = loader.load();
 
-            // Clear existing content from FieldHolder
-            vboxdash.getChildren().clear();
-
-            // Add the loaded userFXML to FieldHolder
-            vboxdash.getChildren().add(eventFXML);
-        } catch (IOException e) {
-            // Handle exception (e.g., file not found or invalid FXML)
-            e.printStackTrace();
-        }
-    }
     @FXML
     private ImageView retour;
 
+
+
+    @FXML
+
+    private ImageView imageV;
     private boolean isInputValid() {
         boolean isValid = true;
 
@@ -161,9 +164,19 @@ public class addReclamation {
             // Clear the error message
             errorDate.setText("");
         }
+        if (imagePath.getText().trim().isEmpty()) {
+            errorImage.setText("Image path cannot be empty!");
+            isValid = false;
+        }
+        else {
+            // Clear the error message
+            errorImage.setText("");
+        }
         return isValid;
 
     }
+    @FXML
+    private Text errorImage;
     @FXML
     void retour(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamationsFront.fxml"));
@@ -173,5 +186,25 @@ public class addReclamation {
         stage.show();
 
     }
+    @FXML
+    private Button ajouterIMage;
+    @FXML
+    void ajouterIMage(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Image File");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            imagePath.setText(file.getAbsolutePath().replace("\\", "/"));
+            try {
+                Image image = new Image(file.toURI().toURL().toExternalForm());
+                imageV.setImage(image);
+            } catch (Exception e) {
+                errorImage.setText("Loading Error");
+                imagePath.setText("");
+            }
+        }
+    }
+
 
 }

@@ -30,9 +30,16 @@ public class listeReclamationBack implements Initializable {
     @FXML
     private HBox rec;
     @FXML
+    private Button all;
+    @FXML
+    private Button accepted;
+    @FXML
     private HBox compensation;
     @FXML
     private VBox contentArea;
+
+    @FXML
+    private Button filtrageREfused;
 
     @FXML
     private Button add;
@@ -51,10 +58,10 @@ public class listeReclamationBack implements Initializable {
         initializeListView();
         try {
             loadRecData();
+            checkIfAnyReclamationRefused(); // Appel de la méthode pour vérifier les réclamations refusées
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
         // Add a listener to the search field's text property
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -64,8 +71,11 @@ public class listeReclamationBack implements Initializable {
                 e.printStackTrace();
             }
         });
-
     }
+
+
+
+
 
     private void initializeListView() {
         recList.setCellFactory(param -> new ListCell<Reclamation>() {
@@ -90,7 +100,7 @@ public class listeReclamationBack implements Initializable {
                     dateSinistreLabel.setMaxWidth(150.0);
                     dateSinistreLabel.setStyle("-fx-padding: 2px;");
                     Label reponseLabel = new Label(rec.getReponse());
-                    reponseLabel.setMinWidth(100.0);
+                    reponseLabel.setMinWidth(180.0);
                     reponseLabel.setMaxWidth(180.0);
 
                     Button button;
@@ -99,6 +109,8 @@ public class listeReclamationBack implements Initializable {
                     } else {
                         button = new Button("Show Claim");
                     }
+                    button.setMinWidth(150.0);
+                    button.setMaxWidth(150.0);
                     button.setOnAction(event -> {
 
                             if (button.getText().equals("Show Claim")) {
@@ -190,6 +202,7 @@ public class listeReclamationBack implements Initializable {
         }
     }
 
+
     @FXML
     void showReclamations(MouseEvent event) {
         try {
@@ -235,10 +248,10 @@ public class listeReclamationBack implements Initializable {
 
     @FXML
     private void rechercherRec() throws SQLException {
-        // Effacer les éléments existants de la ListView
+
         recList.getItems().clear();
 
-        // Récupérer le terme de recherche saisi par l'utilisateur
+
         String searchTerm = searchField.getText().trim().toLowerCase();
 
         // Récupérer tous les reclamations depuis la base de données
@@ -248,15 +261,89 @@ public class listeReclamationBack implements Initializable {
         if (searchTerm.isEmpty()) {
             recList.getItems().addAll(reclamationsList);
         } else {
-            // Sinon, filtrer les événements qui correspondent au terme de recherche
+
             for (Reclamation recla : reclamationsList) {
-                // Vous pouvez adapter cette condition en fonction de votre logique de recherche
+
                 if (recla.getLibelle().toLowerCase().contains(searchTerm)|| recla.getDateReclamation().contains(searchTerm)) {
                     recList.getItems().add(recla);
                 }
             }
         }
     }
+
+
+    @FXML
+    void filtrerReclamationsRefusees(ActionEvent event) {
+
+        try {
+            List<Reclamation> reclamations= service.afficherReclamationsRefusees();// Récupérer les réclamations refusées
+            afficherReclamations(reclamations); // Afficher les réclamations refusées
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void afficherReclamations(List<Reclamation> reclamations) {
+        ObservableList<Reclamation> data = FXCollections.observableArrayList(reclamations);
+        recList.setItems(data); // Mettre à jour la liste des réclamations dans la vue
+    }
+    @FXML
+    void afficherlistAccepted(ActionEvent event) {
+
+        try {
+            List<Reclamation> reclamations= service.afficherReclamationsAccepted();// Récupérer les réclamations refusées
+            afficherReclamations(reclamations); // Afficher les réclamations refusées
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private Button cours;
+
+    @FXML
+
+    void afficherAll(ActionEvent event) {
+        try {
+            List<Reclamation> reclamations= service.afficherReclamations();// Récupérer les réclamations refusées
+            afficherReclamations(reclamations); // Afficher les réclamations refusées
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void afficherCoursDETraitement(ActionEvent event) {
+        try {
+            List<Reclamation> reclamations= service.afficherReclamationsEnCourDeTraitement();// Récupérer les réclamations refusées
+            afficherReclamations(reclamations); // Afficher les réclamations refusées
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    private void checkIfAnyReclamationRefused() throws SQLException {
+        boolean anyRefused = false;
+        boolean anyAccepted = false;
+        boolean anyBeingProcessed = false;
+
+        List<Reclamation> reclamationsList = service.afficherReclamations();
+
+        for (Reclamation recla : reclamationsList) {
+            if ("refused".equals(recla.getReponse())) {
+                anyRefused = true;
+            } else if ("accepted".equals(recla.getReponse())) {
+                anyAccepted = true;
+            } else if ("Currently being processed".equals(recla.getReponse())) {
+                anyBeingProcessed = true;
+            }
+        }
+        filtrageREfused.setVisible(anyRefused);
+        filtrageREfused.setManaged(anyRefused);
+        accepted.setVisible(anyAccepted);
+        accepted.setManaged(anyAccepted);
+        cours.setVisible(anyBeingProcessed);
+        cours.setManaged(anyBeingProcessed);
+    }
+
+
 
 
 }

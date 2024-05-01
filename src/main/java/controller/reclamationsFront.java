@@ -13,10 +13,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import services.ReclamationService;
-
+import javafx.scene.layout.GridPane;
+import javafx.scene.control.Pagination;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -52,7 +54,10 @@ public class reclamationsFront implements Initializable {
     int selectedId;
     private final ReclamationService service = new ReclamationService();
     private List<Reclamation> reclamations;
-
+    @FXML
+    private Pagination pagination;
+    private List<String> items;
+    private final int itemsPerPage = 3;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -62,31 +67,53 @@ public class reclamationsFront implements Initializable {
         }
         int column = 0;
         int row = 1;
+
+
+ pagination.setPageCount(getPageCount());
+        pagination.setPageFactory(this::createPage);
+}
+
+private int getPageCount() {
+    return (int) Math.ceil((double) reclamations.size() / itemsPerPage);
+}
+
+private Node createPage(int pageIndex) {
+    GridPane pageGrid = new GridPane();
+    pageGrid.setHgap(10);
+    pageGrid.setVgap(10);
+
+    int startIndex = pageIndex * itemsPerPage;
+    int endIndex = Math.min(startIndex + itemsPerPage, reclamations.size());
+
+    int column = 0;
+    int row = 0;
+
+    for (int i = startIndex; i < endIndex; i++) {
+        Reclamation reclamation = reclamations.get(i);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reclamation.fxml"));
         try {
-            for (Reclamation reclamation : reclamations) {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reclamation.fxml"));
-                try {
-                    Object anchorPane = fxmlLoader.load();
-                    reclamationData recData = fxmlLoader.getController();
-                    System.out.println(reclamations);
-                    recData.setData(reclamation);
+            AnchorPane anchorPane = fxmlLoader.load();
+            reclamationData recc = fxmlLoader.getController();
+            recc.setData(reclamation);
 
-                    if (column == 3) {
-                        column = 0;
-                        row++;
-                    }
+            pageGrid.add(anchorPane, column, row);
 
-                    container.add((Node) anchorPane, column++, row);
-                    GridPane.setMargin((Node) anchorPane, new Insets(10));
-                } finally {
-                    // Assurez-vous de fermer les flux pour éviter les fuites de ressources
-                    fxmlLoader = null;
-                }
+            // Update column and row for the next item
+            column++;
+            if (column >= itemsPerPage) {
+                column = 0;
+                row++;
             }
         } catch (IOException e) {
-            throw new RuntimeException("Erreur lors du chargement du FXML", e);
+            e.printStackTrace();
         }
     }
+
+    return pageGrid;
+}
+
+
+
     @FXML
     void ajout(ActionEvent event) {
 
@@ -107,5 +134,4 @@ public class reclamationsFront implements Initializable {
             e.printStackTrace();
         }
     }
-
 }
