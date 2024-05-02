@@ -81,7 +81,7 @@ public class reclamationData {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/editReclamation.fxml"));
             Parent root = loader.load();
             EditReclamation controller = loader.getController();
-            controller.initData(reclamation); // Transférez la réclamation à l'interface d'édition
+            controller.setReclamation(reclamation); // Transférez la réclamation à l'interface d'édition
             // Utilisez votre objet Stage pour afficher la nouvelle interface
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

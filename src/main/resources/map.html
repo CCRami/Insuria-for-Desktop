@@ -1,47 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mapbox Map</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <title>Interactive Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 <body>
 <div id="map" style="height: 500px;"></div>
-
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script>
-    let map;
-    let marker;
+    var map;
+    var marker;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initMap();
+    });
 
     function initMap() {
-        // Create the map
-        map = L.map('map').setView([0, 0], 13);
-
-        // Add the Mapbox tile layer
-        const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZmFyYWgwYWRkYWQiLCJhIjoiY2x2bTZobTAyMWVqbjJqcDdvYTdwanJ6NSJ9.DTaTT_clzY1yLslMZG7oAw';
-        const MAPBOX_STYLE_ID = 'mapbox/streets-v11'; // Replace with your desired Mapbox style ID
-
-        L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${MAPBOX_ACCESS_TOKEN}`, {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: MAPBOX_STYLE_ID,
-            tileSize: 512,
-            zoomOffset: -1,
-            accessToken: MAPBOX_ACCESS_TOKEN
+        map = L.map('map').setView([0, 0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
         }).addTo(map);
     }
 
     function updateMap(latitude, longitude) {
-        if (marker) {
-            map.removeLayer(marker);
+        if (map) {
+            if (marker) {
+                marker.setLatLng([latitude, longitude]); // Move existing marker
+            } else {
+                marker = L.marker([latitude, longitude]).addTo(map); // Create new marker
+            }
+            map.setView([latitude, longitude], 13); // Re-center the map
+        } else {
+            setTimeout(function() { updateMap(latitude, longitude); }, 500); // Retry after map is initialized
         }
-        marker = L.marker([latitude, longitude]).addTo(map);
-        map.setView([latitude, longitude], 13);
     }
-
-    // Call the initMap function to initialize the map
-    window.onload = function() {
-        initMap();
-    };
 </script>
 </body>
 </html>

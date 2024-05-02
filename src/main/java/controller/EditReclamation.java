@@ -1,9 +1,12 @@
 package controller;
 
 import entity.Reclamation;
+import javafx.collections.FXCollections;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,14 +16,19 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import services.ReclamationService;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
-public class EditReclamation {
+public class EditReclamation implements Initializable {
     @FXML
     private VBox vboxdash;
     @FXML
@@ -46,7 +54,7 @@ public class EditReclamation {
 
     @FXML
     private TextField nom;
-    private Reclamation selectedReclamation;
+    private Reclamation reclamation;
 
     @FXML
     void cancelAction(ActionEvent event) {
@@ -67,14 +75,14 @@ public class EditReclamation {
     @FXML
     void editReclamationAction(ActionEvent event) {
         if (isInputValid()) {
-            selectedReclamation.setLibelle(nom.getText());
-            selectedReclamation.setContenu_rec(contenu.getText());
-            selectedReclamation.setDateSinitre(date.getValue().toString());
+           reclamation.setLibelle(nom.getText());
+           reclamation.setContenu_rec(contenu.getText());
+           reclamation.setDateSinitre(date.getValue().toString());
 
             ReclamationService service = new ReclamationService();
 
             try {
-                service.modifierReclamation(selectedReclamation);
+                service.modifierReclamation(reclamation);
 
                 // Afficher une confirmation de la mise à jour réussie
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -111,19 +119,54 @@ public class EditReclamation {
         }
 
 }
-
-
-
-
-    public void initData(Reclamation reclamation) {
-        selectedReclamation = reclamation;
-
-        nom.setText(selectedReclamation.getLibelle());
-        contenu.setText(selectedReclamation.getContenu_rec());
-        LocalDate parsedDate = LocalDate.parse(selectedReclamation.getDateSinitre());
-
-        date.setValue(parsedDate);
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        webEngine = map.getEngine();
+        webEngine.load(getClass().getResource("/map.html").toExternalForm());
     }
+
+    public void setReclamation(Reclamation reclamation) {
+        this.reclamation = reclamation;
+        updateDetails();
+    }
+
+    private void updateDetails() {
+        if (reclamation != null) {
+            nom.setText(reclamation.getLibelle());
+            contenu.setText(reclamation.getContenu_rec());
+            LocalDate parsedDate = LocalDate.parse(reclamation.getDateSinitre());
+            date.setValue(parsedDate);
+            try {
+                Locale.setDefault(Locale.US); // Ensure using dot as decimal separator
+                double latitude = Double.parseDouble(reclamation.getLatitude());
+                double longitude = Double.parseDouble(reclamation.getLongitude());
+                setCoordinates(latitude, longitude);
+            } catch (NumberFormatException e) {
+                System.err.println("Invalid latitude or longitude format: " + e.getMessage());
+            }
+        }
+
+    }
+
+    public void setCoordinates(double latitude, double longitude) {
+        if (webEngine != null) {
+            webEngine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
+                if (newState == Worker.State.SUCCEEDED) {
+                    webEngine.executeScript(String.format("updateMap(%f, %f);", latitude, longitude));
+                }
+            });
+        }
+    }
+    private WebEngine webEngine;
+
+    @FXML
+    private WebView map;
+
+
+
+
+
+
 
     private boolean isInputValid() {
         boolean isValid = true;

@@ -89,11 +89,11 @@ public class listeReclamationBack implements Initializable {
                     HBox hbox = new HBox(0);
                     hbox.setAlignment(Pos.BASELINE_LEFT);
                     Label libelleLabel = new Label(rec.getLibelle());
-                    libelleLabel.setMinWidth(185.0);
-                    libelleLabel.setMaxWidth(185.0);
+                    libelleLabel.setMinWidth(170.0);
+                    libelleLabel.setMaxWidth(170.0);
                     Label datReclamationLabel = new Label(rec.getDateReclamation().toString());
-                    datReclamationLabel.setMinWidth(173.0);
-                    datReclamationLabel.setMaxWidth(173.0);
+                    datReclamationLabel.setMinWidth(160.0);
+                    datReclamationLabel.setMaxWidth(160.0);
                     datReclamationLabel.setStyle("-fx-padding: 2px;");
                     Label dateSinistreLabel = new Label(rec.getDateSinitre().toString());
                     dateSinistreLabel.setMinWidth(150.0);
@@ -121,7 +121,7 @@ public class listeReclamationBack implements Initializable {
                                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherReclamaationBack.fxml"));
                                     Parent root = loader.load();
                                     afficherReclamationBack controller = loader.getController();
-                                    controller.initData(reclamation);
+                                    controller.setReclamation(reclamation);
                                     Stage stage = new Stage();
                                     stage.setScene(new Scene(root));
                                     stage.show();
@@ -149,45 +149,20 @@ public class listeReclamationBack implements Initializable {
                                 } catch (SQLException e) {
                                     throw new RuntimeException(e);
                                 }
-                               if(ind.getMontant()!=0.0){
                                 try {
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/showCompensationAccepted.fxml"));
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/showComBack.fxml"));
                                     Parent root = loader.load();
-
                                     showCompensation controller = loader.getController();
-                                    controller.iniData(ind);
-
+                                    controller.initData(ind);
                                     Stage stage = new Stage();
                                     stage.setScene(new Scene(root));
                                     stage.show();
-
                                     Stage currentStage = (Stage) button.getScene().getWindow();
                                     currentStage.close();
                                 } catch (IOException e) {
                                     e.printStackTrace();
+                                    // Gérer l'erreur si nécessaire
                                 }
-                            }
-                            else{
-
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/showCompensationRefused.fxml"));
-                                   Parent root = null;
-                                   try {
-                                       root = loader.load();
-                                   } catch (IOException e) {
-                                       throw new RuntimeException(e);
-                                   }
-
-                                   showCompensationRefused controller = loader.getController();
-                                    controller.iniData(ind);
-
-                                    Stage stage = new Stage();
-                                    stage.setScene(new Scene(root));
-                                    stage.show();
-
-                                    Stage currentStage = (Stage) button.getScene().getWindow();
-                                    currentStage.close();
-
-                            }
 
                             }
                         });

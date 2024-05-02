@@ -3,6 +3,7 @@ package controller;
 import entity.Indemnissation;
 import entity.Reclamation;
 import javafx.collections.FXCollections;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,10 +30,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Locale;
+import java.util.Objects;
 import java.util.ResourceBundle;
-public class afficherReclamationBack  {
-    private Reclamation selectedReclamation;
+public class afficherReclamationBack  implements Initializable {
+    private Reclamation reclamation;
 
     private Stage stage;
 
@@ -74,47 +78,64 @@ public class afficherReclamationBack  {
     IndemnisationService serviceindemnisation = new IndemnisationService();
     ReclamationService service = new ReclamationService();
     private String[] rep = {"refused", "accepted"};
+    private double latitude;
+    private double longitude;
 
-    public void initData(Reclamation reclamation) {
-        selectedReclamation = reclamation;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        webEngine = map.getEngine();
 
-        label.setText(selectedReclamation.getLibelle());
-        dateReclamation.setText(selectedReclamation.getDateReclamation());
-        dateSinistre.setText(selectedReclamation.getDateSinitre());
-        contenu.setText(selectedReclamation.getContenu_rec());
-        reponse.setText(selectedReclamation.getReponse());
-        path.setText(selectedReclamation.getImage_file());
+        webEngine.load(getClass().getResource("/map.html").toExternalForm());
+        choixReponse.setItems(FXCollections.observableArrayList("refused", "accepted"));
 
-        // Récupérer les coordonnées de latitude et longitude
-        float latitude = Float.parseFloat(selectedReclamation.getLatitude());
-        float longitude = Float.parseFloat((selectedReclamation.getLongitude()));
-        loadMap(latitude, longitude);
+        // Add event handler to show options when clicked
+        choixReponse.setOnMouseClicked(event -> {
+            choixReponse.show();
+        });
     }
 
 
 
 
 
-    private void loadMap(float latitude, float longitude) {
-        WebEngine webEngine = map.getEngine();
-        String html = "<html>"
-                + "<head>"
-                + "<link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet/dist/leaflet.css\" />"
-                + "<script src=\"https://unpkg.com/leaflet/dist/leaflet.js\"></script>"
-                + "</head>"
-                + "<body>"
-                + "<div id=\"map\" style=\"height: 400px;\"></div>"
-                + "<script>"
-                + "var map = L.map('map').setView([" + latitude + ", " + longitude + "], 13);"
-                + "L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {"
-                + "attribution: '© OpenStreetMap contributors'"
-                + "}).addTo(map);"
-                + "L.marker([" + latitude + ", " + longitude + "]).addTo(map)"
-                + ".bindPopup('Sinistre Here').openPopup();"
-                + "</script>"
-                + "</body>"
-                + "</html>";
-        webEngine.loadContent(html);
+
+
+
+
+    public void setReclamation(Reclamation reclamation) {
+        this.reclamation = reclamation;
+        updateDetails();
+    }
+
+    private void updateDetails() {
+        if (reclamation != null) {
+            label.setText(reclamation.getLibelle());
+            dateReclamation.setText(reclamation.getDateReclamation());
+            dateSinistre.setText(reclamation.getDateSinitre());
+            contenu.setText(reclamation.getContenu_rec());
+            reponse.setText(reclamation.getReponse());
+            path.setText(reclamation.getImage_file());
+
+            try {
+                Locale.setDefault(Locale.US); // Ensure using dot as decimal separator
+                double latitude = Double.parseDouble(reclamation.getLatitude());
+                double longitude = Double.parseDouble(reclamation.getLongitude());
+                setCoordinates(latitude, longitude);
+            } catch (NumberFormatException e) {
+                System.err.println("Invalid latitude or longitude format: " + e.getMessage());
+            }
+        }
+
+    }
+
+    public void setCoordinates(double latitude, double longitude) {
+        if (webEngine != null) {
+            webEngine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
+                if (newState == Worker.State.SUCCEEDED) {
+                    webEngine.executeScript(String.format("updateMap(%f, %f);", latitude, longitude));
+                }
+            });
+        }
     }
     @FXML
     void cancelAction(ActionEvent event) {
@@ -130,16 +151,8 @@ public class afficherReclamationBack  {
         }
 
     }
-    @FXML
-    void initialize() {
-        // Initialize choice box with options
-        choixReponse.setItems(FXCollections.observableArrayList("refused", "accepted"));
 
-        // Add event handler to show options when clicked
-        choixReponse.setOnMouseClicked(event -> {
-            choixReponse.show();
-        });
-    }
+
 
 
     @FXML
@@ -147,9 +160,9 @@ public class afficherReclamationBack  {
         String selectedResponse = choixReponse.getValue();
         if (selectedResponse != null) {
             // Mettre à jour la réponse de la réclamation
-            selectedReclamation.setReponse(selectedResponse);
+            reclamation.setReponse(selectedResponse);
 
-            service.modifierReclamationReponse(selectedReclamation);
+            service.modifierReclamationReponse(reclamation);
 
 
             String interfacePath = null;
@@ -173,15 +186,15 @@ public class afficherReclamationBack  {
             alert.setContentText("Success");
 
             alert.showAndWait();
-            selectedReclamation.setIndemnisation(indemnisation);
-            System.out.println(selectedReclamation.getIndemnisation());
-            service.modifierReclamationIndemnisation(selectedReclamation);
+            reclamation.setIndemnisation(indemnisation);
+            System.out.println(reclamation.getIndemnisation());
+            service.modifierReclamationIndemnisation(reclamation);
             if (selectedResponse.equals("accepted")) {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/indemnisationAccepted.fxml"));
                     Parent root = loader.load();
                     IndemnisationAccepted controller = loader.getController();
-                    controller.initData(indemnisation, selectedReclamation); // Transférez la réclamation à l'interface d'édition
+                    controller.initData(indemnisation, reclamation); // Transférez la réclamation à l'interface d'édition
                     // Utilisez votre objet Stage pour afficher la nouvelle interface
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
@@ -198,7 +211,7 @@ public class afficherReclamationBack  {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/indemnisationRefused.fxml"));
                     Parent root = loader.load();
                     indemnisationRefused controller = loader.getController();
-                    controller.initData(indemnisation, selectedReclamation); // Transférez la réclamation à l'interface d'édition
+                    controller.initData(indemnisation, reclamation); // Transférez la réclamation à l'interface d'édition
                     // Utilisez votre objet Stage pour afficher la nouvelle interface
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));
@@ -274,7 +287,16 @@ public class afficherReclamationBack  {
     }
 
 
+    @FXML
+    void initialize() {
+        // Initialize choice box with options
+        choixReponse.setItems(FXCollections.observableArrayList("refused", "accepted"));
+
+        // Add event handler to show options when clicked
+        choixReponse.setOnMouseClicked(event -> {
+            choixReponse.show();
+        });
+    }
+
+
 }
-
-
-

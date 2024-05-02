@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.afficherReclamationBack">
+<AnchorPane prefHeight="816.0" prefWidth="1237.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.afficherReclamationBack">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="778.0" prefWidth="1254.0">
          <children>
@@ -95,7 +95,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <VBox alignment="TOP_CENTER" layoutX="30.0" layoutY="30.0" prefHeight="810.0" prefWidth="253.0" style="-fx-background-color: #051B46;">
+      <VBox alignment="TOP_CENTER" prefHeight="816.0" prefWidth="262.0" style="-fx-background-color: #051B46;">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
