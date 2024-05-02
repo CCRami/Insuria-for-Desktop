@@ -11,7 +11,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class InsuranceService {
+    private static final Logger logger = Logger.getLogger(InsuranceService.class.getName());
 
     private Connection cnx;
     private Statement ste;
@@ -23,21 +27,20 @@ public class InsuranceService {
 
     public void addInsurance(Insurance insurance) {
         String sql = "INSERT INTO assurance (name_ins, montant, doa, cat_a_id, ins_image, pol_id) VALUES (?, ?, ?, ?, ?, ?)";
-        try {
-            pst = cnx.prepareStatement(sql);
+        try (PreparedStatement pst = cnx.prepareStatement(sql)) {
             pst.setString(1, insurance.getName_ins());
             pst.setFloat(2, insurance.getMontant());
             pst.setString(5, insurance.getIns_image());
             pst.setInt(4, insurance.getCatins_id().getId());
             pst.setInt(6, insurance.getPol_id().getId());
 
-            // Convert ArrayList<String> to JSON string
             String doaJson = convertToJson(insurance.getDoa());
-            System.out.println("DOA JSON before insertion: " + doaJson); // Debug statement
+            logger.info("DOA JSON before insertion: " + doaJson); // Logging statement
             pst.setString(3, doaJson);
 
             pst.executeUpdate();
         } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Error adding insurance", e);
             throw new RuntimeException(e);
         }
     }
@@ -120,38 +123,35 @@ public class InsuranceService {
     public Insurance getInsuranceById(int insuranceId) {
         try {
             String sql = "SELECT *, doa FROM assurance WHERE id = ?";
-            pst = cnx.prepareStatement(sql);
-            pst.setInt(1, insuranceId);
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                InsuranceCatService insuranceCatService = new InsuranceCatService();
-                InsuranceCategory cat = insuranceCatService.getInsuranceCategoryById(rs.getInt("cat_a_id"));
+            try (PreparedStatement pst = cnx.prepareStatement(sql)) {
+                pst.setInt(1, insuranceId);
+                try (ResultSet rs = pst.executeQuery()) {
+                    if (rs.next()) {
+                        InsuranceCatService insuranceCatService = new InsuranceCatService();
+                        InsuranceCategory cat = insuranceCatService.getInsuranceCategoryById(rs.getInt("cat_a_id"));
 
-                policeService policeService = new policeService();
-                police pol = policeService.getPoliceById(rs.getInt("pol_id"));
+                        policeService policeService = new policeService();
+                        police pol = policeService.getPoliceById(rs.getInt("pol_id"));
 
-                // Debugging starts here
-                // Check if the "doa" field is null in the database
-                String doaJson = rs.getString("doa");
-                System.out.println("DOA JSON from database: " + doaJson); // Debug statement
-                ArrayList<String> doa = null;
-                if (doaJson != null) {
-                    // Parse JSON string back to ArrayList<String>
-                    doa = parseJson(doaJson);
-                    System.out.println("Parsed DOA: " + doa); // Debug statement
+                        String doaJson = rs.getString("doa");
+                        logger.info("DOA JSON from database: " + doaJson); // Logging statement
+                        ArrayList<String> doa = null;
+                        if (doaJson != null) {
+                            doa = parseJson(doaJson);
+                            logger.info("Parsed DOA: " + doa); // Logging statement
+                        }
+
+                        return new Insurance(rs.getInt("id"), rs.getString("name_ins"), rs.getFloat("montant"),
+                                rs.getString("ins_image"), doa, cat, pol);
+                    }
                 }
-                // Debugging ends here
-
-                return new Insurance(rs.getInt("id"), rs.getString("name_ins"), rs.getFloat("montant"),
-                        rs.getString("ins_image"), doa, cat, pol);
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Print the exception stack trace
-            throw new RuntimeException(e);
+            logger.log(Level.SEVERE, "Error getting insurance by ID", e);
+            // throw new CustomException("Error getting insurance by ID", e); // You can define CustomException
         }
-        return null; // Return null if insurance with the given ID is not found
+        return null;
     }
-
 
 
 
@@ -177,6 +177,33 @@ public class InsuranceService {
         }
         return dynamicFields;
     }
+
+    public List<Insurance> getInsurancesByCategory(InsuranceCategory category) {
+        List<Insurance> insurances = new ArrayList<>();
+        String sql = "SELECT * FROM assurance WHERE cat_a_id = ?";
+        try (Connection cnx = DataSource.getInstance().getConnection();
+             PreparedStatement pst = cnx.prepareStatement(sql)) {
+            pst.setInt(1, category.getId());
+            try (ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    // Assuming you already have methods to fetch InsuranceCategory and police details
+                    InsuranceCatService insuranceCatService = new InsuranceCatService();
+                    InsuranceCategory cat = insuranceCatService.getInsuranceCategoryById(rs.getInt("cat_a_id"));
+
+                    policeService policeService = new policeService();
+                    police pol = policeService.getPoliceById(rs.getInt("pol_id"));
+
+                    // Add insurance to the list
+                    insurances.add(new Insurance(rs.getInt("id"), rs.getString("name_ins"), rs.getFloat("montant"),
+                            rs.getString("ins_image"), null, cat, pol));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return insurances;
+    }
+
 
 
 

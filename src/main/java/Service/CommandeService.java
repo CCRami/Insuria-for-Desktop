@@ -38,7 +38,7 @@ public class CommandeService {
 
             // Set doa_com_id, user_id, and ins_value
             pst.setInt(5, commande.getDoa_com_id().getId());
-            pst.setInt(6, 1); // Assuming user_id is 1 for now
+            pst.setInt(6, 3); // Assuming user_id is 1 for now
             pst.setFloat(7, insValue);
 
             pst.executeUpdate();
@@ -121,6 +121,22 @@ public class CommandeService {
             // You might want to log the error or handle it according to your application's requirements
         }
         return dynamicFields;
+    }
+    public static List<Integer> getUserIdsByInsuranceId(int insuranceId) {
+        List<Integer> userIds = new ArrayList<>();
+        String sql = "SELECT user_id FROM commande WHERE doa_com_id = ?";
+        try (Connection cnx = DataSource.getInstance().getConnection();
+             PreparedStatement pst = cnx.prepareStatement(sql)) {
+            pst.setInt(1, insuranceId);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                int userId = rs.getInt("user_id");
+                userIds.add(userId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle or log the exception
+        }
+        return userIds;
     }
 
 }

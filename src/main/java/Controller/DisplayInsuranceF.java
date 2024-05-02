@@ -103,7 +103,7 @@ public class DisplayInsuranceF implements Initializable {
             try {
                 Node anchorPane = fxmlLoader.load();
                 InsurancesList insl = fxmlLoader.getController();
-                System.out.println("Insurance: " + ins); // Debug: Print details of each insurance
+
                 insl.setData(ins);
 
                 if (column == 3) {

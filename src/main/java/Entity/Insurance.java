@@ -30,6 +30,10 @@ public class Insurance {
         this.pol_id = pol_id;
     }
 
+    public Insurance() {
+
+    }
+
     public int getId() {
         return id;
     }

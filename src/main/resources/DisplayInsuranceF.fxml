@@ -29,7 +29,7 @@
                     </children>
                 </HBox>
                 <VBox spacing="10" alignment="CENTER">
-                    <FlowPane fx:id="categoryFlowPane" prefWidth="1000" styleClass="search-button"  stylesheets="@style/styleafficher.css">
+                    <FlowPane fx:id="categoryFlowPane" prefWidth="1000" styleClass="buttonn"  stylesheets="@style/dashboardDesign.css">
                         <!-- Add buttons for categories -->
                     </FlowPane>
                     <HBox spacing="10" alignment="CENTER">

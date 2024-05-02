@@ -10,7 +10,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="10" prefHeight="789.0" prefWidth="1563.0" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gemini.InsuranceForm">
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.CheckBox?>
+<GridPane hgap="10" prefHeight="789.0" prefWidth="1563.0" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InsuranceForm">
 
     <Label text="What is your age?" GridPane.rowIndex="4" />
     <ComboBox fx:id="ageComboBox" promptText="Select Age" GridPane.columnIndex="2" GridPane.rowIndex="4">
@@ -36,6 +38,23 @@
             </FXCollections>
         </items>
     </ComboBox>
+    <Label text="How many dependents do you have?" GridPane.rowIndex="2" />
+    <ComboBox fx:id="dependentsComboBox" promptText="Select Dependents" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="0" />
+                <String fx:value="1" />
+                <String fx:value="2" />
+                <!-- Add more options as needed -->
+            </FXCollections>
+        </items>
+    </ComboBox>
+
+    <Label text="What is your occupation?" GridPane.rowIndex="3" />
+    <TextField fx:id="occupationTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+    <Label text="Do you smoke?" GridPane.rowIndex="4" />
+    <CheckBox fx:id="smokerCheckBox" GridPane.columnIndex="1" GridPane.rowIndex="4" />
     <Button onAction="#handleSubmitButton" text="Submit" GridPane.columnIndex="2" GridPane.rowIndex="5" />
    <columnConstraints>
       <ColumnConstraints />
