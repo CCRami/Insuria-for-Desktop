@@ -159,7 +159,7 @@ public class Showoffer implements Initializable {
         allOffres = FXCollections.observableArrayList(offreService.getAll());
         tab.setItems(allOffres);
 
-        sortComboBox.getItems().addAll("Avantage (A-Z)", "Duration (A-Z)");
+        sortComboBox.getItems().addAll("Avantage (A-Z)", "Duration (LOW-HIGH)");
         sortComboBox.setValue("Avantage (A-Z)");
 
         sortComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {

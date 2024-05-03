@@ -73,6 +73,12 @@
                                 <ImageView fx:id="offreimg" fitHeight="200.0" fitWidth="250.0" />
                             </children>
                         </HBox>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Offer QR Code:">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                        </Text>
+                        <ImageView fx:id="qrCodeImageView" fitHeight="125.0" fitWidth="125.0" layoutX="88.0" layoutY="112.0" />
 
 
 
