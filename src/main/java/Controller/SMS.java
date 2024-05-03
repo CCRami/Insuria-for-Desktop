@@ -9,7 +9,7 @@ public class SMS {
 
     public static final String ACCOUNT_SID = "";
     public static final String AUTH_TOKEN = "";
-    public static final String TWILIO_PHONE_NUMBER = "+12314278194";
+    public static final String TWILIO_PHONE_NUMBER = "";
 
     @FXML
     private TextField phoneNumberField;
