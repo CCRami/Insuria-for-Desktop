@@ -1,0 +1,16 @@
+/* Set background color and text color for light mode */
+.root {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+}
+
+/* Customize specific components for light mode */
+.toggle-button {
+    /* Example: Customize toggle button appearance */
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #000000;
+    -fx-text-fill: #000000;
+}
+
+/* Customize other UI components for light mode */
+/* Add more styles for specific components as needed */
