@@ -23,11 +23,8 @@
 
             <!-- Form Section -->
             <VBox alignment="CENTER" spacing="5">
-                <Label text="Enter Phone Number:" />
-                <TextField fx:id="phoneNumberField" maxWidth="150.0" style="-fx-font-size: 12px; -fx-pref-width: 200px; -fx-pref-height: 30px; -fx-padding: 5px;" />
-
-                <Label text="Enter Message:" />
-                <TextField fx:id="messageField" maxHeight="200.0" maxWidth="600.0" minHeight="100.0" style="-fx-font-size: 12px; -fx-pref-width: 200px; -fx-pref-height: 30px; -fx-padding: 5px;" />
+                <TextField fx:id="phoneNumberField" />
+                <TextField fx:id="messageField" />
 
                 <Button onAction="#sendSMS" style="-fx-font-size: 14px;" text="Send SMS" />
             </VBox>

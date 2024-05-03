@@ -24,7 +24,7 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-
+import Controller.Mail;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -92,7 +92,8 @@ public class Addoffer {
 
         OffreService service = new OffreService();
         service.AddOff(off);
-
+        String emailValue = "minoubhs@gmail.com";
+        Mail.sendConfirmationEmail(emailValue,off);
 
         advantage.clear();
         condition.clear();
@@ -104,7 +105,8 @@ public class Addoffer {
         alert.setHeaderText(null);
         alert.setContentText("Offer added successfully");
         alert.showAndWait();
-
+        SMS sms = new SMS();
+        sms.sendSMSExternally();
 
     }
 

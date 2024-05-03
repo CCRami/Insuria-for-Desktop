@@ -70,6 +70,7 @@ public class of {
 
         // Generate and display QR code for the offer
         generateAndDisplayQRCode(offre);
+
     }
 
     public void generateAndDisplayQRCode(Offre offre) {
