@@ -419,6 +419,15 @@ and open the template in the editor.
     -fx-pref-width: 9em;
     -fx-pref-height: 3em;
 }
+.chart-pie-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.pie-chart {
+    -fx-pie-label-visible: true; /* Pour rendre les labels visibles */
+}
+
 
 
 

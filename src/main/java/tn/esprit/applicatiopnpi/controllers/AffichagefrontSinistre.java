@@ -1,8 +1,10 @@
 package tn.esprit.applicatiopnpi.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -10,7 +12,13 @@ import javafx.scene.layout.VBox;
 import tn.esprit.applicatiopnpi.models.Sinistre;
 import tn.esprit.applicatiopnpi.services.SinistreService;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AffichagefrontSinistre {
     @FXML
@@ -19,35 +27,39 @@ public class AffichagefrontSinistre {
     private Pagination pagination;
 
     private SinistreService sinistreService = new SinistreService();
+    private List<Sinistre> allSinistres = new ArrayList<>();
     private static final int ITEMS_PER_PAGE = 3;
+    @FXML
+    private TextField searchField;
 
     @FXML
     public void initialize() {
-        setupPagination();
+        loadAllSinistres();
     }
 
-    private void setupPagination() {
-        List<Sinistre> sinistres = sinistreService.getAll();
+    private void loadAllSinistres() {
+        allSinistres = sinistreService.getAll();
+        updatePagination(allSinistres);
+    }
+    private void updatePagination(List<Sinistre> sinistres) {
         int pageCount = (int) Math.ceil(sinistres.size() / (double) ITEMS_PER_PAGE);
-        pagination.setPageCount(pageCount);
-        pagination.setPageFactory(this::createPage);
+        pagination.setPageCount(pageCount == 0 ? 1 : pageCount);
+        pagination.setPageFactory(pageIndex -> createPage(pageIndex, sinistres));
     }
 
-    private VBox createPage(int pageIndex) {
-        List<Sinistre> sinistres = sinistreService.getAll();
+
+    private VBox createPage(int pageIndex, List<Sinistre> sinistres) {
         int startIndex = pageIndex * ITEMS_PER_PAGE;
         int endIndex = Math.min(startIndex + ITEMS_PER_PAGE, sinistres.size());
         VBox box = new VBox(10);
         HBox currentHBox = null;
         for (int i = startIndex; i < endIndex; i++) {
-            if ((i % 3) == 0) {
-                currentHBox = new HBox(20); // 20 is the spacing between each VBox
+            if (i % 3 == 0 || currentHBox == null) {
+                currentHBox = new HBox(20);
                 box.getChildren().add(currentHBox);
             }
             VBox sinistreBox = createSinistreCard(sinistres.get(i));
-            if (currentHBox != null) {
-                currentHBox.getChildren().add(sinistreBox);
-            }
+            currentHBox.getChildren().add(sinistreBox);
         }
         return box;
     }
@@ -80,5 +92,29 @@ public class AffichagefrontSinistre {
         card.setOnMouseExited(e -> contentBox.setVisible(false));
 
         return card;
+    }
+
+    @FXML
+    private void handleSearch(ActionEvent event) {
+        String searchText = searchField.getText().trim();
+        if (!searchText.isEmpty()) {
+            List<Sinistre> filteredSinistres = allSinistres.stream()
+                    .filter(sinistre -> sinistre.getSin_name().toLowerCase().contains(searchText.toLowerCase())
+                            || sinistre.getDescription_sin().toLowerCase().contains(searchText.toLowerCase()))
+                    .collect(Collectors.toList());
+            if (filteredSinistres.isEmpty()) {
+                logUnfoundSearch(searchText);
+            }
+            updatePagination(filteredSinistres);
+        } else {
+            updatePagination(allSinistres);
+        }
+    }
+    private void logUnfoundSearch(String searchQuery) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("unfoundSearches.txt", true))) {
+            writer.write(LocalDateTime.now() + ": " + searchQuery + "\n");
+        } catch (IOException e) {
+            System.err.println("Error writing to log file: " + e.getMessage());
+        }
     }
 }

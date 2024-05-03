@@ -116,6 +116,20 @@
                         <Insets right="88.0" />
                     </VBox.margin>
                 </HBox>
+                <HBox layoutX="30.0" layoutY="438.0" onMouseClicked="#showAdmin" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                    <children>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@images/probleme.png" />
+                            </image>
+                        </ImageView>
+                        <Label prefHeight="35.0" prefWidth="202.0" text="Admin" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
             </children>
             <padding>
                 <Insets left="20.0" right="20.0" />

@@ -8,6 +8,7 @@ tn\esprit\applicatiopnpi\services\Iservice.class
 tn\esprit\applicatiopnpi\controllers\EditPolice.class
 tn\esprit\applicatiopnpi\test\HelloApplication.class
 tn\esprit\applicatiopnpi\controllers\EditPolice$1.class
+tn\esprit\applicatiopnpi\controllers\AdminView$1.class
 tn\esprit\applicatiopnpi\services\PoliceService.class
 tn\esprit\applicatiopnpi\controllers\AddPolice$1.class
 tn\esprit\applicatiopnpi\models\Police.class
@@ -18,6 +19,7 @@ tn\esprit\applicatiopnpi\test\Main.class
 tn\esprit\applicatiopnpi\controllers\AffichagePolice$1.class
 tn\esprit\applicatiopnpi\controllers\AffichageSinistre$1.class
 tn\esprit\applicatiopnpi\services\SinistreService.class
+tn\esprit\applicatiopnpi\controllers\AdminView.class
 tn\esprit\applicatiopnpi\controllers\AddPolice.class
 tn\esprit\applicatiopnpi\controllers\EditSinister.class
 tn\esprit\applicatiopnpi\controllers\AffichagefrontPolice$FooterPageEvent.class

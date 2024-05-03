@@ -2,6 +2,9 @@ package tn.esprit.applicatiopnpi.services;
 import tn.esprit.applicatiopnpi.models.Police;
 import tn.esprit.applicatiopnpi.models.Sinistre;
 import tn.esprit.applicatiopnpi.utils.MyDatabase;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,9 +12,14 @@ import java.util.List;
 public class PoliceService implements Iservice<Police> {
 
     private Connection connection;
+    private EntityManager entityManager;
+
 
     public PoliceService() {
         connection = MyDatabase.getInstance().getConnection();
+    }
+    public PoliceService(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
     public void add(Police p) {
         String req = "INSERT INTO police(police_name, description_police, sinistre_id) VALUES (?, ?, ?)";
@@ -124,52 +132,36 @@ public class PoliceService implements Iservice<Police> {
 
         return policies;
     }
-    /**
-     * Gets the total number of police records in the database.
-     * @return the total number of police records.
-     */
-    public int getNumberOfPolicies() {
-        int count = 0;
-        String sql = "SELECT COUNT(*) FROM police";
-        try (Statement ste = connection.createStatement(); ResultSet res = ste.executeQuery(sql)) {
-            if (res.next()) {
-                count = res.getInt(1);
+
+
+
+
+
+    public List<Object[]> countPolicesBySinistre() {
+        // Check if connection is not initialized
+        if (this.connection == null) {
+            throw new IllegalStateException("Database connection has not been initialized");
+        }
+
+        List<Object[]> results = new ArrayList<>();
+        String sql = "SELECT s.sin_name, COUNT(p.id) as count FROM police p " +
+                "INNER JOIN sinistre s ON p.sinistre_id = s.id " +
+                "GROUP BY s.sin_name";
+
+        try (Statement stmt = this.connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                String sinistreName = rs.getString("sin_name");
+                int count = rs.getInt("count");
+                results.add(new Object[]{sinistreName, count});
             }
         } catch (SQLException e) {
+            System.err.println("SQL Error: " + e.getMessage());
             e.printStackTrace();
         }
-        return count;
+        return results;
     }
-
-    public List<Police> getPoliceByPage(int pageIndex, int pageSize) {
-        List<Police> polices = new ArrayList<>();
-        String sql = "SELECT * FROM police ORDER BY id LIMIT ? OFFSET ?";
-        int offset = pageIndex * pageSize;
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, pageSize);
-            stmt.setInt(2, offset);
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    polices.add(mapRowToPolice(rs));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return polices;
-    }
-    private Police mapRowToPolice(ResultSet rs) throws SQLException {
-        Police police = new Police();
-        police.setId(rs.getInt("id"));
-        police.setPoliceName(rs.getString("police_name"));
-        police.setDescriptionPolice(rs.getString("description_police"));
-        Sinistre sinistre = new Sinistre();
-        sinistre.setSin_name(rs.getString("sin_name"));
-        sinistre.setDescription_sin(rs.getString("description_sin"));
-        police.setSinistre(sinistre);
-        return police;
-    }
-
 
 
 
