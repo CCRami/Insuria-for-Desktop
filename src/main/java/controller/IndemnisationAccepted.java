@@ -1,8 +1,8 @@
 package controller;
 
 
-import entity.Indemnissation;
-import entity.Reclamation;
+import Entity.Indemnissation;
+import Entity.Reclamation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +28,7 @@ private Indemnissation  selectedIndemnisation;
 
     @FXML
     private Label label;
-private Reclamation rec;
+private double value;
 
     @FXML
     private DatePicker date;
@@ -191,10 +191,11 @@ private Reclamation rec;
     }
 
 
-    public void initData(Indemnissation indemnisation,Reclamation rec) throws SQLException {
+    public void initData(Indemnissation indemnisation,Reclamation rec,double ins_value) throws SQLException {
        selectedIndemnisation = indemnisation;
        selectedReclaamtion=rec;
-        montant.setText(String.valueOf(selectedIndemnisation.getMontant()));
+       float f =(float)ins_value;
+        montant.setText(String.valueOf(f));
 label.setText(selectedReclaamtion.getReponse());
         beneficitaire.setText(selectedIndemnisation.getBeneficitaire());
         LocalDate parsedDate = LocalDate.parse(selectedIndemnisation.getDate());

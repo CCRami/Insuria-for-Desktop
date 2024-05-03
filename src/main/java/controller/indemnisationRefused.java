@@ -1,8 +1,8 @@
 package controller;
 
 
-import entity.Indemnissation;
-import entity.Reclamation;
+import Entity.Indemnissation;
+import Entity.Reclamation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +41,7 @@ private Reclamation selectedReclamation;
     @FXML
     void enregistreRefusedAction(ActionEvent event) throws IOException {
         if(itsCorrect()){
+            selectedIndemnisation.setMontant(0);
             selectedIndemnisation.setBeneficitaire(beneficitaire.getText());
             IndemnisationService service = new IndemnisationService();
 
@@ -136,7 +137,7 @@ private Reclamation selectedReclamation;
 
     public void initData(Indemnissation indemnisation,Reclamation rec) {
         selectedIndemnisation = indemnisation;
-selectedReclamation=rec;
+          selectedReclamation=rec;
 
         beneficitaire.setText(selectedIndemnisation.getBeneficitaire());
         label.setText(selectedReclamation.getReponse());

@@ -1,8 +1,8 @@
 package services;
 
 
-import entity.Indemnissation;
-import entity.Reclamation;
+import Entity.Indemnissation;
+import Entity.Reclamation;
 import util.DataSource;
 
 import java.sql.*;

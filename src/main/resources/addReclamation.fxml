@@ -88,6 +88,7 @@
                                  <Font size="20.0" />
                               </font>
                            </Text>
+                           <Text fx:id="txt" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                            <TextField fx:id="contenu" prefHeight="102.0" prefWidth="246.0" promptText="enter a Content" stylesheets="@style/styleafficher.css">
                               <VBox.margin>
                                  <Insets left="100.0" right="150.0" />

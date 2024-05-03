@@ -1,4 +1,4 @@
-package entity;
+package Entity;
 
 public class Reclamation {
 
@@ -13,20 +13,19 @@ public class Reclamation {
     private  String latitude ;
     private String longitude;
     private String image_file ;
+    private Commande commande ;
+
+    public Commande getCommande() {
+        return commande;
+    }
+
+    public void setCommande(Commande commande) {
+        this.commande = commande;
+    }
 
     public Reclamation() {
     }
 
-    public Reclamation(String libelle, String contenu_rec, String reponse, String dateSinitre, String dateReclamation,  String latitude, String longitude) {
-        this.libelle = libelle;
-        this.contenu_rec = contenu_rec;
-        this.reponse = reponse;
-        this.dateSinitre = dateSinitre;
-        this.dateReclamation = dateReclamation;
-
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
 
     public Reclamation(String libelle, String contenu_rec, String reponse, String dateSinitre, String dateReclamation, String latitude, String longitude, String image_file) {
         this.libelle = libelle;
@@ -37,6 +36,7 @@ public class Reclamation {
         this.latitude = latitude;
         this.longitude = longitude;
         this.image_file = image_file;
+
     }
 
     public String getLatitude() {

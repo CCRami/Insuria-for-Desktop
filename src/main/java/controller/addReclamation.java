@@ -1,11 +1,11 @@
 package controller;
 
 
-import entity.Reclamation;
+import Entity.Commande;
+import Entity.Reclamation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.web.HTMLEditorSkin;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.ReclamationService;
@@ -35,7 +36,9 @@ public class addReclamation {
     private Button add;
     @FXML
     private TextField imagePath;
-
+    @FXML
+    private Text txt;
+private Commande cmd;
     @FXML
     private BorderPane borderPane;
 
@@ -75,6 +78,10 @@ public class addReclamation {
         assert nom != null : "fx:id=\"nom\" was not injected: check your FXML file 'addReclamation.fxml'.";
 
     }
+    public void initData(Commande commande ){
+        this.cmd=commande;
+txt.setText(String.valueOf(cmd.getId()));
+    }
     @FXML
     void ajouterReclamationAction(ActionEvent event) throws IOException {
 
@@ -82,7 +89,7 @@ public class addReclamation {
             String label=nom.getText();
             String contenuRec = contenu.getText();
             String dateSinistre = date.getValue().toString();
-         String lon =longitude.getText();
+             String lon =longitude.getText();
             String lan =latitude.getText();
             SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
             String dateReclamation = format.format(new Date());
@@ -90,7 +97,8 @@ String image =(imagePath.getText().replace("\\", "/").trim());
             // Créez votre objet Reclamation avec les données récupérées
             Reclamation reclamation = new Reclamation(label,contenuRec, "Currently being processed",dateSinistre, dateReclamation,lan,lon,image);
 
-            // Créez une instance de votre service de Reclamation
+         reclamation.setCommande(cmd);
+
             ReclamationService service = new ReclamationService();
 
             // Ajoutez la réclamation à votre base de données

@@ -7,6 +7,6 @@ module com.example.insuria {
     exports org.example;
     exports controller;
     opens controller;
-    opens entity;
+    opens Entity;
 
 }

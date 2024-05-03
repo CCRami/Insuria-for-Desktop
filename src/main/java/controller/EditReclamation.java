@@ -1,26 +1,29 @@
 package controller;
 
-import entity.Reclamation;
-import javafx.collections.FXCollections;
+import Entity.Reclamation;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.ReclamationService;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -48,6 +51,11 @@ public class EditReclamation implements Initializable {
 
     @FXML
     private Text errorDate;
+    @FXML
+    private TextField latitude;
+
+    @FXML
+    private TextField longitude;
 
     @FXML
     private Text errorLabel;
@@ -78,7 +86,9 @@ public class EditReclamation implements Initializable {
            reclamation.setLibelle(nom.getText());
            reclamation.setContenu_rec(contenu.getText());
            reclamation.setDateSinitre(date.getValue().toString());
-
+               reclamation.setLatitude(latitude.getText());
+               reclamation.setLongitude(longitude.getText());
+                  reclamation.setImage_file(imagepath.getText());
             ReclamationService service = new ReclamationService();
 
             try {
@@ -113,6 +123,10 @@ public class EditReclamation implements Initializable {
             nom.clear();
             contenu.clear();
             date.getEditor().clear();
+            latitude.clear();
+            longitude.clear();
+            errorLatitude.setText("");
+            errorLongitude.setText("");
             errorContenu.setText("");
             errorDate.setText("");
             errorLabel.setText("");
@@ -136,7 +150,19 @@ public class EditReclamation implements Initializable {
             contenu.setText(reclamation.getContenu_rec());
             LocalDate parsedDate = LocalDate.parse(reclamation.getDateSinitre());
             date.setValue(parsedDate);
+            latitude.setText(reclamation.getLatitude());
+           longitude.setText(reclamation.getLongitude());
+           imagepath.setText(reclamation.getImage_file());
             try {
+                Image image = new Image(new File(reclamation.getImage_file()).toURI().toString());
+                imageV.setImage(image);
+            } catch (Exception e) {
+                // Handle the exception if the image cannot be loaded
+                System.err.println("Failed to load image: " + e.getMessage());
+                imageV.setImage(null); // Clear the image view
+            }
+
+        try{
                 Locale.setDefault(Locale.US); // Ensure using dot as decimal separator
                 double latitude = Double.parseDouble(reclamation.getLatitude());
                 double longitude = Double.parseDouble(reclamation.getLongitude());
@@ -161,11 +187,40 @@ public class EditReclamation implements Initializable {
 
     @FXML
     private WebView map;
+    @FXML
+    private ImageView imageV;
+
+    @FXML
+    private Text imagepath;
+
+
+    @FXML
+    void  changerIMage(MouseEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Image File");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            imagepath.setText(file.getAbsolutePath().replace("\\", "/"));
+            try {
+                Image image = new Image(file.toURI().toURL().toExternalForm());
+                imageV.setImage(image);
+            } catch (Exception e) {
+                imagepath.setText("");
+            }
+        }
+    }
 
 
 
 
 
+
+    @FXML
+    private Text errorLatitude;
+
+    @FXML
+    private Text errorLongitude;
 
 
     private boolean isInputValid() {
@@ -197,6 +252,20 @@ public class EditReclamation implements Initializable {
         } else {
             // Clear the error message
             errorDate.setText("");
+        }
+        if (latitude.getText().isEmpty() || !latitude.getText().matches("\\d+\\.\\d+")) {
+            errorLatitude.setText("Latitude must be a number with .");
+            isValid = false;
+        } else {
+            errorLatitude.setText("");
+        }
+
+        // Validate longitude
+        if (longitude.getText().isEmpty() || !longitude.getText().matches("\\d+\\.\\d+")) {
+            errorLongitude.setText("Longitude must be a number with .");
+            isValid = false;
+        } else {
+            errorLongitude.setText("");
         }
         return isValid;
 

@@ -1,6 +1,6 @@
 package controller;
-import entity.Indemnissation;
-import entity.Reclamation;
+import Entity.Indemnissation;
+import Entity.Reclamation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

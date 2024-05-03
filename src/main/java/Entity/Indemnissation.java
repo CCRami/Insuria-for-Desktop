@@ -1,4 +1,4 @@
-package entity;
+package Entity;
 
 public class Indemnissation {
     private int id;

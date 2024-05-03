@@ -1,13 +1,8 @@
 package org.example;
 
-import entity.Indemnissation;
-import entity.Reclamation;
-import services.IndemnisationService;
-import services.ReclamationService;
 import util.DataSource;
 
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

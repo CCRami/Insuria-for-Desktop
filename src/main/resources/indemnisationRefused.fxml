@@ -60,7 +60,7 @@
          </children>
       </AnchorPane>
       <Label fx:id="label" layoutX="109.0" layoutY="131.0" text="Label" textFill="WHITE" />
-      <VBox alignment="TOP_CENTER" layoutX="-1.0" prefHeight="860.0" prefWidth="306.0" style="-fx-background-color: #051B46;">
+      <VBox alignment="TOP_CENTER" layoutX="-1.0" prefHeight="766.0" prefWidth="306.0" style="-fx-background-color: #051B46;">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>

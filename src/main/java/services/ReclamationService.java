@@ -1,6 +1,7 @@
 package services;
 
-import entity.Reclamation;
+import Entity.Commande;
+import Entity.Reclamation;
 import util.DataSource;
 
 import java.sql.*;
@@ -16,7 +17,7 @@ public class ReclamationService implements IServiceReclamation<Reclamation>{
     }
 @Override
     public void addReclamation(Reclamation rec)throws SQLException {
-    String sql = " insert into Reclamation (libelle,contenu_rec,reponse,dateSinitre,dateReclamation,latitude,longitude,image_file) values('" + rec.getLibelle() + "','" + rec.getContenu_rec() + "','" + rec.getReponse() + "','" + rec.getDateSinitre() + "','" + rec.getDateReclamation() +  "','" +rec.getLatitude()+ "','" +rec.getLongitude()+ "','" +rec.getImage_file()+"')";
+    String sql = " insert into Reclamation (libelle,contenu_rec,reponse,dateSinitre,dateReclamation,latitude,longitude,image_file,command_id) values('" + rec.getLibelle() + "','" + rec.getContenu_rec() + "','" + rec.getReponse() + "','" + rec.getDateSinitre() + "','" + rec.getDateReclamation() +  "','" +rec.getLatitude()+ "','" +rec.getLongitude()+ "','" +rec.getImage_file()+"','"+rec.getCommande().getId()+"')";
     try {
         ste = cnx.createStatement();
         ste.executeUpdate(sql);
@@ -27,14 +28,15 @@ public class ReclamationService implements IServiceReclamation<Reclamation>{
 }
     @Override
     public void modifierReclamation(Reclamation reclamation) throws SQLException {
-        String req = "UPDATE reclamation SET libelle=?, contenu_rec=?, dateSinitre=?,latitude=?,longitude =? WHERE id=?";
+        String req = "UPDATE reclamation SET libelle=?, contenu_rec=?, dateSinitre=?,latitude=?,longitude =?,image_file=? WHERE id=?";
         try (PreparedStatement pre = cnx.prepareStatement(req)) {
             pre.setString(1, reclamation.getLibelle());
             pre.setString(2, reclamation.getContenu_rec());
             pre.setString(3, reclamation.getDateSinitre());
-            pre.setString(3, reclamation.getLatitude());
-            pre.setString(3, reclamation.getLongitude());
-            pre.setInt(4, reclamation.getId());
+            pre.setString(4, reclamation.getLatitude());
+            pre.setString(5, reclamation.getLongitude());
+            pre.setString(6, reclamation.getImage_file());
+            pre.setInt(7, reclamation.getId());
             int row = pre.executeUpdate();
             if (row > 0) {
                 System.out.println("Réclamation avec l'identifiant : " + reclamation.getId() + " mise à jour avec succès !");
@@ -206,6 +208,55 @@ public class ReclamationService implements IServiceReclamation<Reclamation>{
             }
         }
         return reclamationsRefusees;
+    }
+    @Override
+    public double afficherUneCommande(int id_cmd) throws SQLException {
+        double ins_value = 0.0; // Initialiser à 0 pour le cas où aucune valeur n'est trouvée
+        String req = "SELECT insvalue FROM commande WHERE id = ?";
+        try (PreparedStatement pre = cnx.prepareStatement(req)) {
+            pre.setInt(1, id_cmd); // Utiliser le bon nom du paramètre
+            try (ResultSet rs = pre.executeQuery()) {
+                if (rs.next()) {
+                    ins_value = rs.getDouble("insvalue"); // Récupérer la valeur 'insvalue'
+                }
+            }
+        }
+        return ins_value;
+    }
+    @Override
+    public Commande afficher(int id) throws SQLException {
+        Commande indemnisation = null; // Initialize to null in case no indemnisation is found
+        String req = "SELECT * FROM commande WHERE id = ?";
+        try (PreparedStatement pre = cnx.prepareStatement(req)) {
+            pre.setInt(1, id);
+            try (ResultSet rs = pre.executeQuery()) {
+                if (rs.next()) {
+                    indemnisation = new Commande();
+                    indemnisation.setId(rs.getInt("id"));
+
+                    indemnisation.setIns_value(rs.getFloat("insvalue"));
+                }
+            }
+        }
+        return indemnisation;
+    }
+    @Override
+    public int select_id_cmd(Reclamation reclamation) throws SQLException {
+        String req = "SELECT command_id FROM reclamation WHERE id = ?";
+        try (PreparedStatement pre = cnx.prepareStatement(req)) {
+            pre.setInt(1, reclamation.getId());
+            try (ResultSet rs = pre.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("command_id");
+                } else {
+                    // Gérer le cas où aucun résultat n'est trouvé
+                    return -1; // Ou une autre valeur par défaut appropriée
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
 }

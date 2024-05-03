@@ -1,7 +1,9 @@
 package services;
 
 
-import entity.Reclamation;
+import Entity.Commande;
+import Entity.Indemnissation;
+import Entity.Reclamation;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -24,4 +26,13 @@ public interface IServiceReclamation<T> {
     int selectId(Reclamation reclamation) throws SQLException;
 
     List<Reclamation> afficherReclamationsRefusees() throws SQLException;
+
+
+
+
+    double afficherUneCommande(int id_cmd) throws SQLException;
+
+    Commande afficher(int id) throws SQLException;
+
+    int select_id_cmd(Reclamation reclamation) throws SQLException;
 }

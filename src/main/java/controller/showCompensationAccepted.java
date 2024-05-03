@@ -1,6 +1,6 @@
 package controller;
 
-import entity.Indemnissation;
+import Entity.Indemnissation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

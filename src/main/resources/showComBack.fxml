@@ -12,10 +12,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.showCompensation">
+<AnchorPane prefHeight="721.0" prefWidth="1101.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.showCompensation">
    <children>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="729.0" prefWidth="1005.0">
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="696.0" prefWidth="1091.0">
          <children>
             <AnchorPane layoutX="133.0" layoutY="15.0" prefHeight="714.0" prefWidth="957.0">
                <children>
@@ -54,7 +53,7 @@
                   <Label fx:id="note" layoutX="515.0" layoutY="247.0" prefHeight="35.0" prefWidth="362.0" text="label" />
                </children>
             </AnchorPane>
-            <VBox alignment="TOP_CENTER" layoutX="-11.0" layoutY="-15.0" prefHeight="841.0" prefWidth="287.0" style="-fx-background-color: #051B46;">
+            <VBox alignment="TOP_CENTER" layoutX="-11.0" layoutY="-15.0" prefHeight="748.0" prefWidth="287.0" style="-fx-background-color: #051B46;">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -35,7 +35,7 @@
                               <Font name="System Bold Italic" size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="montant" layoutX="407.0" layoutY="174.0" prefHeight="42.0" prefWidth="361.0" AnchorPane.leftAnchor="407.0" AnchorPane.rightAnchor="767.4000000000001">
+                        <TextField fx:id="montant" editable="false" layoutX="407.0" layoutY="174.0" prefHeight="42.0" prefWidth="361.0" AnchorPane.leftAnchor="407.0" AnchorPane.rightAnchor="767.4000000000001">
                            <padding>
                               <Insets right="50.0" />
                            </padding>
@@ -78,7 +78,7 @@
             </VBox>
          </center>
       </BorderPane>
-      <VBox alignment="TOP_CENTER" layoutX="-3.0" prefHeight="850.0" prefWidth="297.0" style="-fx-background-color: #051B46;">
+      <VBox alignment="TOP_CENTER" layoutX="-3.0" prefHeight="810.0" prefWidth="298.0" style="-fx-background-color: #051B46;">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>

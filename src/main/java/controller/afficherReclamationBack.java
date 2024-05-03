@@ -1,7 +1,7 @@
 package controller;
 
-import entity.Indemnissation;
-import entity.Reclamation;
+import Entity.Indemnissation;
+import Entity.Reclamation;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
@@ -30,10 +30,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.ResourceBundle;
 public class afficherReclamationBack  implements Initializable {
     private Reclamation reclamation;
@@ -77,7 +75,7 @@ public class afficherReclamationBack  implements Initializable {
 
     IndemnisationService serviceindemnisation = new IndemnisationService();
     ReclamationService service = new ReclamationService();
-    private String[] rep = {"refused", "accepted"};
+
     private double latitude;
     private double longitude;
 
@@ -92,14 +90,20 @@ public class afficherReclamationBack  implements Initializable {
         choixReponse.setOnMouseClicked(event -> {
             choixReponse.show();
         });
+        imageV.setOnMouseEntered(this::agrandirImage);
+      }
+
+    private void reduireImage(MouseEvent mouseEvent) {
+        imageV.setScaleX(1.0); // Ajustez le facteur d'agrandissement selon vos besoins
+        imageV.setScaleY(1.0);
+        imageV.setOnMouseExited(null);
     }
 
-
-
-
-
-
-
+    private void agrandirImage(MouseEvent mouseEvent) {
+        imageV.setScaleX(3); // Réglez l'échelle X à sa valeur normale
+        imageV.setScaleY(3);
+        imageV.setOnMouseExited(this::reduireImage);
+    }
 
 
     public void setReclamation(Reclamation reclamation) {
@@ -107,6 +111,8 @@ public class afficherReclamationBack  implements Initializable {
         updateDetails();
     }
 
+    @FXML
+    private ImageView imageV;
     private void updateDetails() {
         if (reclamation != null) {
             label.setText(reclamation.getLibelle());
@@ -114,7 +120,14 @@ public class afficherReclamationBack  implements Initializable {
             dateSinistre.setText(reclamation.getDateSinitre());
             contenu.setText(reclamation.getContenu_rec());
             reponse.setText(reclamation.getReponse());
-            path.setText(reclamation.getImage_file());
+            try {
+                Image image = new Image(new File(reclamation.getImage_file()).toURI().toString());
+                imageV.setImage(image);
+            } catch (Exception e) {
+                // Handle the exception if the image cannot be loaded
+                System.err.println("Failed to load image: " + e.getMessage());
+                imageV.setImage(null); // Clear the image view
+            }
 
             try {
                 Locale.setDefault(Locale.US); // Ensure using dot as decimal separator
@@ -189,12 +202,15 @@ public class afficherReclamationBack  implements Initializable {
             reclamation.setIndemnisation(indemnisation);
             System.out.println(reclamation.getIndemnisation());
             service.modifierReclamationIndemnisation(reclamation);
+            int int_cmd=service.select_id_cmd(reclamation);
+            double insValue= service.afficherUneCommande(int_cmd);
+            System.out.println(insValue);
             if (selectedResponse.equals("accepted")) {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/indemnisationAccepted.fxml"));
                     Parent root = loader.load();
                     IndemnisationAccepted controller = loader.getController();
-                    controller.initData(indemnisation, reclamation); // Transférez la réclamation à l'interface d'édition
+                    controller.initData(indemnisation, reclamation,insValue); // Transférez la réclamation à l'interface d'édition
                     // Utilisez votre objet Stage pour afficher la nouvelle interface
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root));

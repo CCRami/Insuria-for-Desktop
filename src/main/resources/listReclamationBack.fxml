@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="830.0" prefWidth="1159.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.listeReclamationBack">
+<AnchorPane prefHeight="752.0" prefWidth="1113.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.listeReclamationBack">
    <children>
-      <VBox fx:id="contentArea" layoutX="304.0" layoutY="64.0" prefHeight="672.0" prefWidth="827.0" spacing="20" styleClass="white-bg, shadow" AnchorPane.leftAnchor="304.0">
+      <VBox fx:id="contentArea" layoutX="263.0" layoutY="63.0" prefHeight="672.0" prefWidth="827.0" spacing="20" styleClass="white-bg, shadow" AnchorPane.leftAnchor="263.0">
          <children>
             <HBox alignment="CENTER" spacing="8" styleClass="searchBox">
                <children>
@@ -68,7 +68,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="20.0" prefHeight="810.0" prefWidth="253.0" style="-fx-background-color: #051B46;">
+      <VBox alignment="TOP_CENTER" prefHeight="752.0" prefWidth="254.0" style="-fx-background-color: #051B46;">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
