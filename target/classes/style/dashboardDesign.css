@@ -331,10 +331,91 @@ and open the template in the editor.
 .label.error {
     -fx-text-fill: red;
 }
+.card {
+    -fx-background-color: linear-gradient(to bottom right, #2ca2fb, #051b46);
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-pref-width: 400; /* Increased width */
+    -fx-pref-height: 300;
+    -fx-alignment: center;
+}
 
+.card:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 20);
+}
 
+.card__content {
+    -fx-padding: 20;
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
+    -fx-alignment: center; /* Ensure content is centered */
+}
 
+.card__title {
+    -fx-font-size: 24;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-alignment: center; /* Center alignment for the title */
+}
 
+.card__description {
+    -fx-font-size: 14;
+    -fx-text-fill: #ffffff;
+    -fx-wrap-text: true;
+    -fx-alignment: center; /* Center alignment for the description */
+}
 
+.cardd {
+    -fx-padding: 100px;
+    -fx-background-color: linear-gradient(to bottom right, #2ca2fb, #051b46);
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, rgb(44, 162, 251), 10, 0, 0, 0);
+}
 
+.content {
+    /* to align items to the top and left in a VBox */
+    -fx-spacing: 20px; /* space between children nodes */
+    -fx-text-fill: #e8e8e8;
+    -fx-alignment: center;
+}
 
+.heading {
+    -fx-font-weight: bold;
+    -fx-font-size: 32px;
+}
+
+.para {
+    -fx-line-spacing: 1.5em; /* JavaFX uses 'em' for line spacing */
+}
+
+.cardd:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(9, 117, 241, 0.8), 10, 0, 0, 0);
+    -fx-border-color: #0974f1;
+}
+
+.btn {
+    -fx-padding: 8px 16px;
+    -fx-background-color: #0974f1;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgb(255, 255, 255), 10, 0, 0, 0);
+}
+
+.btn:hover {
+    -fx-background-color: #065ab5;
+}
+.button2 {
+    -fx-background-color: linear-gradient(to right, #2ca2fb, #2ca2fb, #2ca2fb, #2ca2fb);
+    -fx-text-fill: white;
+    -fx-font-family: inherit;
+    -fx-font-size: 14px;
+    -fx-border-radius: 30px;
+    -fx-padding: 0.75em 0em; /* Hauteur de ligne ajustée pour la hauteur du bouton */
+    -fx-background-insets: 0, 1, 2;
+    -fx-cursor: hand;
+    -fx-pref-width: 9em;
+    -fx-pref-height: 3em;
+}

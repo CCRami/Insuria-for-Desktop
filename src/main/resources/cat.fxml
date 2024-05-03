@@ -56,7 +56,9 @@
                                 <ImageView fx:id="piccatoff" fitHeight="200.0" fitWidth="250.0" />
                             </children>
                         </HBox>
-
+                        <HBox alignment="CENTER" style="-fx-margin: 20 20 0 0;">
+                            <Button text="Choose" style="-fx-font-size: 14px; -fx-padding: 5 10;"/>
+                        </HBox>
 
 
                     </children>

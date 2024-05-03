@@ -11,7 +11,7 @@ import java.awt.*;
 public class MainFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Showof.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboardfront.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);

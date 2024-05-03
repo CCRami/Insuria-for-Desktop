@@ -44,7 +44,7 @@ public class Showof implements Initializable {
     @FXML
     private Pagination pagination;
     private List<String> items;
-    private final int itemsPerPage = 3;
+    private final int itemsPerPage = 4;
 
 
 

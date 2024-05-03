@@ -15,7 +15,7 @@ import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-
+import javafx.scene.control.Pagination;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -41,7 +41,7 @@ public class Showcat implements Initializable {
     private Pagination pagination;
 
 
-    private static final int ITEMS_PER_PAGE = 3;
+    private static final int ITEMS_PER_PAGE = 4;
 
 
     public void initialize(URL location, ResourceBundle resources) {

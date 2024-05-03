@@ -7,33 +7,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Pagination?>
 
-<AnchorPane prefHeight="1382.0" prefWidth="1903.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Showcat">
-    <children>
-        <VBox layoutX="-3.0" prefHeight="972.0" prefWidth="1853.0">
-            <children>
-                <HBox prefHeight="82.0" prefWidth="1514.0" style="-fx-background-color: #051B46;">
-                    <children>
-                        <ImageView fitHeight="118.0" fitWidth="349.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/logo.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets left="44.0" right="1.0" top="11.0" />
-                            </HBox.margin>
-                        </ImageView>
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER" prefHeight="1251.0" prefWidth="1861.0" VBox.vgrow="ALWAYS">
-                    <children>
-                        <ScrollPane fx:id="scroll" prefHeight="613.0" prefWidth="1637.0" styleClass="transparent" stylesheets="@style/styleafficher.css">
-                            <HBox.margin>
-                                <Insets left="150.0" top="200.0" />
-                            </HBox.margin>
-                        </ScrollPane>
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
-    </children>
-</AnchorPane>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.Label?>
+
+    <VBox fx:id="mainContainer" alignment="CENTER_RIGHT" spacing="10" style="-fx-padding: 20 20 20 70;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Showcat" stylesheets="@style/dashboardDesign.css">
+
+        <!-- Top Padding Pane -->
+        <Pane minHeight="60" maxHeight="60"/>
+
+        <!-- Title and Warning Icon -->
+        <HBox alignment="CENTER" spacing="10">
+            <Label text="LIST OF Category Offers" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #051B46; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 2, 4);"/>
+
+
+        </HBox>
+
+        <!-- Pagination Control -->
+        <Pagination fx:id="pagination" />
+
+        <!-- Button for Choosing -->
+
+
+    </VBox>
+
+
+
