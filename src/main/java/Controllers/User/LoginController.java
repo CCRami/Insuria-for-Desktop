@@ -1,6 +1,7 @@
 package Controllers.User;
 
 
+import Controllers.dashboardFront;
 import com.google.api.client.googleapis.auth.oauth2.*;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -139,10 +140,10 @@ public class LoginController implements Initializable {
         HomeController auc= loader.getController();
         rest.getScene().setRoot(root);
     }
-    void goToAdmin() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserProfile.fxml"));
+    void goToClient() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
         Parent root=loader.load();
-        HomeController auc=loader.getController();
+        dashboardFront auc=loader.getController();
         rest.getScene().setRoot(root);
     }
 
@@ -162,7 +163,7 @@ public class LoginController implements Initializable {
 
                     UserSession u = UserSession.getInstance(mail.getText(), Integer.toString(us.getUserIdByEmail(mail.getText())));
                     if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_CLIENT\"]")) {
-                        goToHome();
+                        goToClient();
                     } else if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_ADMIN\"]")) {
                         goToHome();
                     }
@@ -262,7 +263,7 @@ public class LoginController implements Initializable {
                         UserSession.cleanUserSession();
                         UserSession u = UserSession.getInstance(email, Integer.toString(us.getUserIdByEmail(email)));
                         if (us.role(us.getUserIdByEmail(email)).equals("[\"ROLE_CLIENT\"]")) {
-                            goToHome();
+                            goToClient();
                             System.out.println("User is a client");
                         } else if (us.role(us.getUserIdByEmail(email)).equals("[\"ROLE_ADMIN\"]")) {
                             goToHome();

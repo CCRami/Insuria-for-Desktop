@@ -32,6 +32,7 @@ public final class UserSession {
     public static void cleanUserSession() {
         email = "";// or null
         id = "";// or null
+        instance = null;
     }
 
     @Override

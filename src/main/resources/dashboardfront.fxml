@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.SepiaTone?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.dashboardFront">
+    <center>
+        <VBox fx:id="vboxdash" prefHeight="810.0" prefWidth="1062.0" BorderPane.alignment="CENTER" />
+    </center>
+    <top>
+        <HBox prefHeight="114.0" prefWidth="1535.0" spacing="10.0" style="-fx-background-color: #051B46;" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="109.0" fitWidth="255.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/logo.png" />
+                    </image>
+                </ImageView>
+                <HBox prefHeight="110.0" prefWidth="170.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="158.0" text="Assurances" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="33.0" left="44.0" top="22.0" />
+                    </HBox.margin>
+                </HBox>
+                <HBox onMouseClicked="#showAgence" prefHeight="110.0" prefWidth="170.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="170.0" text="Agencies" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="33.0" left="33.0" top="22.0" />
+                    </HBox.margin>
+                </HBox>
+                <HBox minHeight="33.0" onMouseClicked="#showAvisAgence" prefHeight="110.0" prefWidth="170.0" styleClass="button" stylesheets="@style/style.css">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="158.0" text="Reviews" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="33.0" top="22.0" />
+                    </HBox.margin>
+                </HBox>
+                <HBox prefHeight="110.0" prefWidth="170.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                    <children>
+                        <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="38.0" prefWidth="192.0" style="-fx-background-color: #051B46;" text="Polices" textFill="WHITE">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Polices" />
+                                <MenuItem mnemonicParsing="false" text="Sinistres" />
+                            </items>
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </MenuButton>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="33.0" top="22.0" />
+                    </HBox.margin>
+                </HBox>
+                <HBox prefHeight="110.0" prefWidth="170.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="142.0" text="Offer" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="33.0" top="22.0" />
+                    </HBox.margin>
+                </HBox>
+                <ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="90.0" prefWidth="234.0">
+                    <buttons>
+                        <ImageView fx:id="profileimg" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                            <effect>
+                                <DropShadow spread="0.21">
+                                    <color>
+                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                    </color>
+                                </DropShadow>
+                            </effect>
+                        </ImageView>
+                        <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="45.0" text="Name" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                            <children>
+                                <Button fx:id="Profilebtn" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#GotoProfile" text="Profile" textFill="#2eae11">
+                                    <effect>
+                                        <SepiaTone />
+                                    </effect>
+                                </Button>
+                                <Button fx:id="Logoutbtn" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#GotoLogout" prefHeight="30.0" text="Logout" textFill="RED">
+                                    <effect>
+                                        <InnerShadow />
+                                    </effect>
+                                </Button>
+                            </children>
+                        </VBox>
+                    </buttons>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets right="20.0" top="20.0" />
+                    </padding>
+                </ButtonBar>
+            </children>
+        </HBox>
+    </top>
+</BorderPane>
