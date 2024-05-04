@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="695.0" prefWidth="1115.0" style="-fx-background-color: white;" styleClass="right-bar" stylesheets="@style/styleafficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.addReclamation">
+<AnchorPane prefHeight="600" prefWidth="1280" style="-fx-background-color: white;" styleClass="right-bar" stylesheets="@style/styleafficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.addReclamation">
     <children>
-        <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0">
+        <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="1280">
             <center>
-                <VBox fx:id="vboxdash" prefHeight="672.0" prefWidth="862.0">
+                <VBox fx:id="vboxdash" prefHeight="600" prefWidth="862.0">
                     <children>
 
                               <HBox prefHeight="643.0" prefWidth="778.0" styleClass="show-box" stylesheets="@style/styleafficher.css">
@@ -88,7 +88,7 @@
                                  <Font size="20.0" />
                               </font>
                            </Text>
-                           <Text fx:id="txt" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                           <Text fx:id="txt" strokeType="OUTSIDE" fill="WHITE" strokeWidth="0.0" text="Text" />
                            <TextField fx:id="contenu" prefHeight="102.0" prefWidth="246.0" promptText="enter a Content" stylesheets="@style/styleafficher.css">
                               <VBox.margin>
                                  <Insets left="100.0" right="150.0" />
@@ -196,20 +196,6 @@
                     </children>
             </VBox>
             </center>
-         <top>
-            <HBox prefHeight="138.0" prefWidth="1315.0" style="-fx-background-color: #051B46;" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fitHeight="118.0" fitWidth="349.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/logo.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="44.0" right="1.0" top="11.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-            </HBox>
-         </top>
         </BorderPane>
     </children>
    

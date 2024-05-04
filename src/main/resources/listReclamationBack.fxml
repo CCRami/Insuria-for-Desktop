@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -13,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="752.0" prefWidth="1113.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.listeReclamationBack">
+<AnchorPane prefHeight="720.0" prefWidth="1030.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.listeReclamationBack">
    <children>
-      <VBox fx:id="contentArea" layoutX="263.0" layoutY="63.0" prefHeight="672.0" prefWidth="827.0" spacing="20" styleClass="white-bg, shadow" AnchorPane.leftAnchor="263.0">
+      <VBox fx:id="contentArea" layoutX="120.0" layoutY="66.0" prefHeight="635.0" prefWidth="827.0" spacing="20" styleClass="white-bg, shadow" AnchorPane.leftAnchor="120.0">
          <children>
             <HBox alignment="CENTER" spacing="8" styleClass="searchBox">
                <children>
@@ -68,135 +67,10 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" prefHeight="752.0" prefWidth="254.0" style="-fx-background-color: #051B46;">
-         <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/logo.png" />
-               </image>
-               <VBox.margin>
-                  <Insets bottom="60.0" top="40.0" />
-               </VBox.margin>
-            </ImageView>
-            <HBox prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/analyse.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="35.0" prefWidth="202.0" text="Dashboard" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox layoutX="30.0" layoutY="392.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/homme.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="35.0" prefWidth="202.0" text="Utilisateur" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox fx:id="rec" layoutX="30.0" layoutY="438.0" onMouseClicked="#showReclamations" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/probleme.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="35.0" prefWidth="202.0" text="Claim" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox layoutX="30.0" layoutY="461.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/produit.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="35.0" prefWidth="202.0" text="Produits" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox layoutX="30.0" layoutY="484.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/Government_Agency_Symbol.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="35.0" prefWidth="202.0" text="Agencies" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
-               <children>
-                  <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/5569806.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-                  <Label text="Reviews" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets right="88.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox fx:id="compensation" layoutX="30.0" layoutY="281.0" onMouseClicked="#showCompensations" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/ajouter.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="35.0" prefWidth="202.0" text="Compensation" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-         </children>
-         <padding>
-            <Insets left="20.0" right="20.0" />
-         </padding>
-      </VBox>
-      <TextField fx:id="searchField" layoutX="570.0" layoutY="15.0" prefHeight="30.0" prefWidth="230.0" promptText="Search" styleClass="searchInput" />
-      <Button layoutX="800.0" layoutY="16.0" prefHeight="20.0" prefWidth="17.0" styleClass="searchButton">
+      <TextField fx:id="searchField" layoutX="382.0" layoutY="14.0" prefHeight="30.0" prefWidth="230.0" promptText="Search" styleClass="searchInput" />
+      <Button layoutX="638.0" layoutY="16.0" prefHeight="20.0" prefWidth="17.0" styleClass="searchButton">
          <graphic>
-            <ImageView fitHeight="17.0" fitWidth="14.0">
+            <ImageView fitHeight="17.0" fitWidth="15.0">
                <image>
                   <Image url="@images/chercher.png" />
                </image>

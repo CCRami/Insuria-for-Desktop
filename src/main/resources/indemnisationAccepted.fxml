@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -10,18 +9,17 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="809.0" prefWidth="1530.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.IndemnisationAccepted">
+<AnchorPane prefHeight="720.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.IndemnisationAccepted">
    <children>
-      <BorderPane fx:id="myBorderPane" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="809.0" prefWidth="1535.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="myBorderPane" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1030.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <VBox fx:id="vboxdash" prefHeight="810.0" prefWidth="1062.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane prefHeight="713.0" prefWidth="1535.0">
+                  <AnchorPane prefHeight="720.0" prefWidth="1030.0">
                      <children>
                         <TextField fx:id="beneficitaire" layoutX="406.0" layoutY="331.0" prefHeight="58.0" prefWidth="363.0" />
                         <Label layoutX="329.0" layoutY="263.0" prefHeight="18.0" prefWidth="54.0" text="Date" textAlignment="JUSTIFY" textFill="#0061ed">
@@ -35,7 +33,7 @@
                               <Font name="System Bold Italic" size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="montant" editable="false" layoutX="407.0" layoutY="174.0" prefHeight="42.0" prefWidth="361.0" AnchorPane.leftAnchor="407.0" AnchorPane.rightAnchor="767.4000000000001">
+                        <TextField fx:id="montant" editable="false" layoutX="407.0" layoutY="174.0" prefHeight="42.0" prefWidth="51.0" AnchorPane.leftAnchor="407.0" AnchorPane.rightAnchor="767.4000000000001">
                            <padding>
                               <Insets right="50.0" />
                            </padding>
@@ -78,130 +76,5 @@
             </VBox>
          </center>
       </BorderPane>
-      <VBox alignment="TOP_CENTER" layoutX="-3.0" prefHeight="810.0" prefWidth="298.0" style="-fx-background-color: #051B46;">
-         <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/logo.png" />
-               </image>
-               <VBox.margin>
-                  <Insets bottom="60.0" top="40.0" />
-               </VBox.margin>
-            </ImageView>
-            <HBox prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/analyse.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="35.0" prefWidth="202.0" text="Dashboard" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox layoutX="30.0" layoutY="392.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/homme.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="35.0" prefWidth="202.0" text="Utilisateur" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox fx:id="rec" layoutX="30.0" layoutY="438.0" onMouseClicked="#showReclamations" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/probleme.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="35.0" prefWidth="202.0" text="Claim" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox layoutX="30.0" layoutY="461.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/produit.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="35.0" prefWidth="202.0" text="Produits" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox layoutX="30.0" layoutY="484.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/Government_Agency_Symbol.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="35.0" prefWidth="202.0" text="Agencies" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
-               <children>
-                  <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/5569806.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-                  <Label text="Reviews" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets right="88.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox fx:id="compensation" layoutX="30.0" layoutY="281.0" onMouseClicked="#showCompensations" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-               <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/ajouter.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="35.0" prefWidth="202.0" text="Compensation" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-         </children>
-         <padding>
-            <Insets left="20.0" right="20.0" />
-         </padding>
-      </VBox>
    </children>
 </AnchorPane>

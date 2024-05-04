@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="721.0" prefWidth="1101.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.showCompensation">
+<AnchorPane prefHeight="720.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.showCompensation">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="696.0" prefWidth="1091.0">
          <children>
@@ -53,131 +49,6 @@
                   <Label fx:id="note" layoutX="515.0" layoutY="247.0" prefHeight="35.0" prefWidth="362.0" text="label" />
                </children>
             </AnchorPane>
-            <VBox alignment="TOP_CENTER" layoutX="-11.0" layoutY="-15.0" prefHeight="748.0" prefWidth="287.0" style="-fx-background-color: #051B46;">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/logo.png" />
-                     </image>
-                     <VBox.margin>
-                        <Insets bottom="60.0" top="40.0" />
-                     </VBox.margin>
-                  </ImageView>
-                  <HBox prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/analyse.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Dashboard" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="30.0" layoutY="392.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/homme.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Utilisateur" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox fx:id="rec" layoutX="30.0" layoutY="438.0" onMouseClicked="#showReclamations" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/probleme.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Claim" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="30.0" layoutY="461.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/produit.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Produits" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="30.0" layoutY="484.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/Government_Agency_Symbol.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Agencies" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
-                     <children>
-                        <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/5569806.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport>
-                        </ImageView>
-                        <Label text="Reviews" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets right="88.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox fx:id="compensation" layoutX="30.0" layoutY="281.0" onMouseClicked="#showCompensations" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/ajouter.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Compensation" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-               </children>
-               <padding>
-                  <Insets left="20.0" right="20.0" />
-               </padding>
-            </VBox>
          </children>
       </AnchorPane>
    </children>
