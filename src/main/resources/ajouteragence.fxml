@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="778.0" prefWidth="1254.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.afficheragenceBack">
+    <children>
+        <AnchorPane layoutX="157.0" layoutY="179.0" prefHeight="598.0" prefWidth="958.0" stylesheets="@style/dashboardDesign.css">
+            <styleClass>
+                <String fx:value="white-bg" />
+                <String fx:value="shadow" />
+            </styleClass>
+            <children>
+                <ListView fx:id="listView" layoutX="84.0" layoutY="74.0" prefHeight="400" prefWidth="800">
+                    <!-- Vous pouvez configurer une cellule personnalisée ici si nécessaire -->
+                </ListView>
+                <TextField fx:id="addEmployee_search" layoutX="84.0" layoutY="14.0" prefHeight="30.0" prefWidth="277.0" promptText="Search" styleClass="search" stylesheets="@style/dashboardDesign.css" />
+
+                <!-- Boîte d'actions pour les boutons -->
+                <HBox layoutX="404.0" layoutY="515.0" spacing="10">
+                    <Button fx:id="modif" text="Edit" textFill="WHITE" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" />
+                    <Button fx:id="supprimer" text="Delete" textFill="#f7f5f5" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" />
+                    <Button fx:id="consulteravis" text="Consulter avis" textFill="#f7f5f5" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" />
+                </HBox>
+
+                <!-- Bouton d'ajout d'agence -->
+                <Button fx:id="ajouteragence" layoutX="766.0" layoutY="14.0" mnemonicParsing="false" onAction="#ajouterButton" prefHeight="43.0" prefWidth="123.0" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Add agency" textFill="#fffbfb" />
+
+                <!-- Icône de recherche -->
+                <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="323.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/search_104498.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+
+        <!-- Les deux autres AnchorPane restent inchangés -->
+        <AnchorPane layoutX="254.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
+            <children>
+                <Label layoutX="77.0" layoutY="92.0" text="Total Agencies" textFill="WHITE">
+                    <font>
+                        <Font name="Tahoma" size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="home_totalEmployees" alignment="CENTER_RIGHT" layoutX="87.0" layoutY="14.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="25.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+
+        <AnchorPane layoutX="611.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
+            <children>
+                <Label layoutX="77.0" layoutY="97.0" text="Total Reviews" textFill="WHITE">
+                    <font>
+                        <Font name="Tahoma" size="17.0" />
+                    </font>
+                </Label>
+                <Label fx:id="home_totalAvis" alignment="CENTER_RIGHT" layoutX="87.0" layoutY="19.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="25.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

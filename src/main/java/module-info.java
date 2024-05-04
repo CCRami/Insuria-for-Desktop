@@ -16,6 +16,7 @@ module com.example.insuria {
     requires java.datatransfer;
     requires jbcrypt;
     requires totp;
+    requires java.desktop;
     exports org.example;
     exports Controllers;
     opens Controllers;

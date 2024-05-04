@@ -1,8 +1,11 @@
 package Entities;
 
+import Services.MyListener;
 import javafx.scene.control.TableColumn;
 
-public class Agence {
+import java.io.Serializable;
+
+public class Agence implements Serializable {
     private int idage ;
     private String nomage;
     private String addresse;
@@ -10,7 +13,7 @@ public class Agence {
     private int tel;
     private String create_at;
 
-    public Agence (String nomage, String addresse, String email, int tel, String create_at){
+   public Agence (String nomage, String addresse, String email, int tel, String create_at){
         this.idage=idage;
         this.nomage=nomage;
         this.addresse=addresse;
@@ -18,8 +21,19 @@ public class Agence {
         this.tel=tel;
         this.create_at=create_at;
     }
+    public Agence (int idage, String nomage, String addresse, String email, int tel, String create){
+        this.idage=idage;
+        this.nomage= nomage;
+        this.addresse= addresse;
+        this.email= email;
+        this.tel= tel;
+        this.create_at=create;
+    }
+
+
 
     public Agence (TableColumn<Agence, String> nomage, TableColumn<Agence, String> addresse, TableColumn<Agence, String> emailage, TableColumn<Agence, Integer> tel, TableColumn<Agence, String> formattedDate){
+        this.idage=idage;
         this.nomage= this.nomage;
         this.addresse= this.addresse;
         this.email=email;
@@ -86,4 +100,6 @@ public class Agence {
     }
 
 
+    public void setData(Agence agence, MyListener myListener) {
+    }
 }

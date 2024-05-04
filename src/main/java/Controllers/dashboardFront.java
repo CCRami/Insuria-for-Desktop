@@ -55,10 +55,10 @@ public class dashboardFront implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // eventView.setOnMouseClicked(event -> loadFXML("/gererevenement.fxml"));
-        UserSession session = UserSession.getInstance(null,null);
         UserService us= new UserService();
-        User u= us.displayByid(Integer.parseInt(session.getId()));
+        User u= us.displayByid(Integer.parseInt(UserSession.id));
+        System.out.println(UserSession.id);
+        System.out.println(u.getFirst_name());
         username.setText(u.getFirst_name());
         if (u.getAvatar() != null) {
             profileimg.setImage(new Image(u.getAvatar()));

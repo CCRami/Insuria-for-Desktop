@@ -27,7 +27,7 @@ import javafx.stage.Window;
 import Services.UserService;
 
 
-
+import java.awt.*;
 import java.net.URLDecoder;
 import java.security.GeneralSecurityException;
 import java.time.LocalDate;
@@ -148,7 +148,7 @@ public class LoginController implements Initializable {
             stage.showAndWait();
         }
         else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+            AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error",
                     "This email is not registered yet. Please sign up first.");
         }
     }
@@ -172,7 +172,7 @@ public class LoginController implements Initializable {
 
         UserSession.cleanUserSession();
         if (mail.getText().isEmpty() || password.getText().isEmpty())
-        AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+        AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error",
                 "Empty Fields");
         else if (us.displayByid(us.getUserIdByEmail(mail.getText())) != null) {
             if (us.authenticate(mail.getText(), password.getText()) != 0) {
@@ -191,7 +191,7 @@ public class LoginController implements Initializable {
                     }
                 }
                     else {
-                        AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                        AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error",
                                 "Please provide the secret key.");
                         show2fa();
 
@@ -200,23 +200,23 @@ public class LoginController implements Initializable {
             }
 
             else {
-                AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error",
                         "This account is not verified yet. Please check your email.");
                 showconfirmation();
             }
             }
             else {
-                AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error",
                         "This account is blocked. Please contact the administrator.");
             }
 
             } else {
-                AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error",
                         "Invalid email or password.");
 
             }
         } else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+            AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error",
                     "This email is not registered yet. Please sign up first.");
 
         }
@@ -228,7 +228,7 @@ public class LoginController implements Initializable {
                 initiateGoogleSignup();
             } catch (IOException e) {
                 e.printStackTrace();
-                AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error", "Failed to initiate Google signup");
+                AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error", "Failed to initiate Google signup");
             }
         }
 
@@ -262,7 +262,7 @@ public class LoginController implements Initializable {
         if (authorizationCode != null) {
             handleGoogleCallback(authorizationCode);
         } else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error", "Failed to extract authorization code");
+            AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error", "Failed to extract authorization code");
         }
     }
 
@@ -291,6 +291,7 @@ public class LoginController implements Initializable {
                         UserSession.cleanUserSession();
                         UserSession u = UserSession.getInstance(email, Integer.toString(us.getUserIdByEmail(email)));
                         if (us.role(us.getUserIdByEmail(email)).equals("[\"ROLE_CLIENT\"]")) {
+                            System.out.println(u);
                             goToClient();
                             System.out.println("User is a client");
                         } else if (us.role(us.getUserIdByEmail(email)).equals("[\"ROLE_ADMIN\"]")) {
@@ -299,19 +300,19 @@ public class LoginController implements Initializable {
                         }
                     }
                     else {
-                        AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                        AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error",
                                 "This account is blocked. Please contact the administrator.");
                     }
                 }
                 } else {
-                AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error",
                         "This email is not registered yet. Please sign up first.");
                 }
 
 
         } catch (IOException e) {
             e.printStackTrace();
-            AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error", "Failed to retrieve access token");
+            AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error", "Failed to retrieve access token");
         } catch (GeneralSecurityException e) {
             throw new RuntimeException(e);
         }
@@ -372,7 +373,7 @@ public class LoginController implements Initializable {
                 }
             }
             else {
-                AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error",
                         "Invalid secret key.");
             }
         } catch (IOException e) {

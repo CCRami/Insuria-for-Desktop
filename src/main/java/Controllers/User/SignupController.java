@@ -24,6 +24,7 @@ import Services.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.awt.*;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -91,29 +92,29 @@ public class SignupController {
     @FXML
     void AjouterUser(ActionEvent event) throws IOException {
         if(emailTF.getText().equals("") || mdpTF.getText().equals("")|| DBTF.getValue().toString().equals("")|| nomTF.getText().equals("")|| prenomTF.getText().equals("")){
-            AlertHelper.showAlert(Alert.AlertType.ERROR,  window, "Error",
+            AlertHelper.showAlert(Alert.AlertType.ERROR,  SystemColor.window, "Error",
                     "Empty Fields .");
             return;
         }
         System.out.println(emailTF.getText());
         if(!patternMatches(emailTF.getText())){
-            AlertHelper.showAlert(Alert.AlertType.ERROR,  window, "Error",
+            AlertHelper.showAlert(Alert.AlertType.ERROR,  SystemColor.window, "Error",
                     "Invalid email .");
             return;
         }
         System.out.println(telTF.getText());
         if(!isNumeric(telTF.getText())){
-            AlertHelper.showAlert(Alert.AlertType.ERROR,  window, "Error",
+            AlertHelper.showAlert(Alert.AlertType.ERROR,  SystemColor.window, "Error",
                     "Invalid phone number .");
             return;
         }
         if(mdpTF.getText().length()<8){
-            AlertHelper.showAlert(Alert.AlertType.ERROR,  window, "Error",
+            AlertHelper.showAlert(Alert.AlertType.ERROR,  SystemColor.window, "Error",
                     "Password must be at least 8 characters .");
             return;
         }
         if(!mdpTF.getText().equals(mdpTF1.getText())){
-            AlertHelper.showAlert(Alert.AlertType.ERROR,  window, "Error",
+            AlertHelper.showAlert(Alert.AlertType.ERROR,  SystemColor.window, "Error",
                     "Passwords do not match .");
             return;
         }
@@ -121,13 +122,13 @@ public class SignupController {
 
         System.out.println("test3");
         if (us.exsitemail(emailTF.getText())){
-            AlertHelper.showAlert(Alert.AlertType.ERROR,  window, "Error",
+            AlertHelper.showAlert(Alert.AlertType.ERROR,  SystemColor.window, "Error",
                     "User Already Exist.");
         }
         else {
             User u=new User(nomTF.getText(), prenomTF.getText(), emailTF.getText(), mdpTF.getText(), Integer.parseInt(telTF.getText()), DBTF.getValue().toString(), "[\"ROLE_CLIENT\"]", false, false, null, RandomStringUtils.randomAlphanumeric(10));
             us.add(u);
-            AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "User Signed Up", "User Signed Up successfully, check your email.");
+            AlertHelper.showAlert(Alert.AlertType.INFORMATION, SystemColor.window, "User Signed Up", "User Signed Up successfully, check your email.");
             String emailValue = emailTF.getText();
             MailService.sendConfirmationEmail(emailValue,u);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
@@ -194,7 +195,7 @@ public class SignupController {
             // Call your existing method to handle the authorization code
             handleGoogleCallback(authorizationCode);
         } else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error", "Failed to extract authorization code");
+            AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error", "Failed to extract authorization code");
         }
     }
 
@@ -231,7 +232,7 @@ public class SignupController {
 
         } catch (IOException e) {
             e.printStackTrace();
-            AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error", "Failed to retrieve access token");
+            AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error", "Failed to retrieve access token");
         } catch (GeneralSecurityException e) {
             throw new RuntimeException(e);
         }
