@@ -8,8 +8,6 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.client.util.store.FileDataStoreFactory;
 
 import Entities.User;
 import helper.AlertHelper;
@@ -30,38 +28,19 @@ import Services.UserService;
 import java.awt.*;
 import java.net.URLDecoder;
 import java.security.GeneralSecurityException;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 
 //import entities.UserSession;
-import Controllers.User.UserProfileController;
-import Controllers.dashboard;
-import Entities.User;
 import Entities.UserSession;
-import com.google.api.client.googleapis.auth.oauth2.*;
-import helper.AlertHelper;
-import javafx.concurrent.Worker;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.web.WebView;
-import javafx.stage.Window;
-import Services.UserService;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URL;
-import java.net.URLDecoder;
-import java.security.GeneralSecurityException;
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.ResourceBundle;
 
 

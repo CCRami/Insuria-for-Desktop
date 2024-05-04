@@ -84,7 +84,7 @@
                         <Insets bottom="33.0" top="22.0" />
                     </HBox.margin>
                 </HBox>
-                <HBox prefHeight="110.0" prefWidth="170.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                <HBox prefHeight="110.0" prefWidth="170.0" onMouseClicked="#Showcatoff" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
                     <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="142.0" text="Offer" textFill="WHITE">
                             <font>

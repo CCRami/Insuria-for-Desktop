@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.applicatiopnpi.controllers.AddPolice" stylesheets="@style/dashboardDesign.css" >
+    <children>
+        <VBox alignment="CENTER" spacing="50" layoutX="20" layoutY="20" styleClass="white-bg, shadow" prefHeight="700.0" prefWidth="700.0">
+            <children>
+                <HBox alignment="CENTER">
+                    <children>
+                        <ImageView fitWidth="40" fitHeight="40" preserveRatio="true" smooth="true">
+                            <image>
+                                <Image url="@images/form.png" />
+                            </image>
+                        </ImageView>
+                        <Label text="Police Form" styleClass="titlee" />
+                    </children>
+                </HBox>
+                <GridPane hgap="20" vgap="20">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100"/>
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10" prefWidth="200"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100"/>
+                    </columnConstraints>
+                    <children>
+                        <Label text="Police Name:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <TextField fx:id="txtPoliceName" promptText="Enter police name" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                        <Label text="Description:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <TextField fx:id="txtDescription" promptText="Enter description" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                        <Label text="Sinistre:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <ComboBox fx:id="comboSinistre" promptText="Select Sinistre" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                    </children>
+                </GridPane>
+                <HBox spacing="20.0" alignment="CENTER">
+                    <Button text="Save" onAction="#handleSaveAction" styleClass="buttonn"/>
+                    <Button text="Cancel" onAction="#handleCancelAction" styleClass="buttonn"/>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

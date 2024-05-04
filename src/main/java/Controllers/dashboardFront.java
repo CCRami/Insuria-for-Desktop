@@ -51,6 +51,7 @@ public class dashboardFront implements Initializable{
     @FXML
     private Label username;
 
+    public int idoff;
 
 
     @Override
@@ -191,4 +192,41 @@ public class dashboardFront implements Initializable{
         }
 
     }
+    public void Showcatoff(MouseEvent actionEvent) {
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Showcat.fxml"));
+            Node eventFXML = loader.load();
+
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
+    public void Showoff(ActionEvent actionEvent) {
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Showof.fxml"));
+            Node eventFXML = loader.load();
+            Showof controller = loader.getController();
+            controller.id=idoff;
+            System.out.println("fildashf"+idoff);
+            controller.initialize();
+
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -1,6 +1,5 @@
 package Controllers.User;
 
-import Controllers.dashboard;
 import Controllers.dashboardFront;
 import Entities.User;
 import Entities.UserSession;
@@ -14,7 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -23,9 +21,7 @@ import javafx.stage.Stage;
 import org.apache.commons.codec.binary.Base32;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.security.SecureRandom;
 import java.util.Objects;
 import java.util.ResourceBundle;

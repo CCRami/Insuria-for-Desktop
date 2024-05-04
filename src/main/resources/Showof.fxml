@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.Button?> <!-- Import Button class -->
+
+<VBox fx:id="mainContainer" alignment="CENTER_RIGHT" spacing="10" style="-fx-padding: 20 20 20 70;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Showof" stylesheets="@style/dashboardDesign.css">
+
+    <!-- Top Padding Pane -->
+    <Pane minHeight="60" maxHeight="60"/>
+
+    <!-- Title and Warning Icon -->
+    <HBox alignment="CENTER" spacing="10">
+        <Label text="LIST OF Offers" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #FF0000; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 2, 4);"/>
+
+
+    </HBox>
+
+    <!-- Pagination Control -->
+    <Pagination fx:id="pagination" />
+
+    <!-- Button for Choosing -->
+
+
+</VBox>

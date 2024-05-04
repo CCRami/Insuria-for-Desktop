@@ -20,6 +20,8 @@ module com.example.insuria {
     requires java.persistence;
     requires itextpdf;
     requires restfb;
+    requires org.json;
+    requires twilio;
     exports org.example;
     exports Controllers;
     opens Controllers;

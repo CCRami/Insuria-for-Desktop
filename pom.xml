@@ -98,7 +98,16 @@
             <artifactId>javase</artifactId>
             <version>3.5.2</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>8.21.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version> <!-- Use the latest version -->
+        </dependency>
 
 
     <dependency>

@@ -1,0 +1,16 @@
+/* Set background color and text color for dark mode */
+.root {
+    -fx-background-color: #1f1f1f;
+    -fx-text-fill: #ffffff;
+}
+
+/* Customize specific components for dark mode */
+.toggle-button {
+    /* Example: Customize toggle button appearance */
+    -fx-background-color: #363636;
+    -fx-border-color: #ffffff;
+    -fx-text-fill: #ffffff;
+}
+
+/* Customize other UI components for dark mode */
+/* Add more styles for specific components as needed */

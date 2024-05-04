@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.geometry.Insets?>
+<AnchorPane stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Updateoffcat">
+    <children>
+        <VBox alignment="CENTER" layoutX="20" layoutY="20" prefHeight="700.0" prefWidth="700.0" spacing="50" styleClass="white-bg, shadow">
+            <children>
+                <HBox alignment="CENTER">
+                    <children>
+                        <ImageView fitHeight="40" fitWidth="40" preserveRatio="true" smooth="true">
+
+                        </ImageView>
+                        <Label styleClass="titlee" text="Edit Offre" />
+                    </children>
+                </HBox>
+                <GridPane hgap="50" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="157.0" />
+                        <ColumnConstraints hgrow="ALWAYS" maxWidth="354.0" minWidth="10.0" prefWidth="303.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <children>
+                        <Label prefHeight="30.0" prefWidth="115.0" styleClass="field-label" text="Category name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <TextField fx:id="catoffname" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                        <Label styleClass="field-label" text="Category description:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextField fx:id="descatoff" prefHeight="144.0" prefWidth="334.0" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="catimgPathField" promptText="Enter Image Path" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                        <Button text="Browse..." onAction="#handleBrowse" styleClass="buttonn" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+
+
+
+                    </children>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+                </GridPane>
+
+                <HBox alignment="CENTER" spacing="20.0">
+                    <ImageView fx:id="imageView" fitWidth="200" fitHeight="200" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="3">
+                        <GridPane.margin>
+                            <Insets top="10" bottom="10" left="10" right="10"/>
+                        </GridPane.margin>
+                    </ImageView>
+                    <Button onAction="#handleBrowse" styleClass="buttonn" text="Browse..." />
+                    <Button onAction="#handleSave" styleClass="buttonn" text="Update" />
+                    <Button onAction="#handleCancel" styleClass="buttonn" text="Cancel" />
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
