@@ -9,7 +9,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.List;
 import java.util.Properties;
 
-public class MailService {
+public class MailServiceIns {
     public static void sendConfirmationEmail(String recipientEmail, Insurance selectedInsurance, List<Commande> userCommandes) {
         final String username = "rami.toubib2014@gmail.com";
         final String password = "kngp embc okyp iodi";
@@ -51,21 +51,33 @@ public class MailService {
             emailContent.append("<p>Insurance Details :</p>");
             emailContent.append("<ul>");
             emailContent.append("<li><strong>Name:</strong> ").append(selectedInsurance.getName_ins()).append("</li>");
-            emailContent.append("<li><strong>Amount:</strong> ").append(selectedInsurance.getMontant()).append("</li>");
+            emailContent.append("<li><strong>Price:</strong> ").append(selectedInsurance.getMontant()).append("</li>");
             // Add other insurance details...
 
             // Compare with existing insurances in user's commandes
             emailContent.append("<p>Here are your existing insurances:</p>");
             emailContent.append("<ul>");
+            boolean isMatchFound = false;
             for (Commande commande : userCommandes) {
                 Insurance existingInsurance = commande.getDoa_com_id();
-                // Compare insurance details
-                if (existingInsurance.getName_ins().equals(selectedInsurance.getName_ins())
-                        && existingInsurance.getMontant() == selectedInsurance.getMontant()) {
-                    emailContent.append("<li>").append(existingInsurance.getName_ins()).append(" (Amount: ").append(existingInsurance.getMontant()).append(")</li>");
+                boolean isMatch = existingInsurance.getName_ins().equals(selectedInsurance.getName_ins())
+                        && existingInsurance.getMontant() == selectedInsurance.getMontant();
+
+                if (isMatch) {
+                    isMatchFound = true;
+                    emailContent.append("<li><strong>").append(existingInsurance.getName_ins()).append(" (Price: ").append(existingInsurance.getMontant()).append(") - This matches your new insurance!</strong></li>");
+                } else {
+                    emailContent.append("<li>").append(existingInsurance.getName_ins()).append(" (Price: ").append(existingInsurance.getMontant()).append(")</li>");
                 }
             }
             emailContent.append("</ul>");
+
+            if (isMatchFound) {
+                emailContent.append("<p>Note: One or more of your existing insurances match the new one added.</p>");
+            } else {
+                emailContent.append("<p>All existing insurances are listed above, with no direct matches to the new one.</p>");
+            }
+
 
             emailContent.append("<p>Your insurance portfolio has been updated with this new insurance.</p>");
             emailContent.append("<p>Thank you for your trust and loyalty to Insuria.</p>");

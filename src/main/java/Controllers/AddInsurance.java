@@ -17,10 +17,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -146,26 +145,33 @@ public class AddInsurance {
                 InsuranceService is= new InsuranceService();
                 is.addInsurance(insurance);
 
-                CommandeService cs= new CommandeService();
-                List<Commande> userIds = cs.getAllCommandes();
-                System.out.println(userIds);
-                Set<String> userEmails = new HashSet<>();
-                for (Commande com : userIds) {
-                    User u= com.getUser_id();
-                    userEmails.add(userService.getUserEmailById(u.getId()));
 
+                CommandeService cs=new CommandeService();
+                List<Commande> allCommandes = cs.getAllCommandes();
+                Set<String> userEmails = new HashSet<>();
+
+                // Map to store users and their commandes
+                Map<String, List<Commande>> userCommandesMap = new HashMap<>();
+
+                for (Commande com : allCommandes) {
+                    String userEmail = userService.getUserEmailById(com.getUser_id().getId());
+                    userEmails.add(userEmail);
+                    userCommandesMap.computeIfAbsent(userEmail, k -> new ArrayList<>()).add(com);
                 }
 
-                System.out.println(userEmails);
-                if (!userIds.isEmpty()) {
-                    for(String email:userEmails) {
-                        System.out.println(email);
-                        MailService.sendConfirmationEmail(email, insurance, userIds); // Pass the list of user's commandes
+                if (!userEmails.isEmpty()) {
+                    ExecutorService executor = Executors.newFixedThreadPool(10); // Adjust thread pool size as needed
+                    for (String email : userEmails) {
+                        executor.submit(() -> {
+                            List<Commande> userSpecificCommandes = userCommandesMap.get(email);
+                            MailServiceIns.sendConfirmationEmail(email, insurance, userSpecificCommandes);
+                        });
                     }
-                    showAlert("Success", "Insurance added successfully");
+                    executor.shutdown();
                 } else {
                     showAlert("Warning", "No users found for the insurance.");
                 }
+
 
                 // Get user IDs associated with the insurance
 
