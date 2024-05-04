@@ -1,4 +1,4 @@
-package Controller;
+package Controllers;
 
 
 import javafx.event.ActionEvent;
@@ -12,10 +12,8 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.scene.control.ToggleButton;
 
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.ToggleButton;
 
 public class Dashboardfront implements Initializable {
     @FXML

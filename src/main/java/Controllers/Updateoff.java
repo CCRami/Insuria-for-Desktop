@@ -1,15 +1,14 @@
-package Controller;
-import Entity.OfferCategory;
-import Entity.Offre;
-import Service.OffreCatService;
-import Service.OffreService;
+package Controllers;
+import Entities.OfferCategory;
+import Entities.Offre;
+import Services.OffreCatService;
+import Services.OffreService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 

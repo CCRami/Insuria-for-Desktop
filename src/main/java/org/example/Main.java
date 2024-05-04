@@ -1,7 +1,7 @@
 package org.example;
 
-import Entity.OfferCategory;
-import Service.OffreCatService;
+import Entities.OfferCategory;
+import Services.OffreCatService;
 import util.DataSource;
 
 public class Main {

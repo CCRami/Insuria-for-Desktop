@@ -1,6 +1,6 @@
-package Service;
+package Services;
 
-import Entity.OfferCategory;
+import Entities.OfferCategory;
 import util.DataSource;
 
 import java.sql.*;

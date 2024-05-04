@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -11,13 +12,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.ToggleButton?>
-<BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Dashboardfront">
+<BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Dashboardfront">
     <center>
         <VBox fx:id="vboxdash" prefHeight="810.0" prefWidth="1062.0" BorderPane.alignment="CENTER" />
     </center>
     <top>
-        <HBox prefHeight="114.0" prefWidth="1535.0" style="-fx-background-color: #051B46;" BorderPane.alignment="CENTER">
+        <HBox prefHeight="114.0" prefWidth="1280.0" style="-fx-background-color: #051B46;" BorderPane.alignment="CENTER">
             <children>
                 <ImageView fitHeight="109.0" fitWidth="255.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -36,7 +36,7 @@
                         <Insets bottom="33.0" left="44.0" top="22.0" />
                     </HBox.margin>
                 </HBox>
-                <HBox  prefHeight="114.0" prefWidth="162.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                <HBox prefHeight="114.0" prefWidth="162.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
                     <children>
                         <Label prefHeight="35.0" prefWidth="120.0" text="Agencies" textFill="WHITE">
                             <font>
@@ -48,7 +48,7 @@
                         <Insets bottom="33.0" left="33.0" top="22.0" />
                     </HBox.margin>
                 </HBox>
-                <HBox minHeight="33.0"  prefHeight="70.0" prefWidth="162.0" styleClass="button" stylesheets="@style/style.css">
+                <HBox minHeight="33.0" prefHeight="70.0" prefWidth="162.0" styleClass="button" stylesheets="@style/style.css">
                     <children>
                         <Label text="Reviews" textFill="WHITE">
                             <HBox.margin>
@@ -67,8 +67,8 @@
                     <children>
                         <MenuButton mnemonicParsing="false" prefHeight="37.0" prefWidth="126.0" style="-fx-background-color: #051B46;" text="Polices" textFill="WHITE">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Polices"  />
-                                <MenuItem mnemonicParsing="false" text="Sinistres"  />
+                                <MenuItem mnemonicParsing="false" text="Polices" />
+                                <MenuItem mnemonicParsing="false" text="Sinistres" />
                             </items>
                             <font>
                                 <Font name="System Bold" size="16.0" />
@@ -84,8 +84,8 @@
                     <children>
                         <MenuButton mnemonicParsing="false" prefHeight="37.0" prefWidth="126.0" style="-fx-background-color: #051B46;" text="Offer" textFill="WHITE">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Categories" onAction="#Showcatoff" />
-                                <MenuItem mnemonicParsing="false" text="Offers" onAction="#Showoff" />
+                                <MenuItem mnemonicParsing="false" onAction="#Showcatoff" text="Categories" />
+                                <MenuItem mnemonicParsing="false" onAction="#Showoff" text="Offers" />
 
                             </items>
                             <font>
@@ -103,7 +103,7 @@
                         <Insets left="22.0" top="22.0" />
                     </HBox.margin>
                 </ImageView>
-                <ToggleButton fx:id="darkModeToggle" text="Dark Mode" onAction="#ToggleDarkMode" />
+                <ToggleButton fx:id="darkModeToggle" onAction="#ToggleDarkMode" prefHeight="25.0" prefWidth="67.0" text="Dark Mode" />
 
 
             </children>

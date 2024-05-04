@@ -1,20 +1,16 @@
-package Controller;
-import Entity.Offre;
-import Service.OffreService;
+package Controllers;
+import Entities.Offre;
+import Services.OffreService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Pagination;
-import javafx.scene.layout.VBox;
-import javafx.util.Callback;
-import javafx.scene.Node;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -44,7 +40,7 @@ public class Showof implements Initializable {
     @FXML
     private Pagination pagination;
     private List<String> items;
-    private final int itemsPerPage = 4;
+    private final int itemsPerPage = 3;
 
 
 

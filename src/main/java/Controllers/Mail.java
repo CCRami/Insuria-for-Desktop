@@ -1,5 +1,5 @@
-package Controller;
-import Entity.Offre;
+package Controllers;
+import Entities.Offre;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

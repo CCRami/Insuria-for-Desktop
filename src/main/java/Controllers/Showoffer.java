@@ -1,8 +1,7 @@
-package Controller;
+package Controllers;
 
-import Entity.OfferCategory;
-import Entity.Offre;
-import Service.OffreService;
+import Entities.Offre;
+import Services.OffreService;
 import java.util.Comparator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -1,9 +1,9 @@
-package Controller;
+package Controllers;
 
-import Entity.OfferCategory;
-import Entity.Offre;
-import Service.OffreCatService;
-import Service.OffreService;
+import Entities.OfferCategory;
+import Entities.Offre;
+import Services.OffreCatService;
+import Services.OffreService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,16 +15,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import Controller.Mail;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;

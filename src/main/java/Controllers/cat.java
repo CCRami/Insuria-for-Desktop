@@ -1,7 +1,6 @@
-package Controller;
+package Controllers;
 
-import Entity.OfferCategory;
-import Entity.Offre;
+import Entities.OfferCategory;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

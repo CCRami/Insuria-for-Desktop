@@ -1,13 +1,11 @@
-package Controller;
+package Controllers;
 
-import Entity.OfferCategory;
-import Service.OffreCatService;
+import Entities.OfferCategory;
+import Services.OffreCatService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -25,8 +23,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.geometry.Pos;
 import java.io.File;
 import java.io.IOException;
-
-import javafx.application.Application;
 
 
 public class Addoffercat {

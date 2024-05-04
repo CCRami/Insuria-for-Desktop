@@ -1,26 +1,17 @@
-package Controller;
+package Controllers;
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.client.j2se.MatrixToImageWriter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import Entity.Offre;
-import Service.OffreService;
-import javafx.scene.input.MouseEvent;
+import Entities.Offre;
 import javafx.scene.image.Image;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import org.json.JSONObject;
 
-import javax.imageio.ImageIO;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 public class of {
@@ -78,17 +69,30 @@ public class of {
             // Construct JSON object with offer details
             JSONObject offerJson = new JSONObject();
             offerJson.put("id", offre.getId_off());
-            offerJson.put("advantage", offre.getAdvantage());
-            offerJson.put("conditions", offre.getConditions());
-            offerJson.put("discount", offre.getDiscount());
-            offerJson.put("duration", offre.getDuration());
+            offerJson.put("advantage\n", offre.getAdvantage());
+            offerJson.put("conditions\n", offre.getConditions());
+            offerJson.put("discount\n", offre.getDiscount());
+            offerJson.put("duration\n", offre.getDuration());
 
-            // Encode JSON object as a string
+// Constructing a single-line representation of the JSON object
+            StringBuilder jsonString = new StringBuilder("{");
+            for (String key : offerJson.keySet()) {
+                jsonString.append("\"").append(key).append("\":\"").append(offerJson.get(key)).append("\", ");
+            }
+// Remove the trailing comma and space if there are any entries
+            if (jsonString.length() > 2) {
+                jsonString.setLength(jsonString.length() - 2); // Remove the last comma and space
+            }
+            jsonString.append("}");
+
             String offerJsonString = offerJson.toString();
+            System.out.println(offerJsonString);
+
+
 
             // Generate QR code using the encoded JSON string
-            int width = 125;
-            int height = 125;
+            int width = 50;
+            int height = 50;
 
             MultiFormatWriter writer = new MultiFormatWriter();
             Map<EncodeHintType, Object> hints = new HashMap<>();

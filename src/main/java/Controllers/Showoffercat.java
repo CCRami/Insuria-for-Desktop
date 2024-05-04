@@ -1,9 +1,8 @@
-package Controller;
+package Controllers;
 
-import Entity.OfferCategory;
+import Entities.OfferCategory;
 
-import Entity.Offre;
-import Service.OffreCatService;
+import Services.OffreCatService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;

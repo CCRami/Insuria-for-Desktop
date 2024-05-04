@@ -1,11 +1,9 @@
-    package Controller;
+    package Controllers;
 
     import com.twilio.Twilio;
     import com.twilio.rest.api.v2010.account.Message;
     import com.twilio.type.PhoneNumber;
     import javafx.fxml.FXML;
-    import javafx.fxml.FXMLLoader;
-    import javafx.scene.Parent;
     import javafx.scene.control.TextField;
 public class SMS {
     public static final String ACCOUNT_SID = "";
