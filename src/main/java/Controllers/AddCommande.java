@@ -1,9 +1,9 @@
-package Controller;
+package Controllers;
 
-import Entity.Commande;
-import Entity.Insurance;
-import Service.CommandeService;
-import Service.InsuranceService;
+import Entities.Commande;
+import Entities.Insurance;
+import Services.CommandeService;
+import Services.InsuranceService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;

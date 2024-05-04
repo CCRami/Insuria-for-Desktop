@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import java.net.URL?>
-<AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InsurancesList">
+<AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InsurancesList">
     <stylesheets>
         <URL value="@style/ShowInsuranceStyle.css" />
     </stylesheets>

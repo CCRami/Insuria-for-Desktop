@@ -1,6 +1,6 @@
-package Controller;
+package Controllers;
 
-import Entity.Commande;
+import Entities.Commande;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

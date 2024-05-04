@@ -1,8 +1,7 @@
-package Controller;
+package Controllers;
 
-import Entity.Insurance;
-import Entity.InsuranceCategory;
-import Service.InsuranceCatService;
+import Entities.InsuranceCategory;
+import Services.InsuranceCatService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

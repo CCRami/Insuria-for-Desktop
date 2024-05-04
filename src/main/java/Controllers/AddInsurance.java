@@ -1,12 +1,7 @@
-package Controller;
+package Controllers;
 
-import util.DataSource;
-import Entity.Insurance;
-import Entity.InsuranceCategory;
-import Entity.police;
-import Entity.Commande;
-import Gemini.GmailSender;
-import Service.*;
+import Entities.*;
+import Services.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -20,17 +15,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-import java.io.ByteArrayOutputStream;
+
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -103,6 +93,7 @@ public class AddInsurance {
 
     @FXML
     private void initialize() {
+
         populateCategoryComboBox();
         populatePoliceComboBox();
     }
@@ -125,6 +116,7 @@ public class AddInsurance {
         }
     }
     private ArrayList<String> getDynamicFieldValues() {
+
         ArrayList<String> dynamicFields = new ArrayList<>();
         for (Node node : fieldsContainer.getChildren()) {
             if (node instanceof HBox) {
@@ -151,15 +143,32 @@ public class AddInsurance {
                 police selectedPolice = policeComboBox.getSelectionModel().getSelectedItem();
                 ArrayList<String> dynamicFields = getDynamicFieldValues();
                 insurance = new Insurance(insuranceName, insuranceAmount, insuranceImageUrl, dynamicFields, selectedCategory, selectedPolice);
+                InsuranceService is= new InsuranceService();
+                is.addInsurance(insurance);
 
-                insuranceService.addInsurance(insurance);
-                List<Integer> userIds = CommandeService.getUserIdsByInsuranceId(insurance.getId());
+                CommandeService cs= new CommandeService();
+                List<Commande> userIds = cs.getAllCommandes();
+                System.out.println(userIds);
+                Set<String> userEmails = new HashSet<>();
+                for (Commande com : userIds) {
+                    User u= com.getUser_id();
+                    userEmails.add(userService.getUserEmailById(u.getId()));
 
-                // Send confirmation emails
-                sendConfirmationEmails(userIds, insuranceName, insuranceAmount, selectedCategory);
-                // Fetch user IDs associated with the insurance
+                }
 
-                showAlert("Success", "Insurance added successfully");
+                System.out.println(userEmails);
+                if (!userIds.isEmpty()) {
+                    for(String email:userEmails) {
+                        System.out.println(email);
+                        MailService.sendConfirmationEmail(email, insurance, userIds); // Pass the list of user's commandes
+                    }
+                    showAlert("Success", "Insurance added successfully");
+                } else {
+                    showAlert("Warning", "No users found for the insurance.");
+                }
+
+                // Get user IDs associated with the insurance
+
             }
         } catch (Exception e) {
             logger.log(Level.SEVERE, "An error occurred while adding insurance", e);
@@ -167,51 +176,8 @@ public class AddInsurance {
         }
     }
 
-    private void sendConfirmationEmails(List<Integer> userIds, String insuranceName, float insuranceAmount, InsuranceCategory category) {
-        try {
-            // Get existing insurances in the same category
-            List<Insurance> existingInsurances = insuranceService.getInsurancesByCategory(category);
 
-            // Construct email content
-            String subject = "Insurance Added: " + insuranceName;
-            StringBuilder body = new StringBuilder();
-            body.append("Dear User,\n\n")
-                    .append("Your insurance with the following details has been successfully added:\n\n")
-                    .append("Name: ").append(insuranceName).append("\n")
-                    .append("Amount: ").append(insuranceAmount).append("\n")
-                    .append("Category: ").append(category.getName_cat_ins()).append("\n\n")
-                    .append("Comparison with existing insurances in the same category:\n\n");
 
-            // Compare the new insurance with existing ones
-            for (Insurance existingInsurance : existingInsurances) {
-                // Compare insurance amounts
-                if (existingInsurance.getMontant() > insuranceAmount) {
-                    body.append("Your new insurance has a lower amount compared to: ")
-                            .append(existingInsurance.getName_ins()).append("\n");
-                } else if (existingInsurance.getMontant() < insuranceAmount) {
-                    body.append("Your new insurance has a higher amount compared to: ")
-                            .append(existingInsurance.getName_ins()).append("\n");
-                } else {
-                    body.append("Your new insurance has the same amount as: ")
-                            .append(existingInsurance.getName_ins()).append("\n");
-                }
-            }
-
-            body.append("\nThank you for using our service.");
-
-            // Send emails
-            GmailSender gMailer = new GmailSender();
-            for (Integer userId : userIds) {
-                // Get user email using userId and send email
-                String userEmail = userService.getUserEmailById(userId);
-                gMailer.sendMail(userEmail, subject, body.toString());
-            }
-            System.out.println("Confirmation emails sent successfully!");
-        } catch (Exception e) {
-            logger.log(Level.SEVERE, "An error occurred while sending confirmation emails", e);
-            System.err.println("Error sending confirmation emails: " + e.getMessage());
-        }
-    }
 
 
 

@@ -1,20 +1,17 @@
-package Controller;
+package Controllers;
 
-import Entity.Insurance;
-import Entity.InsuranceCategory;
-import Entity.police;
-import Service.InsuranceCatService;
-import Service.InsuranceService;
-import Service.policeService;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import Entities.Insurance;
+import Entities.InsuranceCategory;
+import Entities.police;
+import Services.InsuranceCatService;
+import Services.InsuranceService;
+import Services.policeService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import jdk.jfr.Category;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -47,7 +44,7 @@ public class EditInsurance {
     @FXML private ImageView imageView;
     private InsuranceCatService insuranceCatService;
     private InsuranceService insuranceService;
-    private Service.policeService policeService;
+    private Services.policeService policeService;
     @FXML private ListView<TextField> doaListView;
 
     private ArrayList<String> doaItems;

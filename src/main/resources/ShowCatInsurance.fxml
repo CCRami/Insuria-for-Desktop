@@ -8,7 +8,7 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ShowCatInsurance" stylesheets="@style/dashboardDesign.css" prefHeight="778.0" prefWidth="1254.0">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ShowCatInsurance" stylesheets="@style/dashboardDesign.css" prefHeight="778.0" prefWidth="1254.0">
     <children>
         <!-- Centrage vertical et horizontal dans l'AnchorPane -->
         <VBox fx:id="contentArea" layoutX="223.0" layoutY="53.0" prefHeight="672.0" prefWidth="808.0" styleClass="white-bg, shadow" spacing="20" AnchorPane.bottomAnchor="53" AnchorPane.leftAnchor="223" AnchorPane.rightAnchor="223" AnchorPane.topAnchor="53">

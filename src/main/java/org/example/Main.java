@@ -1,7 +1,7 @@
 package org.example;
 
-import Entity.InsuranceCategory;
-import Service.InsuranceCatService;
+import Entities.InsuranceCategory;
+import Services.InsuranceCatService;
 import util.DataSource;
 import java.util.Scanner;
 public class Main {

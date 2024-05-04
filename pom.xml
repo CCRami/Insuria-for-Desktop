@@ -38,13 +38,17 @@
             <artifactId>javafx-fxml</artifactId>
             <version>21.0.2</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.stripe/stripe-java -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>21.0.2</version>
+        </dependency>
         <dependency>
             <groupId>com.stripe</groupId>
             <artifactId>stripe-java</artifactId>
-            <version>25.3.0</version>
+            <version>25.4.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.stripe/stripe-java -->
 
         <dependency>
             <groupId>org.json</groupId>

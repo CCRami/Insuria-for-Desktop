@@ -1,7 +1,7 @@
-package Controller;
+package Controllers;
 
-import Entity.InsuranceCategory;
-import Service.InsuranceCatService;
+import Entities.InsuranceCategory;
+import Services.InsuranceCatService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;

@@ -1,4 +1,4 @@
-package Entity;
+package Entities;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +11,7 @@ public class Commande {
     private ArrayList doa_full;
     private Insurance doa_com_id;
     private User user_id;
+
     private float ins_value;
 
 

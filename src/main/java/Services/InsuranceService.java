@@ -1,9 +1,9 @@
-package Service;
+package Services;
 
 import util.DataSource;
-import Entity.Insurance;
-import Entity.InsuranceCategory;
-import Entity.police;
+import Entities.Insurance;
+import Entities.InsuranceCategory;
+import Entities.police;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,17 +33,15 @@ public class InsuranceService {
             pst.setString(5, insurance.getIns_image());
             pst.setInt(4, insurance.getCatins_id().getId());
             pst.setInt(6, insurance.getPol_id().getId());
-
             String doaJson = convertToJson(insurance.getDoa());
-            logger.info("DOA JSON before insertion: " + doaJson); // Logging statement
             pst.setString(3, doaJson);
 
             pst.executeUpdate();
         } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Error adding insurance", e);
             throw new RuntimeException(e);
         }
     }
+
 
 
 
@@ -66,8 +64,7 @@ public class InsuranceService {
 
     public void updateInsurance(Insurance insurance) {
         String sql = "UPDATE assurance SET name_ins = ?, montant = ?, ins_image = ?, cat_a_id = ?, pol_id = ?, doa = ? WHERE id = ?";
-        try {
-            pst = cnx.prepareStatement(sql);
+        try (PreparedStatement pst = cnx.prepareStatement(sql)) {
             pst.setString(1, insurance.getName_ins());
             pst.setFloat(2, insurance.getMontant());
             pst.setString(3, insurance.getIns_image());
@@ -85,6 +82,7 @@ public class InsuranceService {
             throw new RuntimeException(e);
         }
     }
+
 
 
     public void deleteInsurance(int insuranceId) {
@@ -178,31 +176,27 @@ public class InsuranceService {
         return dynamicFields;
     }
 
-    public List<Insurance> getInsurancesByCategory(InsuranceCategory category) {
+    public List<Insurance> getInsurancesByCategoryExcludingNewInsurance(InsuranceCategory category, String newInsuranceName) {
         List<Insurance> insurances = new ArrayList<>();
-        String sql = "SELECT * FROM assurance WHERE cat_a_id = ?";
+        String sql = "SELECT * FROM assurance WHERE catins_id = ? AND name_ins != ?";
         try (Connection cnx = DataSource.getInstance().getConnection();
              PreparedStatement pst = cnx.prepareStatement(sql)) {
             pst.setInt(1, category.getId());
+            pst.setString(2, newInsuranceName);
             try (ResultSet rs = pst.executeQuery()) {
                 while (rs.next()) {
-                    // Assuming you already have methods to fetch InsuranceCategory and police details
-                    InsuranceCatService insuranceCatService = new InsuranceCatService();
-                    InsuranceCategory cat = insuranceCatService.getInsuranceCategoryById(rs.getInt("cat_a_id"));
-
-                    policeService policeService = new policeService();
-                    police pol = policeService.getPoliceById(rs.getInt("pol_id"));
-
-                    // Add insurance to the list
-                    insurances.add(new Insurance(rs.getInt("id"), rs.getString("name_ins"), rs.getFloat("montant"),
-                            rs.getString("ins_image"), null, cat, pol));
+                    Insurance insurance = new Insurance();
+                    // Populate insurance object from the result set
+                    insurances.add(insurance);
                 }
             }
         } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Error retrieving insurances by category excluding new insurance", e);
             throw new RuntimeException(e);
         }
         return insurances;
     }
+
 
 
 

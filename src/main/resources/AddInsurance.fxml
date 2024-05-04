@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="950.0" style="-fx-background-color: white;" styleClass="right-bar" stylesheets="@style/styleafficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddInsurance">
+<AnchorPane prefHeight="700.0" prefWidth="950.0" style="-fx-background-color: white;" styleClass="right-bar" stylesheets="@style/styleafficher.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddInsurance">
     <children>
         <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0">
 
@@ -45,7 +45,7 @@
                            <Font name="Lucida Fax Regular" size="12.0" />
                         </font>
                              </Text>
-                             <TextField fx:id="nameins" alignment="TOP_LEFT" prefHeight="26.0" prefWidth="900.0" promptText="enter a name" stylesheets="@style/styleafficher.css">
+                             <TextField fx:id="nameins" alignment="TOP_LEFT" prefHeight="0.0" prefWidth="539.0" promptText="Enter an Insurance name" stylesheets="@style/styleafficher.css">
                                  <VBox.margin>
                                      <Insets left="200.0" right="100.0" top="10.0" />
                                  </VBox.margin>
@@ -69,7 +69,7 @@
                                      <Insets left="77.0" />
                                  </VBox.margin>
                              </Text>
-                             <TextField fx:id="amount" prefHeight="50.0" prefWidth="341.0" promptText="enter an address" stylesheets="@style/styleafficher.css">
+                             <TextField fx:id="amount" prefHeight="50.0" prefWidth="341.0" promptText="Enter An Amount" stylesheets="@style/styleafficher.css">
                                  <VBox.margin>
                                      <Insets left="200.0" right="100.0" top="10.0" />
                                  </VBox.margin>
@@ -92,7 +92,7 @@
                                  <ImageView fx:id="insuranceImageView" />
                                  <Label fx:id="selectedImageLabel" />
                              </HBox>
-                              <Button onAction="#chooseImageAction" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Choose Image" textFill="WHITE" />
+                              <Button onAction="#chooseImageAction" prefHeight="44.0" prefWidth="116.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Choose Image" textFill="WHITE" />
                              <Text fx:id="errorimage" fill="RED" wrappingWidth="190.4000244140625">
                                  <VBox.margin>
                                      <Insets left="100.0" top="10.0" />
@@ -160,16 +160,6 @@
                                         <Insets left="100.0" top="10.0" />
                                     </VBox.margin>
                                 </Text>
-   
-      
-      
-      
-      
-                       <Button fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addDynamicField" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Add Field" textFill="WHITE">
-                           <VBox.margin>
-                              <Insets left="150.0" />
-                           </VBox.margin>
-                        </Button>
                         <HBox.margin>
                            <Insets left="100.0" />
                         </HBox.margin>
@@ -179,7 +169,20 @@
                      <font>
                          <Font size="13.0" />
                      </font>
+                        <HBox.margin>
+                           <Insets right="50.0" />
+                        </HBox.margin>
                  </Button>
+
+
+
+
+
+                       <Button fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addDynamicField" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Add Field" textFill="WHITE">
+                        <HBox.margin>
+                           <Insets left="50.0" />
+                        </HBox.margin>
+                     </Button>
                      <VBox.margin>
                         <Insets left="100.0" />
                      </VBox.margin>

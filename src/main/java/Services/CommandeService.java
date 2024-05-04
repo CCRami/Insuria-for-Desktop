@@ -1,7 +1,8 @@
-package Service;
+package Services;
 
-import Entity.Commande;
-import Entity.Insurance;
+import Entities.Commande;
+import Entities.Insurance;
+import Entities.User;
 import util.DataSource;
 
 import java.sql.*;
@@ -75,9 +76,6 @@ public class CommandeService {
                 // Assuming DoaComService and UserService are existing services to retrieve related objects
                 InsuranceService doaComService = new InsuranceService();
                 Insurance doaCom = doaComService.getInsuranceById(rs.getInt("doa_com_id"));
-
-
-
                 // Assuming the "Commande" class has appropriate constructors and setters
                 Commande commande = new Commande();
                 commande.setId(rs.getInt("id"));
@@ -89,7 +87,7 @@ public class CommandeService {
                 ArrayList<String> fullDoa = parseJson(fullDoaJson);
                 commande.setDoa_full(fullDoa);
                 commande.setDoa_com_id(doaCom);
-
+                commande.setUser_id(new User(rs.getInt("user_id")));
                 commande.setIns_value(rs.getFloat("ins_value"));
 
                 commandes.add(commande);
@@ -100,7 +98,7 @@ public class CommandeService {
 
         return commandes;
     }
-    private ArrayList<String> parseJson(String json) {
+    private static ArrayList<String> parseJson(String json) {
         ArrayList<String> dynamicFields = new ArrayList<>();
         try {
             // Check if the JSON string is not null or empty
@@ -122,21 +120,20 @@ public class CommandeService {
         }
         return dynamicFields;
     }
-    public static List<Integer> getUserIdsByInsuranceId(int insuranceId) {
-        List<Integer> userIds = new ArrayList<>();
-        String sql = "SELECT user_id FROM commande WHERE doa_com_id = ?";
-        try (Connection cnx = DataSource.getInstance().getConnection();
-             PreparedStatement pst = cnx.prepareStatement(sql)) {
-            pst.setInt(1, insuranceId);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                int userId = rs.getInt("user_id");
-                userIds.add(userId);
+
+    public void deleteCommande(int commandeId) {
+        String sql = "DELETE FROM commande WHERE id = ?";
+        try (PreparedStatement pst = cnx.prepareStatement(sql)) {
+            pst.setInt(1, commandeId);
+            int rowsDeleted = pst.executeUpdate();
+            if (rowsDeleted == 0) {
+                System.out.println("No Commande found with ID: " + commandeId);
+            } else {
+                System.out.println("Commande with ID " + commandeId + " deleted successfully.");
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Handle or log the exception
+            throw new RuntimeException("Error deleting Commande", e);
         }
-        return userIds;
     }
 
 }

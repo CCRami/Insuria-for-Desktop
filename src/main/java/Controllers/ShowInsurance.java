@@ -1,10 +1,7 @@
-package Controller;
+package Controllers;
 
-import Entity.Insurance;
-import Entity.InsuranceCategory;
-import Entity.police;
-import Service.InsuranceService;
-import javafx.application.Platform;
+import Entities.Insurance;
+import Services.InsuranceService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,12 +22,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 

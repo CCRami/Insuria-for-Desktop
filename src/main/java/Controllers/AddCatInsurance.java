@@ -1,7 +1,7 @@
-package Controller;
+package Controllers;
 
-import Entity.InsuranceCategory;
-import Service.InsuranceCatService;
+import Entities.InsuranceCategory;
+import Services.InsuranceCatService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -9,9 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class AddCatInsurance {
 

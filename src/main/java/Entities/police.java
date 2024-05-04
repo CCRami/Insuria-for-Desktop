@@ -1,11 +1,13 @@
-package Entity;
+package Entities;
 
-public class Offre {
+public class police {
     private int id;
 
-    public Offre(int id) {
+    public police(int id) {
         this.id = id;
     }
+
+
 
     public int getId() {
         return id;
@@ -14,4 +16,10 @@ public class Offre {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(id);
+    }
+
 }

@@ -2,73 +2,203 @@
 
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.CheckBox?>
-<GridPane hgap="10" prefHeight="789.0" prefWidth="1563.0" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InsuranceForm">
+<GridPane hgap="10" prefHeight="789.0" prefWidth="1563.0" stylesheets="@style/dashboardDesign.css" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InsuranceForm">
 
-    <Label text="What is your age?" GridPane.rowIndex="4" />
-    <ComboBox fx:id="ageComboBox" promptText="Select Age" GridPane.columnIndex="2" GridPane.rowIndex="4">
+    <!-- Age Section -->
+    <Label text="What is your age?" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <GridPane.margin>
+         <Insets left="40.0" top="50.0" />
+      </GridPane.margin></Label>
+    <ComboBox fx:id="ageComboBox" promptText="Select Age" styleClass="combo-box-popup" GridPane.columnIndex="1" GridPane.rowIndex="0">
         <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="Under 30" />
-                <String fx:value="30-40" />
-                <String fx:value="40-50" />
-                <!-- Add more age options as needed -->
+                <String fx:value="30-50" />
+                <String fx:value="Over 50" />
             </FXCollections>
         </items>
+      <GridPane.margin>
+         <Insets top="50.0" />
+      </GridPane.margin>
     </ComboBox>
 
-    <Label text="What is your annual income?" GridPane.rowIndex="2" />
-    <TextArea fx:id="answerTextArea" />
-    <ComboBox fx:id="incomeComboBox" promptText="Select Income" GridPane.columnIndex="2" GridPane.rowIndex="2">
+    <!-- Income Section -->
+    <Label text="What is your annual income?" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <GridPane.margin>
+         <Insets left="40.0" />
+      </GridPane.margin></Label>
+    <ComboBox fx:id="incomeComboBox" promptText="Select Income" styleClass="combo-box-popup" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <items>
             <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Low" />
-                <String fx:value="Medium" />
-                <String fx:value="High" />
-                <!-- Add more income options as needed -->
+                <String fx:value="Less than 15000 DT" />
+                <String fx:value="15000 DT - 30000 DT" />
+                <String fx:value="Over 30000 DT" />
             </FXCollections>
         </items>
     </ComboBox>
-    <Label text="How many dependents do you have?" GridPane.rowIndex="2" />
-    <ComboBox fx:id="dependentsComboBox" promptText="Select Dependents" GridPane.columnIndex="1" GridPane.rowIndex="2">
+
+    <!-- Marital Status Section -->
+    <Label text="What is your marital status?" GridPane.columnIndex="0" GridPane.rowIndex="2">
+      <GridPane.margin>
+         <Insets left="40.0" />
+      </GridPane.margin></Label>
+    <ComboBox fx:id="maritalStatusComboBox" promptText="Select Marital Status" styleClass="combo-box-popup" GridPane.columnIndex="1" GridPane.rowIndex="2">
         <items>
             <FXCollections fx:factory="observableArrayList">
-                <String fx:value="0" />
-                <String fx:value="1" />
-                <String fx:value="2" />
-                <!-- Add more options as needed -->
+                <String fx:value="Single" />
+                <String fx:value="Married" />
+                <String fx:value="Divorced" />
+                <String fx:value="Widowed" />
             </FXCollections>
         </items>
     </ComboBox>
 
-    <Label text="What is your occupation?" GridPane.rowIndex="3" />
-    <TextField fx:id="occupationTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <!-- Employment Status Section -->
+    <Label text="What is your employment status?" GridPane.columnIndex="0" GridPane.rowIndex="3">
+      <GridPane.margin>
+         <Insets left="40.0" />
+      </GridPane.margin></Label>
+    <ComboBox fx:id="employmentStatusComboBox" promptText="Select Employment Status" styleClass="combo-box-popup" GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Employed full-time" />
+                <String fx:value="Employed part-time" />
+                <String fx:value="Self-employed" />
+                <String fx:value="Unemployed" />
+                <String fx:value="Retired" />
+            </FXCollections>
+        </items>
+    </ComboBox>
 
-    <Label text="Do you smoke?" GridPane.rowIndex="4" />
-    <CheckBox fx:id="smokerCheckBox" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-    <Button onAction="#handleSubmitButton" text="Submit" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-   <columnConstraints>
-      <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-   </rowConstraints>
-    <!-- Add more questions and choice fields based on your requirements -->
+    <!-- Health Status Section -->
+    <Label text="What is your health status?" GridPane.columnIndex="0" GridPane.rowIndex="4">
+      <GridPane.margin>
+         <Insets left="40.0" />
+      </GridPane.margin></Label>
+    <ComboBox fx:id="healthStatusComboBox" promptText="Select Health Status" styleClass="combo-box-popup" GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Good" />
+                <String fx:value="Fair" />
+                <String fx:value="Poor" />
+            </FXCollections>
+        </items>
+    </ComboBox>
 
+    <!-- Risk Tolerance Section -->
+    <Label text="What is your risk tolerance?" GridPane.columnIndex="0" GridPane.rowIndex="5">
+      <GridPane.margin>
+         <Insets left="40.0" />
+      </GridPane.margin></Label>
+    <ComboBox fx:id="riskToleranceComboBox" promptText="Select Risk Tolerance" styleClass="combo-box-popup" GridPane.columnIndex="1" GridPane.rowIndex="5">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Low Risk Tolerance" />
+                <String fx:value="High Risk Tolerance" />
+            </FXCollections>
+        </items>
+    </ComboBox>
+
+    <!-- Financial Goals Section -->
+    <Label text="What are your financial goals?" GridPane.columnIndex="0" GridPane.rowIndex="6">
+      <GridPane.margin>
+         <Insets left="40.0" />
+      </GridPane.margin></Label>
+    <ComboBox fx:id="financialGoalsComboBox" promptText="Select Financial Goals" styleClass="combo-box-popup" GridPane.columnIndex="1" GridPane.rowIndex="6">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Retirement" />
+                <String fx:value="Education" />
+                <String fx:value="Saving for a major purchase" />
+            </FXCollections>
+        </items>
+    </ComboBox>
+
+    <!-- Asset and Liability Section -->
+    <Label text="Total value of your assets (in currency):" GridPane.columnIndex="0" GridPane.rowIndex="7">
+      <GridPane.margin>
+         <Insets left="40.0" />
+      </GridPane.margin></Label>
+    <TextField fx:id="assetsTextField" styleClass="combo-box-popup" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+    <Label text="Total value of your liabilities (in currency):" GridPane.columnIndex="0" GridPane.rowIndex="8">
+      <GridPane.margin>
+         <Insets left="40.0" />
+      </GridPane.margin></Label>
+    <TextField fx:id="liabilitiesTextField" styleClass="combo-box-popup" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+
+    <!-- Coverage and Geographic Location Section -->
+    <Label text="Preferred Coverage Level?" GridPane.columnIndex="0" GridPane.rowIndex="9">
+      <GridPane.margin>
+         <Insets left="40.0" />
+      </GridPane.margin></Label>
+    <ComboBox fx:id="coverageLevelComboBox" promptText="Select Coverage Level" styleClass="combo-box-popup" GridPane.columnIndex="1" GridPane.rowIndex="9">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Basic" />
+                <String fx:value="Standard" />
+                <String fx:value="Premium" />
+            </FXCollections>
+        </items>
+    </ComboBox>
+
+    <Label text="What is your geographic location?" GridPane.columnIndex="0" GridPane.rowIndex="10">
+      <GridPane.margin>
+         <Insets left="40.0" />
+      </GridPane.margin></Label>
+    <ComboBox fx:id="geographicLocationComboBox" promptText="Select Geographic Location" styleClass="combo-box-popup" GridPane.columnIndex="1" GridPane.rowIndex="10">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Urban" />
+                <String fx:value="Rural" />
+            </FXCollections>
+        </items>
+    </ComboBox>
+
+    <!-- Submit Button and Answer TextArea -->
+    <Button onAction="#handleSubmitButton" text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+    <TextArea fx:id="answerTextArea" GridPane.columnIndex="14" GridPane.rowIndex="6" />
+
+    <columnConstraints>
+        <ColumnConstraints />
+        <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+      <RowConstraints />
+    </rowConstraints>
 </GridPane>

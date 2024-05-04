@@ -1,8 +1,7 @@
-package Service;
+package Services;
 
-import Entity.InsuranceCategory;
 import util.DataSource;
-import Entity.police;
+import Entities.police;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;

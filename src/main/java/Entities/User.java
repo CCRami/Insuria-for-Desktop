@@ -1,13 +1,11 @@
-package Entity;
+package Entities;
 
-public class police {
+public class User {
     private int id;
 
-    public police(int id) {
+    public User(int id) {
         this.id = id;
     }
-
-
 
     public int getId() {
         return id;
@@ -16,10 +14,4 @@ public class police {
     public void setId(int id) {
         this.id = id;
     }
-
-    @Override
-    public String toString() {
-        return String.valueOf(id);
-    }
-
 }

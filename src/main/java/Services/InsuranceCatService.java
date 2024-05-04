@@ -1,6 +1,6 @@
-package Service;
+package Services;
 
-import Entity.InsuranceCategory;
+import Entities.InsuranceCategory;
 import util.DataSource;
 
 import java.sql.*;

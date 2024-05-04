@@ -1,9 +1,9 @@
-package Entity;
+package Entities;
 
-public class User {
+public class Offre {
     private int id;
 
-    public User(int id) {
+    public Offre(int id) {
         this.id = id;
     }
 
