@@ -1,7 +1,7 @@
-package controller;
+package Controllers;
 
-import Entity.Indemnissation;
-import Entity.Reclamation;
+import Entities.Indemnissation;
+import Entities.Reclamation;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
@@ -22,8 +22,8 @@ import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import services.IndemnisationService;
-import services.ReclamationService;
+import Services.IndemnisationService;
+import Services.ReclamationService;
 
 import java.io.File;
 import java.io.IOException;

@@ -48,7 +48,7 @@
          <children>
              <ImageView fx:id="imageView" fitHeight="160.0" fitWidth="159.0" layoutX="118.0" layoutY="-64.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                  <image>
-                     <Image url="@/images/homme.png" />
+                     <Image url="@images/homme.png" />
                  </image>
                <effect>
                   <DropShadow />
@@ -116,11 +116,11 @@
             <String fx:value="label-info" />
          </styleClass>
          <children>
-            <Button layoutX="32.0" layoutY="52.0" mnemonicParsing="false" onAction="#gotorev" prefHeight="80.0" prefWidth="200.0" styleClass="buttonn1" text="My reviews">
+            <Button layoutX="32.0" layoutY="52.0" mnemonicParsing="false" onMouseClicked="#gotorev" prefHeight="80.0" prefWidth="200.0" styleClass="buttonn1" text="My reviews">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="35.0">
                      <image>
-                        <Image url="@/images/grouper.png" />
+                        <Image url="@images/grouper.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -128,11 +128,11 @@
                   <Font size="17.0" />
                </font>
             </Button>
-            <Button layoutX="321.0" layoutY="50.0" mnemonicParsing="false" onAction="#gotoins" prefHeight="80.0" prefWidth="200.0" styleClass="buttonn1" text="My insurances">
+            <Button layoutX="321.0" layoutY="50.0" mnemonicParsing="false" onMouseClicked="#gotoins" prefHeight="80.0" prefWidth="200.0" styleClass="buttonn1" text="My insurances">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="35.0">
                      <image>
-                        <Image url="@/images/produit.png" />
+                        <Image url="@images/produit.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -140,11 +140,11 @@
                   <Font size="17.0" />
                </font>
             </Button>
-            <Button layoutX="34.0" layoutY="244.0" mnemonicParsing="false" onAction="#gotocomp" prefHeight="80.0" prefWidth="200.0" styleClass="buttonn1" text="My complaints">
+            <Button layoutX="34.0" layoutY="244.0" mnemonicParsing="false" onMouseClicked="#gotocomp" prefHeight="80.0" prefWidth="200.0" styleClass="buttonn1" text="My complaints">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="35.0">
                      <image>
-                        <Image url="@/images/probleme.png" />
+                        <Image url="@images/probleme.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -156,7 +156,7 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="35.0">
                      <image>
-                        <Image url="@/images/2fa.png" />
+                        <Image url="@images/2fa.png" />
                      </image>
                   </ImageView>
                </graphic>

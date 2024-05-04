@@ -1,6 +1,6 @@
-package controller;
+package Controllers;
 
-import Entity.Reclamation;
+import Entities.Reclamation;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

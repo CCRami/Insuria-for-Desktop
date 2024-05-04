@@ -1,6 +1,6 @@
-package controller;
+package Controllers;
 
-import Entity.Reclamation;
+import Entities.Reclamation;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +21,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import services.ReclamationService;
+import Services.ReclamationService;
 
 import java.io.File;
 import java.io.IOException;

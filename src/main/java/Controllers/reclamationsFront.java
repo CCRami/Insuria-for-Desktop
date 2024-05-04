@@ -1,6 +1,6 @@
-package controller;
+package Controllers;
 
-import Entity.Reclamation;
+import Entities.Reclamation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import services.ReclamationService;
+import Services.ReclamationService;
 import javafx.scene.control.Pagination;
 import java.io.IOException;
 import java.net.URL;
@@ -57,7 +57,7 @@ public class reclamationsFront implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            reclamations = service.afficherReclamations();
+            reclamations = service.getReclamationsByCommandId(14);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

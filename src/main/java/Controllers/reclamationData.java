@@ -1,7 +1,7 @@
-package controller;
+package Controllers;
 
-import Entity.Indemnissation;
-import Entity.Reclamation;
+import Entities.Indemnissation;
+import Entities.Reclamation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import services.IndemnisationService;
-import services.ReclamationService;
+import Services.IndemnisationService;
+import Services.ReclamationService;
 
 import java.io.IOException;
 import java.sql.SQLException;

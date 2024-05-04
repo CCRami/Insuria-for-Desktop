@@ -1,8 +1,8 @@
-package controller;
+package Controllers;
 
 
-import Entity.Commande;
-import Entity.Reclamation;
+import Entities.Commande;
+import Entities.Reclamation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,10 +18,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.web.HTMLEditorSkin;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import services.ReclamationService;
+import Services.ReclamationService;
 
 import java.io.File;
 import java.io.IOException;

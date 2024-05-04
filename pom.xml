@@ -96,11 +96,7 @@
             <artifactId>javase</artifactId>
             <version>3.5.2</version>
         </dependency>
-        <dependency>
-            <groupId>io.transcend.webview</groupId>
-            <artifactId>webview</artifactId>
-            <version>1.1.3</version>
-        </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -108,18 +104,15 @@
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/recla
                 <configuration>
                     <mainClass>org.example.MainFX</mainClass>
                 </configuration>
             </plugin>
         </plugins>
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/recla
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
 </project>

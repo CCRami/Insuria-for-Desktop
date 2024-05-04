@@ -1,5 +1,5 @@
-package controller;
-import Entity.Indemnissation;
+package Controllers;
+import Entities.Indemnissation;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

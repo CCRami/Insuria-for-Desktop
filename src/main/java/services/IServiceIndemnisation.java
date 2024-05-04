@@ -1,6 +1,6 @@
-package services;
+package Services;
 
-import Entity.Indemnissation;
+import Entities.Indemnissation;
 
 import java.sql.SQLException;
 import java.util.List;

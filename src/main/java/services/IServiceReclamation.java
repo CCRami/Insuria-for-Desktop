@@ -1,9 +1,8 @@
-package services;
+package Services;
 
 
-import Entity.Commande;
-import Entity.Indemnissation;
-import Entity.Reclamation;
+import Entities.Commande;
+import Entities.Reclamation;
 
 import java.sql.SQLException;
 import java.util.List;

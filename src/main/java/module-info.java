@@ -4,9 +4,23 @@ module com.example.insuria {
     requires java.sql;
     requires java.mail;
     requires javafx.web;
+    requires org.apache.commons.codec;
+    requires org.apache.commons.lang3;
+    requires google.api.client;
+    requires com.google.api.client;
+    requires com.google.api.client.json.gson;
+    requires google.http.client.jackson2;
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
+    requires org.controlsfx.controls;
+    requires java.datatransfer;
+    requires jbcrypt;
+    requires totp;
     exports org.example;
-    exports controller;
-    opens controller;
-    opens Entity;
+    exports Controllers;
+    opens Controllers;
+    opens Entities;
+    exports Controllers.User;
+    opens Controllers.User;
 
 }

@@ -1,6 +1,6 @@
-package controller;
-import Entity.Indemnissation;
-import Entity.Reclamation;
+package Controllers;
+import Entities.Indemnissation;
+import Entities.Reclamation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,8 +15,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import services.IndemnisationService;
-import services.ReclamationService;
+import Services.IndemnisationService;
+import Services.ReclamationService;
 
 import javafx.fxml.Initializable;
 

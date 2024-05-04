@@ -1,19 +1,19 @@
-package services;
+package Services;
 
-import Entity.Commande;
-import Entity.Reclamation;
+import Entities.Commande;
+import Entities.Reclamation;
 import util.DataSource;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReclamationService implements IServiceReclamation<Reclamation>{
+public class ReclamationService implements Services.IServiceReclamation<Reclamation> {
     private Connection cnx;
     private Statement ste;
 
     public ReclamationService() {
-        cnx = DataSource.getInstance().getConnection();
+        cnx = DataSource.getInstance().getCnx();
     }
 @Override
     public void addReclamation(Reclamation rec)throws SQLException {
@@ -257,6 +257,29 @@ public class ReclamationService implements IServiceReclamation<Reclamation>{
             e.printStackTrace();
             throw e;
         }
+    }
+    public List<Reclamation> getReclamationsByCommandId(int commandId) throws SQLException {
+        List<Reclamation> reclamations = new ArrayList<>();
+        String req = "SELECT * FROM reclamation WHERE command_id = ?";
+        try (PreparedStatement pre = cnx.prepareStatement(req)) {
+            pre.setInt(1, commandId);
+            try (ResultSet rs = pre.executeQuery()) {
+                while (rs.next()) {
+                    Reclamation rec = new Reclamation();
+                    rec.setId(rs.getInt("id"));
+                    rec.setLibelle(rs.getString("libelle"));
+                    rec.setContenu_rec(rs.getString("contenu_rec"));
+                    rec.setReponse(rs.getString("reponse"));
+                    rec.setDateSinitre(rs.getString("date_sin"));
+                    rec.setDateReclamation(rs.getString("date_decl"));
+                    rec.setLatitude(rs.getString("latitude"));
+                    rec.setLongitude(rs.getString("longitude"));
+                    rec.setImage_file(rs.getString("file_name"));
+                    reclamations.add(rec);
+                }
+            }
+        }
+        return reclamations;
     }
 
 }

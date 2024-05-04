@@ -1,6 +1,6 @@
-package controller;
+package Controllers;
 
-import Entity.Indemnissation;
+import Entities.Indemnissation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,7 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import services.IndemnisationService;
+import Services.IndemnisationService;
 
 import java.io.IOException;
 import java.net.URL;

@@ -1,20 +1,20 @@
-package services;
+package Services;
 
 
-import Entity.Indemnissation;
-import Entity.Reclamation;
+import Entities.Indemnissation;
+import Entities.Reclamation;
 import util.DataSource;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IndemnisationService implements IServiceIndemnisation<Reclamation, Indemnissation> {
+public class IndemnisationService implements Services.IServiceIndemnisation<Reclamation, Indemnissation> {
     private Connection cnx;
     private Statement ste;
 
     public IndemnisationService() {
-        cnx = DataSource.getInstance().getConnection();
+        cnx = DataSource.getInstance().getCnx();
     }
 
     @Override

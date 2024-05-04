@@ -1,5 +1,7 @@
 package Controllers.User;
 
+import Controllers.dashboard;
+import Controllers.dashboardFront;
 import Entities.User;
 import Entities.UserSession;
 import Services.UserService;
@@ -7,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.commons.codec.binary.Base32;
@@ -103,7 +107,26 @@ public class UserProfileController implements Initializable {
     }
 
     @FXML
-    void gotocomp(ActionEvent event) {
+    void gotocomp(MouseEvent event) {
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
+            Node eventFXML = loader.load();
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Create a new scene with the loaded FXML and set it on the current stage
+            Scene scene = new Scene((Parent) eventFXML);
+            stage.setScene(scene);
+
+            // Get the controller of the scene and use it if necessary
+            dashboardFront controller = loader.getController();
+            controller.showComp(event);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
 
     }
 
@@ -134,12 +157,12 @@ public class UserProfileController implements Initializable {
     }
 
     @FXML
-    void gotoins(ActionEvent event) {
+    void gotoins(MouseEvent event) {
 
     }
 
     @FXML
-    void gotorev(ActionEvent event) {
+    void gotorev(MouseEvent event) {
 
     }
 

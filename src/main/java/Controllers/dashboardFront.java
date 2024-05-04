@@ -150,4 +150,11 @@ public class dashboardFront implements Initializable{
         vboxdash.getChildren().add(eventFXML);
     }
 
+    public void showComp(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamationsFront.fxml"));
+        AnchorPane eventFXML = loader.load();
+        reclamationsFront controller = loader.getController();
+        vboxdash.getChildren().clear();
+        vboxdash.getChildren().add(eventFXML);
+    }
 }

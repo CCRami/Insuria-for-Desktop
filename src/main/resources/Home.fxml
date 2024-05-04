@@ -38,7 +38,7 @@
                 <Pane layoutX="-25.0" layoutY="-178.0" prefHeight="303.0" prefWidth="467.0" rotate="41.6" style="-fx-background-color: #FCAF3D; -fx-background-radius: 70;" />
                 <Pane layoutX="109.0" layoutY="106.0" prefHeight="230.0" prefWidth="200.0">
                     <children>
-                        <Button fx:id="userbtn" mnemonicParsing="false" onMouseClicked="#showUsers" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
+                        <Button fx:id="userbtn" mnemonicParsing="false" onMouseClicked="#showUsers" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="@style/fullpackstyling.css" />
                         <Circle layoutX="100.0" layoutY="100.0" onMouseClicked="#showUsers" radius="75.0" strokeType="INSIDE">
                             <stroke>
                                 <LinearGradient endX="1.0" endY="1.0">
@@ -70,7 +70,7 @@
                 </Pane>
                 <Pane layoutX="384.0" layoutY="106.0" prefHeight="230.0" prefWidth="200.0">
                     <children>
-                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
+                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="@style/fullpackstyling.css" />
                         <Circle layoutX="100.0" layoutY="100.0" radius="75.0" strokeType="INSIDE">
                             <stroke>
                                 <LinearGradient endX="1.0" endY="1.0">
@@ -102,7 +102,7 @@
                 </Pane>
                 <Pane layoutX="109.0" layoutY="354.0" prefHeight="230.0" prefWidth="200.0">
                     <children>
-                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
+                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="@style/fullpackstyling.css" />
                         <Circle layoutX="100.0" layoutY="100.0" radius="75.0" strokeType="INSIDE">
                             <stroke>
                                 <LinearGradient endX="1.0" endY="1.0">
@@ -134,7 +134,7 @@
                 </Pane>
                 <Pane layoutX="384.0" layoutY="354.0" prefHeight="230.0" prefWidth="200.0">
                     <children>
-                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
+                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="@style/fullpackstyling.css" />
                         <Circle layoutX="100.0" layoutY="100.0" radius="75.0" stroke="#ff924f" strokeType="INSIDE">
                             <fill>
                                 <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">
@@ -159,7 +159,7 @@
                 </Pane>
                 <Pane layoutX="657.0" layoutY="360.0" prefHeight="232.0" prefWidth="204.0">
                     <children>
-                        <Button layoutX="2.0" layoutY="1.0" mnemonicParsing="false" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
+                        <Button layoutX="2.0" layoutY="1.0" mnemonicParsing="false" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="@style/fullpackstyling.css" />
                         <Circle layoutX="100.0" layoutY="100.0" radius="75.0" strokeType="INSIDE">
                             <fill>
                                 <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">
@@ -184,7 +184,7 @@
                 </Pane>
                 <Pane layoutX="657.0" layoutY="106.0" prefHeight="230.0" prefWidth="200.0">
                     <children>
-                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="/style/fullpackstyling.css" />
+                        <Button mnemonicParsing="false" opacity="0.7" prefHeight="230.0" prefWidth="200.0" styleClass="button2" stylesheets="@style/fullpackstyling.css" />
                         <Circle layoutX="100.0" layoutY="100.0" radius="75.0" strokeType="INSIDE">
                             <fill>
                                 <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">
