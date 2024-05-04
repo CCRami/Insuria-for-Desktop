@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditReclamation">
+   <children>
+      <VBox layoutX="151.0" layoutY="19.0" prefHeight="513.0" prefWidth="651.0" AnchorPane.leftAnchor="151.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="93.0" prefWidth="363.0">
+               <children>
+                  <Text fill="#051b46" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit My Claim" textAlignment="CENTER" wrappingWidth="296.5366973876953">
+                     <VBox.margin>
+                        <Insets bottom="44.0" left="33.0" top="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <Text fill="#051b46" strokeType="OUTSIDE" strokeWidth="0.0" text="Label" wrappingWidth="138.93671798706055">
+               <VBox.margin>
+                  <Insets left="50.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="nom" alignment="TOP_LEFT" minHeight="40.0" prefHeight="58.0" prefWidth="421.0" promptText="enter a label" stylesheets="@style/styleafficher.css">
+               <VBox.margin>
+                  <Insets left="130.0" right="100.0" top="-30.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="search" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </TextField>
+            <Text fx:id="errorLabel" fill="RED" wrappingWidth="181.5999755859375">
+               <VBox.margin>
+                  <Insets left="150.0" top="15.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="#051b46" strokeType="OUTSIDE" strokeWidth="0.0" text="Content" wrappingWidth="141.33674240112305">
+               <VBox.margin>
+                  <Insets left="50.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="contenu" minHeight="50.0" prefHeight="98.0" prefWidth="341.0" promptText="enter a Contenu" stylesheets="@style/styleafficher.css">
+               <VBox.margin>
+                  <Insets left="130.0" right="100.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="search" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </TextField>
+            <Text fx:id="errorContenu" fill="RED" wrappingWidth="195.20001220703125">
+               <VBox.margin>
+                  <Insets left="150.0" top="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="#051b46" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Sinistre" wrappingWidth="93.33671188354492">
+               <VBox.margin>
+                  <Insets left="45.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <DatePicker fx:id="date" prefHeight="45.0" prefWidth="418.0">
+               <VBox.margin>
+                  <Insets left="130.0" right="50.0" />
+               </VBox.margin>
+               <styleClass>
+                  <String fx:value="search" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </DatePicker>
+            <Text fx:id="errorDate" fill="RED" wrappingWidth="312.00006103515625">
+               <VBox.margin>
+                  <Insets left="100.0" top="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text fx:id="imagepath" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </Text>
+            <ImageView fx:id="imageV" fitHeight="150.0" fitWidth="210.0" onMouseClicked="#changerIMage" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="100.0" top="-10.0" />
+               </VBox.margin>
+            </ImageView>
+            <VBox prefHeight="643.0" prefWidth="245.0" />
+         </children>
+      </VBox>
+      <Button fx:id="add" layoutX="290.0" layoutY="533.0" mnemonicParsing="false" onAction="#editReclamationAction" prefHeight="48.0" prefWidth="130.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Enregistrer" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/edit_icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="cancel" layoutX="497.0" layoutY="533.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="48.0" prefWidth="130.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Cancel" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <WebView fx:id="map" layoutX="839.0" layoutY="50.0" prefHeight="282.0" prefWidth="335.0" />
+      <Text fill="#051b46" layoutX="839.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Latitude " wrappingWidth="138.93671798706055">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text fill="#051b46" layoutX="839.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Longitude" wrappingWidth="138.93671798706055" AnchorPane.topAnchor="428.734375">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="latitude" alignment="TOP_LEFT" layoutX="934.0" layoutY="353.0" prefHeight="34.0" prefWidth="240.0" promptText="enter latitude" stylesheets="@style/styleafficher.css">
+         <styleClass>
+            <String fx:value="search" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </TextField>
+      <TextField fx:id="longitude" alignment="TOP_LEFT" layoutX="927.0" layoutY="429.0" prefHeight="34.0" prefWidth="246.0" promptText="enter longitude" stylesheets="@style/styleafficher.css" AnchorPane.topAnchor="429.0">
+         <styleClass>
+            <String fx:value="search" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </TextField>
+      <Text fx:id="errorLatitude" fill="RED" layoutX="955.0" layoutY="404.0" wrappingWidth="190.4000244140625" />
+      <Text fx:id="errorLongitude" fill="RED" layoutX="942.0" layoutY="490.0" wrappingWidth="190.4000244140625" />
+   </children>
+</AnchorPane>

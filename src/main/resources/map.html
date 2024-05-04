@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+<div id="map" style="height: 500px;"></div>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    var map;
+    var marker;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initMap();
+    });
+
+    function initMap() {
+        map = L.map('map').setView([0, 0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+    }
+
+    function updateMap(latitude, longitude) {
+        if (map) {
+            if (marker) {
+                marker.setLatLng([latitude, longitude]); // Move existing marker
+            } else {
+                marker = L.marker([latitude, longitude]).addTo(map); // Create new marker
+            }
+            map.setView([latitude, longitude], 13); // Re-center the map
+        } else {
+            setTimeout(function() { updateMap(latitude, longitude); }, 500); // Retry after map is initialized
+        }
+    }
+</script>
+</body>
+</html>
