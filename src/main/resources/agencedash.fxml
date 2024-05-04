@@ -19,17 +19,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="826.0" prefWidth="1324.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.agencedash">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="788.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.agencedash">
 
 
 
 
       <children>
-         <AnchorPane fx:id="listt" layoutX="266.0" layoutY="10.0" prefHeight="778.0" prefWidth="1545.0" stylesheets="@style/dashboardDesign.css" AnchorPane.rightAnchor="25.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+         <AnchorPane fx:id="listt" layoutX="25.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="658.0" prefWidth="990.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
 
-            <VBox fx:id="contentArea" layoutX="164.0" layoutY="170.0" prefHeight="606.0" prefWidth="1229.0" spacing="20" styleClass="white-bg, shadow" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="170.0">
+            <VBox fx:id="contentArea" layoutX="1.0" layoutY="170.0" prefHeight="488.0" prefWidth="974.0" spacing="20" styleClass="white-bg, shadow" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="170.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="78.0" prefWidth="1147.0" spacing="8" styleClass="searchBox">
+                  <HBox alignment="CENTER" prefHeight="78.0" prefWidth="1030.0" spacing="8" styleClass="searchBox">
                      <TextField fx:id="searchField" prefHeight="30.0" prefWidth="230.0" promptText="Search" styleClass="searchInput" />
                      <Button styleClass="searchButton">
                         <graphic>
@@ -49,7 +49,7 @@
                      <Label maxWidth="180.0" minWidth="170.0" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" text="Creation Date" />
 
                   </HBox>
-                  <ListView fx:id="tab1" prefHeight="417.0" prefWidth="1146.0" styleClass="shadow" VBox.vgrow="ALWAYS">
+                  <ListView fx:id="tab1" prefHeight="215.0" prefWidth="961.0" styleClass="shadow" VBox.vgrow="ALWAYS">
                   <VBox.margin>
                      <Insets />
                   </VBox.margin></ListView>
@@ -66,7 +66,7 @@
                   </HBox>
                </children>
             </VBox>
-         <AnchorPane layoutX="409.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
+         <AnchorPane layoutX="238.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
             <children>
                <Label layoutX="77.0" layoutY="92.0" text="Total Agencies" textFill="WHITE">
                   <font>
@@ -80,7 +80,7 @@
                </Label>
             </children>
          </AnchorPane>
-         <AnchorPane layoutX="889.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
+         <AnchorPane layoutX="635.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
             <children>
                <Label layoutX="77.0" layoutY="97.0" text="Total Reviews" textFill="WHITE">
                   <font>
@@ -94,9 +94,9 @@
                </Label>
             </children>
          </AnchorPane> </AnchorPane>
-      <AnchorPane fx:id="list" layoutX="3.0" layoutY="3.0" prefHeight="785.0" prefWidth="1262.0" visible="false" AnchorPane.leftAnchor="3.0">
+      <AnchorPane fx:id="list" layoutX="25.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="610.0" prefWidth="934.0" visible="false">
          <children>
-            <AnchorPane layoutX="261.0" layoutY="179.0" prefHeight="598.0" prefWidth="958.0" stylesheets="@style/dashboardDesign.css">
+            <AnchorPane layoutY="7.0" prefHeight="539.0" prefWidth="915.0" stylesheets="@style/dashboardDesign.css">
                <styleClass>
                   <String fx:value="white-bg" />
                   <String fx:value="shadow" />
@@ -125,9 +125,9 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="update" layoutX="10.0" layoutY="10.0" prefHeight="778.0" prefWidth="1202.0" visible="false" AnchorPane.leftAnchor="3.2">
+      <AnchorPane fx:id="update" layoutX="233.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="778.0" prefWidth="709.0" visible="false">
          <children>
-            <AnchorPane layoutX="416.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
+            <AnchorPane layoutX="144.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
                <children>
                   <Label layoutX="77.0" layoutY="92.0" text="Total Agencies" textFill="WHITE">
                      <font>
@@ -141,7 +141,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="847.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
+            <AnchorPane layoutX="440.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
                <children>
                   <Label layoutX="77.0" layoutY="97.0" text="Total Reviews" textFill="WHITE">
                      <font>
@@ -155,7 +155,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="462.0" layoutY="179.0" prefHeight="598.0" prefWidth="606.0" stylesheets="@style/dashboardDesign.css" AnchorPane.leftAnchor="462.0">
+            <AnchorPane layoutX="462.0" layoutY="179.0" prefHeight="598.0" prefWidth="606.0" stylesheets="@style/dashboardDesign.css" AnchorPane.leftAnchor="0.0">
                <styleClass>
                   <String fx:value="white-bg" />
                   <String fx:value="shadow" />
@@ -187,7 +187,7 @@
                   <Button fx:id="modif1" layoutX="241.0" layoutY="416.0" mnemonicParsing="false" onAction="#modif" prefHeight="43.0" prefWidth="123.0" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Edit" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <Button fx:id="back" layoutX="174.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchForm" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Back" textFill="WHITE">
+            <Button fx:id="back" layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchForm" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Back" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
                      <image>
@@ -198,7 +198,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="aajouter" layoutX="66.0" layoutY="22.0" prefHeight="640.0" prefWidth="780.0" style="-fx-background-color: white;" styleClass="show-box" stylesheets="@style/styleafficher.css" visible="false" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="122.0">
+      <AnchorPane fx:id="aajouter" layoutX="66.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="538.0" prefWidth="606.0" style="-fx-background-color: white;" styleClass="show-box" stylesheets="@style/styleafficher.css" visible="false">
          <children>
             <HBox prefHeight="643.0" prefWidth="776.0" styleClass="show-box" stylesheets="@style/styleafficher.css">
                <children>
@@ -328,13 +328,13 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="consulter" layoutX="10.0" layoutY="10.0" prefHeight="789.0" prefWidth="1563.0" visible="false">
+      <AnchorPane fx:id="consulter" layoutX="56.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="698.0" prefWidth="998.0" visible="false">
          <children>
-            <VBox layoutX="-3.0" prefHeight="806.0" prefWidth="1563.0">
+            <VBox layoutY="205.0" prefHeight="546.0" prefWidth="998.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="665.0" prefWidth="1514.0" VBox.vgrow="ALWAYS">
+                  <HBox alignment="CENTER" prefHeight="700.0" prefWidth="837.0">
                      <children>
-                        <ScrollPane fx:id="scroll" prefHeight="606.0" prefWidth="1391.0" styleClass="transparent" stylesheets="@style/styleafficher.css">
+                        <ScrollPane fx:id="scroll" prefHeight="422.0" prefWidth="994.0" styleClass="transparent" stylesheets="@style/styleafficher.css">
                            <content>
                               <GridPane fx:id="container" prefHeight="8.0" prefWidth="5.0">
                                  <rowConstraints>
@@ -343,14 +343,14 @@
                               </GridPane>
                            </content>
                            <HBox.margin>
-                              <Insets left="150.0" right="30.0" top="200.0" />
+                              <Insets />
                            </HBox.margin>
                         </ScrollPane>
                      </children>
                   </HBox>
                </children>
             </VBox>
-            <AnchorPane layoutX="264.0" layoutY="24.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css" AnchorPane.leftAnchor="700.0">
+            <AnchorPane layoutX="554.2" layoutY="25.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
                <children>
                   <Label layoutX="77.0" layoutY="92.0" text="Total Agencies" textFill="WHITE">
                      <font>
@@ -364,7 +364,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="621.0" layoutY="24.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css" AnchorPane.leftAnchor="1100.0" AnchorPane.topAnchor="24.0">
+            <AnchorPane layoutX="924.0" layoutY="24.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="24.0">
                <children>
                   <Label layoutX="77.0" layoutY="97.0" text="Total Reviews" textFill="WHITE">
                      <font>
@@ -378,7 +378,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="274.0" layoutY="34.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="24.0">
+            <AnchorPane layoutX="274.0" layoutY="34.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css" AnchorPane.topAnchor="24.0">
                <children>
                   <Label layoutX="77.0" layoutY="92.0" text="Average reviews" textFill="WHITE">
                      <font>

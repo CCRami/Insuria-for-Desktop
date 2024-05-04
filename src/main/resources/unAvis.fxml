@@ -12,9 +12,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="308.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.avis">
+<AnchorPane prefHeight="278.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.avis">
    <children>
-      <VBox fx:id="agevbox" prefHeight="314.0" prefWidth="386.0" style="-fx-background-color: #051B46; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0,5,5, 0, 0);" styleClass="show-box" stylesheets="@style/styleafficher.css">
+      <VBox fx:id="agevbox" prefHeight="274.0" prefWidth="382.0" style="-fx-background-color: #051B46; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0,5,5, 0, 0);" styleClass="show-box" stylesheets="@style/styleafficher.css">
          <children>
             <Label fx:id="nomagence" alignment="CENTER" prefHeight="52.0" prefWidth="390.0" text="Crepe Factory" textFill="WHITE">
                <font>
@@ -108,7 +108,7 @@
                   </HBox>
                </children>
             </VBox>
-            <HBox prefHeight="145.0" prefWidth="406.0">
+            <HBox prefHeight="58.0" prefWidth="382.0">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Comment : ">
                      <font>
@@ -125,7 +125,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox prefHeight="62.0" prefWidth="396.0">
+            <HBox prefHeight="57.0" prefWidth="382.0">
                <children>
                   <Button fx:id="supprimer" mnemonicParsing="false" prefHeight="44.0" prefWidth="118.0" style="-fx-background-color: #2CA2FB;" styleClass="ajouter-button" text="Delete" textAlignment="CENTER" textFill="WHITE">
                      <HBox.margin>

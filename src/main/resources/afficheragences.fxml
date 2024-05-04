@@ -2,27 +2,20 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Pagination?>
 
-<AnchorPane prefHeight="789.0" prefWidth="1563.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.Afficher">
+<AnchorPane prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Afficher">
     <children>
-        <VBox fx:id="agencesfr" layoutX="-3.0" prefHeight="806.0" prefWidth="1563.0">
+        <VBox fx:id="agencesfr" layoutX="-3.0" prefHeight="600.0" prefWidth="1280.0">
             <children>
                 <HBox alignment="CENTER" prefHeight="611.0" prefWidth="1563.0" VBox.vgrow="ALWAYS">
                <children>
                   <VBox prefHeight="665.0" prefWidth="1509.0">
                      <children>
-                        <TextField fx:id="addEmployee_search1" prefHeight="34.0" prefWidth="932.0" promptText="Seach" styleClass="search" stylesheets="@style/dashboardDesign.css">
-                           <VBox.margin>
-                              <Insets bottom="6.0" left="66.0" right="1100.0" top="33.0" />
-                           </VBox.margin>
-                        </TextField>
                               <ScrollPane fx:id="scroll" prefHeight="610.0" prefWidth="1414.0" styleClass="transparent" stylesheets="@style/styleafficher.css">
                                   <content>
                                       <GridPane fx:id="container" prefHeight="8.0" prefWidth="5.0">

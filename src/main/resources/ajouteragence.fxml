@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="778.0" prefWidth="1254.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.afficheragenceBack">
+<AnchorPane prefHeight="778.0" prefWidth="1254.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.afficheragenceBack">
     <children>
         <AnchorPane layoutX="157.0" layoutY="179.0" prefHeight="598.0" prefWidth="958.0" stylesheets="@style/dashboardDesign.css">
             <styleClass>

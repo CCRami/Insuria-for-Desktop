@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.afficheravis">
+<AnchorPane prefHeight="789.0" prefWidth="1563.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.afficheravisbyuser">
     <children>
-        <VBox layoutX="-3.0" prefHeight="600.0" prefWidth="1280.0" AnchorPane.leftAnchor="-3.0">
+        <VBox layoutX="-3.0" prefHeight="806.0" prefWidth="1563.0">
             <children>
                 <HBox alignment="CENTER" prefHeight="665.0" prefWidth="1514.0" VBox.vgrow="ALWAYS">
-                    <children>
-                        <ScrollPane fx:id="scroll" prefHeight="550.0" prefWidth="1243.0" styleClass="transparent" stylesheets="@style/styleafficher.css">
+               <children>
+                        <ScrollPane fx:id="scroll" prefHeight="476.0" prefWidth="1558.0" styleClass="transparent" stylesheets="@style/styleafficher.css">
                             <content>
                                 <GridPane fx:id="container" prefHeight="8.0" prefWidth="5.0">
                                     <rowConstraints>
@@ -22,11 +22,11 @@
                                     </rowConstraints>
                                 </GridPane>
                             </content>
-                            <HBox.margin>
-                                <Insets left="30.0" top="50.0" />
-                            </HBox.margin>
+                     <HBox.margin>
+                        <Insets left="150.0" top="50.0" />
+                     </HBox.margin>
                         </ScrollPane>
-                    </children>
+               </children>
                 </HBox>
             </children>
         </VBox>
