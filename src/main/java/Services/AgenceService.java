@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AgenceService implements IService<Agence>{
+public class AgenceService implements Iserviceagence<Agence>{
     private Connection cnx;
     private Statement ste;
     private PreparedStatement pst;

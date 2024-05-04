@@ -1,19 +1,83 @@
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Controllers\dashboard.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Controllers\AffichagefrontSinistre.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Controllers\AffichagePolice.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\test\Main.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\test\HelloApplication.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Services\SinistreService.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Controllers\AffichagefrontPolice.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Controllers\AdminView.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Entities\Sinistre.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Services\Iservice.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Controllers\EditSinister.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Controllers\AddSiniter.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\tn\esprit\applicatiopnpi\utils\MyDatabase.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Entities\Police.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Controllers\AffichageSinistre.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Controllers\EditPolice.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Controllers\dashboardFront.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Controllers\AddPolice.java
-C:\Users\USER\Desktop\Insuria for desktop\Insuria-for-Desktop\src\main\java\Services\PoliceService.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\User\UserListViewCell.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\AddSiniter.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\updateagence.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\AffichagefrontPolice.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\User\UserProfileController.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\dashboardFront.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Services\IndemnisationService.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\afficheravisback.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Services\MailService.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\AdminView.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\afficheravisbyuser.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\IndemnisationAccepted.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\User\SignupController.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\avis1.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\indemnisationsBack.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Services\IServiceReclamation.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\afficherReclamationBack.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\Afficher.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\serviceemail.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Services\UserService.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Entities\Indemnissation.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\agencedash.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\CreationButto.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Entities\Commande.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\afficheragenceBack.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\Ajouteravis.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\helper\AlertHelper.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Services\IUser.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\listeReclamationBack.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Services\AvisService.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\avis.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\addReclamation.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Entities\Agence.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\AffichagePolice.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Services\IServiceAvis.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Services\Iserviceagence.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\showCompensationAccepted.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\EditReclamation.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Services\Iservice.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Entities\Sinistre.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\User\UserListController.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Entities\Avis.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\stat.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\User\ResetPassController.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\showCompensationRefused.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Services\SinistreService.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\reclamationsFront.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\User\confirmController.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\User\ConfirmEmailController.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\afficheravis.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\org\example\MainFX.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\AddPolice.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\afficheravisbackbyagence.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\EditPolice.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\User\EditUserController.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\Ajouteragence.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Services\PoliceService.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\util\DataSource.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\AffichageSinistre.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Entities\UserSession.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Entities\Reclamation.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\User\FAController.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\Age.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\EditSinister.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\org\example\Main.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\module-info.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\User\LoginController.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\tn\esprit\applicatiopnpi\utils\MyDatabase.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\showCompensation.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Services\IServiceIndemnisation.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Services\MyListener.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\reclamationData.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\User\HomeController.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\User\QRController.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\AffichagefrontSinistre.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\MailService.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Entities\Police.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\dashboard.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Services\AgenceService.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\indemnisationRefused.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Services\ReclamationService.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Controllers\cmd.java
+C:\Users\Mon Pc\Desktop\Insuria-for-Desktop\src\main\java\Entities\User.java

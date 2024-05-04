@@ -179,4 +179,68 @@ public class dashboard implements Initializable {
         vboxdash.getChildren().clear();
         vboxdash.getChildren().add(eventFXML);
     }
+
+    @FXML
+    void showPolice(MouseEvent event) {
+
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/applicatiopnpi/AffichagePolice.fxml"));
+            Node eventFXML = loader.load();
+
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
+    @FXML
+    void showSinistre(MouseEvent event) {
+
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/applicatiopnpi/AffichageSinistre.fxml"));
+            Node eventFXML = loader.load();
+
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    public void showAdmin(MouseEvent event) {
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/applicatiopnpi/adminView.fxml"));
+            Node eventFXML = loader.load();
+
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
 }

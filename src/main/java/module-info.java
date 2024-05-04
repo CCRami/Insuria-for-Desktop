@@ -17,6 +17,9 @@ module com.example.insuria {
     requires jbcrypt;
     requires totp;
     requires java.desktop;
+    requires java.persistence;
+    requires itextpdf;
+    requires restfb;
     exports org.example;
     exports Controllers;
     opens Controllers;

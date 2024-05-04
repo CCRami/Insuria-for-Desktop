@@ -72,8 +72,8 @@
                     <children>
                         <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="38.0" prefWidth="192.0" style="-fx-background-color: #051B46;" text="Polices" textFill="WHITE">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Polices" />
-                                <MenuItem mnemonicParsing="false" text="Sinistres" />
+                                <MenuItem mnemonicParsing="false" onAction="#showPolice" text="Polices" />
+                                <MenuItem mnemonicParsing="false" onAction="#showSinistre" text="Sinistres" />
                             </items>
                             <font>
                                 <Font name="System Bold" size="16.0" />
