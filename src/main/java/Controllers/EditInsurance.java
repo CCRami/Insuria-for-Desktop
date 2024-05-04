@@ -2,10 +2,8 @@ package Controllers;
 
 import Entities.Insurance;
 import Entities.InsuranceCategory;
-import Entities.police;
 import Services.InsuranceCatService;
 import Services.InsuranceService;
-import Services.policeService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;

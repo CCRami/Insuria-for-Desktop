@@ -2,7 +2,6 @@ package Services;
 
 import Entities.Commande;
 import Entities.Insurance;
-import Entities.User;
 import util.DataSource;
 
 import java.sql.*;

@@ -3,7 +3,7 @@ package Services;
 import util.DataSource;
 import Entities.Insurance;
 import Entities.InsuranceCategory;
-import Entities.police;
+
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
