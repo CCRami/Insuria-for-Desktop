@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AffichagePolice" stylesheets="@style/dashboardDesign.css" prefHeight="720.0" prefWidth="1030.0">
+    <children>
+        <VBox fx:id="contentArea" layoutX="223.0" layoutY="53.0" prefHeight="672.0" prefWidth="808.0" styleClass="white-bg, shadow" spacing="20" AnchorPane.bottomAnchor="53" AnchorPane.leftAnchor="223" AnchorPane.rightAnchor="223" AnchorPane.topAnchor="53">
+            <children>
+                <HBox styleClass="searchBox" alignment="CENTER" spacing="8">
+                    <TextField fx:id="searchField" prefHeight="30.0" prefWidth="230.0" promptText="Search" styleClass="searchInput"/>
+                    <Button styleClass="searchButton">
+                        <graphic>
+                            <ImageView fitWidth="20" fitHeight="20">
+                                <image>
+                                    <Image url="@images/chercher.png" />
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </HBox>
+                <HBox spacing="10" style="-fx-padding: 10;">
+                    <Label minWidth="185.0" maxWidth="185.0" text="Name" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29; -fx-alignment: center;" />
+                    <Label minWidth="173.0" maxWidth="173.0" text="Description" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29; -fx-alignment: center;" />
+                    <Label minWidth="167.0" maxWidth="167.0" text="Associated Sinister" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29; -fx-alignment: center;" />
+                    <Label minWidth="150.0" maxWidth="150.0" text="Actions" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29; -fx-alignment: center;" />
+                </HBox>
+                <ListView fx:id="policeList" VBox.vgrow="ALWAYS" styleClass="list-view">
+                    <!-- The ListView can be populated with custom cells defined in Java code -->
+                </ListView>
+                <HBox fx:id="paginationContainer" alignment="CENTER" spacing="10">
+                    <Button fx:id="prevPageBtn" text="Previous" onAction="#handlePrevPage"/>
+                    <!-- Dynamic page numbers will be inserted here -->
+                    <Button fx:id="nextPageBtn" text="Next" onAction="#handleNextPage"/>
+                </HBox>
+                <HBox alignment="CENTER" style="-fx-padding: 20;">
+                    <Button text="Add New Policie" onMouseClicked="#handleAddNew" styleClass="button1" minWidth="202.0">
+                        <graphic>
+                            <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                                <image>
+                                    <Image url="@images/add.png" />
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminView" stylesheets="@style/dashboardDesign.css" prefHeight="720.0" prefWidth="1030.0">
+    <children>
+        <!-- Horizontal layout container -->
+        <HBox spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+            <!-- VBox for ListView and its title -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Unfound Searches" styleClass="heading" />
+                <HBox spacing="10" style="-fx-padding: 10;">
+                    <Label minWidth="185.0" maxWidth="185.0" text="Name" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29;  -fx-alignment: center;" />
+                    <Label minWidth="173.0" maxWidth="173.0" text="Actions" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29; -fx-alignment: center;" />
+                </HBox>
+                <ListView fx:id="unfoundSearchesList" VBox.vgrow="ALWAYS">
+                    <VBox.margin>
+                        <Insets top="10.0" bottom="10.0" left="10.0" right="10.0"/>
+                    </VBox.margin>
+                </ListView>
+            </VBox>
+
+            <!-- VBox for PieChart and its title -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Statistics" styleClass="heading" />
+                <PieChart fx:id="statPieChart" VBox.vgrow="ALWAYS">
+                    <VBox.margin>
+                        <Insets top="10.0" bottom="10.0" left="10.0" right="10.0"/>
+                    </VBox.margin>
+                </PieChart>
+            </VBox>
+        </HBox>
+    </children>
+</AnchorPane>

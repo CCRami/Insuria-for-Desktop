@@ -1,0 +1,495 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 09 21, 22, 4:12:17 PM
+    Author     : WINDOWS 10
+*/
+
+.top-form{
+    -fx-background-color:#fff;
+    -fx-border-color:#000;
+    -fx-border-width:.4px .4px .2px .4px;
+}
+
+.semi-top-form{
+    -fx-background-color:#efefef;
+    -fx-border-color:#000;
+    -fx-border-width:.2px .4px .8px .4px;
+}
+
+.close{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+}
+.close:hover{
+    -fx-background-color:#ff3547;
+}
+
+.minimize{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+}
+.minimize:hover{
+    -fx-background-color:#ddd;
+}
+
+.nav-form{
+    -fx-background-color:linear-gradient(to bottom right, #272b3f, #256b51);
+}
+
+.nav-btn{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+    -fx-font-family:"Arial";
+    -fx-font-size:14px;
+    -fx-text-fill:#fff;
+    -fx-alignment:CENTER-LEFT;
+}
+
+.logout{
+    -fx-background-color:#219a6a;
+    -fx-background-radius:10px;
+    -fx-cursor:hand;
+}
+.logout:hover{
+    -fx-background-color:#18a383;
+}
+
+.shadow{
+    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0.5), 6,0,0,0);
+}
+
+.white-bg{
+    -fx-background-color:#fff;
+    -fx-background-radius:8px;
+}
+
+.card{
+    -fx-background-color:linear-gradient(to right, #000E29, #000E29);
+    -fx-background-radius:5px;
+}
+
+.table-view{
+    -fx-background-color:transparent;
+    -fx-border-color:linear-gradient(to bottom right, #272b3f, #000E29);
+    -fx-border-radius:8px;
+    -fx-padding:0px;
+}
+.table-view .table-column{
+    -fx-alignment:CENTER;
+}
+.table-view .column-header-background{
+    -fx-background-color:linear-gradient(to bottom right, #000E29, #000E29);
+    -fx-background-insets: 0 0 0 0;
+    -f-background-radius:8px 8px 0px 0px;
+}
+.table-view .column-header, .filter{
+    -fx-background-color: transparent;
+    -fx-size:40px;
+}
+.table-view .column-header .label{
+    -fx-text-fill:#fff;
+    -fx-font-family:"Arial";
+}
+
+.textfield{
+    -fx-background-color:linear-gradient(to bottom, #efefef, #eee);
+    -fx-border-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-border-width:.8px;
+    -fx-font-family:"Tahoma";
+    -fx-border-radius:4px;
+}
+.textfield:focused{
+    -fx-border-width:1.8px;
+    -fx-background-color:#fff;
+}
+
+.search{
+    -fx-background-color:transparent;
+    -fx-border-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-border-radius:5px;
+    -fx-font-size:13px;
+    -fx-font-family:"Arial";
+    -fx-border-width:1px;
+    -fx-padding:0px 0px 0px 28px;
+}
+.search:focused{
+    -fx-border-width:2px;
+}
+
+.import-btn{
+    -fx-background-color:#ddd;
+    -fx-text-fill:red;
+    -fx-cursor:hand;
+}
+
+.add-btn{
+    -fx-background-color:#304575;
+    -fx-background-radius:8px;
+    -fx-text-fill:#fff;
+    -fx-font-size:14px;
+    -fx-font-family:"Arial";
+    -fx-cursor:hand;
+}
+.add-btn:hover{
+    -fx-background-color:#3357a4;
+}
+
+.update-btn{
+    -fx-background-color:#327252;
+    -fx-background-radius:8px;
+    -fx-text-fill:#fff;
+    -fx-font-size:14px;
+    -fx-font-family:"Arial";
+    -fx-cursor:hand;
+}
+.update-btn:hover{
+    -fx-background-color:#309a65;
+}
+
+.delete-btn{
+    -fx-background-color:#86253f;
+    -fx-background-radius:8px;
+    -fx-text-fill:#fff;
+    -fx-font-size:14px;
+    -fx-font-family:"Arial";
+    -fx-cursor:hand;
+}
+.delete-btn:hover{
+    -fx-background-color:#ae1d46;
+}
+
+.clear-btn{
+    -fx-background-color:#753566;
+    -fx-background-radius:8px;
+    -fx-text-fill:#fff;
+    -fx-font-size:14px;
+    -fx-font-family:"Arial";
+    -fx-cursor:hand;
+}
+.clear-btn:hover{
+    -fx-background-color:#9d3485;
+}
+
+.label-info{
+    -fx-background-color:transparent;
+    -fx-border-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-border-radius:4px;
+    -fx-padding:0px 0px 0px 8px;
+}
+/* Style général de l'arrière-plan de l'AnchorPane */
+.root {
+    -fx-background-color: #f4f4f4; /* Couleur de fond claire pour l'ensemble de l'interface */
+}
+
+/* Styles spécifiques pour la VBox */
+.white-bg {
+    -fx-background-color: #ffffff; /* Arrière-plan blanc pour la VBox */
+    -fx-padding: 20px; /* Espace autour des éléments internes */
+    -fx-border-radius: 5px; /* Bords arrondis */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 10); /* Ombre subtile */
+}
+
+/* Stylisation du ListView */
+.list-view {
+    -fx-background-color: #ffffff; /* Fond blanc pour les éléments de liste */
+    -fx-border-color: #ccc; /* Bordure légère */
+    -fx-border-width: 1px; /* Largeur de la bordure */
+    -fx-border-insets: -1; /* Ajustement de la bordure à l'intérieur */
+    -fx-border-radius: 5px; /* Bords arrondis pour la liste */
+}
+
+.list-cell {
+    -fx-padding: 10px; /* Espace interne pour chaque cellule de la liste */
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #eeeeee transparent; /* Bordures entre les cellules */
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #f0f0f0; /* Changement de couleur au survol */
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #b3d7ff; /* Couleur pour l'élément sélectionné */
+    -fx-text-fill: black;
+}
+
+.search {
+    -fx-background-color: #f4f4f4; /* Fond pour la barre de recherche */
+    -fx-border-color: #ccc;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.button {
+    -fx-background-color: #0073e6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.input {
+    -fx-background-color: white;
+    -fx-background-radius: 15px;  /* Bordures arrondies */
+    -fx-padding: 10;
+    -fx-border-color: transparent;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, #cff0ff, 10, 0, 0, -5); /* Ombre légère */
+    -fx-border-radius: 15px; /* S'assurer que le border-radius est réappliqué même si non nécessaire */
+}
+
+.input:hover,
+.input:focused {
+    -fx-border-color: #4a9dec; /* Changement de couleur de bordure au survol/focus */
+    -fx-background-color: white; /* Maintient la couleur de fond blanche même au focus */
+}
+
+
+.buttonn {
+    -fx-background-color: #4a9dec; /* Couleur de base */
+    -fx-text-fill: white;
+    -fx-background-radius: 20px;
+    -fx-padding: 10 20;
+    -fx-border-color: transparent;
+}
+
+.buttonn:hover {
+    -fx-background-color: #428bca; /* Couleur assombrie pour hover */
+}
+
+.buttonn:pressed {
+    -fx-background-color: #357ab8; /* Couleur plus assombrie pour pressed */
+}
+.titlee {
+    -fx-font-size: 24px; /* Taille de la police pour le titre */
+    -fx-font-weight: bold; /* Rendre le texte en gras */
+    -fx-text-fill: #00008B	; /* Couleur du texte */
+    -fx-alignment: center; /* Centrage du texte dans le label */
+}
+.image-view {
+    -fx-margin-right: 10;  /* Add space between the icon and the text */
+}
+
+
+
+.title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4a9dec;
+}
+.field-label {
+    -fx-text-fill: #0000AD; /* Couleur du texte des labels */
+    -fx-font-weight: bold; /* Poids de la police */
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-alignment: center-right; /* Alignement du texte à droite dans le HBox */
+    -fx-padding: 5 10 5 0; /* Padding pour aligner verticalement avec les champs de saisie */
+}
+.button1 {
+    -fx-background-color: linear-gradient(to right, #03a9f4, #0276bc, #0276bc, #03a9f4);
+    -fx-text-fill: white;
+    -fx-font-family: inherit;
+    -fx-font-size: 14px;
+    -fx-border-radius: 30px;
+    -fx-padding: 0.75em 0em; /* Hauteur de ligne ajustée pour la hauteur du bouton */
+    -fx-background-insets: 0, 1, 2;
+    -fx-cursor: hand;
+    -fx-pref-width: 9em;
+    -fx-pref-height: 3em;
+}
+
+.button1:hover {
+    -fx-effect: dropshadow(three-pass-box, rgb(255, 255, 255), 20, 0, 0, 0);
+}
+.searchBox {
+    -fx-background-color: #c5def1;
+    -fx-border-radius: 25; /* 50px est trop arrondi pour un champ de texte, ajusté pour l'apparence */
+    -fx-text-fill: white;
+    -fx-padding: 24 46 24 26;
+}
+
+.searchButton {
+    -fx-background-color: linear-gradient(to right, #2ae4f5, #009EFD);
+    -fx-text-fill: white;
+    -fx-background-radius: 25; /* Cela crée un effet de bouton rond */
+    -fx-border-color: transparent;
+    -fx-pref-width: 50;
+    -fx-pref-height: 50;
+}
+
+.searchButton:hover {
+    -fx-background-color: #bcc1e0;
+    -fx-effect: dropshadow(three-pass-box, rgba(14, 125, 197, 0.5), 10, 0, 0, 20);
+    -fx-translate-y: -3;
+}
+
+.searchButton:pressed {
+    -fx-effect: dropshadow(three-pass-box, rgba(14, 125, 197, 0.5), 10, 0, 0, 20);
+    -fx-translate-y: 0;
+}
+.label.error {
+    -fx-text-fill: red;
+}
+.card {
+    -fx-background-color: linear-gradient(to bottom right, #2ca2fb, #051b46);
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-pref-width: 400; /* Increased width */
+    -fx-pref-height: 300;
+    -fx-alignment: center;
+}
+
+.card:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 20);
+}
+
+.card__content {
+    -fx-padding: 20;
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
+    -fx-alignment: center; /* Ensure content is centered */
+}
+
+.card__title {
+    -fx-font-size: 24;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-alignment: center; /* Center alignment for the title */
+}
+
+.card__description {
+    -fx-font-size: 14;
+    -fx-text-fill: #ffffff;
+    -fx-wrap-text: true;
+    -fx-alignment: center; /* Center alignment for the description */
+}
+
+.cardd {
+    -fx-padding: 100px;
+    -fx-background-color: linear-gradient(to bottom right, #2ca2fb, #051b46);
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, rgb(44, 162, 251), 10, 0, 0, 0);
+}
+
+.content {
+    /* to align items to the top and left in a VBox */
+    -fx-spacing: 20px; /* space between children nodes */
+    -fx-text-fill: #e8e8e8;
+    -fx-alignment: center;
+}
+
+.heading {
+    -fx-font-weight: bold;
+    -fx-font-size: 32px;
+}
+
+.para {
+    -fx-line-spacing: 1.5em; /* JavaFX uses 'em' for line spacing */
+}
+
+.cardd:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(9, 117, 241, 0.8), 10, 0, 0, 0);
+    -fx-border-color: #0974f1;
+}
+
+.btn {
+    -fx-padding: 8px 16px;
+    -fx-background-color: #0974f1;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgb(255, 255, 255), 10, 0, 0, 0);
+}
+
+.btn:hover {
+    -fx-background-color: #065ab5;
+}
+.button2 {
+    -fx-background-color: linear-gradient(to right, #2ca2fb, #2ca2fb, #2ca2fb, #2ca2fb);
+    -fx-text-fill: white;
+    -fx-font-family: inherit;
+    -fx-font-size: 14px;
+    -fx-border-radius: 30px;
+    -fx-padding: 0.75em 0em; /* Hauteur de ligne ajustée pour la hauteur du bouton */
+    -fx-background-insets: 0, 1, 2;
+    -fx-cursor: hand;
+    -fx-pref-width: 9em;
+    -fx-pref-height: 3em;
+}
+.chart-pie-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.pie-chart {
+    -fx-pie-label-visible: true; /* Pour rendre les labels visibles */
+}
+.scroll-pane {
+    -fx-background-color: transparent; /* Rend le fond de la ScrollPane transparent */
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent; /* Rend le fond de la zone de contenu transparent */
+}
+
+.scroll-pane .scroll-bar {
+    -fx-background-color: transparent; /* Rend les barres de défilement transparentes */
+    -fx-background-insets: 0; /* Supprime les bordures internes */
+}
+.searchh-field {
+    -fx-background-color: #2ca2fb;
+    -fx-background-insets: 0;
+    -fx-background-radius: 25;
+    -fx-padding: 5;
+    -fx-text-fill: #051b46;
+    -fx-font-size: 16px;
+}
+.inputt-field {
+    -fx-background-color: #e8e8e8;
+    -fx-background-insets: 0;
+    -fx-background-radius: 25;
+    -fx-padding: 5;
+    -fx-prompt-text-fill: #5e5e5e;
+    -fx-text-fill: #5e5e5e;
+}
+
+.searchh-field:focused {
+    -fx-background-color: linear-gradient(to bottom right, rgb(239, 247, 255) 0%, rgb(44, 162, 251) 100%);
+}
+
+
+
+
+
+.inputt-field:focused {
+    -fx-border-color: #4998FF;
+    -fx-border-width: 0 0 0 2px;
+}
+
+.search-buttton {
+    -fx-padding: 1rem;
+    -fx-background-color: linear-gradient(to bottom right, #BFF0FA, #4998FF);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 0 1rem 1rem 0;
+    -fx-letter-spacing: 0.3rem;
+    -fx-text-transform: uppercase;
+}
+
+.search-buttton:hover {
+    -fx-background-color: linear-gradient(to bottom right, #BFF0FA, #4998ffc4);
+}
+
+
+
+
+
+
+
+
+
+
+
