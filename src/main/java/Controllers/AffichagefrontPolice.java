@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import Entities.Police;
@@ -40,12 +41,37 @@ public class AffichagefrontPolice {
     public void initialize() {
         populateSinistreFilters();
         loadPolice();
+        TextField searchField = new TextField();
+        searchField.setPromptText("Search Policies...");
         setupSearchField();
+        BorderPane borderPane = new BorderPane();
+        borderPane.setStyle("-fx-padding: 10;");
+        borderPane.setLeft(searchField);
+        BorderPane.setAlignment(searchField, Pos.CENTER_LEFT);
     }
     private void setupSearchField() {
+        searchField.setStyle("-fx-background-color: transparent; " +
+                "-fx-border-width: 0 0 2 0; " +
+                "-fx-border-color: #931616; " +
+                "-fx-padding: 15 0; " +
+                "-fx-font-size: 18px; " +
+                "-fx-text-fill: #cb2424;");
+        searchField.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal) {
+                searchField.setStyle(searchField.getStyle() + "-fx-border-color: #0c0c0c;");
+            } else {
+                searchField.setStyle(searchField.getStyle() + "-fx-border-color: #be1111;");
+            }
+        });
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filterPoliciesBySearch(newValue);
+            if (!newValue.trim().isEmpty()) {
+                searchField.setStyle(searchField.getStyle() + "-fx-border-color: #051b46;");
+            } else {
+                searchField.setStyle(searchField.getStyle() + "-fx-border-color: #0c0c0c;");
+            }
         });
+
     }
     private void filterPoliciesBySearch(String inputSearchTerm) {
         // Declare a final variable for use within the lambda to avoid issues
@@ -72,7 +98,9 @@ public class AffichagefrontPolice {
 
     private void populateSinistreFilters() {
         // Create an "All" button to display all policies
+        sinistreFilterBox.setStyle(TABS_STYLE);
         Button allButton = new Button("All");
+        applyButtonStyle(allButton);
         allButton.setOnAction(event -> loadPolice());
         sinistreFilterBox.getChildren().add(allButton);
 
@@ -80,6 +108,7 @@ public class AffichagefrontPolice {
         List<Sinistre> sinistres = sinistreService.getAll(); // Assume this fetches all Sinistres
         for (Sinistre sinistre : sinistres) {
             Button sinistreButton = new Button(sinistre.getSin_name());
+            applyButtonStyle(sinistreButton);
             int sinistreId = sinistre.getId(); // Assuming getId() is a method that returns the sinistre's ID
             sinistreButton.setOnAction(event -> {
                 System.out.println("Filtering policies for sinistre ID: " + sinistreId);
@@ -87,6 +116,11 @@ public class AffichagefrontPolice {
             });
             sinistreFilterBox.getChildren().add(sinistreButton);
         }
+    }
+    private void applyButtonStyle(Button button) {
+        button.setStyle(TAB_STYLE);
+        button.setOnMouseEntered(e -> button.setStyle(TAB_HOVER_STYLE));
+        button.setOnMouseExited(e -> button.setStyle(TAB_STYLE));
     }
 
     private void loadPolice() {
@@ -264,5 +298,20 @@ public class AffichagefrontPolice {
                     document.bottom() - 10, 0);
         }
     }
+    private static final String TABS_STYLE = "-fx-background-color: #fff; " +
+            "-fx-padding: 12px; " + // Converted from 0.75rem assuming 16px = 1rem
+            "-fx-background-radius: 50px; " + // 99px is visually similar to fully rounded corners
+            "-fx-effect: dropshadow(three-pass-box, rgba(24, 94, 224, 0.15), 6, 0.1, 0, 6);";
+
+    private static final String TAB_STYLE = "-fx-background-color: transparent; " +
+            "-fx-font-size: 0.8rem; " +
+            "-fx-text-fill: black; " +
+            "-fx-font-weight: bold; " +
+            "-fx-cursor: hand; " +
+            "-fx-background-radius: 50px; " +
+            "-fx-padding: 5 10;";
+
+    private static final String TAB_HOVER_STYLE = "-fx-background-color: #e6eef9;";
+
 
 }

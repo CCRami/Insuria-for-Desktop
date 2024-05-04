@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Pos?>
+
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<VBox fx:id="mainContainer" alignment="TOP_CENTER" spacing="10" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AffichagefrontPolice" stylesheets="@style/dashboardDesign.css">
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="mainContainer" alignment="TOP_CENTER" spacing="10" style="-fx-padding: 20;" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AffichagefrontPolice">
     <children>
         <!-- Title and image at the top -->
         <VBox alignment="CENTER" spacing="10">
             <children>
                 <HBox alignment="CENTER" spacing="10">
                     <children>
-                        <Label text="LIST OF POLICIES" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #051B46; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 2, 4);"/>
+                        <Label style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #051B46; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 2, 4);" text="LIST OF POLICIES" />
                         <ImageView fitHeight="50" fitWidth="50" preserveRatio="true">
                             <image>
-                                <Image url="@images/contract_1018583.png"/> <!-- Verify this path is correct -->
+                                <Image url="@images/contract_1018583.png" /> <!-- Verify this path is correct -->
                             </image>
                         </ImageView>
                     </children>
@@ -32,10 +31,9 @@
             </children>
         </VBox>
         <BorderPane style="-fx-padding: 10;">
-            <left>
-                <TextField fx:id="searchField" promptText="Search Policies..." styleClass="searchh-field" BorderPane.alignment="CENTER_LEFT"/>
-            </left>
-        </BorderPane>
+         <left>
+                <TextField fx:id="searchField" promptText="Search Policies..." BorderPane.alignment="CENTER" />
+         </left></BorderPane>
 
         <!-- ScrollPane to hold cards in a scrollable VBox -->
         <ScrollPane fitToWidth="true">
