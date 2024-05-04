@@ -2,6 +2,7 @@ package Controllers;
 
 
 import Controllers.User.HomeController;
+import Controllers.User.UserProfileController;
 import Entities.User;
 import Entities.UserSession;
 import Services.UserService;
@@ -22,8 +23,7 @@ import java.util.ResourceBundle;
 
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 
@@ -152,7 +152,12 @@ public class dashboard implements Initializable {
     }
 
     @FXML
-    void GotoProfile(ActionEvent event) {
-
+    void GotoProfile(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserProfile.fxml"));
+        AnchorPane eventFXML = loader.load();
+        UserProfileController controller = loader.getController();
+        controller.setImageViewSize(vboxdash.getWidth(), vboxdash.getHeight());
+        vboxdash.getChildren().clear();
+        vboxdash.getChildren().add(eventFXML);
     }
 }

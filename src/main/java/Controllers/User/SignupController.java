@@ -126,9 +126,9 @@ public class SignupController {
                     "User Already Exist.");
         }
         else {
-            User u=new User(nomTF.getText(), prenomTF.getText(), emailTF.getText(), mdpTF.getText(), Integer.parseInt(telTF.getText()), DBTF.getValue().toString(), "[\"ROLE_CLIENT\"]", false, false, null, RandomStringUtils.randomAlphanumeric(103));
+            User u=new User(nomTF.getText(), prenomTF.getText(), emailTF.getText(), mdpTF.getText(), Integer.parseInt(telTF.getText()), DBTF.getValue().toString(), "[\"ROLE_CLIENT\"]", false, false, null, RandomStringUtils.randomAlphanumeric(10));
             us.add(u);
-            AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "User Signed Up", "User Signed Up successfully");
+            AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "User Signed Up", "User Signed Up successfully, check your email.");
             String emailValue = emailTF.getText();
             MailService.sendConfirmationEmail(emailValue,u);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
@@ -221,7 +221,7 @@ public class SignupController {
                 String firstName = (String) payload.get("given_name");
                 String lastName = (String) payload.get("family_name");
                 String avatarUrl = (String) payload.get("picture");
-                us.add(new User(firstName, lastName, email, idTokenString,0, LocalDate.now().toString(), "[\"ROLE_CLIENT\"]", true, false, avatarUrl, RandomStringUtils.randomAlphanumeric(103)));
+                us.add(new User(firstName, lastName, email, idTokenString,0, LocalDate.now().toString(), "[\"ROLE_CLIENT\"]", true, false, avatarUrl, null));
             } else {
                 System.out.println("Invalid ID token.");
             }

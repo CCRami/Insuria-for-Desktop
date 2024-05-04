@@ -7,7 +7,7 @@ public final class UserSession {
     private static UserSession instance;
 
     public static String email;
-    private static String id;
+    public static String id;
 
     private UserSession(String email, String id) {
         this.email = email;
@@ -21,7 +21,7 @@ public final class UserSession {
         return instance;
     }
 
-    public String getEamil() {
+    public String getEmail() {
         return email;
     }
 

@@ -1,6 +1,7 @@
 package Controllers;
 
 
+import Controllers.User.UserProfileController;
 import Entities.User;
 import Entities.UserSession;
 import Services.UserService;
@@ -16,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -139,8 +141,13 @@ public class dashboardFront implements Initializable{
     }
 
     @FXML
-    void GotoProfile(ActionEvent event) {
-
+    void GotoProfile(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserProfile.fxml"));
+        AnchorPane eventFXML = loader.load();
+        UserProfileController controller = loader.getController();
+        controller.setImageViewSize(vboxdash.getWidth(), vboxdash.getHeight());
+        vboxdash.getChildren().clear();
+        vboxdash.getChildren().add(eventFXML);
     }
 
 }

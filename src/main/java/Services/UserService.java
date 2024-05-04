@@ -269,5 +269,24 @@ public class UserService implements IUser<User>{
             throw new RuntimeException(e);
         }
     }
+    public void updateSecretToNull(String secret) {
+        try {
+            PreparedStatement updateStmt = conn.prepareStatement("UPDATE user SET secret = NULL WHERE secret = ?");
+            updateStmt.setString(1, secret);
+            updateStmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void updateSecret(int userId, String secret) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE user SET secret = ? WHERE id = ?");
+            stmt.setString(1, secret);
+            stmt.setInt(2, userId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

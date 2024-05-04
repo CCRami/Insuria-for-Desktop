@@ -32,6 +32,7 @@ public class ConfirmEmailController {
     void handleconfirm(ActionEvent event) {
         UserService us= new UserService();
         String alert= us.updateVerifiedBySecret(secretfield.getText());
+        us.updateSecretToNull(secretfield.getText());
         Alert expiredAlert = new Alert(Alert.AlertType.INFORMATION);
         expiredAlert.setTitle("Email Confirmation");
         expiredAlert.setHeaderText("Status");

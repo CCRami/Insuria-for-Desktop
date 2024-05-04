@@ -256,7 +256,10 @@ and open the template in the editor.
 }
 
 .buttonn:hover {
-    -fx-background-color: #428bca; /* Couleur assombrie pour hover */
+    -fx-background-color: #ff0000; /* Couleur assombrie pour hover */
+}
+.buttonn1:hover {
+    -fx-background-color: #00ff73; /* Couleur assombrie pour hover */
 }
 
 .buttonn:pressed {

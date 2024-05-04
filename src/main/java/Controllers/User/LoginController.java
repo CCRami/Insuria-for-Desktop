@@ -2,6 +2,7 @@ package Controllers.User;
 
 
 import Controllers.dashboardFront;
+import Services.MailService;
 import com.google.api.client.googleapis.auth.oauth2.*;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -51,6 +52,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.web.WebView;
 import javafx.stage.Window;
 import Services.UserService;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -76,6 +78,7 @@ public class LoginController implements Initializable {
             "https://www.googleapis.com/auth/userinfo.profile"};
 
     private static final NetHttpTransport HTTP_TRANSPORT;
+
 
     static {
         try {
@@ -127,10 +130,27 @@ public class LoginController implements Initializable {
 
     @FXML
     void gotoConfimer(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Email.fxml"));
-        Parent root=loader.load();
-        confirmController auc= loader.getController();
-        rest.getScene().setRoot(root);
+        UserService us = new UserService();
+        int id = us.getUserIdByEmail(mail.getText());
+        if(id!=0) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ResetPass.fxml"));
+            User u = us.displayByid(id);
+            String pass= RandomStringUtils.randomAlphanumeric(10);
+            MailService.sendResetPassEmail(mail.getText(),pass, u);
+            Parent root = loader.load();
+            ResetPassController controller = loader.getController();
+            controller.pass= pass;
+            controller.email=mail.getText();
+            Stage stage = new Stage();
+            stage.setTitle("Reset password");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        }
+        else {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                    "This email is not registered yet. Please sign up first.");
+        }
     }
 
 
@@ -161,13 +181,21 @@ public class LoginController implements Initializable {
 
                 if (us.displayByid(us.getUserIdByEmail(mail.getText())).isVerified()==1) {
 
+                    if(us.displayByid(us.getUserIdByEmail(mail.getText())).getSecret()==null){
+
                     UserSession u = UserSession.getInstance(mail.getText(), Integer.toString(us.getUserIdByEmail(mail.getText())));
                     if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_CLIENT\"]")) {
                         goToClient();
                     } else if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_ADMIN\"]")) {
                         goToHome();
                     }
+                }
+                    else {
+                        AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                                "Please provide the secret key.");
+                        show2fa();
 
+                    }
 
             }
 
@@ -319,6 +347,34 @@ public class LoginController implements Initializable {
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void show2fa() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/2fa.fxml"));
+            Parent root = loader.load();
+            FAController controller = loader.getController();
+            controller.email=mail.getText();
+            Stage stage = new Stage();
+            stage.setTitle("2FA");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            if (controller.validate){
+                UserSession u = UserSession.getInstance(mail.getText(), Integer.toString(us.getUserIdByEmail(mail.getText())));
+                if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_CLIENT\"]")) {
+                    goToClient();
+                } else if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_ADMIN\"]")) {
+                    goToHome();
+                }
+            }
+            else {
+                AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                        "Invalid secret key.");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

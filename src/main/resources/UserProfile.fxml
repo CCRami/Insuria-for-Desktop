@@ -1,41 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import java.lang.String?>
 <?import java.net.URL?>
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="Controllers.User.UserProfileController"
-      fx:id="root"
-      prefWidth="600" prefHeight="400" spacing="10"
-      styleClass="root">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-    <HBox spacing="10" styleClass="top-form">
-        <Button text="Close" fx:id="closeButton" styleClass="close" />
-        <Button text="Minimize" fx:id="minimizeButton" styleClass="minimize" />
-    </HBox>
-
-    <VBox styleClass="white-bg" spacing="10" alignment="CENTER">
-        <HBox spacing="10">
-            <Label text="First Name:" styleClass="field-label" />
-            <TextField fx:id="firstNameField" styleClass="textfield" />
-        </HBox>
-        <HBox spacing="10">
-            <Label text="Last Name:" styleClass="field-label" />
-            <TextField fx:id="lastNameField" styleClass="textfield" />
-        </HBox>
-        <HBox spacing="10">
-            <Label text="Email:" styleClass="field-label" />
-            <TextField fx:id="emailField" styleClass="textfield" />
-        </HBox>
-        <HBox spacing="10">
-            <Label text="Date of Birth:" styleClass="field-label" />
-            <DatePicker fx:id="dobPicker" styleClass="textfield" />
-        </HBox>
-        <Button text="Reset Password" fx:id="resetPasswordButton" styleClass="button1" />
-        <Button text="Enable 2 Factor Authentication" fx:id="enable2FAButton" styleClass="button1" />
-    </VBox>
-
-
-</VBox>
+<AnchorPane prefHeight="600.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.UserProfileController">
+    <children>
+      <ImageView fx:id="bgimg" fitHeight="600.0" fitWidth="1030.0" layoutY="-3.0">
+         <image>
+            <Image url="@images/bgimg.jpg" />
+         </image>
+      </ImageView>
+          <Text layoutX="87.0" layoutY="119.0" styleClass="mt-0 mb-5" text="This is your company profile page. Here, you can review your insurances, manage your account, check your reviews and complaints.">
+              <font>
+                  <Font size="15.0" />
+              </font>
+          </Text>
+          <Label fx:id="name" layoutX="317.0" layoutY="23.0" text="Hello">
+              <font>
+                  <Font size="50.0" />
+              </font>
+          </Label>
+          <Button layoutX="453.0" layoutY="136.0" onAction="#gotoedit" prefHeight="40.0" prefWidth="150.0" text="Edit profile">
+              <font>
+                  <Font size="20.0" />
+              </font>
+         <styleClass>
+            <String fx:value="btn btn-info" />
+            <String fx:value="buttonn1" />
+         </styleClass>
+          </Button>
+      <Label fx:id="bigname" layoutX="452.0" layoutY="23.0" prefHeight="74.0" prefWidth="164.0" text="Rami">
+         <font>
+            <Font name="System Bold" size="50.0" />
+         </font>
+      </Label>
+      <Pane layoutX="615.0" layoutY="207.0" prefHeight="386.0" prefWidth="407.0" styleClass="card" stylesheets="@style/fullpackstyling.css">
+         <children>
+             <ImageView fx:id="imageView" fitHeight="160.0" fitWidth="159.0" layoutX="118.0" layoutY="-64.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@/images/homme.png" />
+                 </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+             </ImageView>
+            <Label fx:id="prenomlb" layoutX="94.0" layoutY="199.0" styleClass="title" text="Prenom" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="nomlb" layoutX="228.0" layoutY="183.0" prefHeight="54.0" prefWidth="126.0" styleClass="title" text="Nom" textFill="WHITE">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="emaillb" alignment="CENTER" contentDisplay="CENTER" layoutY="246.0" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="407.0" styleClass="titlee" text="Email">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="145.0" text="Inusurances" textFill="#00aaff">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="166.0" layoutY="145.0" text="Reviews" textFill="#00aaff">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="263.0" layoutY="145.0" text="Complaints" textFill="#00aaff">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="insnb" layoutX="75.0" layoutY="110.0" text="0" textFill="#b100ff">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="revnb" layoutX="196.0" layoutY="110.0" text="0" textFill="#b100ff">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="comnb" layoutX="308.0" layoutY="110.0" text="0" textFill="#b100ff">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button layoutX="61.0" layoutY="317.0" mnemonicParsing="false" onAction="#gotodelete" prefHeight="52.0" prefWidth="300.0" styleClass="buttonn" text="Delete Your Account Permanently">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="26.0" layoutY="218.0" prefHeight="362.0" prefWidth="569.0">
+         <styleClass>
+            <String fx:value="decrement-button" />
+            <String fx:value="image-view" />
+            <String fx:value="label-info" />
+         </styleClass>
+         <children>
+            <Button layoutX="32.0" layoutY="52.0" mnemonicParsing="false" onAction="#gotorev" prefHeight="80.0" prefWidth="200.0" styleClass="buttonn1" text="My reviews">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@/images/grouper.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="321.0" layoutY="50.0" mnemonicParsing="false" onAction="#gotoins" prefHeight="80.0" prefWidth="200.0" styleClass="buttonn1" text="My insurances">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@/images/produit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="34.0" layoutY="244.0" mnemonicParsing="false" onAction="#gotocomp" prefHeight="80.0" prefWidth="200.0" styleClass="buttonn1" text="My complaints">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@/images/probleme.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button fx:id="fabtn" layoutX="318.0" layoutY="243.0" mnemonicParsing="false" onAction="#goto2fa" prefHeight="80.0" prefWidth="200.0" styleClass="buttonn1" text="Enable 2FA">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@/images/2fa.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+    </children>
+   <stylesheets>
+      <URL value="@style/fullpackstyling.css" />
+      <URL value="@style/dashboardDesign.css" />
+   </stylesheets>
+</AnchorPane>
