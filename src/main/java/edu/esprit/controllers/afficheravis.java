@@ -1,4 +1,4 @@
-package edu.esprit.controller;
+package edu.esprit.controllers;
 
 import edu.esprit.entities.Agence;
 import edu.esprit.entities.Avis;
@@ -85,12 +85,13 @@ public class afficheravis implements Initializable {
         int row = 1;
         try {
             for (Avis aviss : aviss) {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/unAvis1.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/unAvis.fxml"));
                 try {
                     Object anchorPane = fxmlLoader.load();
-                    avis1 age = fxmlLoader.getController();
+                    avis age = fxmlLoader.getController();
                     System.out.println(aviss);
                     age.setData(aviss);
+                    age.supprimer.setVisible(false);
 
                     if (column == 3) {
                         column = 0;

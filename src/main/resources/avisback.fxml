@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="AA" prefHeight="789.0" prefWidth="1563.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficheravisback">
+<AnchorPane fx:id="AA" prefHeight="789.0" prefWidth="1563.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.afficheravisback">
     <children>
         <AnchorPane fx:id="listt" layoutX="266.0" layoutY="10.0" prefHeight="778.0" prefWidth="1545.0" stylesheets="@style/dashboardDesign.css" AnchorPane.rightAnchor="25.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" />
 

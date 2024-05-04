@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="826.0" prefWidth="1324.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.agencedash">
+<AnchorPane prefHeight="826.0" prefWidth="1324.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.agencedash">
 
 
 
@@ -350,7 +350,7 @@
                   </HBox>
                </children>
             </VBox>
-            <AnchorPane layoutX="264.0" layoutY="24.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css" AnchorPane.leftAnchor="400.0">
+            <AnchorPane layoutX="264.0" layoutY="24.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css" AnchorPane.leftAnchor="700.0">
                <children>
                   <Label layoutX="77.0" layoutY="92.0" text="Total Agencies" textFill="WHITE">
                      <font>
@@ -364,7 +364,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="621.0" layoutY="24.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css" AnchorPane.leftAnchor="850.0">
+            <AnchorPane layoutX="621.0" layoutY="24.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css" AnchorPane.leftAnchor="1100.0" AnchorPane.topAnchor="24.0">
                <children>
                   <Label layoutX="77.0" layoutY="97.0" text="Total Reviews" textFill="WHITE">
                      <font>
@@ -378,15 +378,20 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button fx:id="back2" mnemonicParsing="false" onAction="#switchForm" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Back" textFill="WHITE" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="22.0">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
-                     <image>
-                        <Image url="@images/icons8-back-48.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+            <AnchorPane layoutX="274.0" layoutY="34.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="24.0">
+               <children>
+                  <Label layoutX="77.0" layoutY="92.0" text="Average reviews" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="home_totalEmployees21" alignment="CENTER_RIGHT" layoutX="87.0" layoutY="14.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

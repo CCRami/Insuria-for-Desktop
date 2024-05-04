@@ -1,44 +1,34 @@
-package edu.esprit.controller;
+package edu.esprit.controllers;
 
 import edu.esprit.entities.Agence;
 import edu.esprit.service.AgenceService;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.stage.FileChooser;
 
 import javafx.scene.image.ImageView;
 import java.io.File;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 
-import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.UUID;
 
 
 public class Ajouteragence {

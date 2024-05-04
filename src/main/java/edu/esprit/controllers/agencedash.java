@@ -1,8 +1,5 @@
-package edu.esprit.controller;
-import java.io.File;
+package edu.esprit.controllers;
 
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,13 +9,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,86 +20,38 @@ import javafx.collections.ObservableList;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.*;
 
-import javafx.concurrent.Worker;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.fxml.Initializable;
-import javafx.scene.paint.Color;
 //import javafx.scene.web.WebEngine;
 //import javafx.scene.web.WebView;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import netscape.javascript.JSObject;
 
-import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialException;
-
-import java.io.File;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.net.URLDecoder;
-import java.nio.file.Files;
-import java.sql.Blob;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.io.IOException;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+
 import edu.esprit.entities.Avis;
 import edu.esprit.service.AvisService;
 import edu.esprit.entities.Agence;
-import edu.esprit.entities.Avis;
 import edu.esprit.service.AgenceService;
 //import edu.esprit.service.AvisService;
 import edu.esprit.util.DataSource;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 
 public class agencedash implements  Initializable{
@@ -250,8 +196,6 @@ public class agencedash implements  Initializable{
     @FXML
     private Button back1;
 
-    @FXML
-    private Button back2;
 
     @FXML
     private VBox contentArea;
@@ -268,7 +212,8 @@ public class agencedash implements  Initializable{
     private PreparedStatement pst;
     @FXML
     private Button back;
-
+    @FXML
+    private Label home_totalEmployees21;
     private ResultSet result;
     @FXML
     private AnchorPane consulter;
@@ -454,11 +399,11 @@ public class agencedash implements  Initializable{
             alert.setContentText("agency added successfully");
             alert.showAndWait();
 
-            //updateTable_r();
+            updateTable_r();
             aajouter.setVisible(false);
             update.setVisible(false);
             listt.setVisible(true);
-consulter.setVisible(false);
+            consulter.setVisible(false);
 
 
 
@@ -579,6 +524,34 @@ consulter.setVisible(false);
 
     }
     @FXML
+    public void calculateAverageRating(int id) {
+        // Requête SQL pour calculer la moyenne des avis d'une agence
+        String sql = "SELECT AVG(note) FROM Avis WHERE agenceav_id=?";
+
+        // Connexion à la base de données
+        this.cnx = DataSource.getInstance().getConnection();
+        double averageRating = 0.0;
+
+        try {
+            // Préparation de la requête SQL
+            this.pst = this.cnx.prepareStatement(sql);
+            pst.setInt(1, id);
+
+            // Exécution de la requête et obtention du résultat
+            this.result = this.pst.executeQuery();
+            if (this.result.next()) {
+                // Récupération de la moyenne des avis
+                averageRating = this.result.getDouble("AVG(note)");
+            }
+            DecimalFormat df = new DecimalFormat("#.00");
+            String formattedRating = df.format(averageRating);
+            // Affichage de la moyenne des avis dans l'interface utilisateur
+            this.home_totalEmployees21.setText(String.valueOf(formattedRating));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
     public void homeTotalAvis2() {
         String sql = "SELECT COUNT(id) FROM Avis";
         this.cnx = DataSource.getInstance().getConnection();;
@@ -645,12 +618,15 @@ consulter.setVisible(false);
                     setText(null);
                     setGraphic(null);
                 } else {
+                   // updateTable_r();
                     homeTotalEmployees();
                     homeTotalAvis();
                     homeTotalEmployees1();
                     homeTotalAvis1();
                     homeTotalEmployees2();
                     homeTotalAvis2();
+                 //   calculateAverageRating(item.getIdage());
+
                     // Création d'un HBox pour contenir les labels et les boutons
                     HBox hbox = new HBox(5); // Espace de 10px entre les éléments
                     hbox.setAlignment(Pos.CENTER_LEFT);
@@ -750,8 +726,9 @@ consulter.setVisible(false);
                     consulteravisbutton.setOnAction(event->{
                         homeTotalEmployees2();
                         homeTotalAvis2();
+                        calculateAverageRating(item.getIdage());
+
                         avis = a.getAllavisbyagence(item);
-                        System.out.println(avis);
                         int column = 0;
                         int row = 1;
                         try {
@@ -785,6 +762,7 @@ consulter.setVisible(false);
                         consulter.setVisible(true);
                         homeTotalEmployees2();
                         homeTotalAvis2();});
+                    calculateAverageRating(item.getIdage());
 
                  deleteButton.setOnAction(event -> {
                         s.supprimerage(item.getIdage());
@@ -811,7 +789,8 @@ consulter.setVisible(false);
         homeTotalAvis1();
         homeTotalEmployees2();
         homeTotalAvis2();
-        ObservableList<Agence> data = FXCollections.observableArrayList(s.getAll());
+
+        ObservableList<Agence> data = FXCollections.observableArrayList(s.getAllage());
         tab1.setItems(data);
         System.out.println("rr"+data);
         tab1.setItems(data);
@@ -911,7 +890,7 @@ consulter.setVisible(false);
     }*/
 
     public void updateTable_r() {
-        ObservableList<Agence> data = FXCollections.observableArrayList(s.getAll());
+        ObservableList<Agence> data = FXCollections.observableArrayList(s.getAllage());
 
         tab1.setItems(data);
     }
@@ -936,7 +915,7 @@ consulter.setVisible(false);
             assert phone != null : "fx:id=\"phone\" was not injected: check your FXML file 'ajouteragence.fxml'.";
             assert save != null : "fx:id=\"save\" was not injected: check your FXML file 'ajouteragence.fxml'.";
 
-             aajouter.setStyle("-fx-background-color:linear-gradient(to top right, #72513c, #ab853e);");
+          //   aajouter.setStyle("-fx-background-color:linear-gradient(to top right, #72513c, #ab853e);");
             listt.setStyle("-fx-background-color: transparent");
            update.setStyle("-fx-background-color: transparent");
 
@@ -973,8 +952,11 @@ consulter.setVisible(false);
         }else if(event.getSource() == consulteravis){
             homeTotalEmployees2();
             homeTotalAvis2();
+
+            calculateAverageRating(SelectedAgence.getIdage());
             avis = a.getAllavisbyagence(SelectedAgence);
-            System.out.println(avis);
+
+            System.out.println("jjjjjj"+SelectedAgence.getIdage());
             int column = 0;
             int row = 1;
             try {
@@ -1008,16 +990,19 @@ consulter.setVisible(false);
             consulter.setVisible(true);
             homeTotalEmployees2();
             homeTotalAvis2();
+            calculateAverageRating(SelectedAgence.getIdage());
             // updateTable_r();
             //availableBooks_btn.setStyle("-fx-background-color:linear-gradient(to top right, #72513c, #ab853e);");
             //dashboard_btn.setStyle("-fx-background-color: transparent");
             //purchase_btn.setStyle("-fx-background-color: transparent");
 
         }else if(event.getSource() == back){
-            homeTotalEmployees1();
+            initializeListView();
+
+           homeTotalEmployees1();
             homeTotalAvis1();
             System.out.println("r");
-
+            updateTable_r();
             aajouter.setVisible(false);
             update.setVisible(false);
             listt.setVisible(true);
@@ -1038,11 +1023,12 @@ consulter.setVisible(false);
 
 
         }
-        else if(event.getSource() == back1){
-            homeTotalEmployees1();
+        else if(event.getSource() == back1){            initializeListView();
+
+           homeTotalEmployees1();
             homeTotalAvis1();
             System.out.println("r");
-
+            updateTable_r();
             aajouter.setVisible(false);
             update.setVisible(false);
             listt.setVisible(true);
@@ -1063,31 +1049,7 @@ consulter.setVisible(false);
 
 
         }
-        else if(event.getSource() == back2){
-            homeTotalEmployees1();
-            homeTotalAvis1();
-            System.out.println("r");
 
-            aajouter.setVisible(false);
-            update.setVisible(false);
-            listt.setVisible(true);
-            consulter.setVisible(false);
-
-            homeTotalEmployees1();
-            homeTotalAvis1();
-             updateTable_r();
-
-            //availableBooks_btn.setStyle("-fx-background-color:linear-gradient(to top right, #72513c, #ab853e);");
-            //dashboard_btn.setStyle("-fx-background-color: transparent");
-            //purchase_btn.setStyle("-fx-background-color: transparent");
-            assert adresse != null : "fx:id=\"adresse\" was not injected: check your FXML file 'updateagence.fxml'.";
-            assert emailage != null : "fx:id=\"email\" was not injected: check your FXML file 'updateagence.fxml'.";
-            assert nom != null : "fx:id=\"nom\" was not injected: check your FXML file 'updateagence.fxml'.";
-            assert phone != null : "fx:id=\"phone\" was not injected: check your FXML file 'updateagence.fxml'.";
-            assert save != null : "fx:id=\"save\" was not injected: check your FXML file 'updateagence.fxml'.";
-
-
-        }
     }
 
 }

@@ -17,7 +17,7 @@ public class Main {
         AgenceService as=new AgenceService();
         //as.add(A1);
 
-        as.getAll().forEach(System.out::println);
+        as.getAllage().forEach(System.out::println);
 
 
       //DataSource ds1=DataSource.getInstance();

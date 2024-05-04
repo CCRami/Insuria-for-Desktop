@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="789.0" prefWidth="1563.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficheravis">
+<AnchorPane prefHeight="789.0" prefWidth="1563.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.afficheravis">
     <children>
         <VBox layoutX="-3.0" prefHeight="806.0" prefWidth="1563.0">
             <children>
                 <HBox alignment="CENTER" prefHeight="665.0" prefWidth="1514.0" VBox.vgrow="ALWAYS">
-               <children>
+                    <children>
                         <ScrollPane fx:id="scroll" prefHeight="476.0" prefWidth="1558.0" styleClass="transparent" stylesheets="@style/styleafficher.css">
                             <content>
                                 <GridPane fx:id="container" prefHeight="8.0" prefWidth="5.0">
@@ -22,11 +22,11 @@
                                     </rowConstraints>
                                 </GridPane>
                             </content>
-                     <HBox.margin>
-                        <Insets left="150.0" top="50.0" />
-                     </HBox.margin>
+                            <HBox.margin>
+                                <Insets left="150.0" top="50.0" />
+                            </HBox.margin>
                         </ScrollPane>
-               </children>
+                    </children>
                 </HBox>
             </children>
         </VBox>

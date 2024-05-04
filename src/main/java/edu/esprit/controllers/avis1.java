@@ -1,4 +1,4 @@
-package edu.esprit.controller;
+package edu.esprit.controllers;
 
 import edu.esprit.entities.Avis;
 import edu.esprit.service.AvisService;
@@ -21,7 +21,7 @@ public class avis1 {
     private Label comment;
 
     @FXML
-    private Button supprimer;
+    Button supprimer;
 
     @FXML
     private Label nomagence;
@@ -43,38 +43,40 @@ public class avis1 {
 
     @FXML
     private Label creation;
-    public void setData(Avis avis){
+
+    public void setData(Avis avis) {
         clientname.setText(String.valueOf(avis.getAvis_id()));
         comment.setText(avis.getCommentaire());
         int notea = avis.getNote();
-        if(notea==1){
+        if (notea == 1) {
             note.setVisible(true);
             note1.setVisible(false);
             note2.setVisible(false);
             note3.setVisible(false);
-            note4.setVisible(false);}
-        if(notea==2){
+            note4.setVisible(false);
+        }
+        if (notea == 2) {
             note.setVisible(true);
             note1.setVisible(true);
             note2.setVisible(false);
             note3.setVisible(false);
             note4.setVisible(false);
         }
-        if(notea==3){
+        if (notea == 3) {
             note.setVisible(true);
             note1.setVisible(true);
             note2.setVisible(true);
             note3.setVisible(false);
             note4.setVisible(false);
         }
-        if(notea==4){
+        if (notea == 4) {
             note.setVisible(true);
             note1.setVisible(true);
             note2.setVisible(true);
             note3.setVisible(true);
             note4.setVisible(false);
         }
-        if(notea==5){
+        if (notea == 5) {
             note.setVisible(true);
             note1.setVisible(true);
             note2.setVisible(true);
@@ -97,8 +99,6 @@ public class avis1 {
                 alert.setHeaderText(null);
                 alert.setContentText("review deleted successfully");
                 alert.showAndWait();
-
-
 
 
             }

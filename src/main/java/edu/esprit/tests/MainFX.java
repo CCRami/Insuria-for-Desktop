@@ -14,7 +14,8 @@ public class MainFX extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardfront.fxml"));
         Parent root = loader.load();
-        //dashboard
+        // dashboard
+       // dashboardfront
        // afficheravis
         Scene scene = new Scene(root);
         stage.setScene(scene);

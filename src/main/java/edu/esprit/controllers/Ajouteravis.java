@@ -1,8 +1,8 @@
-package edu.esprit.controller;
+package edu.esprit.controllers;
 
 import edu.esprit.entities.Agence;
 import edu.esprit.entities.Avis;
-//import edu.esprit.service.AvisService;
+import edu.esprit.controllers.serviceemail;
 import edu.esprit.service.AvisService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,16 +12,19 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import java.time.Duration;
 
 import java.awt.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
-import edu.esprit.Helper.AlertHelper;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import javafx.stage.Window;
+import edu.esprit.Helper.AlertHelper;
 
 public class Ajouteravis {
     @FXML
@@ -104,52 +107,71 @@ Parametre2=agence;
     public void setCloseCallback(Runnable callback) {
         this.closeCallback = callback;
     }
+    private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
-    public String bad_words(String badWord) {
-
-        List<String> badListW = Arrays.asList("fuck", "bitch","motherfucker","merde","putin","mo8t","bhim");
-        String badNew = "";
-        List<String> newList = new ArrayList<>();
-        for (String str : badListW) {
-            if (badWord.contains(str)) {
-                badNew += " " + str;
-                if (str.length() >= 1) {
-                    StringBuilder result = new StringBuilder();
-                    result.append(str.charAt(0));
-                    for (int i = 0; i < str.length() - 2; ++i) {
-                        result.append("*");
-                    }
-                    result.append(str.charAt(str.length() - 1));
-                    str = result.toString();
-                    if (!str.isEmpty()) {
-                        System.out.println("ATTENTION !! Vous avez écrit un gros mot  : " + result + " .C'est un avertissement ! Priére d'avoir un peu de respect ! Votre description sera envoyée comme suit :");
-                        System.out.println(badWord.replace(badNew, "") + " ");
-                        AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error",
-                                "ATTENTION !! Vous avez écrit un gros mot");
-                    }
-                }
-
+    public String filterBadWords(String input) {
+        // Define a set of bad words for efficient lookup
+        Set<String> badWords = new HashSet<>(Arrays.asList("fuckoff","fuck", "bitch", "motherfucker", "merde", "putin", "mo8t", "bhim"));
+        boolean badWordDetected = false;
+        // Create a regex pattern to match bad words, handling word boundaries and ignoring case
+        StringBuilder patternBuilder = new StringBuilder();
+        for (String badWord : badWords) {
+            if (patternBuilder.length() > 0) {
+                patternBuilder.append("|");
             }
+            patternBuilder.append("\\b").append(Pattern.quote(badWord)).append("\\b");
         }
-        return (badWord.replace(badNew, "") + " ");
+        Pattern pattern = Pattern.compile(patternBuilder.toString(), Pattern.CASE_INSENSITIVE);
+
+        // Use StringBuffer for efficient string modifications during replacement
+        StringBuffer result = new StringBuffer();
+
+        // Replace each bad word with asterisks pattern (keeping first and last character)
+        Matcher matcher = pattern.matcher(input);
+        while (matcher.find()) {
+            badWordDetected = true;
+            String replacement = "*".repeat(matcher.group().length());
+            /*String word = matcher.group();
+            StringBuilder replacement = new StringBuilder();
+            replacement.append(word.charAt(0));
+            for (int i = 1; i < word.length() - 1; i++) {
+                replacement.append("*");
+            }
+            if (word.length() > 1) {
+                replacement.append(word.charAt(word.length() - 1));
+            }*/
+            matcher.appendReplacement(result, replacement.toString());
+        }
+        if (badWordDetected) {
+            // Show an alert message to the user
+            AlertHelper.showAlert(Alert.AlertType.ERROR, SystemColor.window, "Error",
+                    "ATTENTION !! Vous avez écrit un gros mot");
+            scheduler.schedule(() -> {
+                // Send email notification
+                serviceemail.sentemail("aymenkhelifa01@gmail.com");
+            }, 5, TimeUnit.SECONDS);
+            // Send an email notification
+        }
+
+        matcher.appendTail(result);
+
+        return result.toString();
     }
-
-
     @FXML
     void ajouterav(ActionEvent event) {
 
         if (isInputValid()) {
             String commentaire = commentArea.getText();
-            commentaire = bad_words(commentaire);
+            commentaire = filterBadWords(commentaire);
             int note = rating;
             Agence agence =Parametre2;
-            System.out.println("aa"+commentaire);
+       //     System.out.println("aa"+commentaire);
 
             Date create_at = new Date();
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             String creation = format.format(create_at);
             Avis avis =new Avis(commentaire,note,creation,111,agence,false);
-            System.out.println("dd"+avis);
+          //  System.out.println("dd"+avis);
             AvisService service = new AvisService();
            service.ajouteravis(avis);
 

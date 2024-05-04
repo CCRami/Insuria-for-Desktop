@@ -1,10 +1,11 @@
-package edu.esprit.controller;
+package edu.esprit.controllers;
 
 
 
 import edu.esprit.entities.Agence;
 
 
+import edu.esprit.util.DataSource;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,7 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
@@ -21,6 +21,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.text.DecimalFormat;
 
 public class Age {
 
@@ -58,7 +63,12 @@ public class Age {
         btn.setOnAction(event -> openEditDialog(agence));
         return btn;  // Retournez le bouton pour permettre à la méthode initialize de l'ajouter à container
     }*/
-
+    private Connection cnx;
+    private ResultSet result;
+    private Statement ste;
+    @FXML
+    private Label creation1;
+    private PreparedStatement pst;
     public void setData(Agence agence){
         adress.setText(agence.getAddresse());
         nom.setText(agence.getNomage());
@@ -66,7 +76,30 @@ public class Age {
         email.setText(agence.getEmail());
         creation.setText(agence.getCreate_at());
 
+        String sql = "SELECT AVG(note) FROM Avis WHERE agenceav_id=?";
 
+        // Connexion à la base de données
+        this.cnx = DataSource.getInstance().getConnection();
+        double averageRating = 0.0;
+
+        try {
+            // Préparation de la requête SQL
+            this.pst = this.cnx.prepareStatement(sql);
+            pst.setInt(1, agence.getIdage());
+
+            // Exécution de la requête et obtention du résultat
+            this.result = this.pst.executeQuery();
+            if (this.result.next()) {
+                // Récupération de la moyenne des avis
+                averageRating = this.result.getDouble("AVG(note)");
+            }
+            DecimalFormat df = new DecimalFormat("#.00");
+            String formattedRating = df.format(averageRating);
+            // Affichage de la moyenne des avis dans l'interface utilisateur
+            this.creation1.setText(String.valueOf(formattedRating));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -89,7 +122,8 @@ public class Age {
             e.printStackTrace();
         }
     }
-    public void supprimer(Agence id) {
+
+    public void supprimera(Agence id) {
         System.out.println(id);
         Rateus11.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -108,6 +142,46 @@ public class Age {
                     Ajouteravis controller = fxmlLoader.getController();
                     controller.initialize(id);
                  //   controller.setCloseCallback(() -> stage.close());
+
+                    //controller.setUpdateCallback(this::updatePoliceInListView);  // Utilisez la bonne méthode de callback
+
+                    Stage stage = new Stage();
+
+                    stage.setScene(new Scene(root));
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.showAndWait();
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+
+
+            }
+        });
+
+
+    }
+
+    public void reviewsbyagence(Agence id) {
+        System.out.println(id);
+        reviews.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {   System.out.println(id);
+
+                    System.out.println("mmj");
+
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/avisbackbyagence.fxml"));
+                    //  Parent root = null;
+
+                    //  root = fxmlLoader.load();
+                    Parent root = fxmlLoader.load();
+                    // controller.initData(agence);
+                    // controller.setUpdateCallback(this::updateSinistreInListView);  // Utilisez la bonne méthode de callback
+                    afficheravisbackbyagence controller = fxmlLoader.getController();
+                    controller.initialize(id);
+                    //   controller.setCloseCallback(() -> stage.close());
 
                     //controller.setUpdateCallback(this::updatePoliceInListView);  // Utilisez la bonne méthode de callback
 

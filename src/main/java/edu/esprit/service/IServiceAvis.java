@@ -15,6 +15,8 @@ public interface IServiceAvis <T> {
 
     public void ajouteravis(Avis avis);*/
     public List<T> getAllavis();
+    public List<T> getAllavisbyuser(int id);
+
     public List<T> getAllavisbyagence(Agence id);
 
     public void ajouteravis(Avis avis);

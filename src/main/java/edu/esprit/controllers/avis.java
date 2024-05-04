@@ -1,23 +1,14 @@
-package edu.esprit.controller;
+package edu.esprit.controllers;
 import edu.esprit.entities.Avis;
-import edu.esprit.service.AgenceService;
 import edu.esprit.service.AvisService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class avis {
     @FXML
@@ -30,7 +21,7 @@ public class avis {
     private Label comment;
 
     @FXML
-    private Button supprimer;
+    Button supprimer;
 
     @FXML
     private Label nomagence;
@@ -53,6 +44,7 @@ public class avis {
     @FXML
     private Label creation;
     public void setData(Avis avis){
+
         clientname.setText(String.valueOf(avis.getAvis_id()));
         comment.setText(avis.getCommentaire());
         int notea = avis.getNote();

@@ -125,6 +125,29 @@ public class AvisService implements IServiceAvis {
         }
         return list;
     }
+    public List<Avis> getAllavisbyuser(int userid) {
+        List<Avis> list = new ArrayList<>();
+        String sql = "select * from Avis WHERE avis_id=?";
+        try {
+            ste = cnx.createStatement();
+            ResultSet res = ste.executeQuery(sql);
+            while (res.next()) {
+                int id = res.getInt(1);
+                String commentaire = res.getString(2);
+                int note = res.getInt(3);
+                String date_avis = res.getString(4);
+               // int avis_id = res.getInt(5);
+                int agenceav_id = res.getInt(6);
+                Agence agence = s.getOneById(agenceav_id);
+                //int agenceav_id =res.getInt(6);
+                boolean etat = res.getBoolean(7);
+                list.add(new Avis(id, commentaire, note, date_avis, userid,  agence, etat));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
 
     public List<Avis> getAllavisbyagence(Agence Parametre) {
         System.out.println("ff" + Parametre);

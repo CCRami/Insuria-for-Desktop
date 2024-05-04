@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="308.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.avis">
+<AnchorPane prefHeight="308.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.avis">
    <children>
       <VBox fx:id="agevbox" prefHeight="314.0" prefWidth="386.0" style="-fx-background-color: #051B46; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0,5,5, 0, 0);" styleClass="show-box" stylesheets="@style/styleafficher.css">
          <children>
@@ -21,7 +21,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <VBox prefHeight="226.0" prefWidth="382.0">
+            <VBox prefHeight="104.0" prefWidth="386.0">
                <children>
                   <HBox prefHeight="22.0" prefWidth="306.0">
                      <children>
@@ -92,23 +92,6 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="145.0" prefWidth="406.0">
-                     <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Comment : ">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Text>
-                        <Label fx:id="comment" alignment="TOP_LEFT" ellipsisString="" graphicTextGap="2.0" lineSpacing="2.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="116.0" prefWidth="264.0" text="HHHHHHHHHHHHHHHHHHHHHHHHHHHHHUUHHHHHHHHHHHHHHHHHH" textFill="WHITE" wrapText="true">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="10.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
                   <HBox prefHeight="22.0" prefWidth="306.0">
                      <children>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Creation Date : ">
@@ -125,6 +108,23 @@
                   </HBox>
                </children>
             </VBox>
+            <HBox prefHeight="145.0" prefWidth="406.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Comment : ">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="comment" alignment="TOP_LEFT" ellipsisString="" graphicTextGap="2.0" lineSpacing="2.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="116.0" prefWidth="264.0" text="HHHHHHHHHHHHHHHHHHHHHHHHHHHHHUUHHHHHHHHHHHHHHHHHH" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
             <HBox prefHeight="62.0" prefWidth="396.0">
                <children>
                   <Button fx:id="supprimer" mnemonicParsing="false" prefHeight="44.0" prefWidth="118.0" style="-fx-background-color: #2CA2FB;" styleClass="ajouter-button" text="Delete" textAlignment="CENTER" textFill="WHITE">

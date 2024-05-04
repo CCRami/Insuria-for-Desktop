@@ -6,14 +6,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="204.0" prefWidth="214.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.Age">
+<AnchorPane prefHeight="204.0" prefWidth="214.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.Age">
    <children>
       <VBox fx:id="agevbox" prefHeight="290.0" prefWidth="382.0" style="-fx-background-color: #051B46;" styleClass="show-box" stylesheets="@style/styleafficher.css">
          <children>
-            <Label fx:id="nom" alignment="CENTER" prefHeight="52.0" prefWidth="390.0" text="Crepe Factory" textFill="WHITE">
+            <Label fx:id="nom" alignment="CENTER" prefHeight="44.0" prefWidth="382.0" text="Crepe Factory" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
@@ -73,6 +76,46 @@
                            <font>
                               <Font size="24.0" />
                            </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="116.0" prefHeight="22.0" prefWidth="306.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Average rating : ">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="creation1" text="Label" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="note4" text="★">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.32195121951219513">
+                                       <color>
+                                          <Color red="1.0" green="0.843137264251709" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
                         </Label>
                      </children>
                   </HBox>

@@ -90,7 +90,7 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Label fx:id="comment" alignment="TOP_LEFT" ellipsisString="" graphicTextGap="2.0" lineSpacing="2.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="116.0" prefWidth="264.0" text="HHHHHHHHHHHHHHHHHHHHHHHHHHHHHUUHHHHHHHHHHHHHHHHHH" textFill="WHITE" wrapText="true">
+                  <Label fx:id="comment" alignment="TOP_LEFT" ellipsisString="" graphicTextGap="2.0" lineSpacing="2.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="116.0" prefWidth="264.0" textFill="WHITE" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>

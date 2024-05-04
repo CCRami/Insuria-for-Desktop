@@ -1,6 +1,7 @@
-package edu.esprit.controller;
+package edu.esprit.controllers;
 
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,9 +56,47 @@ public class dashboardFront implements Initializable{
     }
 
 
+    @FXML
+    private MenuItem allrev;
+    @FXML
+    private MenuItem myrev;
 
 
+    @FXML
+    void allrev1(ActionEvent event) {
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficheravis.fxml"));
+            Node eventFXML = loader.load();
 
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void myrev1(ActionEvent event) {
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficheravisbyuser.fxml"));
+            Node eventFXML = loader.load();
+
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
 
 
     @FXML

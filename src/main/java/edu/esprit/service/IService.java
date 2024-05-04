@@ -16,7 +16,7 @@ public interface IService<T> {
 
     void supprimerage(int id);
 
-    List<T> getAll();
+    List<T> getAllage();
 
 
     Agence getOneById(int id);

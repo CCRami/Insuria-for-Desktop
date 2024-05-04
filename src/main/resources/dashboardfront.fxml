@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="809.0" prefWidth="1535.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.dashboardFront">
+<BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="809.0" prefWidth="1535.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.dashboardFront">
     <center>
         <VBox fx:id="vboxdash" prefHeight="810.0" prefWidth="1062.0" BorderPane.alignment="CENTER" />
     </center>
@@ -47,21 +47,18 @@
                   <Insets bottom="33.0" left="33.0" top="22.0" />
                </HBox.margin>
                 </HBox>
-                <HBox minHeight="33.0" onMouseClicked="#showAvisAgence" prefHeight="70.0" prefWidth="162.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <Label text="Reviews" textFill="WHITE">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
+            <HBox onMouseClicked="#showAvisAgence" prefHeight="114.0" prefWidth="162.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+               <children>
+                  <Label prefHeight="35.0" prefWidth="120.0" text="Reviews" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
                <HBox.margin>
-                  <Insets bottom="33.0" top="22.0" />
+                  <Insets bottom="33.0" left="33.0" top="22.0" />
                </HBox.margin>
-                </HBox>
+            </HBox>
                 <HBox prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
                     <children>
                   <MenuButton mnemonicParsing="false" prefHeight="37.0" prefWidth="126.0" style="-fx-background-color: #051B46;" text="Polices" textFill="WHITE">
@@ -75,7 +72,7 @@
                   </MenuButton>
                     </children>
                <HBox.margin>
-                  <Insets bottom="33.0" left="44.0" top="22.0" />
+                  <Insets bottom="33.0" top="22.0" />
                </HBox.margin>
                 </HBox>
                 <HBox prefHeight="114.0" prefWidth="153.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
@@ -95,7 +92,7 @@
                 </HBox>
             <ImageView fitHeight="77.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../pidevjava/pidev/src/main/resources/images/Capture%20d'écran%202024-04-30%20003615.png" />
+                  <Image url="@images/aaa.png" />
                </image>
                <HBox.margin>
                   <Insets left="22.0" top="22.0" />

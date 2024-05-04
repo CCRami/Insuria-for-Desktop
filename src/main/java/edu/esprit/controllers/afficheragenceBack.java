@@ -1,4 +1,4 @@
-package edu.esprit.controller;
+package edu.esprit.controllers;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -233,12 +233,12 @@ String selectedemail;
 
 
     private void loadTableData() {
-        ObservableList<Agence> data = FXCollections.observableArrayList(s.getAll());
+        ObservableList<Agence> data = FXCollections.observableArrayList(s.getAllage());
         tab.setItems(data);
     }
 
    public void updateTable_r() {
-        List<Agence> agences = s.getAll();
+        List<Agence> agences = s.getAllage();
         tab.getItems().setAll(agences);
     }
 
