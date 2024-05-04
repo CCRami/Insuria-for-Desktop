@@ -1,4 +1,4 @@
-package tn.esprit.applicatiopnpi.models;
+package Entities;
 
 import javax.persistence.*;
 

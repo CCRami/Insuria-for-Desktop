@@ -1,4 +1,4 @@
-package tn.esprit.applicatiopnpi.controllers;
+package Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

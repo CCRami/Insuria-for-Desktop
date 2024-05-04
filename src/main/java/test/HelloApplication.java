@@ -1,4 +1,4 @@
-package tn.esprit.applicatiopnpi.test;
+package test;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

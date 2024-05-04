@@ -1,4 +1,4 @@
-package tn.esprit.applicatiopnpi.controllers;
+package Controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -7,8 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import tn.esprit.applicatiopnpi.models.Sinistre;
-import tn.esprit.applicatiopnpi.services.SinistreService;
+import Entities.Sinistre;
+import Services.SinistreService;
 
 import java.io.File;
 import java.util.function.Consumer;

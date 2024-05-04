@@ -1,4 +1,4 @@
-package tn.esprit.applicatiopnpi.controllers;
+package Controllers;
 
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
@@ -14,14 +14,11 @@ import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import tn.esprit.applicatiopnpi.models.Sinistre;
-import tn.esprit.applicatiopnpi.services.SinistreService;
+import Entities.Sinistre;
+import Services.SinistreService;
 
 import java.io.File;
-import java.net.URL;
 
 public class AddSiniter {
     @FXML private TextField nameField;

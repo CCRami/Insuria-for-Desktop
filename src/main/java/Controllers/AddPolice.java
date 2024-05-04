@@ -1,13 +1,13 @@
-package tn.esprit.applicatiopnpi.controllers;
+package Controllers;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import tn.esprit.applicatiopnpi.models.Police;
-import tn.esprit.applicatiopnpi.models.Sinistre;
-import tn.esprit.applicatiopnpi.services.PoliceService;
-import tn.esprit.applicatiopnpi.services.SinistreService;
+import Entities.Police;
+import Entities.Sinistre;
+import Services.PoliceService;
+import Services.SinistreService;
 import javafx.collections.FXCollections;
 
 import java.util.List;

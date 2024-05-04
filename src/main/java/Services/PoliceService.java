@@ -1,11 +1,9 @@
-package tn.esprit.applicatiopnpi.services;
-import tn.esprit.applicatiopnpi.models.Police;
-import tn.esprit.applicatiopnpi.models.Sinistre;
+package Services;
+import Entities.Police;
+import Entities.Sinistre;
 import tn.esprit.applicatiopnpi.utils.MyDatabase;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

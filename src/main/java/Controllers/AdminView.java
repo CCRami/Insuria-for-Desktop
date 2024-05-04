@@ -1,14 +1,16 @@
-package tn.esprit.applicatiopnpi.controllers;
+package Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.chart.PieChart;
 import javafx.application.Platform;
-import tn.esprit.applicatiopnpi.services.PoliceService;
+import javafx.scene.layout.Priority;
+import Services.PoliceService;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -50,15 +52,6 @@ public class AdminView {
 
     private void configureListView() {
         unfoundSearchesList.setCellFactory(param -> new ListCell<String>() {
-            private final Button deleteButton = new Button("Delete");
-            private final HBox hBox = new HBox();
-            private final Label label = new Label();
-
-            {   // initializer block for layout setup
-                hBox.setSpacing(10);
-                hBox.getChildren().addAll(label, deleteButton);
-            }
-
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -66,16 +59,27 @@ public class AdminView {
                     setText(null);
                     setGraphic(null);
                 } else {
-                    label.setText(item);
+                    HBox hBox = new HBox(10); // Ensure this spacing matches the spacing in your FXML if needed
+                    hBox.setAlignment(Pos.CENTER_LEFT); // Align content to the left
+
+                    Label nameLabel = new Label(item);
+                    nameLabel.setMinWidth(185); // Ensure this width matches the ListView header
+                    nameLabel.setMaxWidth(Double.MAX_VALUE); // Allow name to grow as needed
+                    HBox.setHgrow(nameLabel, Priority.ALWAYS); // Name label grows to fill space
+
+                    Button deleteButton = new Button("Delete");
                     deleteButton.setOnAction(event -> {
                         unfoundSearchesList.getItems().remove(item);
                         deleteSearchFromFile(item);
                     });
+
+                    hBox.getChildren().addAll(nameLabel, deleteButton);
                     setGraphic(hBox);
                 }
             }
         });
     }
+
 
     private void deleteSearchFromFile(String item) {
         ObservableList<String> remainingItems = FXCollections.observableArrayList(unfoundSearchesList.getItems());

@@ -1,36 +1,36 @@
-package tn.esprit.applicatiopnpi.controllers;
+package Controllers;
 
 import com.itextpdf.text.pdf.PdfWriter;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import tn.esprit.applicatiopnpi.models.Police;
-import tn.esprit.applicatiopnpi.models.Sinistre;
-import tn.esprit.applicatiopnpi.services.PoliceService;
-import tn.esprit.applicatiopnpi.services.SinistreService;
+import Entities.Police;
+import Entities.Sinistre;
+import Services.PoliceService;
+import Services.SinistreService;
 
-import java.io.*;
 import java.util.List;
 import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.FileOutputStream;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 
-import java.io.FileOutputStream;
 import java.util.Date;
+import java.util.stream.Collectors;
+import javafx.scene.control.TextField;
 
 public class AffichagefrontPolice {
     @FXML
     private VBox cardsContainer; // This is the main container in FXML
-
+    @FXML
+    private TextField searchField; // TextField for entering search terms
     private PoliceService policeService = new PoliceService();
     private SinistreService sinistreService = new SinistreService();
     @FXML
@@ -40,7 +40,36 @@ public class AffichagefrontPolice {
     public void initialize() {
         populateSinistreFilters();
         loadPolice();
+        setupSearchField();
     }
+    private void setupSearchField() {
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterPoliciesBySearch(newValue);
+        });
+    }
+    private void filterPoliciesBySearch(String inputSearchTerm) {
+        // Declare a final variable for use within the lambda to avoid issues
+        final String searchTerm = inputSearchTerm.toLowerCase().trim();
+
+        // Execute the search in a background thread if it might be long-running
+        new Thread(() -> {
+            if (searchTerm.isEmpty()) {
+                Platform.runLater(this::loadPolice); // Use method reference for better readability
+            } else {
+                // Fetch all policies only once to avoid multiple database calls
+                List<Police> allPolicies = policeService.getAll();
+                List<Police> filteredPolicies = allPolicies.stream()
+                        .filter(police -> police.getPoliceName().toLowerCase().contains(searchTerm) ||
+                                police.getDescriptionPolice().toLowerCase().contains(searchTerm))
+                        .collect(Collectors.toList());
+
+                // Update UI in the JavaFX Application Thread
+                Platform.runLater(() -> createAndDisplayPoliceCards(filteredPolicies));
+            }
+        }).start();
+    }
+
+
     private void populateSinistreFilters() {
         // Create an "All" button to display all policies
         Button allButton = new Button("All");
@@ -66,19 +95,28 @@ public class AffichagefrontPolice {
         createAndDisplayPoliceCards(polices);
     }
     private void createAndDisplayPoliceCards(List<Police> polices) {
-        HBox currentHBox = null;
-        for (int i = 0; i < polices.size(); i++) {
-            if (i % 3 == 0) { // Every three police records, start a new HBox
-                currentHBox = new HBox(20); // 20 is the spacing between each card
-                currentHBox.setAlignment(Pos.CENTER); // Ensure alignment is set if needed
-                cardsContainer.getChildren().add(currentHBox);
+        Platform.runLater(() -> {
+            cardsContainer.getChildren().clear(); // Effacer le conteneur sur le thread JavaFX
+
+            if (polices.isEmpty()) {
+                Label noResults = new Label("Aucune police correspondante trouvée.");
+                cardsContainer.getChildren().add(noResults);
+            } else {
+                for (int i = 0; i < polices.size(); i++) {
+                    Police police = polices.get(i);
+                    VBox policeCard = createPoliceCard(police);
+                    if (i % 3 == 0) {
+                        HBox currentHBox = new HBox(20);
+                        currentHBox.setAlignment(Pos.CENTER);
+                        cardsContainer.getChildren().add(currentHBox);
+                    }
+                    ((HBox)cardsContainer.getChildren().get(cardsContainer.getChildren().size() - 1)).getChildren().add(policeCard);
+                }
             }
-            VBox policeBox = createPoliceCard(polices.get(i));
-            if (currentHBox != null) {
-                currentHBox.getChildren().add(policeBox);
-            }
-        }
+        });
     }
+
+
 
     private VBox createPoliceCard(Police police) {
         VBox card = new VBox();
@@ -130,9 +168,8 @@ public class AffichagefrontPolice {
                 sinistreDescription.setId("sinistreDescription");
 
 // Change text color to white
-                sinistreTitle.setStyle("-fx-text-fill: white;");
-                sinistreDescription.setStyle("-fx-text-fill: white;");
-
+                sinistreTitle.setStyle("-fx-text-fill: #0c0c0c; -fx-background-color: #ffffff; -fx-padding: 5px; -fx-background-radius: 5px;");
+                sinistreDescription.setStyle("-fx-text-fill: #0c0c0c; -fx-background-color: #ffffff; -fx-padding: 5px; -fx-background-radius: 5px;");
 
                 card.getChildren().addAll(sinistreTitle, sinistreDescription);
                 btn.setText("Hide Details");
@@ -157,7 +194,8 @@ public class AffichagefrontPolice {
     private void generatePDF(Police police) {
         Document document = new Document(PageSize.A4);
         try {
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("PoliceDetails.pdf"));
+            String fileName = police.getPoliceName() + "Details.pdf";
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(fileName));
             FooterPageEvent footer = new FooterPageEvent();
             writer.setPageEvent(footer);
             document.open();
@@ -166,29 +204,47 @@ public class AffichagefrontPolice {
 
 
             // Ajouter un titre
-            Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16);
-            Paragraph title = new Paragraph("Détails de la Police", titleFont);
+            Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 24);
+            titleFont.setColor(new BaseColor(0, 14, 41));
+            Paragraph title = new Paragraph("Police Details", titleFont);
             title.setAlignment(Element.ALIGN_CENTER);
             document.add(title);
 
             // Ajouter un espace
-            document.add(new Paragraph(" "));
+            document.add(new Paragraph(" \n\n"));
 
+            Font sectionTitleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14);
+
+            Font sectionTitleFont1 = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16);
             // Ajouter le nom de la police et la description
-            Font bodyFont = FontFactory.getFont(FontFactory.HELVETICA, 12);
-            document.add(new Paragraph("Nom de la Police: " + police.getPoliceName(), bodyFont));
-            document.add(new Paragraph("Description: " + police.getDescriptionPolice(), bodyFont));
 
+            document.add(new Paragraph("Police Name:", sectionTitleFont));
+            document.add(new Paragraph(police.getPoliceName()));
+            document.add(new Paragraph("Description:", sectionTitleFont));
+            document.add(new Paragraph(police.getDescriptionPolice()));
+
+            document.add(new Paragraph(" \n\n\n"));
+            // Add the text "Associated Disaster" instead of a horizontal line
+            document.add(new Paragraph("Associated Disaster:", sectionTitleFont1));
+            document.add(new Paragraph(" \n\n"));
             // Ajouter les détails du sinistre associé
             Sinistre sinistre = police.getSinistre();
             if (sinistre != null) {
-                document.add(new Paragraph("Nom du Sinistre: " + sinistre.getSin_name(), bodyFont));
-                document.add(new Paragraph("Description du Sinistre: " + sinistre.getDescription_sin(), bodyFont));
+                document.add(new Paragraph("Disaster Name:", sectionTitleFont));
+                document.add(new Paragraph(sinistre.getSin_name()));
+                document.add(new Paragraph("Disaster Description:", sectionTitleFont));
+                document.add(new Paragraph(sinistre.getDescription_sin()));
             }
 
-            // Ajouter un espace pour la signature
-            document.add(new Paragraph("Signature:____________________________", bodyFont));
-            document.add(new Paragraph("Date: ", bodyFont));
+            // Add a table to push the signature to the bottom of the page
+            PdfPTable table = new PdfPTable(1);
+            table.setWidthPercentage(100);
+            table.setSpacingBefore(220);
+            PdfPCell cell = new PdfPCell(new Paragraph("Signature:____________________________", sectionTitleFont));
+            cell.setBorder(Rectangle.NO_BORDER);
+            cell.setVerticalAlignment(Element.ALIGN_RIGHT);
+            table.addCell(cell);
+            document.add(table);
 
             document.close();
         } catch (Exception e) {

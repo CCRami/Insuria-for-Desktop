@@ -1,8 +1,5 @@
-package tn.esprit.applicatiopnpi.controllers;
+package Controllers;
 
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,7 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -21,17 +17,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import tn.esprit.applicatiopnpi.models.Police;
-import tn.esprit.applicatiopnpi.models.Sinistre;
-import tn.esprit.applicatiopnpi.services.PoliceService;
+import Entities.Police;
+import Services.PoliceService;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class AffichagePolice implements Initializable {
     @FXML
@@ -40,6 +34,16 @@ public class AffichagePolice implements Initializable {
     private VBox contentArea;
     @FXML
     private TextField searchField;
+    private int currentPage = 0;
+    private int itemsPerPage = 3;
+    // Adjust this based on your preference
+    @FXML
+    private Button prevPageBtn; // Pagination previous page button
+    @FXML
+    private Button nextPageBtn;
+    @FXML
+    private HBox paginationContainer; // Container for pagination controls
+    private int totalItems;
 
 
 
@@ -47,8 +51,10 @@ public class AffichagePolice implements Initializable {
     private PoliceService policeService = new PoliceService(); // Assuming you have a service class to handle database operations
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        totalItems = policeService.getAll().size();
         initializeListView();
         loadPoliceData();
+        setupPaginationControls();
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
                 rechercherPol();
@@ -57,30 +63,77 @@ public class AffichagePolice implements Initializable {
             }
         });
     }
+    private void setupPaginationControls() {
+        paginationContainer.getChildren().clear(); // Clear existing controls
+
+        // Add the Previous button
+        prevPageBtn.setDisable(currentPage == 0);
+        paginationContainer.getChildren().add(prevPageBtn);
+
+        // Calculate the number of pages
+        int pageCount = (int) Math.ceil((double) totalItems / itemsPerPage);
+
+        // Add page number buttons dynamically
+        for (int i = 0; i < pageCount; i++) {
+            Button pageBtn = new Button(String.valueOf(i + 1));
+            int finalI = i;
+            pageBtn.setOnAction(e -> {
+                currentPage = finalI;
+                setupPaginationControls(); // Refresh pagination controls on click
+                updateListView();
+            });
+            pageBtn.setDisable(currentPage == i); // Disable the button of the current page
+            paginationContainer.getChildren().add(pageBtn);
+        }
+
+        // Add the Next button
+        nextPageBtn.setDisable(currentPage >= pageCount - 1);
+        paginationContainer.getChildren().add(nextPageBtn);
+    }
+
+
+    private void updateListView() {
+        int start = currentPage * itemsPerPage;
+        int end = Math.min(start + itemsPerPage, totalItems);
+        List<Police> sublist = policeService.getAll().subList(start, end); // Consider caching the full list
+        policeList.setItems(FXCollections.observableArrayList(sublist));
+    }
+    @FXML
+    private void handleNextPage() {
+        if (currentPage < (totalItems / itemsPerPage)) {
+            currentPage++;
+            setupPaginationControls();
+            updateListView();
+        }
+    }
+
+    @FXML
+    private void handlePrevPage() {
+        if (currentPage > 0) {
+            currentPage--;
+            setupPaginationControls();
+            updateListView();
+        }
+    }
+
     @FXML
     private void rechercherPol() throws SQLException {
-        // Clear existing items from the ListView
-        policeList.getItems().clear();
-
-        // Fetch the search term entered by the user
         String searchTerm = searchField.getText().trim().toLowerCase();
+        List<Police> filteredList = policeService.getAll().stream()
+                .filter(police -> police.getPoliceName().toLowerCase().contains(searchTerm)
+                        || police.getDescriptionPolice().toLowerCase().contains(searchTerm))
+                .collect(Collectors.toList());
+        totalItems = filteredList.size();
+        currentPage = 0; // Reset to the first page for new search
+        updateFilteredListView(filteredList);
+    }
+    private void updateFilteredListView(List<Police> filteredList) {
+        int start = currentPage * itemsPerPage;
+        int end = Math.min(start + itemsPerPage, filteredList.size());
+        policeList.setItems(FXCollections.observableArrayList(filteredList.subList(start, end)));
 
-        // Fetch all sinistres from the database
-        List<Police> sinistreList = policeService.getAll(); // Assuming afficherSinistres() is the correct method
-
-        // If the search field is empty, display all sinistres
-        if (searchTerm.isEmpty()) {
-            policeList.getItems().addAll(sinistreList);
-        } else {
-            // Otherwise, filter sinistres that match the search term
-            for (Police police : sinistreList) {
-                // Adapt this condition based on your search logic
-                if (police.getPoliceName().toLowerCase().contains(searchTerm)
-                        || police.getDescriptionPolice().toLowerCase().contains(searchTerm)) {
-                    policeList.getItems().add(police);
-                }
-            }
-        }
+        prevPageBtn.setDisable(currentPage <= 0);
+        nextPageBtn.setDisable(end >= filteredList.size());
     }
 
     private void initializeListView() {

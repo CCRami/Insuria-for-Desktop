@@ -120,7 +120,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>tn.esprit.applicatiopnpi.test.HelloApplication</mainClass>
+              <mainClass>test.HelloApplication</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>

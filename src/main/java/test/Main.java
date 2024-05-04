@@ -1,9 +1,9 @@
-package tn.esprit.applicatiopnpi.test;
+package test;
 
-import tn.esprit.applicatiopnpi.models.Sinistre;
-import tn.esprit.applicatiopnpi.models.Police;
-import tn.esprit.applicatiopnpi.services.PoliceService;
-import tn.esprit.applicatiopnpi.services.SinistreService;
+import Entities.Sinistre;
+import Entities.Police;
+import Services.PoliceService;
+import Services.SinistreService;
 import tn.esprit.applicatiopnpi.utils.MyDatabase;
 
 public class Main {

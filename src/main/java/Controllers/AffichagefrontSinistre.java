@@ -1,4 +1,4 @@
-package tn.esprit.applicatiopnpi.controllers;
+package Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,8 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import tn.esprit.applicatiopnpi.models.Sinistre;
-import tn.esprit.applicatiopnpi.services.SinistreService;
+import Entities.Sinistre;
+import Services.SinistreService;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

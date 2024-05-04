@@ -427,6 +427,63 @@ and open the template in the editor.
 .pie-chart {
     -fx-pie-label-visible: true; /* Pour rendre les labels visibles */
 }
+.scroll-pane {
+    -fx-background-color: transparent; /* Rend le fond de la ScrollPane transparent */
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent; /* Rend le fond de la zone de contenu transparent */
+}
+
+.scroll-pane .scroll-bar {
+    -fx-background-color: transparent; /* Rend les barres de défilement transparentes */
+    -fx-background-insets: 0; /* Supprime les bordures internes */
+}
+.searchh-field {
+    -fx-background-color: #2ca2fb;
+    -fx-background-insets: 0;
+    -fx-background-radius: 25;
+    -fx-padding: 5;
+    -fx-text-fill: #051b46;
+    -fx-font-size: 16px;
+}
+.inputt-field {
+    -fx-background-color: #e8e8e8;
+    -fx-background-insets: 0;
+    -fx-background-radius: 25;
+    -fx-padding: 5;
+    -fx-prompt-text-fill: #5e5e5e;
+    -fx-text-fill: #5e5e5e;
+}
+
+.searchh-field:focused {
+    -fx-background-color: linear-gradient(to bottom right, rgb(239, 247, 255) 0%, rgb(44, 162, 251) 100%);
+}
+
+
+
+
+
+.inputt-field:focused {
+    -fx-border-color: #4998FF;
+    -fx-border-width: 0 0 0 2px;
+}
+
+.search-buttton {
+    -fx-padding: 1rem;
+    -fx-background-color: linear-gradient(to bottom right, #BFF0FA, #4998FF);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 0 1rem 1rem 0;
+    -fx-letter-spacing: 0.3rem;
+    -fx-text-transform: uppercase;
+}
+
+.search-buttton:hover {
+    -fx-background-color: linear-gradient(to bottom right, #BFF0FA, #4998ffc4);
+}
+
+
 
 
 

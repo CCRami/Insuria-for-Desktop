@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.applicatiopnpi.controllers.AffichageSinistre" stylesheets="@style/dashboardDesign.css" prefHeight="778.0" prefWidth="1254.0">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AffichageSinistre" stylesheets="@style/dashboardDesign.css" prefHeight="720.0" prefWidth="1030.0">
     <children>
         <!-- Centrage vertical et horizontal dans l'AnchorPane -->
         <VBox fx:id="contentArea" layoutX="223.0" layoutY="53.0" prefHeight="672.0" prefWidth="808.0" styleClass="white-bg, shadow" spacing="20" AnchorPane.bottomAnchor="53" AnchorPane.leftAnchor="223" AnchorPane.rightAnchor="223" AnchorPane.topAnchor="53">
@@ -41,6 +41,11 @@
             <ListView fx:id="tab"  styleClass="list-view" VBox.vgrow="ALWAYS">
                 <!-- Contenu du ListView -->
             </ListView>
+            <HBox fx:id="paginationContainer" alignment="CENTER" spacing="10">
+                <Button fx:id="prevPageBtn" text="Previous" onAction="#handlePrevPage"/>
+                <!-- Dynamic page numbers will be inserted here -->
+                <Button fx:id="nextPageBtn" text="Next" onAction="#handleNextPage"/>
+            </HBox>
 
             <HBox alignment="CENTER" style="-fx-padding: 20;">
                 <Button text="Add New Sinister" onMouseClicked="#handleAddNew" styleClass="button1" minWidth="202.0">

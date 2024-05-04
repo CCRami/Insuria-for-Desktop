@@ -1,9 +1,11 @@
-package tn.esprit.applicatiopnpi.controllers;
+package Controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -24,8 +26,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import tn.esprit.applicatiopnpi.models.Sinistre;
-import tn.esprit.applicatiopnpi.services.SinistreService;
+import Entities.Sinistre;
+import Services.SinistreService;
 
 public class AffichageSinistre implements Initializable {
     @FXML
@@ -39,15 +41,25 @@ public class AffichageSinistre implements Initializable {
 
     private FilteredList<Sinistre> filteredData;
 
-
+    private ObservableList<Sinistre> currentDisplayList;
 
     @FXML
     private VBox contentArea;
 
 
+
     SinistreService sinistreService = new SinistreService();
 
-
+    private int currentPage = 0;
+    private int itemsPerPage = 3;
+    // Adjust this based on your preference
+    @FXML
+    private Button prevPageBtn; // Pagination previous page button
+    @FXML
+    private Button nextPageBtn;
+    @FXML
+    private HBox paginationContainer; // Container for pagination controls
+    private int totalItems;
     private void initializeListView() {
         tab.setCellFactory(param -> new ListCell<Sinistre>() {
             @Override
@@ -116,9 +128,10 @@ public class AffichageSinistre implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Sinistre> data = FXCollections.observableArrayList(sinistreService.getAll());
-        tab.setItems(data);
+        totalItems = sinistreService.getAll().size();
         initializeListView();
+        loadSinistreData();
+        setupPaginationControls();
         // Configurez le ListView avec un CellFactory personnalisé
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
@@ -128,31 +141,84 @@ public class AffichageSinistre implements Initializable {
             }
         });
     }
+    private void loadSinistreData() {
+        ObservableList<Sinistre> data = FXCollections.observableArrayList(sinistreService.getAll());
+        tab.setItems(data);
+    }
+    private void setupPaginationControls() {
+        paginationContainer.getChildren().clear();
+        prevPageBtn.setDisable(currentPage == 0);
+        paginationContainer.getChildren().add(prevPageBtn);
+
+        int pageCount = (int) Math.ceil((double) totalItems / itemsPerPage);
+        for (int i = 0; i < pageCount; i++) {
+            Button pageBtn = new Button(String.valueOf(i + 1));
+            int finalI = i;
+            pageBtn.setOnAction(e -> {
+                currentPage = finalI;
+                setupPaginationControls();
+                updateListView();
+
+            });
+            pageBtn.setDisable(currentPage == i);
+            paginationContainer.getChildren().add(pageBtn);
+        }
+
+        nextPageBtn.setDisable(currentPage >= pageCount - 1);
+        paginationContainer.getChildren().add(nextPageBtn);
+    }
+
+
+
     @FXML
-    private void rechercherSIN() throws SQLException {
-        // Clear existing items from the ListView
-        tab.getItems().clear();
-
-        // Fetch the search term entered by the user
-        String searchTerm = searchField.getText().trim().toLowerCase();
-
-        // Fetch all sinistres from the database
-        List<Sinistre> sinistreList = sinistreService.getAll(); // Assuming afficherSinistres() is the correct method
-
-        // If the search field is empty, display all sinistres
-        if (searchTerm.isEmpty()) {
-            tab.getItems().addAll(sinistreList);
-        } else {
-            // Otherwise, filter sinistres that match the search term
-            for (Sinistre sinistre : sinistreList) {
-                // Adapt this condition based on your search logic
-                if (sinistre.getSin_name().toLowerCase().contains(searchTerm)
-                        || sinistre.getDescription_sin().toLowerCase().contains(searchTerm)) {
-                    tab.getItems().add(sinistre);
-                }
-            }
+    private void handleNextPage() {
+        if (currentPage < (totalItems / itemsPerPage)) {
+            currentPage++;
+            updateListView();
+            setupPaginationControls();
         }
     }
+
+    @FXML
+    private void handlePrevPage() {
+        if (currentPage > 0) {
+            currentPage--;
+            setupPaginationControls();
+            updateListView();
+
+        }
+    }
+
+
+    @FXML
+    private void rechercherSIN() throws SQLException {
+        String searchTerm = searchField.getText().trim().toLowerCase();
+        List<Sinistre> filteredList = sinistreService.getAll().stream()
+                .filter(sinistre -> sinistre.getSin_name().toLowerCase().contains(searchTerm) ||
+                        sinistre.getDescription_sin().toLowerCase().contains(searchTerm))
+                .collect(Collectors.toList());
+
+        totalItems = filteredList.size(); // Update total number based on the filtered list
+        currentPage = 0;
+        updateFilteredListView(filteredList);
+    }
+
+    private void updateFilteredListView(List<Sinistre> filteredList) {
+        int start = currentPage * itemsPerPage;
+        int end = Math.min(start + itemsPerPage, filteredList.size());
+        tab.setItems(FXCollections.observableArrayList(filteredList.subList(start, end)));
+
+        prevPageBtn.setDisable(currentPage <= 0);
+        nextPageBtn.setDisable(end >= filteredList.size());
+    }
+    private void updateListView() {
+        int start = currentPage * itemsPerPage;
+        int end = Math.min(start + itemsPerPage, totalItems);
+        List<Sinistre> sublist = sinistreService.getAll().subList(start, end); // Consider caching the full list
+        tab.setItems(FXCollections.observableArrayList(sublist));
+    }
+
+
 
 
 

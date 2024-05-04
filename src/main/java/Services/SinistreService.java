@@ -1,6 +1,6 @@
-package tn.esprit.applicatiopnpi.services;
+package Services;
 
-import tn.esprit.applicatiopnpi.models.Sinistre;
+import Entities.Sinistre;
 
 import java.awt.*;
 import java.sql.*;
