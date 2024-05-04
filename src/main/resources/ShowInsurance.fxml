@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1030.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ShowInsurance">
+    <VBox fx:id="contentArea" layoutX="459.2" layoutY="76.8" prefHeight="648.0" prefWidth="1334.0" spacing="20" styleClass="white-bg shadow" AnchorPane.bottomAnchor="53" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="77.0">
+        <HBox alignment="CENTER" spacing="8" styleClass="searchBox">
+            <TextField fx:id="searchField" prefHeight="30.0" prefWidth="230.0" promptText="Search" styleClass="searchInput" />
+        </HBox>
+        <HBox spacing="35.0" style="-fx-padding: 4;">
+            <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" text="Insurance Name" />
+            <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" text="Insurance Base Price" />
+            <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" text="DOA" />
+            <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" text="Insurance Category" />
+            <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" text="Insurance Policy" />
+            <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" text="Insurance Image" />
+            <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" text="Actions" />
+        </HBox>
+        <ListView fx:id="tabins" prefHeight="369.0" prefWidth="1202.0" styleClass="list-view" VBox.vgrow="ALWAYS">
+            <!-- You can add items dynamically in your controller -->
+        </ListView>
+        <HBox alignment="CENTER" style="-fx-padding: 20;">
+            <Button minWidth="202.0" onMouseClicked="#handleAddNew" styleClass="button1" text="Add New">
+                <graphic>
+                    <ImageView fitHeight="30.0" fitWidth="30.0" preserveRatio="true">
+                        <image>
+                            <Image url="@images/add.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+    </VBox>
+</AnchorPane>

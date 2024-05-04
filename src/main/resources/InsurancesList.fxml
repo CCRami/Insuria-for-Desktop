@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InsurancesList">
+    <stylesheets>
+        <URL value="@style/ShowInsuranceStyle.css" />
+    </stylesheets>
+    <children>
+        <!-- Insurance Image -->
+        <ImageView fx:id="insImage" fitHeight="242.0" fitWidth="309.0" layoutX="36.0" layoutY="19.0" styleClass="insImage">
+            <clip>
+                <Rectangle arcHeight="20" arcWidth="20" height="202" width="247" />
+            </clip>
+        </ImageView>
+
+        <Button fx:id="insButton" layoutX="120.0" layoutY="161.0" onAction="#handleInsuranceButtonClick" style="-fx-background-color: #2CA2FB;" styleClass="buttonn1" stylesheets="@style/dashboardDesign.css">
+
+            <graphic>
+                <!-- Wrap labels inside a VBox -->
+                <VBox spacing="5">
+                    <!-- Insurance Name -->
+                    <Label fx:id="insName" style="-fx-font-family: 'Verdana'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-border-width: 0;">
+                        <font>
+                            <Font size="20.0" />
+                        </font>
+                    </Label>
+
+                    <Label fx:id="insAmount" prefHeight="30.0" prefWidth="176.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-border-width: 0;">
+                        <font>
+                            <Font size="20.0" />
+                        </font>
+                    </Label>
+
+                </VBox>
+            </graphic>
+            <text>
+                 ---►
+            </text>
+        </Button>
+    </children>
+    <padding>
+        <Insets bottom="10" left="10" right="10" top="10" />
+    </padding>
+</AnchorPane>

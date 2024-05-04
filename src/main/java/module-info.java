@@ -22,6 +22,9 @@ module com.example.insuria {
     requires restfb;
     requires org.json;
     requires twilio;
+    requires org.apache.httpcomponents.httpcore;
+    requires org.apache.httpcomponents.httpclient;
+    requires stripe.java;
     exports org.example;
     exports Controllers;
     opens Controllers;

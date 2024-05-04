@@ -8,6 +8,8 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+
 
 public class UserService implements IUser<User>{
 
@@ -287,6 +289,23 @@ public class UserService implements IUser<User>{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    public String getUserEmailById(int userId) {
+        String email = null;
+        String sql = "SELECT email FROM user WHERE id = ?";
+        try (
+                PreparedStatement pst = conn.prepareStatement(sql)) {
+            pst.setInt(1, userId);
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    email = rs.getString("email");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return email;
     }
 
 }

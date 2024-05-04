@@ -26,6 +26,10 @@ public class Police {
         this.sinistre = sinistre;
     }
 
+    public Police(int id) {
+        this.id = id;
+    }
+
     // Getters et setters
     public int getId() {
         return id;

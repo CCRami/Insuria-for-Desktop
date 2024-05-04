@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Add Button for category selection -->
+
+<AnchorPane prefHeight="600.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DisplayInsuranceF">
+    <children>
+        <VBox layoutX="-3.0" prefHeight="600.0" prefWidth="1280.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <children>
+                <VBox alignment="CENTER" spacing="10">
+                    <FlowPane fx:id="categoryFlowPane" prefWidth="1000" styleClass="buttonn" stylesheets="@style/dashboardDesign.css">
+                        <!-- Add buttons for categories -->
+                    </FlowPane>
+                    <HBox alignment="CENTER" spacing="10">
+                        <HBox alignment="CENTER" spacing="10">
+                            <Button onAction="#increasePrice" style="-fx-background-color: transparent;" text="▲" />
+                            <Button onAction="#decreasePrice" style="-fx-background-color: transparent;" text="▼" />
+
+                        </HBox>
+
+                        <Button onAction="#handleAllButtonAction" text="All" />
+                    </HBox>
+                </VBox>
+
+                <HBox alignment="CENTER" prefHeight="600.0" prefWidth="1280.0" VBox.vgrow="ALWAYS">
+                    <children>
+
+                        <ScrollPane fx:id="scroll" prefHeight="476.0" prefWidth="1558.0" styleClass="transparent" stylesheets="@style/styleafficher.css">
+                            <content>
+                                <GridPane fx:id="container" prefHeight="8.0" prefWidth="5.0">
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                    </rowConstraints>
+                                </GridPane>
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

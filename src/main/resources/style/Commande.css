@@ -1,0 +1,81 @@
+.main-container {
+    -fx-background-color: white;
+}
+
+.rectangle-container {
+    -fx-border-color: #007bff; /* Blue border color */
+    -fx-border-width: 2px; /* Border width */
+    -fx-padding: 20px; /* Padding inside the rectangle */
+    -fx-spacing: 10px; /* Spacing between elements */
+}
+
+.title-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #007bff; /* Blue text color */
+}
+
+.info-container {
+    -fx-background-color: #007bff; /* Blue background color for command details */
+    -fx-padding: 10px; /* Padding inside the command details rectangle */
+    -fx-spacing: 5px; /* Spacing between elements */
+}
+
+.info-container > Label {
+    -fx-text-fill: white; /* White text color for labels inside command details */
+}
+
+Button {
+    -fx-background-color: #007bff; /* Blue button background color */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+}
+
+Button:hover {
+    -fx-background-color: #0056b3; /* Darker blue color on hover */
+}
+.basket-container {
+    -fx-background-color: #f2f2f2; /* Light grey background */
+    -fx-border-color: #ddd; /* Light border color */
+    -fx-border-width: 2px; /* Border width */
+    -fx-padding: 20px; /* Padding */
+    -fx-border-radius: 10px; /* Border radius */
+}
+
+.basket-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.list-view {
+    -fx-background-color: #ffffff; /* White background for list view */
+    -fx-border-color: #ddd; /* Light border color */
+    -fx-border-width: 1px; /* Border width */
+    -fx-padding: 10px; /* Padding */
+    -fx-border-radius: 5px; /* Border radius */
+}
+
+.list-view:focused {
+    -fx-focus-color: transparent; /* Remove focus color */
+    -fx-faint-focus-color: transparent; /* Remove faint focus color */
+}
+
+.list-cell {
+    -fx-padding: 5px;
+    -fx-background-color: #ffffff; /* White background for list cell */
+    -fx-border-color: #ddd; /* Light border color */
+    -fx-border-width: 1px; /* Border width */
+    -fx-border-radius: 5px; /* Border radius */
+}
+
+.list-cell:odd {
+    -fx-background-color: #f9f9f9; /* Alternate background color for odd cells */
+}
+
+.list-cell:selected {
+    -fx-background-color: #007bff; /* Selected cell background color */
+    -fx-text-fill: white; /* Text color for selected cell */
+}
+

@@ -160,7 +160,23 @@ public class PoliceService implements Iservice<Police> {
         }
         return results;
     }
-
+    public Police getPoliceById(int polId) {
+        String sql = "SELECT * FROM police WHERE id = ?";
+        try {
+            PreparedStatement pst = connection.prepareStatement(sql);
+            pst.setInt(1, polId);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                // Assuming Police has a constructor that takes relevant parameters
+                return new Police(rs.getInt("id"));
+            } else {
+                // Handle case when no police with the given ID is found
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error fetching Police by ID", e);
+        }
+    }
 
 
 
