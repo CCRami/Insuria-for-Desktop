@@ -2,6 +2,7 @@ package Controllers;
 
 import Entities.Commande;
 import Services.CommandeService;
+import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
@@ -41,6 +42,14 @@ public class CommandeBasket implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        selectedCommandes = com.getAllCommandes();
+
+        // Calculate total amount
+        long totalAmount = calculateTotalAmount();
+
+        // Update total price label
+        totalPriceLabel.setText(String.format(String.valueOf(totalAmount)));
+
         ObservableList<Commande> data = FXCollections.observableArrayList(com.getAllCommandes());
         selectedCommandesListView.setItems(data);
         initializeListView();
@@ -111,39 +120,42 @@ public class CommandeBasket implements Initializable {
 
     @FXML
     private void handleCheckout(ActionEvent event) {
+        System.out.println("Handling checkout...");
         processPayment();
     }
 
     private void processPayment() {
+
+
+        // Calculate total amount or get it from the selected orders
+        long totalAmount = calculateTotalAmount();
+        System.out.println("Total amount calculated: " + totalAmount);
+        // Update total price label
+        totalPriceLabel.setText(String.format("%.2f €", totalAmount / 100.0)); // Assuming totalAmount is in cents
+        System.out.println("Total price label updated with: " + String.format("%.2f €", totalAmount / 100.0));
+        // Create a Checkout Session for the payment
+        SessionCreateParams params = SessionCreateParams.builder()
+                .setMode(SessionCreateParams.Mode.PAYMENT)
+                .setSuccessUrl("https://your-domain.com/success")
+                .setCancelUrl("https://your-domain.com/cancel")
+                .addLineItem(
+                        SessionCreateParams.LineItem.builder()
+                                .setQuantity(1L)
+                                .setPriceData(
+                                        SessionCreateParams.LineItem.PriceData.builder()
+                                                .setCurrency("usd")
+                                                .setUnitAmount(totalAmount * 100)
+                                                .setProductData(
+                                                        SessionCreateParams.LineItem.PriceData.ProductData.builder()
+                                                                .setName("Total Order")
+                                                                .build()
+                                                )
+                                                .build()
+                                )
+                                .build()
+                )
+                .build();
         try {
-
-
-            // Calculate total amount or get it from the selected orders
-            long totalAmount = calculateTotalAmount();
-
-            // Create a Checkout Session for the payment
-            SessionCreateParams params = SessionCreateParams.builder()
-                    .setMode(SessionCreateParams.Mode.PAYMENT)
-                    .setSuccessUrl("https://your-domain.com/success")
-                    .setCancelUrl("https://your-domain.com/cancel")
-                    .addLineItem(
-                            SessionCreateParams.LineItem.builder()
-                                    .setQuantity(1L)
-                                    .setPriceData(
-                                            SessionCreateParams.LineItem.PriceData.builder()
-                                                    .setCurrency("usd")
-                                                    .setUnitAmount(totalAmount)
-                                                    .setProductData(
-                                                            SessionCreateParams.LineItem.PriceData.ProductData.builder()
-                                                                    .setName("Total Order")
-                                                                    .build()
-                                                    )
-                                                    .build()
-                                    )
-                                    .build()
-                    )
-                    .build();
-
             Session session = Session.create(params);
 
             // Open a web view with the session's URL
@@ -152,6 +164,20 @@ public class CommandeBasket implements Initializable {
             showAlert(Alert.AlertType.ERROR, "Error", "Payment failed. Error: " + e.getMessage());
         }
     }
+
+    private long calculateTotalAmount() {
+        System.out.println("Calculating total amount...");
+        long totalAmount = 0;
+        System.out.println(selectedCommandes);
+        if (selectedCommandes != null) {
+            for (Commande commande : selectedCommandes) {
+                totalAmount += (long) commande.getMontant();
+                System.out.println(totalAmount);
+            }
+        }
+        return totalAmount;  // Return the calculated total amount
+    }
+
 
     private void openStripePaymentWebView(String url) {
         Stage stage = new Stage();
@@ -169,15 +195,8 @@ public class CommandeBasket implements Initializable {
 
     }
 
-    private long calculateTotalAmount() {
-        long totalAmount = 0;
-        if (selectedCommandes != null) {
-            for (Commande commande : selectedCommandes) {
-                totalAmount += commande.getMontant();
-            }
-        }
-        return totalAmount;  // Return the calculated total amount
-    }
+
+
 
 
 

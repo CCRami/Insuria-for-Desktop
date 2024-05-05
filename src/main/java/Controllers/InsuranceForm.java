@@ -10,6 +10,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.paint.Color;
+import java.util.logging.Logger;
+
+import java.util.logging.Level;
+
+
 
 
 public class InsuranceForm {
@@ -20,27 +25,26 @@ public class InsuranceForm {
     private ComboBox<String> incomeComboBox;
 
     @FXML
-    private ComboBox<String> maritalstatusComboBox;
+    private ComboBox<String> maritalStatusComboBox;
     @FXML
-    private ComboBox<String> employmentstatusComboBox;
+    private ComboBox<String> employmentStatusComboBox;
     @FXML
-    private ComboBox<String> healthstatusComboBox;
+    private ComboBox<String> healthStatusComboBox;
     @FXML
-    private ComboBox<String> risktoleranceComboBox;
+    private ComboBox<String> riskToleranceComboBox;
     @FXML
-    private ComboBox<String> financialgoalsComboBox;
+    private ComboBox<String> financialGoalsComboBox;
     @FXML
     private ComboBox<String> coverageLevelComboBox;
     @FXML
-    private ComboBox<String> geographicfactorsComboBox;
+    private ComboBox<String> geographicLocationComboBox;
 
     @FXML
     private TextField assetsTextField;
     @FXML
     private TextField liabilitiesTextField;
 
-    @FXML
-    private CheckBox smokerCheckBox;
+
 
     @FXML
     private TextArea answerTextArea;
@@ -56,19 +60,25 @@ public class InsuranceForm {
             protected String call() {
                 String age = ageComboBox.getValue();
                 String income = incomeComboBox.getValue();
-                String marital = maritalstatusComboBox.getValue();
-                String employement = employmentstatusComboBox.getValue();
-                String health = healthstatusComboBox.getValue();
-                String risk = risktoleranceComboBox.getValue();
-                String financial = financialgoalsComboBox.getValue();
+                String marital = maritalStatusComboBox.getValue();
+                String employement = employmentStatusComboBox.getValue();
+                String health = healthStatusComboBox.getValue();
+                String risk = riskToleranceComboBox.getValue();
+                String financial = financialGoalsComboBox.getValue();
                 String coverage = coverageLevelComboBox.getValue();
-                String geographic = geographicfactorsComboBox.getValue();
+                String geographic = geographicLocationComboBox.getValue();
                 String assets = assetsTextField.getText();
                 String liabilities = liabilitiesTextField.getText();
                 String apiKey = "";
 
                 // Get insurance recommendation from the service
+                try{
                 return HandleInsuranceForm.getInsuranceRecommendation(age, income, marital, employement,health,risk,financial,coverage,geographic,assets,liabilities, apiKey);
+                } catch (Exception e) {
+
+
+                    throw new RuntimeException("Error contacting the insurance recommendation service: " + e.getMessage());
+                }
             }
         };
 
@@ -79,7 +89,9 @@ public class InsuranceForm {
 
         recommendationTask.setOnFailed(event -> {
             // Handle failure appropriately
-            answerTextArea.setText("Error generating insurance recommendation");
+            Throwable th = recommendationTask.getException();
+            answerTextArea.setText(th.getMessage());
+
         });
 
         // Run the task on a separate thread
@@ -89,5 +101,5 @@ public class InsuranceForm {
     }
 
 
-    // Define your other methods and FXML elements here...
+
 }
