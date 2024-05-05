@@ -1,32 +1,34 @@
-
 .label {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2CA2FB;
+    -fx-text-fill: #2CA2FB; /* Bright blue text color */
     -fx-padding: 8px;
-    -fx-background-color: #051B46;
-    -fx-border-color: #ccc;
-    -fx-border-width: 1px;
+    -fx-background-color: #ffffff; /* Dark navy background */
+    -fx-border-color: #4a90e2; /* Lighter blue for a softer contrast */
+    -fx-border-width: 2px;
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2); /* Soft shadow for depth */
 }
 
-/* Apply styles to the grid pane */
+/* Apply enhanced styles to the grid pane */
 #gridPane {
     -fx-background-color: #fff;
     -fx-padding: 20px;
-    -fx-hgap: 10px;
-    -fx-vgap: 10px;
+    -fx-hgap: 10px; /* Horizontal gap between columns */
+    -fx-vgap: 10px; /* Vertical gap between rows */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0); /* Subtle shadow around the grid */
 }
 
 .data-label {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2CA2FB;
+    -fx-text-fill: #2CA2FB; /* Bright blue text color for consistency */
     -fx-padding: 8px;
-    -fx-background-color: #fff;
-    -fx-border-color: #ccc;
-    -fx-border-width: 1px;
+    -fx-background-color: #fff; /* White background for better contrast */
+    -fx-border-color: #4a90e2; /* Matching border color to .label */
+    -fx-border-width: 2px;
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 3, 0, 0, 2); /* Less intense shadow for a subtle effect */
 }

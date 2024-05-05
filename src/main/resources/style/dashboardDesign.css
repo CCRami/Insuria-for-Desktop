@@ -337,3 +337,87 @@ and open the template in the editor.
 .label.error {
     -fx-text-fill: red;
 }
+.container {
+    -fx-padding: 35 35;
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(244, 247, 251, 1) 100%);
+    -fx-border-radius: 10;
+    -fx-border-width: 5;
+    -fx-border-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(133, 189, 215, 0.8784313725), 30, 0.0, 30, 30);
+}
+
+.heading {
+    -fx-font-size: 39;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgb(16, 137, 211);
+    -fx-alignment: center;
+}
+
+.input {
+    -fx-background-color: transparent;
+    -fx-border-color: #404040;
+    -fx-border-width: 0 0 2 0;
+}
+
+.login-button {
+    -fx-background-color: #051B46;
+    -fx-text-fill: #ebe7e7;
+}
+.google-login-button {
+    -fx-background-color: linear-gradient(to bottom right, black 0%, rgb(112, 112, 112) 100%);
+
+    -fx-padding: 5;
+    -fx-border-radius: 100%; /* Rounded corners for rectangular button */
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(133, 189, 215, 0.8784313725), 12, 0.5, 0, -8);
+    -fx-min-width: 120px;
+    -fx-min-height: 40px;
+    -fx-alignment: center;
+}
+
+.google-login-button:hover {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}
+
+.google-login-button:pressed {
+    -fx-scale-x: 0.9;
+    -fx-scale-y: 0.9;
+}
+.forgot-password-button {
+    -fx-padding: 10 20; /* ajustez la taille du padding selon vos besoins */
+    -fx-font-size: 11px;
+    -fx-text-fill: #0099ff; /* couleur du texte */
+    -fx-background-color: transparent; /* rend le fond transparent */
+    -fx-underline: false; /* assurez-vous qu'il n'y a pas de soulignement */
+    -fx-border: none; /* retire la bordure par défaut des boutons */
+    -fx-effect: none; /* retire les effets comme l'ombre portée si nécessaire */
+    -fx-margin-top: 10px; /* JavaFX n'a pas de -fx-margin-top, cela doit être ajusté dans le FXML */
+    -fx-margin-left: 10px; /* même remarque pour la marge gauche */
+}
+.inputt {
+    -fx-text-fill: #1a1919; /* Sets the color of the text inside the input */
+    -fx-font-size: 0.9em; /* Font size for text */
+    -fx-background-color: transparent; /* Background color of the input */
+    -fx-control-inner-background: transparent; /* Needed to make the TextField background transparent */
+    -fx-border-color: rgba(221, 221, 221, 0.39); /* Initial border color */
+    -fx-border-width: 0 0 1 0; /* Border only at the bottom */
+    -fx-padding: 0.5em; /* Padding inside the TextField */
+}
+
+/* Hover state using JavaFX pseudo-class */
+.inputt:hover {
+    -fx-background-color: #4985e01f; /* Background color on hover */
+}
+
+/* Focused state for input */
+.inputt:focused {
+    -fx-border-color: #5891ff; /* Border color when the input is focused */
+}
+
+
+
+
+
+

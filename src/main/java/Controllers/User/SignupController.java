@@ -91,6 +91,9 @@ public class SignupController {
     Window window;
     @FXML
     void AjouterUser(ActionEvent event) throws IOException {
+        if (DBTF.getValue()==null){
+            DBTF.setValue(LocalDate.now());
+        }
         if(emailTF.getText().equals("") || mdpTF.getText().equals("")|| DBTF.getValue().toString().equals("")|| nomTF.getText().equals("")|| prenomTF.getText().equals("")){
             AlertHelper.showAlert(Alert.AlertType.ERROR,  SystemColor.window, "Error",
                     "Empty Fields .");

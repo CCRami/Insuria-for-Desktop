@@ -1,6 +1,7 @@
 package Controllers.User;
 
 
+import Controllers.dashboard;
 import Controllers.dashboardFront;
 import Services.MailService;
 import com.google.api.client.googleapis.auth.oauth2.*;
@@ -15,9 +16,11 @@ import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -133,11 +136,12 @@ public class LoginController implements Initializable {
     }
 
 
-    void goToHome() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
-        Parent root=loader.load();
-        HomeController auc= loader.getController();
+    void goToHome(javafx.scene.input.MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboard.fxml"));
+        Parent root = loader.load();
+        dashboard controller = loader.getController();
         rest.getScene().setRoot(root);
+        controller.showDash(event);
     }
     void goToClient() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
@@ -147,7 +151,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    void login(ActionEvent event) throws IOException {
+    void login(javafx.scene.input.MouseEvent event) throws IOException {
 
         UserSession.cleanUserSession();
         if (mail.getText().isEmpty() || password.getText().isEmpty())
@@ -166,7 +170,7 @@ public class LoginController implements Initializable {
                     if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_CLIENT\"]")) {
                         goToClient();
                     } else if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_ADMIN\"]")) {
-                        goToHome();
+                        goToHome(event);
                     }
                 }
                     else {
@@ -245,6 +249,7 @@ public class LoginController implements Initializable {
         }
     }
 
+    MouseEvent event;
     public void handleGoogleCallback(String authorizationCode) {
         try {
             GoogleTokenResponse tokenResponse = new GoogleAuthorizationCodeTokenRequest(
@@ -274,7 +279,7 @@ public class LoginController implements Initializable {
                             goToClient();
                             System.out.println("User is a client");
                         } else if (us.role(us.getUserIdByEmail(email)).equals("[\"ROLE_ADMIN\"]")) {
-                            goToHome();
+                            goToHome(event);
                             System.out.println("User is an admin");
                         }
                     }
@@ -348,7 +353,7 @@ public class LoginController implements Initializable {
                 if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_CLIENT\"]")) {
                     goToClient();
                 } else if (us.role(us.authenticate(mail.getText(), password.getText())).equals("[\"ROLE_ADMIN\"]")) {
-                    goToHome();
+                    goToHome(event);
                 }
             }
             else {

@@ -68,10 +68,10 @@ public class ShowCatInsurance implements Initializable {
                     ImageView editIcon = null;
                     ImageView deleteIcon = null;
                     try {
-                        editIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/edit_icon.png")));
+                        editIcon = new ImageView(new Image(getClass().getResourceAsStream("/tn/esprit/applicatiopnpi/edit_icon.png")));
                         editIcon.setFitHeight(20);
                         editIcon.setFitWidth(20);
-                        deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/delete_icon.png")));
+                        deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/tn/esprit/applicatiopnpi/delet_icon.png")));
                         deleteIcon.setFitHeight(20);
                         deleteIcon.setFitWidth(20);
                     } catch (NullPointerException e) {
@@ -82,10 +82,10 @@ public class ShowCatInsurance implements Initializable {
                     }
 
                     Button editButton = new Button("Edit", editIcon);
-                    editButton.getStyleClass().add("buttonn");
+                    editButton.getStyleClass().add("button2");
 
                     Button deleteButton = new Button("Delete", deleteIcon);
-                    deleteButton.getStyleClass().add("buttonn");
+                    deleteButton.getStyleClass().add("button2");
 
 
 

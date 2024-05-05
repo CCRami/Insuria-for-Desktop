@@ -121,17 +121,14 @@ public class dashboard implements Initializable {
 
         try {
             // Load user.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/applicatiopnpi/adminView.fxml"));
             Node eventFXML = loader.load();
 
-            // Get the current stage
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
 
-            // Create a new scene with the loaded FXML and set it on the current stage
-            Scene scene = new Scene((Parent) eventFXML);
-            stage.setScene(scene);
-
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
         } catch (IOException e) {
             // Handle exception (e.g., file not found or invalid FXML)
             e.printStackTrace();
@@ -140,7 +137,8 @@ public class dashboard implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        UserSession session = UserSession.getInstance(null,null);
+        /*UserSession session = UserSession.getInstance(null,null);
+
         UserService us= new UserService();
         User u= us.displayByid(Integer.parseInt(session.getId()));
         username.setText(u.getFirst_name());
@@ -149,7 +147,7 @@ public class dashboard implements Initializable {
         }
         else {
             profileimg.setImage(new Image("https://i.imgur.com/x5co7s8.png"));
-        }
+        }*/
 
 
     }
@@ -227,22 +225,6 @@ public class dashboard implements Initializable {
 
 
 
-    public void showAdmin(MouseEvent event) {
-        try {
-            // Load user.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/applicatiopnpi/adminView.fxml"));
-            Node eventFXML = loader.load();
-
-            // Clear existing content from FieldHolder
-            vboxdash.getChildren().clear();
-
-            // Add the loaded userFXML to FieldHolder
-            vboxdash.getChildren().add(eventFXML);
-        } catch (IOException e) {
-            // Handle exception (e.g., file not found or invalid FXML)
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     void showOffre(MouseEvent event) {
@@ -270,6 +252,44 @@ public class dashboard implements Initializable {
         try {
             // Load user.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Showoffcat.fxml"));
+            Node eventFXML = loader.load();
+
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void showRec(MouseEvent event) {
+
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/listReclamationBack.fxml"));
+            Node eventFXML = loader.load();
+
+            // Clear existing content from FieldHolder
+            vboxdash.getChildren().clear();
+
+            // Add the loaded userFXML to FieldHolder
+            vboxdash.getChildren().add(eventFXML);
+        } catch (IOException e) {
+            // Handle exception (e.g., file not found or invalid FXML)
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void showcomp(MouseEvent event) {
+
+        try {
+            // Load user.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/indemnisationsBack.fxml"));
             Node eventFXML = loader.load();
 
             // Clear existing content from FieldHolder

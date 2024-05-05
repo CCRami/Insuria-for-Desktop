@@ -174,13 +174,7 @@ latitude.clear();
             // Clear the error message
             errorDate.setText("");
         }
-        if (imagePath.getText().trim().isEmpty()) {
-            errorImage.setText("Image path cannot be empty!");
-            isValid = false;
-        } else {
-            // Clear the error message if the input is valid
-            errorImage.setText("");
-        }
+
         return isValid;
 
     }

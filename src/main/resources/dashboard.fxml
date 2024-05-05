@@ -10,322 +10,320 @@
 <?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.dashboard">
-    <left>
-        <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="250.0" spacing="5.0" style="-fx-background-color: #051B46;" BorderPane.alignment="CENTER">
-            <children>
-            <ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="90.0" prefWidth="234.0">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.dashboard">
+   <children>
+      <ImageView fitHeight="820.0" fitWidth="1281.0" layoutX="-2.0">
+         <image>
+            <Image url="@images/bgimage.png" />
+         </image>
+      </ImageView>
+          <ImageView fitHeight="219.0" fitWidth="213.0" layoutX="4.0" layoutY="-6.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@images/logo.png" />
+              </image>
+          </ImageView>
+          <ButtonBar layoutX="957.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="46.0" prefWidth="268.0">
               <buttons>
                   <ImageView fx:id="profileimg" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                     <effect>
-                        <DropShadow spread="0.21">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </DropShadow>
-                     </effect>
+                      <effect>
+                          <DropShadow spread="0.21">
+                              <color>
+                                  <Color red="1.0" green="1.0" blue="1.0" />
+                              </color>
+                          </DropShadow>
+                      </effect>
                   </ImageView>
                   <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="45.0" text="Name" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
+                      <font>
+                          <Font name="System Bold" size="12.0" />
+                      </font>
                   </Label>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
-                     <children>
-                        <Button fx:id="Profilebtn" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#GotoProfile" text="Profile" textFill="#2eae11">
-                           <effect>
-                              <SepiaTone />
-                           </effect>
-                        </Button>
-                        <Button fx:id="Logoutbtn" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#GotoLogout" prefHeight="30.0" text="Logout" textFill="RED">
-                           <effect>
-                              <InnerShadow />
-                           </effect>
-                        </Button>
-                     </children>
+                      <children>
+                          <Button fx:id="Logoutbtn" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#GotoLogout" prefHeight="30.0" text="Logout" textFill="RED">
+                              <effect>
+                                  <InnerShadow />
+                              </effect>
+                          </Button>
+                      </children>
                   </VBox>
+                    <Button fx:id="Profilebtn" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#GotoProfile" text="Profile" textFill="#2eae11">
+                        <effect>
+                            <SepiaTone />
+                        </effect>
+                    </Button>
               </buttons>
-               <opaqueInsets>
+              <opaqueInsets>
                   <Insets />
-               </opaqueInsets>
-               <padding>
+              </opaqueInsets>
+              <padding>
                   <Insets top="20.0" />
-               </padding>
-            </ButtonBar>
-                <ImageView fitHeight="68.0" fitWidth="222.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/logo.png" />
-                    </image>
-                    <VBox.margin>
-                        <Insets bottom="30.0" top="20.0" />
-                    </VBox.margin>
-                </ImageView>
-                <HBox layoutY="500.0" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/analyse.png" />
-                            </image>
-                        </ImageView>
-                        <Label onMouseClicked="#showDash" prefHeight="35.0" prefWidth="202.0" text="Dashboard" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-               <effect>
+              </padding>
+          </ButtonBar>
+          <HBox layoutX="10.0" layoutY="650.0" maxHeight="45.0" maxWidth="250.0" onMouseClicked="#showAgence" prefHeight="45.0" prefWidth="300.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+              <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@images/Government_Agency_Symbol.png" />
+                      </image>
+                  </ImageView>
+                  <Label prefHeight="31.0" prefWidth="143.0" text="Agencies">
+                      <font>
+                          <Font name="System Bold" size="16.0" />
+                      </font>
+                  </Label>
+              </children>
+              <effect>
                   <DropShadow />
-               </effect>
-                </HBox>
-                <HBox layoutX="30.0" layoutY="500.0" onMouseClicked="#showUsers" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutY="500.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/homme.png" />
-                            </image>
+              </effect>
+          </HBox>
+       <HBox layoutX="10.0" layoutY="150.0" maxHeight="45.0" maxWidth="200.0" prefHeight="45.0" prefWidth="300.0" spacing="10.0" styleClass="button" stylesheets="@style/style.css">
+           <children>
+               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                   <image>
+                       <Image url="@images/analyse.png" />
+                   </image>
+               </ImageView>
+               <Label onMouseClicked="#showDash" prefHeight="35.0" prefWidth="202.0" text="Dashboard">
+                   <font>
+                       <Font name="System Bold" size="16.0" />
+                   </font>
+               </Label>
+           </children>
+           <effect>
+               <DropShadow />
+           </effect>
+       </HBox>
+          <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="200.0" maxHeight="45.0" maxWidth="300.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#showAvisAgence" prefHeight="45.0" prefWidth="300.0" styleClass="button" stylesheets="@style/style.css">
+              <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@images/5569806.png" />
+                      </image>
+                      <HBox.margin>
+                          <Insets />
+                      </HBox.margin>
+
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Users" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                        </Label>
-                    </children>
-               <effect>
+                  <Label prefHeight="26.0" prefWidth="136.0" text="Reviews">
+                      <HBox.margin>
+                          <Insets left="20.0" />
+                      </HBox.margin>
+                      <font>
+                          <Font name="System Bold" size="16.0" />
+                      </font>
+                  </Label>
+              </children>
+              <effect>
                   <DropShadow />
-               </effect>
-                </HBox>
-                <HBox layoutX="30.0" layoutY="484.0" onMouseClicked="#showAgence" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/Government_Agency_Symbol.png" />
-                            </image>
-                        </ImageView>
-                        <Label prefHeight="31.0" prefWidth="143.0" text="Agencies" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-               <effect>
+              </effect>
+          </HBox>
+          <HBox layoutX="10.0" layoutY="600.0" maxHeight="45.0" maxWidth="250.0" onMouseClicked="#showPolice" prefHeight="45.0" prefWidth="300.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+              <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@images/contrat.png" />
+                      </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" prefWidth="202.0" text="Policie">
+                      <font>
+                          <Font name="System Bold" size="16.0" />
+                      </font>
+                  </Label>
+              </children>
+              <effect>
                   <DropShadow />
-               </effect>
-                </HBox>
-                <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#showAvisAgence" prefHeight="54.0" prefWidth="167.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="40.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/5569806.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets />
-                            </HBox.margin>
-                            
-                        </ImageView>
-                        <Label prefHeight="26.0" prefWidth="136.0" text="Reviews" textFill="WHITE">
-                            <HBox.margin>
-                                <Insets left="20.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-               <effect>
-                  <DropShadow />
-               </effect>
-                </HBox>
-                <HBox layoutX="30.0" layoutY="484.0" onMouseClicked="#showPolice" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/contrat.png" />
-                            </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Policie" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-               <effect>
-                  <DropShadow />
-               </effect>
-                </HBox>
-                <HBox onMouseClicked="#showSinistre" prefHeight="45.0" prefWidth="165.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/attention.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets />
-                            </HBox.margin>
-                            <viewport>
-                                <Rectangle2D />
-                            </viewport>
-                        </ImageView>
-                        <Label prefWidth="202.0" text="Sinister" textFill="WHITE">
+              </effect>
+          </HBox>
+          <HBox layoutX="10.0" layoutY="550.0" maxHeight="45.0" maxWidth="250.0" onMouseClicked="#showSinistre" prefHeight="45.0" prefWidth="300.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+              <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@images/attention.png" />
+                      </image>
+                      <HBox.margin>
+                          <Insets />
+                      </HBox.margin>
+                      <viewport>
+                          <Rectangle2D />
+                      </viewport>
+                  </ImageView>
+                  <Label prefWidth="202.0" text="Sinister">
 
                             <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-               <effect>
+                          <Font name="System Bold" size="16.0" />
+                      </font>
+                  </Label>
+              </children>
+              <effect>
                   <DropShadow />
-               </effect>
-                </HBox>
-                <HBox layoutX="30.0" layoutY="438.0" onMouseClicked="#showAdmin" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/probleme.png" />
-                            </image>
-                        </ImageView>
-                        <Label prefHeight="26.0" prefWidth="167.0" text="Admin" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-               <effect>
+              </effect>
+          </HBox>
+       
+          <HBox layoutX="10.0" layoutY="500.0" maxHeight="45.0" maxWidth="250.0" onMouseClicked="#showCatOffre" prefHeight="45.0" prefWidth="300.0" styleClass="button" stylesheets="@style/style.css">
+              <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@images/fete.png" />
+                      </image>
+                      <HBox.margin>
+                          <Insets />
+                      </HBox.margin>
+                      <viewport>
+                          <Rectangle2D />
+                      </viewport>
+                  </ImageView>
+                  <Label prefHeight="26.0" prefWidth="177.0" text="Offre Category">
+                      <HBox.margin>
+                          <Insets left="10.0" />
+                      </HBox.margin>
+                      <font>
+                          <Font name="System Bold" size="16.0" />
+                      </font>
+                  </Label>
+              </children>
+              <effect>
                   <DropShadow />
-               </effect>
-                </HBox>
-                <HBox onMouseClicked="#showCatOffre" prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/fete.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets />
-                            </HBox.margin>
-                            <viewport>
-                                <Rectangle2D />
-                            </viewport>
-                        </ImageView>
-                        <Label prefHeight="26.0" prefWidth="177.0" text="Offre Category" textFill="WHITE">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-               <effect>
+              </effect>
+          </HBox>
+          <HBox layoutX="10.0" layoutY="450.0" maxHeight="45.0" maxWidth="250.0" onMouseClicked="#showOffre" prefHeight="45.0" prefWidth="300.0" styleClass="button" stylesheets="@style/style.css">
+              <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@images/fete.png" />
+                      </image>
+                      <HBox.margin>
+                          <Insets />
+                      </HBox.margin>
+                      <viewport>
+                          <Rectangle2D />
+                      </viewport>
+                  </ImageView>
+                  <Label prefHeight="26.0" prefWidth="178.0" text="Offre">
+                      <HBox.margin>
+                          <Insets left="10.0" />
+                      </HBox.margin>
+                      <font>
+                          <Font name="System Bold" size="16.0" />
+                      </font>
+                  </Label>
+              </children>
+              <effect>
                   <DropShadow />
-               </effect>
-                </HBox>
-                <HBox onMouseClicked="#showOffre" prefHeight="54.0" prefWidth="214.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="40.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/fete.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets />
-                            </HBox.margin>
-                            <viewport>
-                                <Rectangle2D />
-                            </viewport>
-                        </ImageView>
-                        <Label prefHeight="26.0" prefWidth="178.0" text="Offre" textFill="WHITE">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-               <effect>
+              </effect>
+          </HBox>
+          <HBox layoutX="10.0" layoutY="400.0" maxHeight="45.0" maxWidth="250.0" onMouseClicked="#showCatinsurance" prefHeight="45.0" prefWidth="300.0" spacing="10.0" styleClass="button" stylesheets="@style/style.css">
+              <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@images/probleme.png" />
+                      </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" prefWidth="202.0" text="Insurance Categories">
+                      <font>
+                          <Font name="System Bold" size="14.0" />
+                      </font>
+                  </Label>
+              </children>
+              <effect>
                   <DropShadow />
-               </effect>
-                </HBox>
-                <HBox layoutX="30.0" layoutY="438.0" onMouseClicked="#showCatinsurance" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/probleme.png" />
-                            </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Insurance Categories" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </Label>
-                    </children>
-               <effect>
+              </effect>
+          </HBox>
+          <HBox layoutX="10.0" layoutY="350.0" maxHeight="45.0" maxWidth="250.0" onMouseClicked="#showinsurance" prefHeight="45.0" prefWidth="300.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+              <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@images/probleme.png" />
+                      </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" prefWidth="202.0" text="Insurances">
+                      <font>
+                          <Font name="System Bold" size="16.0" />
+                      </font>
+                  </Label>
+              </children>
+              <effect>
                   <DropShadow />
-               </effect>
-                </HBox>
-                <HBox layoutX="30.0" layoutY="438.0" onMouseClicked="#showinsurance" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/probleme.png" />
-                            </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Insurances" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-               <effect>
+              </effect>
+          </HBox>
+          <HBox layoutX="10.0" layoutY="300.0" maxHeight="45.0" maxWidth="250.0" onMouseClicked="#showcom" prefHeight="45.0" prefWidth="300.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+              <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@images/probleme.png" />
+                      </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" prefWidth="202.0" text="Commands" textFill="WHITE">
+                      <font>
+                          <Font name="System Bold" size="16.0" />
+                      </font>
+                  </Label>
+              </children>
+              <effect>
                   <DropShadow />
-               </effect>
-                </HBox>
-                <HBox layoutX="30.0" layoutY="438.0" onMouseClicked="#showcom" prefHeight="45.0" prefWidth="200.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
-                    <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/probleme.png" />
-                            </image>
-                        </ImageView>
-                        <Label prefHeight="35.0" prefWidth="202.0" text="Commands" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                        </Label>
-                    </children>
-               <effect>
+              </effect>
+          </HBox>
+       <HBox layoutX="10.0" layoutY="300.0" maxHeight="45.0" maxWidth="250.0" onMouseClicked="#showRec" prefHeight="45.0" prefWidth="300.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+           <children>
+               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                   <image>
+                       <Image url="@images/probleme.png" />
+                   </image>
+               </ImageView>
+               <Label prefHeight="35.0" prefWidth="202.0" text="Claims">
+                   <font>
+                       <Font name="System Bold" size="16.0" />
+                   </font>
+               </Label>
+           </children>
+           <effect>
+               <DropShadow />
+           </effect>
+       </HBox>
+       <HBox layoutX="10.0" layoutY="250.0" maxHeight="45.0" maxWidth="250.0" onMouseClicked="#showcomp" prefHeight="45.0" prefWidth="300.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+           <children>
+               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                   <image>
+                       <Image url="@images/probleme.png" />
+                   </image>
+               </ImageView>
+               <Label prefHeight="35.0" prefWidth="202.0" text="Compensations">
+                   <font>
+                       <Font name="System Bold" size="16.0" />
+                   </font>
+               </Label>
+           </children>
+           <effect>
+               <DropShadow />
+           </effect>
+       </HBox>
+       <VBox fx:id="vboxdash" layoutX="228.0" layoutY="72.0" prefHeight="714.0" prefWidth="1028.0" spacing="20" styleClass="white-bg, shadow" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css">
+       </VBox>
+          <HBox layoutX="10.0" layoutY="700.0" maxHeight="45.0" maxWidth="250.0" onMouseClicked="#showUsers" prefHeight="45.0" prefWidth="171.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+              <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutY="500.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@images/homme.png" />
+                      </image>
+                  </ImageView>
+                  <Label prefHeight="26.0" prefWidth="104.0" text="Users">
+                      <font>
+                          <Font name="System Bold" size="16.0" />
+                      </font>
+                      <HBox.margin>
+                          <Insets />
+                      </HBox.margin>
+                  </Label>
+              </children>
+              <effect>
                   <DropShadow />
-               </effect>
-                </HBox>
-
-            </children>
-            <padding>
-
-                <Insets bottom="20.0" left="20.0" right="20.0" />
-            </padding>
-        </VBox>
-    </left>
-    <center>
-        <VBox fx:id="vboxdash" prefHeight="810.0" prefWidth="1062.0" BorderPane.alignment="CENTER" />
-    </center>
-</BorderPane>
+              </effect>
+          </HBox>
+   </children>
+</AnchorPane>

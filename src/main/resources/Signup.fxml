@@ -13,48 +13,69 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="style/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.SignupController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.SignupController">
     <children>
-        <TextField fx:id="nomTF" layoutX="845.0" layoutY="243.0" prefHeight="34.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
-        <TextField fx:id="prenomTF" layoutX="655.0" layoutY="244.0" prefHeight="34.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
-        <TextField fx:id="telTF" layoutX="652.0" layoutY="314.0" prefHeight="34.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
-        <Button layoutX="786.0" layoutY="519.0" mnemonicParsing="false" onAction="#AjouterUser" prefHeight="43.0" prefWidth="102.0" style="-fx-background-color: #051B46;" text="Sign Up" textFill="WHITE">
+        <AnchorPane layoutX="398.0" layoutY="-41.0" prefHeight="655.0" prefWidth="388.0" styleClass="container">
+            <children>
+        <TextField fx:id="nomTF" layoutX="278.0" layoutY="257.0" prefHeight="34.0" prefWidth="164.0" styleClass="inputt" />
+        <TextField fx:id="prenomTF" layoutX="88.0" layoutY="258.0" prefHeight="34.0" prefWidth="164.0" styleClass="inputt" />
+        <TextField fx:id="telTF" layoutX="85.0" layoutY="328.0" prefHeight="34.0" prefWidth="164.0" styleClass="inputt" />
+        <Button layoutX="217.0" layoutY="533.0" mnemonicParsing="false" onAction="#AjouterUser" prefHeight="43.0" prefWidth="102.0" styleClass="login-button" text="Sign Up">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Button>
-        <Label layoutX="848.0" layoutY="222.0" prefHeight="19.0" prefWidth="102.0" text="Last Name*">
+        <Label layoutX="281.0" layoutY="236.0" prefHeight="19.0" prefWidth="102.0" text="Last Name*">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font></Label>
-        <Label layoutX="657.0" layoutY="223.0" text="First Name*">
+        <Label layoutX="90.0" layoutY="237.0" text="First Name*">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font></Label>
-        <Label layoutX="846.0" layoutY="291.0" text="Password*">
+        <Label layoutX="279.0" layoutY="305.0" text="Password*">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font></Label>
-        <Label layoutX="661.0" layoutY="291.0" text="Phone Number*">
+        <Label layoutX="94.0" layoutY="305.0" text="Phone Number*">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font></Label>
-        <Label layoutX="650.0" layoutY="468.0" text="Date of Birth*">
+        <Label layoutX="99.0" layoutY="482.0" text="Date of Birth*">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-        <TextField fx:id="emailTF" layoutX="652.0" layoutY="381.0" prefHeight="34.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
-        <Label layoutX="667.0" layoutY="362.0" text="Email*">
+        <TextField fx:id="emailTF" layoutX="85.0" layoutY="395.0" prefHeight="34.0" prefWidth="164.0" styleClass="inputt" />
+        <Label layoutX="100.0" layoutY="376.0" text="Email*">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font></Label>
-        <Text fill="#051b46" layoutX="746.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
+        <Text fill="#051b46" layoutX="179.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
             <font>
                 <Font name="System Bold" size="39.0" />
             </font>
         </Text>
-        <AmbientLight color="CHARTREUSE" layoutX="554.0" layoutY="89.0" lightOn="true" />
-        <PasswordField fx:id="mdpTF" layoutX="842.0" layoutY="321.0" prefHeight="28.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
-      <AnchorPane layoutX="-1.0" prefHeight="720.0" prefWidth="262.0" style="-fx-background-color: #051B46;">
+        <AmbientLight color="CHARTREUSE" layoutX="-13.0" layoutY="103.0" lightOn="true" />
+        <PasswordField fx:id="mdpTF" layoutX="275.0" layoutY="335.0" prefHeight="28.0" prefWidth="164.0" styleClass="inputt" />
+        <DatePicker fx:id="DBTF" layoutX="244.0" layoutY="480.0" />
+        <Label layoutX="278.0" layoutY="376.0" text="Confrim Password*">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Label>
+        <PasswordField fx:id="mdpTF1" layoutX="278.0" layoutY="401.0" prefHeight="28.0" prefWidth="164.0" styleClass="inputt" />
+        <Button fx:id="googlebtn" alignment="BASELINE_LEFT" layoutX="208.0" layoutY="604.0" minWidth="102.0" mnemonicParsing="false" onAction="#ggsignup" prefHeight="52.0" prefWidth="102.0"  styleClass="google-login-button">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="50.0">
+                    <Image url="https://steelbluemedia.com/wp-content/uploads/2019/06/new-google-favicon-512.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="-1.0" prefHeight="720.0" prefWidth="262.0" style="-fx-background-color: #051B46;">
          <children>
             <Text fill="#f0f0f0" layoutX="41.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO" textOrigin="BOTTOM" wrappingWidth="168.59765625">
                <font>
@@ -68,23 +89,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <DatePicker fx:id="DBTF" layoutX="795.0" layoutY="466.0" />
-      <Label layoutX="845.0" layoutY="362.0" text="Confrim Password*">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <PasswordField fx:id="mdpTF1" layoutX="845.0" layoutY="387.0" prefHeight="28.0" prefWidth="164.0" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
-      <Button fx:id="googlebtn" alignment="BASELINE_LEFT" layoutX="711.0" layoutY="584.0" mnemonicParsing="false" onAction="#ggsignup" prefHeight="71.0" prefWidth="255.0" style="-fx-background-color: #051B46;" text="Sign Up with Google" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-         <graphic>
-              <ImageView fitHeight="50.0" fitWidth="50.0">
-                  <Image url="https://steelbluemedia.com/wp-content/uploads/2019/06/new-google-favicon-512.png" />
-              </ImageView>
-         </graphic>
-      </Button>
+
       <WebView fx:id="webView" layoutX="268.0" layoutY="128.0" prefHeight="579.0" prefWidth="1006.0" visible="false" />
     </children>
 </AnchorPane>

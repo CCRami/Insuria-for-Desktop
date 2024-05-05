@@ -55,7 +55,7 @@ import javafx.scene.text.Text;
 
 
 public class agencedash implements  Initializable{
-  /* @FXML
+   @FXML
     private TableView<Agence> tab;
     @FXML
     private TableColumn<Agence, Integer> id;
@@ -72,7 +72,7 @@ public class agencedash implements  Initializable{
     private TableColumn<Agence, String> nomage;
 
     @FXML
-    private TableColumn<Agence, Integer> tel;*/
+    private TableColumn<Agence, Integer> tel;
     @FXML
     private TextField Ageadresse;
 

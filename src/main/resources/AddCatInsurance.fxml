@@ -1,78 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1030.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddCatInsurance">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddCatInsurance">
     <children>
-        <BorderPane fx:id="borderPane" prefHeight="720.0" prefWidth="1010.0">
-
-
-            <center>
-                <VBox fx:id="vboxdash" prefHeight="720.0" prefWidth="1013.0">
+        <VBox alignment="CENTER" layoutX="117.0" layoutY="51.0" prefHeight="474.0" prefWidth="700.0" spacing="20" styleClass="white-bg, shadow">
+            <children>
+                <HBox alignment="CENTER">
                     <children>
-                        <!-- Add a new insurance form -->
-                        <HBox prefHeight="643.0" prefWidth="980.0" styleClass="show-box" stylesheets="@style/styleafficher.css">
-                            <!-- Insurance details input fields -->
-                            <VBox fx:id="fieldsContainer" prefHeight="550.0" prefWidth="316.0">
-                                <!-- Name of insurance -->
-
-
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance Category Name" wrappingWidth="141.33674240112305">
-                                    <VBox.margin>
-                                        <Insets left="77.0" />
-                                    </VBox.margin>
-                                </Text>
-                                <TextField fx:id="CatinsuranceNameField" prefHeight="34.0" prefWidth="229.0" promptText="Enter Category name" stylesheets="@style/styleafficher.css">
-                                    <VBox.margin>
-                                        <Insets left="70.0" right="50.0" top="10.0" />
-                                    </VBox.margin>
-                                    <styleClass>
-                                        <String fx:value="search" />
-                                        <String fx:value="shadow" />
-                                    </styleClass>
-                                </TextField>
-      
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance Category Description" wrappingWidth="184.5367546081543">
-                                    <VBox.margin>
-                                        <Insets left="77.0" />
-                                    </VBox.margin>
-                                </Text>
-                                <TextField fx:id="desccatinsField" prefHeight="152.0" prefWidth="219.0" promptText="Enter insurance Category Description" stylesheets="@style/styleafficher.css">
-                                    <VBox.margin>
-                                        <Insets left="70.0" top="200.0" />
-                                    </VBox.margin>
-                                    <styleClass>
-                                        <String fx:value="search" />
-                                        <String fx:value="shadow" />
-                                    </styleClass>
-                                </TextField>
-
-                            </VBox>
-                            <VBox prefHeight="598.0" prefWidth="374.0">
-
-                                <Button fx:id="save" mnemonicParsing="false" onAction="#addcatinsAction" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" stylesheets="@style/styleafficher.css" text="Enregistrer" textFill="WHITE">
-                                    <VBox.margin>
-                                        <Insets left="150.0" top="160.0" />
-                                    </VBox.margin>
-                                    <font>
-                                        <Font size="13.0" />
-                                    </font>
-                                </Button>
-                            </VBox>
-
-                        </HBox>
+                        <ImageView fitHeight="40" fitWidth="40" preserveRatio="true" smooth="true">
+                            <image>
+                                <Image url="@images/form.png" />
+                            </image>
+                        </ImageView>
+                        <Label styleClass="titlee" text="Insurance Form" />
                     </children>
-                </VBox>
-            </center>
-        </BorderPane>
+                </HBox>
+                <GridPane hgap="20" prefHeight="257.0" prefWidth="660.0" styleClass="form-grid" vgap="20">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10" prefWidth="200" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100" />
+                    </columnConstraints>
+                    <children>
+                        <Label styleClass="field-label" text="Category Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <TextField fx:id="CatinsuranceNameField" promptText="Enter Category name" styleClass="input" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                        <Label styleClass="field-label" text="Category Description:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <TextField fx:id="desccatinsField" prefHeight="152.0" prefWidth="219.0" promptText="Enter insurance Category Description" styleClass="input" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    </children>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+                </GridPane>
+                <HBox alignment="CENTER" spacing="20.0">
+                    <Button fx:id="save" onAction="#addcatinsAction" styleClass="buttonn" text="Save" />
+
+                </HBox>
+            </children>
+        </VBox>
     </children>
 </AnchorPane>

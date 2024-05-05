@@ -112,17 +112,17 @@ public class Showoffer implements Initializable {
 
 
                     // Configuration des boutons avec icônes et texte
-                    ImageView editIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/edit_icon.png")));
+                    ImageView editIcon = new ImageView(new Image(getClass().getResourceAsStream("/tn/esprit/applicatiopnpi/edit_icon.png")));
                     editIcon.setFitHeight(20); // Taille de l'icône
                     editIcon.setFitWidth(20);
                     Button editButton = new Button("", editIcon);
-                    editButton.getStyleClass().add("buttonn");
+                    editButton.getStyleClass().add("button2");
 
-                    ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/delet_icon.png")));
+                    ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/tn/esprit/applicatiopnpi/delet_icon.png")));
                     deleteIcon.setFitHeight(20); // Taille de l'icône
                     deleteIcon.setFitWidth(20);
                     Button deleteButton = new Button("", deleteIcon);
-                    deleteButton.getStyleClass().add("buttonn");
+                    deleteButton.getStyleClass().add("button2");
 
                     HBox actionBox = new HBox(editButton, deleteButton);
                     actionBox.setSpacing(10);

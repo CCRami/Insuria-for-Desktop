@@ -10,9 +10,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.indemnisationsBack">
+<?import javafx.scene.layout.VBox?>
+<AnchorPane prefHeight="720.0" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" prefWidth="1030.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.indemnisationsBack">
    <children>
-      <ListView fx:id="ComList" layoutX="139.0" layoutY="215.0" prefHeight="467.0" prefWidth="814.0" styleClass="list-view" />
+      <VBox fx:id="contentArea" layoutX="40.0" layoutY="56.0" prefHeight="635.0" prefWidth="827.0" spacing="10.0" styleClass="white-bg shadow" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
       <HBox layoutX="174.0" layoutY="174.0" spacing="10" style="-fx-padding: 10;">
          <children>
             <Label maxWidth="185.0" minWidth="122.0" prefHeight="20.0" prefWidth="122.0" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: center;" text="Amount (DT)" />
@@ -25,15 +26,12 @@
             </Label>
          </children>
       </HBox>
-      <TextField fx:id="searchField" layoutX="547.0" layoutY="69.0" prefHeight="30.0" prefWidth="230.0" promptText="Search" styleClass="searchInput" />
-      <Button layoutX="788.0" layoutY="71.0" prefHeight="20.0" prefWidth="17.0" styleClass="searchButton">
-         <graphic>
-            <ImageView fitHeight="17.0" fitWidth="14.0">
-               <image>
-                  <Image url="@images/chercher.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
+      <ListView fx:id="ComList" layoutX="139.0" layoutY="215.0" prefHeight="467.0" prefWidth="814.0" styleClass="list-view" >
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </ListView>
+
+      </VBox>
    </children>
 </AnchorPane>

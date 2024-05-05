@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -27,6 +28,7 @@ import java.io.IOException;
 
 public class Addoffercat {
 
+
     @FXML
     private BorderPane borderPane;
 
@@ -37,7 +39,7 @@ public class Addoffercat {
     private TextField descatoff;
 
     @FXML
-    private Text errorcattoffname;
+    private Text errorcatoffname;
 
     @FXML
     private Text errordescatoff;
@@ -88,14 +90,14 @@ public class Addoffercat {
         // Validate and display error messages
         if (catoffname.getText().isEmpty()) {
             // If catoffname input is empty
-            errorcattoffname.setText("Category offer name is required");
+            errorcatoffname.setText("Category offer name is required");
             isValid = false; // Flag indicating input is invalid
         } else if (!catoffname.getText().matches("^[a-zA-Z ]+$")) {
             // If catoffname input contains non-alphabetic characters
-            errorcattoffname.setText("Category offer name should not contain numbers");
+            errorcatoffname.setText("Category offer name should not contain numbers");
             isValid = false; // Flag indicating input is invalid
         } else {
-            errorcattoffname.setText(""); // Clear error message if input is valid
+            errorcatoffname.setText(""); // Clear error message if input is valid
         }
 
 

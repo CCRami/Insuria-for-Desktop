@@ -227,17 +227,14 @@ public class listeReclamationBack implements Initializable {
 
      try {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/addReclamation.fxml"));
-        Parent root = loader.load();
+         Node eventFXML = loader.load();
 
-        // Utilisez votre objet Stage pour afficher la nouvelle interface
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-
-        // Fermez la fenêtre actuelle
-        Node source = (Node) event.getSource();
-        Stage currentStage = (Stage) source.getScene().getWindow();
-        currentStage.close();
+         if (contentArea != null) {
+             contentArea.getChildren().clear(); // Nettoyer le contenu existant
+             contentArea.getChildren().add(eventFXML); // Ajouter le contenu chargé
+         } else {
+             System.out.println("Erreur : contentArea est null, vérifiez votre fichier FXML.");
+         }
     } catch (IOException e) {
         e.printStackTrace();
     }}

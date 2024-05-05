@@ -1,31 +1,51 @@
 package Controllers;
 
+import Entities.Commande;
+import Services.CommandeService;
+import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.chart.PieChart;
 import javafx.application.Platform;
 import javafx.scene.layout.Priority;
 import Services.PoliceService;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class AdminView {
+public class AdminView extends Application {
     @FXML
     private ListView<String> unfoundSearchesList;
     @FXML
     private PieChart statPieChart;
     private PoliceService policeService;
+    @FXML
+    private PieChart pieChart;
+    @Override
+    public void start(Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/InsuranceChart.fxml"));
+        Scene scene = new Scene(root, 800, 600);
+        stage.setScene(scene);
+        stage.setTitle("Insurance Statistics Pie Chart");
+        stage.show();
 
+        initialize();
+    }
     public AdminView() {
         this.policeService = new PoliceService();  // You need to properly initialize this service
     }
@@ -33,7 +53,31 @@ public class AdminView {
         loadUnfoundSearches();
         configureListView();
         loadStatistics();
+        setupPieChart();
     }
+
+    private void setupPieChart() {
+        List<Commande> commandes = fetchCommandeData();
+        Map<String, Integer> insuranceCountMap = calculateInsuranceStatistics(commandes);
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        insuranceCountMap.forEach((insuranceName, count) ->
+                pieChartData.add(new PieChart.Data(insuranceName, count)));
+        pieChart.setData(pieChartData);
+    }
+    // Method to fetch data from the Commande entity (replace with your actual data fetching logic)
+    private List<Commande> fetchCommandeData() {
+        CommandeService commandService = new CommandeService();
+        return commandService.getAllCommandes();
+    }
+    private Map<String, Integer> calculateInsuranceStatistics(List<Commande> commandes) {
+        Map<String, Integer> countMap = new HashMap<>();
+        for (Commande commande : commandes) {
+            String insuranceName = commande.getDoa_com_id().getName_ins();
+            countMap.put(insuranceName, countMap.getOrDefault(insuranceName, 0) + 1);
+        }
+        return countMap;
+    }
+
 
     private void loadUnfoundSearches() {
         ObservableList<String> searches = FXCollections.observableArrayList();
@@ -92,30 +136,19 @@ public class AdminView {
         }
     }
     public void loadStatistics() {
-        try {
-            List<Object[]> stats = policeService.countPolicesBySinistre();
-            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-            stats.forEach(result -> pieChartData.add(new PieChart.Data((String) result[0], ((Number) result[1]).doubleValue())));
+        // Load statistics for `statPieChart`
+        List<Object[]> statData = policeService.countPolicesBySinistre();
+        ObservableList<PieChart.Data> statChartData = FXCollections.observableArrayList();
+        statData.forEach(data -> statChartData.add(new PieChart.Data((String) data[0], ((Number) data[1]).doubleValue())));
+        statPieChart.setData(statChartData);
 
-            // Update the UI on the JavaFX application thread
-            Platform.runLater(() -> {
-                statPieChart.setData(pieChartData);
-                statPieChart.setTitle("Nombre de Polices par Sinistre");
-                pieChartData.forEach(data -> {
-                    Node node = data.getNode();
-                    Tooltip tooltip = new Tooltip(String.format("%s : %,.0f", data.getName(), data.getPieValue()));
-                    Tooltip.install(node, tooltip);
-                });
-            });
-        } catch (Exception e) {
-            System.err.println("Failed to load statistics: " + e.getMessage());
-            e.printStackTrace();
-            // Optionally update the UI to reflect the error
-            Platform.runLater(() -> {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Error loading statistics: " + e.getMessage());
-                alert.showAndWait();
-            });
-        }
+        // Assume `pieChart` is for displaying command data
+        List<Commande> commandes = fetchCommandeData();
+        Map<String, Integer> insuranceCountMap = calculateInsuranceStatistics(commandes);
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        insuranceCountMap.forEach((name, count) -> pieChartData.add(new PieChart.Data(name, count)));
+        pieChart.setData(pieChartData);
     }
+
 
 }

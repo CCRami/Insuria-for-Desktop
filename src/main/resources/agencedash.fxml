@@ -102,25 +102,13 @@
                   <String fx:value="shadow" />
                </styleClass>
                <children>
-                  <TableView fx:id="tab" layoutX="84.0" layoutY="74.0" styleClass="shadow">
-                     <columns>
-                        <TableColumn fx:id="nomage" prefWidth="197.60003662109375" text="name of agency" />
-                        <TableColumn fx:id="addresse" prefWidth="128.0" text="adresse" />
-                        <TableColumn fx:id="email" prefWidth="137.60003662109375" text="email" />
-                        <TableColumn fx:id="tel" minWidth="0.0" prefWidth="178.4000244140625" text="phone" />
-                        <TableColumn fx:id="creation" minWidth="0.0" prefWidth="161.5999755859375" text="creation date" />
-                     </columns>
-                  </TableView>
+
                   <TextField fx:id="addEmployee_search" layoutX="84.0" layoutY="14.0" prefHeight="30.0" prefWidth="277.0" promptText="Seach" styleClass="search" stylesheets="@style/dashboardDesign.css" />
                   <Button fx:id="supprimer" layoutX="602.0" layoutY="515.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="123.0" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Delete" textFill="#f7f5f5" />
                   <Button fx:id="ajouteragence1" layoutX="766.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="43.0" prefWidth="123.0" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Add agency" textFill="#fffbfb" />
                   <Button fx:id="modif" layoutX="404.0" layoutY="515.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="43.0" prefWidth="123.0" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Edit" textFill="WHITE" />
                   <Button fx:id="consulteravis" layoutX="201.0" layoutY="515.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="43.0" prefWidth="123.0" styleClass="ajouter-button" stylesheets="@style/styleafficher.css" text="Consulter avis" textFill="#f7f5f5" />
-                  <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="323.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/search_104498.png" />
-                     </image>
-                  </ImageView>
+
                </children>
             </AnchorPane>
          </children>
