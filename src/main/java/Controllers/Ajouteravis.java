@@ -2,6 +2,7 @@ package Controllers;
 
 import Entities.Agence;
 import Entities.Avis;
+import Entities.UserSession;
 import Services.AvisService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -170,7 +171,7 @@ Parametre2=agence;
             Avis avis =new Avis(commentaire,note,creation,111,agence,false);
           //  System.out.println("dd"+avis);
             AvisService service = new AvisService();
-           service.ajouteravis(avis);
+           service.ajouteravis(avis, Integer.parseInt(UserSession.id));
 
 
             commentArea.clear();

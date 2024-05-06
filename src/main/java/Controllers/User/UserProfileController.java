@@ -1,8 +1,12 @@
 package Controllers.User;
 
 import Controllers.dashboardFront;
+import Entities.Commande;
 import Entities.User;
 import Entities.UserSession;
+import Services.AvisService;
+import Services.CommandeService;
+import Services.ReclamationService;
 import Services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +15,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,6 +29,8 @@ import org.apache.commons.codec.binary.Base32;
 import java.io.IOException;
 import java.net.URL;
 import java.security.SecureRandom;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -128,6 +136,25 @@ public class UserProfileController implements Initializable {
 
     @FXML
     void gotodelete(ActionEvent event) {
+        UserSession session = UserSession.getInstance(null,null);
+        UserService us= new UserService();
+        User u= us.displayByid(Integer.parseInt(session.getId()));
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you really want to delete your account ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            us.delete(u);
+            UserSession.cleanUserSession();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
@@ -170,6 +197,25 @@ public class UserProfileController implements Initializable {
         prenomlb.setText(u.getFirst_name());
         nomlb.setText(u.getLast_name());
         emaillb.setText(u.getEmail());
+        CommandeService cs= new CommandeService();
+        List<Commande> comlist = cs.getCommandesByUserId(Integer.parseInt(UserSession.id));
+        insnb.setText(String.valueOf(comlist.size()));
+        ReclamationService rs= new ReclamationService();
+        int i=0;
+        for (Commande com: comlist)
+        {
+            try {
+                if (rs.isCommandIdInReclamation(com.getId()))
+                    i++;
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        comnb.setText(String.valueOf(i));
+        AvisService as= new AvisService();
+        revnb.setText(String.valueOf(as.getAvisByUserId(Integer.parseInt(UserSession.id)).size()));
+
         if (u.getSecret()==null){
             fabtn.setText("Activate 2FA");
         }

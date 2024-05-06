@@ -22,7 +22,7 @@ public class AvisService implements IServiceAvis {
     public Agence agence;
 
     @Override
-    public void ajouteravis(Avis avis) {
+    public void ajouteravis(Avis avis, int id) {
         System.out.println("bb"+avis.getCommentaire());
         System.out.println("bb"+avis);
         System.out.println("bb"+avis.getAgenceav_id().getIdage());
@@ -32,7 +32,7 @@ public class AvisService implements IServiceAvis {
             ps.setString(1, avis.getCommentaire());
             ps.setInt(2, avis.getNote());
             ps.setString(3, avis.getDate_avis());
-            ps.setInt(4, STATIC_USER_ID);
+            ps.setInt(4, id);
             ps.setObject(5, avis.getAgenceav_id().getIdage());
             ps.setBoolean(6, ETAT);
 
@@ -178,6 +178,29 @@ public class AvisService implements IServiceAvis {
         System.out.println(list);
         return list;
     }
+
+    public List<Avis> getAvisByUserId(int userId) {
+        List<Avis> list = new ArrayList<>();
+        String sql = "SELECT * FROM Avis WHERE avis_id = ?";
+        try (PreparedStatement pst = cnx.prepareStatement(sql)) {
+            pst.setInt(1, userId);
+            ResultSet res = pst.executeQuery();
+            while (res.next()) {
+                int id = res.getInt(1);
+                String commentaire = res.getString(2);
+                int note = res.getInt(3);
+                String date_avis = res.getString(4);
+                int agenceav_id = res.getInt(6);
+                Agence agence = s.getOneById(agenceav_id);
+                boolean etat = res.getBoolean(7);
+                list.add(new Avis(id, commentaire, note, date_avis, userId, agence, etat));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
 
 }
 

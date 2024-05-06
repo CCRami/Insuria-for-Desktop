@@ -264,5 +264,14 @@ public class SignupController {
         return GoogleClientSecrets.load(JSON_FACTORY, new StringReader(clientSecretJson));
     }
 
+    @FXML
+    void backtolog(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+        Parent root = loader.load();
+        LoginController auc = loader.getController();
+        nomTF.getScene().setRoot(root);
+
+    }
+
 
 }

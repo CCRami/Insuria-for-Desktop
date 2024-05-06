@@ -147,4 +147,34 @@ public class CommandeService {
         }
     }
 
+    public List<Commande> getCommandesByUserId(int userId) {
+        List<Commande> commandes = new ArrayList<>();
+        String sql = "SELECT * FROM commande WHERE user_id = ?";
+        try (PreparedStatement pst = cnx.prepareStatement(sql)) {
+            pst.setInt(1, userId);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                InsuranceService doaComService = new InsuranceService();
+                Insurance doaCom = doaComService.getInsuranceById(rs.getInt("doa_com_id"));
+                Commande commande = new Commande();
+                commande.setId(rs.getInt("id"));
+                commande.setMontant(rs.getFloat("montant"));
+                commande.setDate_effet(rs.getDate("date_effet"));
+                commande.setDate_exp(rs.getDate("date_exp"));
+                String fullDoaJson = rs.getString("full_doa");
+                ArrayList<String> fullDoa = parseJson(fullDoaJson);
+                commande.setDoa_full(fullDoa);
+                commande.setDoa_com_id(doaCom);
+                commande.setUser_id(new User(rs.getInt("user_id")));
+                commande.setIns_value(rs.getFloat("ins_value"));
+
+                commandes.add(commande);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving Commandes", e);
+        }
+
+        return commandes;
+    }
+
 }

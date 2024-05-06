@@ -19,7 +19,7 @@ public interface IServiceAvis <T> {
 
     public List<T> getAllavisbyagence(Agence id);
 
-    public void ajouteravis(Avis avis);
+    public void ajouteravis(Avis avis, int id);
 
     public void supprimerav(int id) ;
 }
