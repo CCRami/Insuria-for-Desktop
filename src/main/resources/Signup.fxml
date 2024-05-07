@@ -90,8 +90,6 @@
             </ImageView>
          </children>
       </AnchorPane>
-
-      <WebView fx:id="webView" layoutX="25.0" layoutY="25.0" prefHeight="674.0" prefWidth="1225.0" visible="false" />
       <Text fill="#051b46" layoutX="170.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO" textOrigin="BOTTOM" wrappingWidth="168.59765625">
          <font>
             <Font name="ArtifaktElement-Regular" size="26.0" />
@@ -102,5 +100,7 @@
             <Image url="@images/logo.png" />
          </image>
       </ImageView>
+
+      <WebView fx:id="webView" layoutX="25.0" layoutY="25.0" prefHeight="674.0" prefWidth="1225.0" visible="false" />
     </children>
 </AnchorPane>

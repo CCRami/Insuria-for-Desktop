@@ -34,8 +34,8 @@ public class showCompensationAccepted {
 
         this.selectedIndemnisation = indemnisation;
         String montantText = String.valueOf(selectedIndemnisation.getMontant());
-amount.setText(montantText);
-date.setText(selectedIndemnisation.getDate().toString());
+        amount.setText(montantText);
+        date.setText(selectedIndemnisation.getDate().toString());
         note.setText(selectedIndemnisation.getBeneficitaire());
 
     }

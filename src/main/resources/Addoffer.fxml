@@ -17,7 +17,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="582.0" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Addoffer">
     <children>
-        <VBox fx:id="vboxdash" alignment="CENTER" layoutX="10.0" layoutY="2.0" prefHeight="600.0" prefWidth="554.0" spacing="20.0" styleClass="white-bg, shadow">
+        <VBox fx:id="vboxdash" alignment="CENTER" layoutX="10.0" layoutY="2.0" prefHeight="530.0" prefWidth="554.0" spacing="10.0" styleClass="white-bg, shadow">
             <children>
                 <HBox alignment="CENTER">
                     <children>
@@ -28,15 +28,15 @@
                         </Text>
                     </children>
                 </HBox>
-                <GridPane alignment="CENTER" hgap="10.0" prefHeight="552.0" prefWidth="874.0" vgap="5.0">
+                <GridPane alignment="CENTER" hgap="5.0" prefHeight="480.0" prefWidth="514.0" vgap="5.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100" />
-                        <ColumnConstraints hgrow="ALWAYS" minWidth="10" prefWidth="200" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="173.5999755859375" />
+                        <ColumnConstraints hgrow="ALWAYS" maxWidth="404.20001220703125" minWidth="10.0" prefWidth="335.4000244140625" />
                     </columnConstraints>
                     <children>
                         <!-- Form inputs structured similarly to the target XML file -->
-                        <Label styleClass="field-label" text="Name of the Advantage:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                        <TextField fx:id="advantage" promptText="Enter an advantage name" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <Label prefHeight="30.0" prefWidth="150.0" styleClass="field-label" text="Name of the Advantage:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <TextField fx:id="advantage" prefHeight="42.0" prefWidth="370.0" promptText="Enter an advantage name" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                         <Text fx:id="erroradvantage" fill="RED" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                         <Label styleClass="field-label" text="Condition of the Offer:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
@@ -59,9 +59,9 @@
                         <Label styleClass="field-label" text="Category:" GridPane.columnIndex="0" GridPane.rowIndex="10" />
                         <ComboBox fx:id="categoryfComboBox" promptText="Select category" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                         <Text fx:id="errorCategoryf" fill="RED" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                  <ImageView fx:id="offerimg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                  <ImageView fx:id="offerimg" fitHeight="111.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <GridPane.margin>
-                        <Insets left="90.0" />
+                        <Insets left="150.0" />
                      </GridPane.margin>
                   </ImageView>
                     </children>
@@ -80,7 +80,7 @@
                   <RowConstraints />
                </rowConstraints>
                 </GridPane>
-                <HBox alignment="CENTER" spacing="20.0">
+                <HBox alignment="CENTER" prefHeight="12.0" prefWidth="514.0" spacing="20.0">
                     <Button fx:id="save" onAction="#addoffer" styleClass="buttonn" text="Save" />
                     <Button styleClass="buttonn" text="Cancel" />
                 </HBox>

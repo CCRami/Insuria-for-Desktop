@@ -157,7 +157,13 @@ public class AddCommande {
     @FXML
     private void saveCommandeAction(ActionEvent event) {
         String insValue = insValueField.getText();
+        Calendar calendar = Calendar.getInstance();
 
+// Add one year to the current date
+        calendar.add(Calendar.YEAR, 1);
+
+// Get the Date object representing one year from now
+        Date oneYearFromNow = calendar.getTime();
         // Check if Ins Value is empty
         if (!insValue.isEmpty()) {
             // Gather DOA input details
@@ -177,9 +183,9 @@ public class AddCommande {
                 // Create a new Commande object
                 float insValueFloat = Float.parseFloat(insValue);
                 Commande commande = new Commande(
-                        insValueFloat, // Ins Value
+                        (float) (insValueFloat*0.0075), // Ins Value
                         new Date(), // Date effet (current date)
-                        null, // Date exp (null for now)
+                        oneYearFromNow, // Date exp (null for now)
                         convertDoaInputToList(doaInput), // DOA Full
                         insurance, // DOA com ID
                         null, // User ID (null for now)
@@ -192,7 +198,6 @@ public class AddCommande {
                 // Now you can save the Commande object to your database
                 CommandeService commandeService = new CommandeService();
                 commandeService.addCommande(commande, Integer.parseInt(UserSession.id));
-                //commandeService.addCommande(commande, 174);
 
                 // Navigate to the new page
                 navigateToCommandeDetailsPage(commande); // You need to implement this method
@@ -208,7 +213,6 @@ public class AddCommande {
             System.out.println("Ins Value is empty");
         }
     }
-
     private void navigateToCommandeDetailsPage(Commande commande) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayMyCommande.fxml"));

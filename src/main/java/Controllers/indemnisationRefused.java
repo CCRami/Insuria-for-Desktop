@@ -55,7 +55,7 @@ private Reclamation selectedReclamation;
                   selectedReclamation.setIndemnisation(selectedIndemnisation);
                System.out.println(selectedReclamation.getIndemnisation());
 
-                String emailValue = UserSession.email;
+                String emailValue = selectedReclamation.getCommande().getUser_id().getEmail();
                 MailService.sendConfirmationEmail(emailValue,selectedReclamation);
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Success");

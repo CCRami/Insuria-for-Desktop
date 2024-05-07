@@ -234,11 +234,12 @@ public class UserProfileController implements Initializable {
         else {
             fabtn.setText("Deactivate 2FA");
         }
-        if (u.getAvatar() != null) {
+        if (!u.getAvatar().isEmpty()) {
             imageView.setImage(new Image(u.getAvatar()));
         }
         else {
-            imageView.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/homme.png"))));
+
+            imageView.setImage(new Image("https://i.imgur.com/x5co7s8.png"));
         }
     }
 }

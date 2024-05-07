@@ -45,12 +45,12 @@
                   <DropShadow />
                </effect>
              </ImageView>
-            <Label fx:id="prenomlb" layoutX="94.0" layoutY="199.0" styleClass="title" text="Prenom" textFill="WHITE">
+            <Label fx:id="prenomlb" layoutX="94.0" layoutY="199.0" prefHeight="54.0" prefWidth="126.0" styleClass="title" text="Prenom" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="nomlb" layoutX="228.0" layoutY="183.0" prefHeight="54.0" prefWidth="126.0" styleClass="title" text="Nom" textFill="WHITE">
+            <Label fx:id="nomlb" layoutX="207.0" layoutY="199.0" prefHeight="54.0" prefWidth="159.0" styleClass="title" text="Nom" textFill="WHITE">
                <padding>
                   <Insets left="10.0" />
                </padding>

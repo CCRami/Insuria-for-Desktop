@@ -22,7 +22,11 @@ public class UserService implements IUser<User>{
     }
     public void add(User user) {
         String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-        String request = "insert into user (last_name,first_name,email,password,phone_number,birth_date,roles,is_verified,is_blocked,avatar,secret) values ('" + user.getLast_name() + "','" + user.getFirst_name() + "','" + user.getEmail() + "','" + hashedPassword + "'," + user.getPhone_number() + ",'" + user.getBirth_date() + "','" + user.getRole() + "','"+ user.isVerified() +"','"+ user.isBlocked() +"','"+ user.getAvatar() +"','"+ user.getSecret() +"')";
+        String avatar = user.getAvatar();
+        if (avatar == null) {
+            avatar = "";
+        }
+        String request = "insert into user (last_name,first_name,email,password,phone_number,birth_date,roles,is_verified,is_blocked,avatar,secret) values ('" + user.getLast_name() + "','" + user.getFirst_name() + "','" + user.getEmail() + "','" + hashedPassword + "'," + user.getPhone_number() + ",'" + user.getBirth_date() + "','" + user.getRole() + "','"+ user.isVerified() +"','"+ user.isBlocked() +"','"+ avatar +"','"+ user.getSecret() +"')";
 
 
         try {
@@ -49,7 +53,7 @@ public class UserService implements IUser<User>{
 
     public void update(User user) {
         System.out.println(user.getBirth_date());
-        String requete = "UPDATE user SET last_name='" + user.getLast_name() + "',first_name='" + user.getFirst_name() +"',phone_number='"+user.getPhone_number()+"' where id= " + user.getId();
+        String requete = "UPDATE user SET last_name='" + user.getLast_name() + "',first_name='" + user.getFirst_name() +"',phone_number='"+user.getPhone_number()+"',avatar='"+user.getAvatar()+"' where id= " + user.getId();
         try {
             ste = conn.createStatement();
             ste.executeUpdate(requete);

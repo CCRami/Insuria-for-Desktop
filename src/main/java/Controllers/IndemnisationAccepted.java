@@ -92,7 +92,7 @@ private double value;
                 // Assuming selectedReclaamtion is initialized elsewhere
                 selectedReclaamtion.setIndemnisation(selectedIndemnisation);
 
-                String emailValue = UserSession.email;
+                String emailValue = selectedReclaamtion.getCommande().getUser_id().getEmail();
                 MailService.sendConfirmationEmail(emailValue,selectedReclaamtion);
 
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);

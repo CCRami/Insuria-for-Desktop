@@ -62,7 +62,7 @@ public class dashboardFront implements Initializable{
         System.out.println(UserSession.id);
         System.out.println(u.getFirst_name());
         username.setText(u.getFirst_name());
-        if (u.getAvatar() != null) {
+        if (!u.getAvatar().isEmpty()) {
             profileimg.setImage(new Image(u.getAvatar()));
         }
         else {

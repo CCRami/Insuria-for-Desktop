@@ -7,13 +7,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -24,6 +33,9 @@ public class EditUserController {
 
     @FXML
     private TextField emailtxt;
+
+    @FXML
+    private VBox vboxdash;
 
     @FXML
     private TextField nomtxt;
@@ -38,12 +50,43 @@ public class EditUserController {
     private User currentUser;
     private Consumer<User> updateCallback;
 
+    @FXML
+    private ImageView profileimg;
+
+    @FXML
+    void chooseImageAction(ActionEvent event) {
+        // Create a FileChooser
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Image"); // Set the title of the file chooser dialog
+        fileChooser.setInitialDirectory(new File("C:\\Users\\Mon Pc\\Desktop\\Insuria-for-Desktop\\src\\main\\resources\\images"));
+
+
+        // Show the file chooser dialog
+        Stage stage = (Stage) nomtxt.getScene().getWindow(); // Assuming save button is in the same stage
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        // Check if a file was selected
+        if (selectedFile != null) {
+            // Create an Image object from the selected file
+            Image image = new Image(selectedFile.toURI().toString());
+            profileimg.setImage(image);
+            profileimg.setFitWidth(134);
+            profileimg.setFitHeight(123);
+        }
+    }
+
     public void initData(User user) {
         currentUser = user;
         emailtxt.setText(user.getEmail());
         nomtxt.setText(user.getLast_name());
         prenomtxt.setText(user.getFirst_name());
         teltxt.setText(String.valueOf(user.getPhone_number()));
+        if (!currentUser.getAvatar().isEmpty()) {
+            profileimg.setImage(new Image(currentUser.getAvatar()));
+        }
+        else {
+            profileimg.setImage(new Image("https://i.imgur.com/x5co7s8.png"));
+        }
 
 
     }
@@ -55,7 +98,10 @@ public class EditUserController {
             currentUser.setEmail(emailtxt.getText().trim());
             currentUser.setLast_name(nomtxt.getText().trim());
             currentUser.setFirst_name(prenomtxt.getText().trim());
-            currentUser.setPhone_number(Integer.parseInt(teltxt.getText().trim()));
+
+            Image image = profileimg.getImage();
+            String ofImageUrl = image != null ? image.getUrl() : null;
+            currentUser.setAvatar(ofImageUrl);
 
 
             try {

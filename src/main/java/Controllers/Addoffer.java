@@ -93,10 +93,9 @@ public class Addoffer {
 
         OffreService service = new OffreService();
         service.AddOff(off);
-        UserService us = new UserService();
-        List<String> userEmails = us.getAllUserEmails();
-        for (String email : userEmails) {
-            Mail.sendConfirmationEmail(email,off);
+        List<String> emails = new UserService().getAllUserEmails();
+        for(String emailValue : emails) {
+            Mail.sendConfirmationEmail(emailValue,off);
         }
 
 
@@ -180,7 +179,7 @@ public class Addoffer {
         // Create a FileChooser
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Image"); // Set the title of the file chooser dialog
-        fileChooser.setInitialDirectory(new File("C:\\Users\\Mon Pc\\Desktop\\java\\Insuria\\src\\main\\resources\\images"));
+        fileChooser.setInitialDirectory(new File("C:\\Users\\Mon Pc\\Desktop\\Insuria-for-Desktop\\src\\main\\resources\\images"));
 
 
         // Show the file chooser dialog

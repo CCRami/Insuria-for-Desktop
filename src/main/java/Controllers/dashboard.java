@@ -142,7 +142,7 @@ public class dashboard implements Initializable {
         UserService us= new UserService();
         User u= us.displayByid(Integer.parseInt(session.getId()));
         username.setText(u.getFirst_name());
-        if (u.getAvatar() != null) {
+        if (!u.getAvatar().isEmpty()) {
             profileimg.setImage(new Image(u.getAvatar()));
         }
         else {
