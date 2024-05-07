@@ -52,15 +52,15 @@ public class AffichagefrontPolice {
     private void setupSearchField() {
         searchField.setStyle("-fx-background-color: transparent; " +
                 "-fx-border-width: 0 0 2 0; " +
-                "-fx-border-color: #931616; " +
+                "-fx-border-color: #051b46; " +
                 "-fx-padding: 15 0; " +
                 "-fx-font-size: 18px; " +
-                "-fx-text-fill: #cb2424;");
+                "-fx-text-fill: #051b46;");
         searchField.focusedProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal) {
                 searchField.setStyle(searchField.getStyle() + "-fx-border-color: #0c0c0c;");
             } else {
-                searchField.setStyle(searchField.getStyle() + "-fx-border-color: #be1111;");
+                searchField.setStyle(searchField.getStyle() + "-fx-border-color: #051b46;");
             }
         });
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {

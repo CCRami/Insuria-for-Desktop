@@ -1,7 +1,9 @@
 package Controllers;
 
 import Entities.Avis;
+import Entities.User;
 import Services.AvisService;
+import Services.UserService;
 import util.DataSource;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -210,8 +212,9 @@ conditionLabel.setText("★");
                     durationlabel.setStyle("-fx-padding: 10px;");
 
 
-
-                    Label discountLabel = new Label(String.valueOf(item.getAvis_id()));
+                    UserService us = new UserService();
+                    User u= us.displayByid(item.getAvis_id());
+                    Label discountLabel = new Label(u.getFirst_name());
                     discountLabel.setMinWidth(120);
                     discountLabel.setMaxWidth(120);
                     discountLabel.setWrapText(true); // Activer le retour à la ligne automatique
@@ -228,12 +231,12 @@ conditionLabel.setText("★");
 
                     // Configuration des boutons avec icônes et texte
 
-                    ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/icons8-delete-24.png")));
+                    ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/tn/esprit/applicatiopnpi/delet_icon.png")));
                     deleteIcon.setFitHeight(20); // Taille de l'icône
                     deleteIcon.setFitWidth(20);
-                    Button deleteButton = new Button("Delete");
+                    Button deleteButton = new Button("Delete", deleteIcon);
                     deleteIcon.setId("update");
-                    deleteButton.getStyleClass().add("buttonn");
+                    deleteButton.getStyleClass().add("button2");
 
 
                     HBox actionBox = new HBox( deleteButton);

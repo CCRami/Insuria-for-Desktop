@@ -8,56 +8,60 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.dashboardFront">
-    <center>
-        <VBox fx:id="vboxdash" prefHeight="810.0" prefWidth="1062.0" BorderPane.alignment="CENTER" />
-    </center>
-    <top>
-        <HBox prefHeight="114.0" prefWidth="1535.0" spacing="10.0" style="-fx-background-color: #051B46;" BorderPane.alignment="CENTER">
+<AnchorPane prefHeight="720.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.dashboardFront">
+   <children>
+      <BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="1280.0" />
+        <HBox prefHeight="118.0" prefWidth="1280.0" spacing="10.0" style="-fx-background-color: #051B46;">
             <children>
-                <ImageView fitHeight="109.0" fitWidth="255.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="117.0" fitWidth="265.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/logo.png" />
                     </image>
                 </ImageView>
-                <HBox prefHeight="110.0" prefWidth="170.0" onMouseClicked="#Showins" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                <HBox maxWidth="150.0" onMouseClicked="#Showins" prefHeight="62.0" prefWidth="146.0" spacing="20.0" styleClass="button5" stylesheets="@style/style.css">
                     <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="158.0" text="Insurances" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
                         </Label>
                     </children>
                     <HBox.margin>
-                        <Insets bottom="33.0" left="44.0" top="22.0" />
+                        <Insets bottom="33.0" left="40.0" top="22.0" />
                     </HBox.margin>
                 </HBox>
-                <HBox onMouseClicked="#showAgence" prefHeight="110.0" prefWidth="170.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                <HBox maxWidth="150.0" onMouseClicked="#showAgence" prefHeight="110.0" prefWidth="170.0" spacing="20.0" styleClass="button5" stylesheets="@style/style.css">
                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="170.0" text="Agencies" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="158.0" text="Agencies" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
                         </Label>
                     </children>
                     <HBox.margin>
-                        <Insets bottom="33.0" left="33.0" top="22.0" />
+                        <Insets bottom="33.0" top="22.0" />
                     </HBox.margin>
                 </HBox>
-                <HBox minHeight="33.0" onMouseClicked="#showAvisAgence" prefHeight="110.0" prefWidth="170.0" styleClass="button" stylesheets="@style/style.css">
+                <HBox maxWidth="150.0" minHeight="33.0" onMouseClicked="#showAvisAgence" prefHeight="110.0" prefWidth="170.0" styleClass="button5" stylesheets="@style/style.css">
                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="158.0" text="Reviews" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="158.0" text="Reviews" textFill="WHITE">
                             <HBox.margin>
-                                <Insets />
+                                <Insets top="15.0" />
                             </HBox.margin>
                             <font>
                                 <Font name="System Bold" size="16.0" />
@@ -68,9 +72,9 @@
                         <Insets bottom="33.0" top="22.0" />
                     </HBox.margin>
                 </HBox>
-                <HBox prefHeight="110.0" prefWidth="170.0" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                <HBox maxWidth="150.0" prefHeight="110.0" prefWidth="170.0" spacing="20.0" styleClass="button5" stylesheets="@style/style.css">
                     <children>
-                        <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="38.0" prefWidth="192.0" style="-fx-background-color: #051B46;" text="Polices" textFill="WHITE">
+                        <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="192.0" text="Polices" textFill="WHITE">
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#showPolice" text="Polices" />
                                 <MenuItem mnemonicParsing="false" onAction="#showSinistre" text="Sinistres" />
@@ -78,20 +82,23 @@
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
                         </MenuButton>
                     </children>
                     <HBox.margin>
                         <Insets bottom="33.0" top="22.0" />
                     </HBox.margin>
                 </HBox>
-                <HBox prefHeight="110.0" prefWidth="170.0" onMouseClicked="#Showcatoff" spacing="20.0" styleClass="button" stylesheets="@style/style.css">
+                <HBox maxWidth="150.0" onMouseClicked="#Showcatoff" prefHeight="110.0" prefWidth="170.0" spacing="20.0" styleClass="button5" stylesheets="@style/style.css">
                     <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="142.0" text="Offer" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
                             <HBox.margin>
-                                <Insets />
+                                <Insets top="15.0" />
                             </HBox.margin>
                         </Label>
                     </children>
@@ -117,14 +124,13 @@
                         </Label>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                             <children>
-                                <Button fx:id="Profilebtn" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#GotoProfile" text="Profile" textFill="#2eae11">
+                                <Button fx:id="Profilebtn" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#GotoProfile" styleClass="button22" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" text="Profile" />
+                                <Button fx:id="Logoutbtn" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#GotoLogout" prefHeight="30.0" styleClass="button22" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" text="Logout" textFill="RED">
                                     <effect>
-                                        <SepiaTone />
-                                    </effect>
-                                </Button>
-                                <Button fx:id="Logoutbtn" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#GotoLogout" prefHeight="30.0" text="Logout" textFill="RED">
-                                    <effect>
-                                        <InnerShadow />
+                                        <InnerShadow>
+                                 <color>
+                                    <Color red="1.0" />
+                                 </color></InnerShadow>
                                     </effect>
                                 </Button>
                             </children>
@@ -139,5 +145,6 @@
                 </ButtonBar>
             </children>
         </HBox>
-    </top>
-</BorderPane>
+        <VBox fx:id="vboxdash" layoutY="113.0" prefHeight="600.0" prefWidth="1280.0" />
+   </children>
+</AnchorPane>

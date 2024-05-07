@@ -13,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,7 +44,10 @@ public class DisplayInsuranceF implements Initializable {
     private Button butonAvis;
 
     @FXML
-    private FlowPane categoryFlowPane;
+    private HBox categoryFlowPane;
+
+    @FXML
+    private VBox contentArea;
 
     private final InsuranceService serviceInsurance = new InsuranceService();
     private List<Insurance> insurance;
@@ -61,6 +66,18 @@ public class DisplayInsuranceF implements Initializable {
         // Populate the categoryFlowPane with category buttons
         List<String> categories = getCategories();
         populateCategoryFlowPane(categories);
+    }
+
+    @FXML
+    void askme(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/InsuranceForm.fxml"));
+        try {
+            Node askMe = loader.load();
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(askMe);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -133,14 +150,29 @@ public class DisplayInsuranceF implements Initializable {
     }
 
     private void populateCategoryFlowPane(List<String> categories) {
-        categoryFlowPane.getChildren().clear();
+        categoryFlowPane.setStyle(TABS_STYLE);
+        categoryFlowPane.getChildren().clear(); // Clear the FlowPane at the beginning
 
+        // Create and add the "All" button
+        Button allButton = new Button("All");
+        applyButtonStyle(allButton);
+        categoryFlowPane.getChildren().add(allButton);
+
+        // Iterate over the categories and add each as a button
         for (String category : categories) {
             Button categoryButton = new Button(category);
             categoryButton.setOnAction(this::handleCategoryButtonAction);
+            applyButtonStyle(categoryButton); // Optional: Apply style to each category button
             categoryFlowPane.getChildren().add(categoryButton);
         }
     }
+
+    private void applyButtonStyle(Button button) {
+        button.setStyle(TAB_STYLE);
+        button.setOnMouseEntered(e -> button.setStyle(TAB_HOVER_STYLE));
+        button.setOnMouseExited(e -> button.setStyle(TAB_STYLE));
+    }
+
 
     private void handleCategoryButtonAction(ActionEvent event) {
         Button categoryButton = (Button) event.getSource();
@@ -170,6 +202,23 @@ public class DisplayInsuranceF implements Initializable {
         // Reset the filters to show all insurances
         populateContainer(insurance);
     }
+
+    private static final String TABS_STYLE = "-fx-background-color: #fff; " +
+            "-fx-padding: 12px; " + // Converted from 0.75rem assuming 16px = 1rem
+            "-fx-background-radius: 50px; " + // 99px is visually similar to fully rounded corners
+            "-fx-effect: dropshadow(three-pass-box, rgba(24, 94, 224, 0.15), 6, 0.1, 0, 6);";
+
+    private static final String TAB_STYLE = "-fx-background-color: transparent; " +
+            "-fx-font-size: 0.8rem; " +
+            "-fx-text-fill: black; " +
+            "-fx-font-weight: bold; " +
+            "-fx-cursor: hand; " +
+            "-fx-background-radius: 50px; " +
+            "-fx-padding: 5 10;";
+
+    private static final String TAB_HOVER_STYLE = "-fx-background-color: #e6eef9;";
+
+
 
 
 

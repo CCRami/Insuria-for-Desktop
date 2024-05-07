@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -16,6 +17,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -38,6 +40,9 @@ public class afficherReclamationBack  implements Initializable {
 
     private Stage stage;
 
+
+    @FXML
+    private AnchorPane anchor;
 
     @FXML
     private WebView map;
@@ -202,19 +207,15 @@ public class afficherReclamationBack  implements Initializable {
             reclamation.setIndemnisation(indemnisation);
             System.out.println(reclamation.getIndemnisation());
             service.modifierReclamationIndemnisation(reclamation);
-            int int_cmd=service.select_id_cmd(reclamation);
-            double insValue= service.afficherUneCommande(int_cmd);
-            System.out.println(insValue);
+            System.out.println(reclamation.getCommande().getIns_value());
             if (selectedResponse.equals("accepted")) {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/indemnisationAccepted.fxml"));
-                    Parent root = loader.load();
+                    Node root = loader.load();
                     IndemnisationAccepted controller = loader.getController();
-                    controller.initData(indemnisation, reclamation,insValue); // Transférez la réclamation à l'interface d'édition
-                    // Utilisez votre objet Stage pour afficher la nouvelle interface
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root));
-                    stage.show();
+                    controller.initData(indemnisation, reclamation,reclamation.getCommande().getIns_value()); // Transférez la réclamation à l'interface d'édition
+                    anchor.getChildren().clear();
+                    anchor.getChildren().add(root);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -225,13 +226,11 @@ public class afficherReclamationBack  implements Initializable {
 
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/indemnisationRefused.fxml"));
-                    Parent root = loader.load();
+                    Node root = loader.load();
                     indemnisationRefused controller = loader.getController();
                     controller.initData(indemnisation, reclamation); // Transférez la réclamation à l'interface d'édition
-                    // Utilisez votre objet Stage pour afficher la nouvelle interface
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root));
-                    stage.show();
+                    anchor.getChildren().clear();
+                    anchor.getChildren().add(root);
 
                 } catch (IOException e) {
                     e.printStackTrace();

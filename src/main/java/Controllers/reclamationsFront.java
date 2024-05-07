@@ -1,6 +1,9 @@
 package Controllers;
 
+import Entities.Commande;
 import Entities.Reclamation;
+import Entities.UserSession;
+import Services.CommandeService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +22,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class reclamationsFront implements Initializable {
@@ -56,11 +60,14 @@ public class reclamationsFront implements Initializable {
     private final int itemsPerPage = 3;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ReclamationService rs= new ReclamationService();
+
         try {
-            reclamations = service.getReclamationsByCommandId(14);
+            reclamations = rs.getReclamationsByUserId(Integer.parseInt(UserSession.id));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
         int column = 0;
         int row = 1;
 
@@ -109,25 +116,4 @@ private Node createPage(int pageIndex) {
 }
 
 
-
-    @FXML
-    void ajout(ActionEvent event) {
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/addReclamation.fxml"));
-            Parent root = loader.load();
-
-            // Utilisez votre objet Stage pour afficher la nouvelle interface
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-
-            // Fermez la fenêtre actuelle
-            Node source = (Node) event.getSource();
-            Stage currentStage = (Stage) source.getScene().getWindow();
-            currentStage.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

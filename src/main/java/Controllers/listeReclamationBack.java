@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -52,6 +53,10 @@ public class listeReclamationBack implements Initializable {
     private TextField searchField;
 
     private ReclamationService service = new ReclamationService();
+
+
+    @FXML
+    private AnchorPane anchor;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -119,14 +124,15 @@ public class listeReclamationBack implements Initializable {
                                 System.out.println(reclamation);
                                 try {
                                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherReclamaationBack.fxml"));
-                                    Parent root = loader.load();
+                                    Node eventFXML = loader.load();
                                     afficherReclamationBack controller = loader.getController();
                                     controller.setReclamation(reclamation);
-                                    Stage stage = new Stage();
-                                    stage.setScene(new Scene(root));
-                                    stage.show();
-                                    Stage currentStage = (Stage) button.getScene().getWindow();
-                                    currentStage.close();
+                                    if (contentArea != null) {
+                                        contentArea.getChildren().clear(); // Nettoyer le contenu existant
+                                        contentArea.getChildren().add(eventFXML); // Ajouter le contenu chargé
+                                    } else {
+                                        System.out.println("Erreur : contentArea est null, vérifiez votre fichier FXML.");
+                                    }
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                     // Gérer l'erreur si nécessaire
@@ -151,14 +157,15 @@ public class listeReclamationBack implements Initializable {
                                 }
                                 try {
                                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/showComBack.fxml"));
-                                    Parent root = loader.load();
+                                    Node eventFXML = loader.load();
                                     showCompensation controller = loader.getController();
                                     controller.initData(ind);
-                                    Stage stage = new Stage();
-                                    stage.setScene(new Scene(root));
-                                    stage.show();
-                                    Stage currentStage = (Stage) button.getScene().getWindow();
-                                    currentStage.close();
+                                    if (contentArea != null) {
+                                        contentArea.getChildren().clear(); // Nettoyer le contenu existant
+                                        contentArea.getChildren().add(eventFXML); // Ajouter le contenu chargé
+                                    } else {
+                                        System.out.println("Erreur : contentArea est null, vérifiez votre fichier FXML.");
+                                    }
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                     // Gérer l'erreur si nécessaire

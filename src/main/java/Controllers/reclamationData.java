@@ -39,8 +39,6 @@ public class reclamationData {
     @FXML
     private Label reponse;
 
-    @FXML
-    private Button show;
 
     private Reclamation reclamation;
     private Indemnissation ind;
@@ -52,7 +50,6 @@ public class reclamationData {
         dateReclaamtion.setText(reclamation.getDateReclamation());
         dateSinitre.setText(reclamation.getDateSinitre());
         reponse.setText(reclamation.getReponse());
-        show.setVisible(reclamation.getReponse().equals("refused") || reclamation.getReponse().equals("accepted"));
         delete.setVisible(reclamation.getReponse().equals("Currently being processed"));
         edit.setVisible(reclamation.getReponse().equals("Currently being processed"));
     }
@@ -93,67 +90,7 @@ public class reclamationData {
     }
 
 
-    @FXML
-    void show(ActionEvent event) {
 
-
-        try {
-            id = service.selectId(reclamation);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println(id);
-        try {
-            ind = is.afficherUneIndemnisation(id);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println(ind);
-        if (reclamation.getReponse().equals("refused")) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/showCompensationRefused.fxml"));
-                Parent root = loader.load();
-
-
-                showCompensationRefused controller = loader.getController();
-
-                controller.iniData(ind);
-
-
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.show();
-                Stage currentStage = (Stage) show.getScene().getWindow();
-                currentStage.close();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-
-            }
-        } else if (reclamation.getReponse().equals("accepted")) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/showCompensationAccepted.fxml"));
-                Parent root = loader.load();
-
-
-                showCompensationAccepted controller = loader.getController();
-
-                controller.iniData(ind);
-
-
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.show();
-                Stage currentStage = (Stage) show.getScene().getWindow();
-                currentStage.close();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-
-            }
-        }
-
-    }
 
 }
 

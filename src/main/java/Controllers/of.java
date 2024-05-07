@@ -1,6 +1,9 @@
 package Controllers;
 import com.google.zxing.BarcodeFormat;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -12,6 +15,7 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 public class of {
@@ -37,12 +41,14 @@ public class of {
     private ImageView qrCodeImageView;
     @FXML
     private Button reviews;
+    Double discount=null;
 
     public void setData(Offre offre) {
         // Set other offer details
         Advantage.setText(offre.getAdvantage());
         Condition.setText(offre.getConditions());
         Discount.setText(String.valueOf(offre.getDiscount()));
+        discount=offre.getDiscount();
         Duration.setText(offre.getDuration());
 
         // Load offer image
@@ -125,6 +131,13 @@ public class of {
         return image;
     }
 
-
+    @FXML
+    void discountbasket(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
+        Parent root= loader.load();
+        Condition.getScene().setRoot(root);
+        dashboardFront controller = loader.getController();
+        controller.showbasket(discount);
+    }
 
 }

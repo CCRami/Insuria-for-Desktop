@@ -148,6 +148,8 @@ public class LoginController implements Initializable {
         Parent root=loader.load();
         dashboardFront auc=loader.getController();
         rest.getScene().setRoot(root);
+        MouseEvent event = null;
+        auc.Showins(event);
     }
 
     @FXML

@@ -1,0 +1,57 @@
+.combo-box {
+    -fx-background-color: #b8d7ff; /* Adjust color to match the button */
+    -fx-text-fill: white;
+    -fx-background-radius: 15; /* Rounded corners */
+    -fx-padding: 5 10 5 10; /* Adjust padding as needed */
+    -fx-font-weight: bold; /* Make the text bold */
+}
+
+.combo-box .list-cell {
+    -fx-background-color: white; /* Background of dropdown items */
+    -fx-text-fill: black; /* Text color for dropdown items */
+    -fx-background-radius: 0; /* Typically no rounded corners for dropdown items */
+    -fx-padding: 5 10; /* Padding for dropdown items */
+}
+
+.combo-box .list-cell:filled:selected, .combo-box .list-cell:filled:hover {
+    -fx-background-color: #b8d7ff; /* Background color when hovered or selected */
+    -fx-text-fill: white; /* Text color when hovered or selected */
+}
+.button {
+    -fx-background-color: #001a72;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold; /* JavaFX does not support numeric font weights */
+    -fx-font-size: 14px; /* medium is typically around 14px in JavaFX */
+    -fx-padding: 1em 0; /* height is controlled by padding in JavaFX */
+    -fx-background-radius: 3em;
+    -fx-border-width: 0; /* No borders */
+    -fx-cursor: hand; /* Equivalent to cursor: pointer */
+    -fx-pref-width: 15em; /* Set preferred width */
+    -fx-transition-duration: 450ms; /* Not supported, just for reference */
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #f38f0a, #ffb754);
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.4), 10, 0.1, 0, 1)
+    dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.2, 0, -4)
+    dropshadow(gaussian, rgba(255, 255, 255, 0.2), 10, 0.0, 0, 4)
+    dropshadow(gaussian, #174dff, 10, 0.0, 0, 180);
+    -fx-translate-y: -2; /* Translate button slightly on hover */
+    -fx-text-fill: white; /* Change text color on hover */
+}
+.text-field {
+    -fx-background-color: #b8d7ff; /* Change to any color you want */
+    -fx-background-radius: 15; /* Rounded corners */
+    -fx-border-radius: 15; /* Ensure the border is also rounded */
+    -fx-padding: 5; /* Optional: Adjust padding as needed */
+}
+.text-area {
+    -fx-background-color: #ffffff; /* Change background color */
+    -fx-border-color: #a3a3a3; /* Set border color */
+    -fx-border-radius: 20; /* Rounded corners */
+    -fx-border-width: 2; /* Border width */
+    -fx-padding: 5; /* Padding inside the TextArea */
+    -fx-text-fill: #333; /* Text color */
+    -fx-font-size: 14px; /* Font size */
+    -fx-font-family: "Arial"; /* Font family */
+}

@@ -1,9 +1,12 @@
 package Controllers;
 
+import Entities.Commande;
 import Entities.OfferCategory;
 import Entities.Offre;
+import Services.MailServiceIns;
 import Services.OffreCatService;
 import Services.OffreService;
+import Services.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -90,8 +93,12 @@ public class Addoffer {
 
         OffreService service = new OffreService();
         service.AddOff(off);
-        String emailValue = "minoubhs@gmail.com";
-        Mail.sendConfirmationEmail(emailValue,off);
+        UserService us = new UserService();
+        List<String> userEmails = us.getAllUserEmails();
+        for (String email : userEmails) {
+            Mail.sendConfirmationEmail(email,off);
+        }
+
 
         advantage.clear();
         condition.clear();

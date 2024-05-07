@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
@@ -11,18 +12,17 @@
 
 <AnchorPane prefHeight="250.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.of">
     <children>
-        <VBox fx:id="of" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: #051B46;" styleClass="show-box" stylesheets="@style/styleafficher.css">
-            <children>
-                <Label fx:id="Advantage" alignment="CENTER" prefHeight="52.0" prefWidth="390.0" text="Crepe Factory" textFill="WHITE">
-                    <font>
-                        <Font size="24.0" />
-                    </font>
-                </Label>
+        <VBox fx:id="of" prefHeight="250.0" prefWidth="250.0" styleClass="card" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css">
+
+        <children>
+                <Label fx:id="Advantage" alignment="CENTER" prefHeight="52.0" prefWidth="390.0" styleClass="card__title" text="Crepe Factory" />
+
                 <VBox prefHeight="226.0" prefWidth="382.0">
                     <children>
                         <HBox prefHeight="22.0" prefWidth="306.0">
                             <children>
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Condition : ">
+
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card__title2" text="  Condition : ">
                                     <font>
                                         <Font size="24.0" />
                                     </font>
@@ -36,7 +36,7 @@
                         </HBox>
                         <HBox prefHeight="22.0" prefWidth="306.0">
                             <children>
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Discount(%): ">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card__title2" text="  Discount(%): ">
                                     <font>
                                         <Font size="24.0" />
                                     </font>
@@ -50,7 +50,7 @@
                         </HBox>
                         <HBox prefHeight="22.0" prefWidth="306.0">
                             <children>
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Duration: ">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card__title2" text="  Duration: ">
                                     <font>
                                         <Font size="24.0" />
                                     </font>
@@ -70,14 +70,17 @@
 
                         <HBox alignment="CENTER" style="-fx-margin: 10 10 0 0;">
                         <!-- ImageView for QR Code -->
-                        <ImageView fx:id="qrCodeImageView" fitHeight="125.0" fitWidth="125.0" />
+                        <ImageView fx:id="qrCodeImageView" fitHeight="104.0" fitWidth="111.0" />
                     </HBox>
 
 
 
 
                         <HBox alignment="CENTER" style="-fx-margin: 20 0 10 0;">
-                            <Button style="-fx-font-size: 14px; -fx-padding: 5 10;" text="Choose" />
+                            <Button onAction="#discountbasket" style="-fx-font-size: 14px; -fx-padding: 5 10;" text="Choose">
+                        <HBox.margin>
+                           <Insets bottom="5.0" top="5.0" />
+                        </HBox.margin></Button>
                         </HBox>
 
 

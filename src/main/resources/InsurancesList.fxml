@@ -10,31 +10,31 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InsurancesList">
+<AnchorPane fx:id="rootPane" prefHeight="288.0" prefWidth="408.0" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InsurancesList">
     <stylesheets>
         <URL value="@style/ShowInsuranceStyle.css" />
     </stylesheets>
     <children>
         <!-- Insurance Image -->
-        <ImageView fx:id="insImage" fitHeight="242.0" fitWidth="309.0" layoutX="36.0" layoutY="19.0" styleClass="insImage">
+        <ImageView fx:id="insImage" fitHeight="333.0" fitWidth="423.0" layoutX="2.0" layoutY="1.0" styleClass="insImage">
             <clip>
                 <Rectangle arcHeight="20" arcWidth="20" height="202" width="247" />
             </clip>
         </ImageView>
 
-        <Button fx:id="insButton" layoutX="120.0" layoutY="161.0" onAction="#handleInsuranceButtonClick" style="-fx-background-color: #2CA2FB;" styleClass="buttonn1" stylesheets="@style/dashboardDesign.css">
+        <Button fx:id="insButton" layoutX="133.0" layoutY="172.0" onAction="#handleInsuranceButtonClick" prefHeight="98.0" prefWidth="272.0" styleClass="buttonn" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css">
 
             <graphic>
                 <!-- Wrap labels inside a VBox -->
-                <VBox spacing="5">
+                <VBox prefHeight="30.0" prefWidth="135.0" spacing="5">
                     <!-- Insurance Name -->
-                    <Label fx:id="insName" style="-fx-font-family: 'Verdana'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-border-width: 0;">
+                    <Label fx:id="insName" prefHeight="9.0" prefWidth="135.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-border-width: 0;">
                         <font>
                             <Font size="20.0" />
                         </font>
                     </Label>
 
-                    <Label fx:id="insAmount" prefHeight="30.0" prefWidth="176.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-border-width: 0;">
+                    <Label fx:id="insAmount" prefHeight="18.0" prefWidth="135.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-border-width: 0;">
                         <font>
                             <Font size="20.0" />
                         </font>

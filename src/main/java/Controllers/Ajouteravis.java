@@ -146,7 +146,7 @@ Parametre2=agence;
                     "ATTENTION !! Vous avez écrit un gros mot");
             scheduler.schedule(() -> {
                 // Send email notification
-                serviceemail.sentemail("aymenkhelifa01@gmail.com");
+                serviceemail.sentemail(UserSession.email);
             }, 5, TimeUnit.SECONDS);
             // Send an email notification
         }
@@ -168,7 +168,7 @@ Parametre2=agence;
             Date create_at = new Date();
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             String creation = format.format(create_at);
-            Avis avis =new Avis(commentaire,note,creation,111,agence,false);
+            Avis avis =new Avis(commentaire,note,creation, Integer.parseInt(UserSession.id),agence,false);
           //  System.out.println("dd"+avis);
             AvisService service = new AvisService();
            service.ajouteravis(avis, Integer.parseInt(UserSession.id));

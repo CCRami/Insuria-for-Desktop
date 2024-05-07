@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.UserProfileController">
+<AnchorPane fx:id="anchor" prefHeight="600.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.User.UserProfileController">
     <children>
       <ImageView fx:id="bgimg" fitHeight="600.0" fitWidth="1030.0" layoutY="-3.0">
          <image>
@@ -30,15 +30,6 @@
                   <Font size="50.0" />
               </font>
           </Label>
-          <Button layoutX="453.0" layoutY="136.0" onAction="#gotoedit" prefHeight="40.0" prefWidth="150.0" text="Edit profile">
-              <font>
-                  <Font size="20.0" />
-              </font>
-         <styleClass>
-            <String fx:value="btn btn-info" />
-            <String fx:value="buttonn1" />
-         </styleClass>
-          </Button>
       <Label fx:id="bigname" layoutX="452.0" layoutY="23.0" prefHeight="74.0" prefWidth="466.0" text="Rami">
          <font>
             <Font name="System Bold" size="50.0" />
@@ -116,18 +107,6 @@
             <String fx:value="label-info" />
          </styleClass>
          <children>
-            <Button layoutX="32.0" layoutY="52.0" mnemonicParsing="false" onMouseClicked="#gotorev" prefHeight="80.0" prefWidth="200.0" styleClass="buttonn1" text="My reviews">
-               <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="35.0">
-                     <image>
-                        <Image url="@images/grouper.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Button>
             <Button layoutX="321.0" layoutY="50.0" mnemonicParsing="false" onMouseClicked="#gotoins" prefHeight="80.0" prefWidth="200.0" styleClass="buttonn1" text="My insurances">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="35.0">
@@ -164,6 +143,15 @@
                   <Font size="17.0" />
                </font>
             </Button>
+                <Button layoutX="34.0" layoutY="50.0" onAction="#gotoedit" prefHeight="80.0" prefWidth="200.0" text="Edit profile">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+               <styleClass>
+                  <String fx:value="btn btn-info" />
+                  <String fx:value="buttonn1" />
+               </styleClass>
+                </Button>
          </children>
       </Pane>
     </children>

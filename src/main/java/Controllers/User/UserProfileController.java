@@ -8,6 +8,7 @@ import Services.AvisService;
 import Services.CommandeService;
 import Services.ReclamationService;
 import Services.UserService;
+import com.itextpdf.text.Anchor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.commons.codec.binary.Base32;
@@ -68,6 +70,9 @@ public class UserProfileController implements Initializable {
 
     @FXML
     private ImageView bgimg;
+
+    @FXML
+    private AnchorPane anchor;
 
     public void setImageViewSize(double width, double height) {
         bgimg.setFitWidth(width);
@@ -180,8 +185,15 @@ public class UserProfileController implements Initializable {
     }
 
     @FXML
-    void gotoins(MouseEvent event) {
+    void gotoins(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/listcommands.fxml"));
+        Node eventFXML = loader.load();
 
+        // Clear existing content from FieldHolder
+        anchor.getChildren().clear();
+
+        // Add the loaded userFXML to FieldHolder
+        anchor.getChildren().add(eventFXML);
     }
 
     @FXML

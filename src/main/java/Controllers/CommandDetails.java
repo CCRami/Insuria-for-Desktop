@@ -4,13 +4,18 @@ import Entities.Commande;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CommandDetails {
@@ -26,6 +31,12 @@ public class CommandDetails {
     private VBox doaDetailsContainer;
     // Other labels for displaying DOA details, user details, etc.
 
+    @FXML
+    private Label insname;
+
+    @FXML
+    private AnchorPane contentArea;
+
     public void initialize() {
         // Initialize your controller
     }
@@ -35,7 +46,7 @@ public class CommandDetails {
         montantLabel.setText(String.valueOf(commande.getMontant()));
         dateEffetLabel.setText(commande.getDate_effet() != null ? commande.getDate_effet().toString() : "N/A");
         dateExpLabel.setText(commande.getDate_exp() != null ? commande.getDate_exp().toString() : "N/A");
-
+        insname.setText(commande.getDoa_com_id().getName_ins());
         // Display DOA details
         ArrayList<String> doaFull = commande.getDoa_full();
         if (doaFull != null && !doaFull.isEmpty()) {
@@ -51,6 +62,8 @@ public class CommandDetails {
                     String key = keyValue[0].trim();
                     String value = keyValue[1].trim();
                     Label label = new Label(key + ": " + value);
+                    label.setTextFill(Color.color(0, 0, 0));
+                    label.setFont(new Font("System", 20));
                     // Add the label to the VBox for DOA details
                     doaDetailsContainer.getChildren().add(label);
                 }
@@ -66,11 +79,14 @@ public class CommandDetails {
     private void viewSelectedInsurances(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/CommandeBasket.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception e) {
+            Node eventFXML = loader.load();
+            if (contentArea != null) {
+                contentArea.getChildren().clear();
+                contentArea.getChildren().add(eventFXML);
+            } else {
+                System.out.println("Erreur : contentArea est null, vérifiez votre fichier FXML.");
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

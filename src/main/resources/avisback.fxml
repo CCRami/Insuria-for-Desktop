@@ -12,11 +12,41 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="AA" prefHeight="720.0" prefWidth="1030.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.afficheravisback">
+<AnchorPane fx:id="AA" prefHeight="662.0" prefWidth="946.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.afficheravisback">
     <children>
-        <AnchorPane fx:id="listt" layoutX="10.0" layoutY="47.0" prefHeight="646.0" prefWidth="1063.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" />
+        <AnchorPane fx:id="listt" layoutX="10.0" layoutY="47.0" prefHeight="615.0" prefWidth="956.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+         <children>
+              <AnchorPane layoutX="290.0" layoutY="-41.0" prefHeight="49.0" prefWidth="159.0" style="-fx-background-color: #051b46;" stylesheets="@style/dashboardDesign.css">
+                  <children>
+                      <Label layoutX="26.0" layoutY="33.0" text="Total Agencies" textFill="WHITE">
+                          <font>
+                              <Font name="Tahoma" size="17.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="home_totalEmployees" alignment="CENTER" layoutX="6.0" layoutY="2.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
+                          <font>
+                              <Font name="Arial" size="25.0" />
+                          </font>
+                      </Label>
+                  </children>
+              </AnchorPane>
+              <AnchorPane layoutX="501.0" layoutY="-40.0" prefHeight="49.0" prefWidth="159.0" style="-fx-background-color: #051b46;" stylesheets="@style/dashboardDesign.css">
+                  <children>
+                      <Label layoutX="28.0" layoutY="34.0" text="Total Reviews" textFill="WHITE">
+                          <font>
+                              <Font name="Tahoma" size="17.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="home_totalAvis" alignment="CENTER" layoutX="6.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
+                          <font>
+                              <Font name="Arial" size="25.0" />
+                          </font>
+                      </Label>
+                  </children>
+              </AnchorPane>
+         </children></AnchorPane>
 
-                          <VBox fx:id="contentArea" layoutX="52.0" layoutY="170.4" prefHeight="530.0" prefWidth="970.0" spacing="20" styleClass="white-bg, shadow" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="170.4">
+                                <VBox fx:id="contentArea" layoutX="7.0" layoutY="104.8" prefHeight="542.0" prefWidth="930.0" spacing="20" styleClass="white-bg, shadow" AnchorPane.bottomAnchor="46.39999999999998" AnchorPane.topAnchor="104.8">
             <children>
                 <HBox alignment="CENTER" prefHeight="78.0" prefWidth="1147.0" spacing="8" styleClass="searchBox">
                     <TextField fx:id="searchField" onKeyReleased="#aa" prefHeight="30.0" prefWidth="230.0" promptText="Search" styleClass="searchInput" />
@@ -37,7 +67,7 @@
                     <Label maxWidth="180.0" minWidth="110.0" prefHeight="18.0" prefWidth="118.0" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" text="Client" />
                     <Label maxWidth="180.0" minWidth="170.0" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-alignment: left;" text="Creation Date" />
 
-                                  </HBox>
+                                        </HBox>
                 <ListView fx:id="tab1" prefHeight="417.0" prefWidth="1146.0" styleClass="shadow" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets />
@@ -48,33 +78,5 @@
                 </HBox>
             </children>
         </VBox>
-        <AnchorPane layoutX="200.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
-            <children>
-                <Label layoutX="77.0" layoutY="92.0" text="Total Agencies" textFill="WHITE">
-                    <font>
-                        <Font name="Tahoma" size="17.0" />
-                    </font>
-                </Label>
-                <Label fx:id="home_totalEmployees" alignment="CENTER_RIGHT" layoutX="87.0" layoutY="14.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
-                    <font>
-                        <Font name="Arial" size="25.0" />
-                    </font>
-                </Label>
-            </children>
-        </AnchorPane>
-        <AnchorPane layoutX="600.0" layoutY="14.0" prefHeight="136.0" prefWidth="254.0" styleClass="card" stylesheets="@style/dashboardDesign.css">
-            <children>
-                <Label layoutX="77.0" layoutY="97.0" text="Total Reviews" textFill="WHITE">
-                    <font>
-                        <Font name="Tahoma" size="17.0" />
-                    </font>
-                </Label>
-                <Label fx:id="home_totalAvis" alignment="CENTER_RIGHT" layoutX="87.0" layoutY="19.0" prefHeight="21.0" prefWidth="148.0" text="0" textFill="WHITE">
-                    <font>
-                        <Font name="Arial" size="25.0" />
-                    </font>
-                </Label>
-            </children>
-        </AnchorPane>
     </children>
 </AnchorPane>

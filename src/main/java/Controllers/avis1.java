@@ -1,7 +1,9 @@
 package Controllers;
 
 import Entities.Avis;
+import Entities.User;
 import Services.AvisService;
+import Services.UserService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -45,7 +47,9 @@ public class avis1 {
     private Label creation;
 
     public void setData(Avis avis) {
-        clientname.setText(String.valueOf(avis.getAvis_id()));
+        UserService us = new UserService();
+        User u= us.displayByid(avis.getAvis_id());
+        clientname.setText(u.getFirst_name());
         comment.setText(avis.getCommentaire());
         int notea = avis.getNote();
         if (notea == 1) {

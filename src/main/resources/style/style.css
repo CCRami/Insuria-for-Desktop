@@ -17,3 +17,46 @@
     -fx-text-fill: white;
     -fx-font-size: 1.5em;
 }
+.main-container {
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+    -fx-background-color: #ffffff; /* Light grey background */
+    -fx-background-radius: 20px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, rgba(167, 181, 252, 0.85), 30, 0.0, 0, -25);
+    -fx-max-width: 800px; /* Set a max-width for the main container */
+    -fx-text-fill: #ffffff;  /* JavaFX n'utilise pas color pour le texte */
+}
+
+.label, .bold-label {
+    -fx-font-weight: bold;
+}
+
+.text-field, .bold-text-field {
+    -fx-padding: 10px;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+.search-button {
+    -fx-background-color: #2ca2fb;
+    -fx-text-fill: white;
+    -fx-background-radius: 30px;
+}
+
+.search-button:hover {
+    -fx-background-color: dodgerblue;
+}
+.button5{
+    -fx-background-color: #051B46;
+    -fx-background-radius:8px;
+    -fx-text-fill:#fff;
+    -fx-font-size:14px;
+    -fx-font-family:"Arial";
+    -fx-cursor:hand;
+}
+
+.button5:hover{
+    -fx-background-color:#FCAF3D;
+}

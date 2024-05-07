@@ -1,15 +1,15 @@
 package Controllers;
 
 import Gemini.HandleInsuranceForm;
+import javafx.animation.TranslateTransition;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
+
 import java.util.logging.Logger;
 
 import java.util.logging.Level;
@@ -44,7 +44,8 @@ public class InsuranceForm {
     @FXML
     private TextField liabilitiesTextField;
 
-
+    @FXML
+    private Button butai;
 
     @FXML
     private TextArea answerTextArea;
@@ -70,10 +71,28 @@ public class InsuranceForm {
                 String assets = assetsTextField.getText();
                 String liabilities = liabilitiesTextField.getText();
                 String apiKey = "";
+                butai.setOnMouseEntered(event -> {
+                    DropShadow shadow1 = new DropShadow();
+                    shadow1.setColor(Color.web("rgba(255, 255, 255, 0.4)"));
+                    shadow1.setRadius(10);
+                    shadow1.setOffsetY(1);
+
+                    DropShadow shadow2 = new DropShadow();
+                    shadow2.setColor(Color.web("rgba(0, 0, 0, 0.2)"));
+                    shadow2.setRadius(10);
+                    shadow2.setOffsetY(-4);
+
+                    shadow1.setInput(shadow2);
+                    butai.setEffect(shadow1);
+                });
+
+                butai.setOnMouseExited(event -> {
+                    butai.setEffect(null);
+                });
 
                 // Get insurance recommendation from the service
                 try{
-                return HandleInsuranceForm.getInsuranceRecommendation(age, income, marital, employement,health,risk,financial,coverage,geographic,assets,liabilities, apiKey);
+                    return HandleInsuranceForm.getInsuranceRecommendation(age, income, marital, employement,health,risk,financial,coverage,geographic,assets,liabilities, apiKey);
                 } catch (Exception e) {
 
 

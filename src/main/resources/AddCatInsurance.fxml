@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddCatInsurance">
+<AnchorPane prefHeight="600.0" styleClass="main-background" prefWidth="900.0" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddCatInsurance">
     <children>
         <VBox alignment="CENTER" layoutX="117.0" layoutY="51.0" prefHeight="474.0" prefWidth="700.0" spacing="20" styleClass="white-bg, shadow">
             <children>
@@ -34,10 +34,10 @@
                     </columnConstraints>
                     <children>
                         <Label styleClass="field-label" text="Category Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                        <TextField fx:id="CatinsuranceNameField" promptText="Enter Category name" styleClass="input" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <TextField fx:id="CatinsuranceNameField" promptText="Enter Category name" styleClass="input"  GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                         <Label styleClass="field-label" text="Category Description:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                        <TextField fx:id="desccatinsField" prefHeight="152.0" prefWidth="219.0" promptText="Enter insurance Category Description" styleClass="input" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="desccatinsField" prefHeight="152.0" prefWidth="219.0" promptText="Enter insurance Category Description" styleClass="input"  GridPane.columnIndex="1" GridPane.rowIndex="2" />
                     </children>
                <rowConstraints>
                   <RowConstraints />

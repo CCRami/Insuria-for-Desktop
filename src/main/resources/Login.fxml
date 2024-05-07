@@ -86,6 +86,6 @@
             </children>
         </AnchorPane>
 
-        <WebView fx:id="webView" layoutX="281.0" layoutY="133.0" prefHeight="575.0" prefWidth="987.0" visible="false" />
+        <WebView fx:id="webView" layoutX="20.0" layoutY="12.0" prefHeight="694.0" prefWidth="1245.0" visible="false" />
     </children>
 </AnchorPane>

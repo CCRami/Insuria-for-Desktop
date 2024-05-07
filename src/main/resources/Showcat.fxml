@@ -18,11 +18,7 @@
         <Pane minHeight="60" maxHeight="60"/>
 
         <!-- Title and Warning Icon -->
-        <HBox alignment="CENTER" spacing="10">
-            <Label text="LIST OF Category Offers" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #051B46; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 2, 4);"/>
 
-
-        </HBox>
 
         <!-- Pagination Control -->
         <Pagination fx:id="pagination" />

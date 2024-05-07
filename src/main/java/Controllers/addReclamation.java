@@ -35,8 +35,6 @@ public class addReclamation {
     private Button add;
     @FXML
     private TextField imagePath;
-    @FXML
-    private Text txt;
 private Commande cmd;
     @FXML
     private BorderPane borderPane;
@@ -79,7 +77,6 @@ private Commande cmd;
     }
     public void initData(Commande commande ){
         this.cmd=commande;
-txt.setText(String.valueOf(cmd.getId()));
     }
     @FXML
     void ajouterReclamationAction(ActionEvent event) throws IOException {
@@ -114,10 +111,9 @@ String image =(imagePath.getText().replace("\\", "/").trim());
             errorContenu.setText("");
             errorDate.setText("");
             errorLabel.setText("");
-            errorImage.setText("");
 
-longitude.clear();
-latitude.clear();
+            longitude.clear();
+            latitude.clear();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setHeaderText(null);
@@ -125,11 +121,13 @@ latitude.clear();
 
             alert.showAndWait();
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamationsFront.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) add.getScene().getWindow(); // Obtenez la référence à la fenêtre actuelle
+            Stage stage = (Stage) errorDate.getScene().getWindow(); // Obtenez la référence à la fenêtre actuelle
             stage.setScene(new Scene(root));
             stage.show();
+            dashboardFront controller = loader.getController();
+            controller.GotoProfile(null);
 
 
         }

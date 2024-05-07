@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -33,15 +34,16 @@ public class showCompensation  {
 
     @FXML
     private HBox rec;
+    @FXML
+    private AnchorPane anchor;
 
     @FXML
     void enregistreRefusedAction(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/listReclamationBack.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) cancel.getScene().getWindow(); // Obtenez la référence à la fenêtre actuelle
-            stage.setScene(new Scene(root));
-            stage.show();
+            anchor.getChildren().clear();
+            anchor.getChildren().add(root);
         } catch (IOException e) {            e.printStackTrace();
             // Gérer l'erreur si nécessaire
         }

@@ -4,12 +4,14 @@ import Entities.Insurance;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -48,25 +50,14 @@ public class InsurancesList {
     @FXML
     private void handleInsuranceButtonClick(ActionEvent actionEvent) throws IOException {
         if (insurance != null) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddCommande.fxml"));
-            AnchorPane addCommandeRoot = loader.load();
-
-            // Obtain the controller instance
-            AddCommande addCommandeController = loader.getController();
-
-            // Pass the selected insurance to the controller
-            addCommandeController.setInsurance(insurance);
-
-            // Get the current scene and stage
-            Scene currentScene = rootPane.getScene();
-            Stage stage = (Stage) currentScene.getWindow();
-
-            // Create a new scene with the AddCommande page
-            Scene addCommandeScene = new Scene(addCommandeRoot, currentScene.getWidth(), currentScene.getHeight());
-
-            // Set the new scene
-            stage.setScene(addCommandeScene);
+            FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/dashboardFront.fxml"));
+            Parent root = loader2.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setScene(scene);
             stage.show();
+            dashboardFront controller = loader2.getController();
+            controller.showadd(insurance);
         } else {
             errorMessage.setText("Please select an insurance.");
         }

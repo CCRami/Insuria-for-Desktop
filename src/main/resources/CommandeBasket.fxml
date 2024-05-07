@@ -4,50 +4,63 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800" prefWidth="1500" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CommandeBasket">
-    <HBox alignment="CENTER" spacing="20" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-        <!-- Shopping Cart Items -->
-        <VBox prefHeight="694.0" prefWidth="631.0" spacing="10" styleClass="white-bg shadow" VBox.vgrow="ALWAYS">
-            <Label styleClass="title" text="Shopping Cart" />
-            <ListView fx:id="selectedCommandesListView" prefHeight="696.0" prefWidth="626.0" VBox.vgrow="ALWAYS">
+<AnchorPane prefHeight="600.0" prefWidth="1280.0" stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CommandeBasket">
+    <HBox alignment="CENTER" maxHeight="600.0" maxWidth="1280.0" prefHeight="600.0" prefWidth="1280.0" spacing="20" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <VBox prefHeight="579.0" prefWidth="1002.0">
+         <children>
+              <!-- Shopping Cart Items -->
+              <VBox prefHeight="506.0" prefWidth="729.0" spacing="10" styleClass="white-bg shadow" VBox.vgrow="ALWAYS">
+                   <Button fx:id="backshop" onAction="#backshop" text="← Back to shop" />
+                  <Label styleClass="title" text="Shopping Cart">
+                  <VBox.margin>
+                     <Insets left="50.0" />
+                  </VBox.margin>
+               </Label>
+      
+                  <HBox spacing="1.0" style="-fx-padding: 10;">
+                      <Label maxWidth="185.0" minWidth="185.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29; -fx-alignment: center;" text="Name" />
+                      <Label maxWidth="173.0" minWidth="173.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29; -fx-alignment: center;" text="Amount" />
+                      <Label maxWidth="167.0" minWidth="167.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29; -fx-alignment: center;" text="Effective Date" />
+                      <Label maxWidth="150.0" minWidth="150.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29; -fx-alignment: center;" text="Expiration Date" />
+                  </HBox>
+      
+                  <ListView fx:id="selectedCommandesListView" prefHeight="385.0" prefWidth="729.0" VBox.vgrow="ALWAYS">
                 <!-- Custom cell factory to handle cart items -->
             </ListView>
-            <HBox alignment="CENTER_LEFT">
-                <Button text="← Back to shop" />
-            </HBox>
-        </VBox>
-
-        <!-- Summary Section -->
-        <VBox prefHeight="779.0" prefWidth="466.0" spacing="10" styleClass="white-bg shadow">
-            <Label styleClass="title" text="Summary" />
-            <HBox>
-                <Label text="Items:" />
-                <Label fx:id="itemsCount" text="0 Items" HBox.hgrow="ALWAYS" />
-            </HBox>
-            <HBox>
-                <Label text="Shipping:" />
-                <Label fx:id="shippingCost" text="€0.00" />
-            </HBox>
-            <TextField fx:id="codeField" promptText="Enter your code" />
-            <HBox>
-                <Label text="Total Price:">
-               <HBox.margin>
-                  <Insets left="25.0" top="150.0" />
-               </HBox.margin></Label>
-                <Label fx:id="totalPriceLabel" text="€0.00">
-               <HBox.margin>
-                  <Insets left="20.0" top="150.0" />
-               </HBox.margin></Label>
-            </HBox>
-            <Button onAction="#handleCheckout" styleClass="button" text="CHECKOUT">
-            <VBox.margin>
-               <Insets left="175.0" top="50.0" />
-            </VBox.margin></Button>
-        </VBox>
+                  <HBox alignment="CENTER_LEFT" />
+              </VBox>
+      
+              <!-- Summary Section -->
+              <VBox alignment="CENTER" prefHeight="68.0" prefWidth="729.0" spacing="10" styleClass="white-bg shadow">
+               <HBox prefHeight="74.0" prefWidth="729.0" spacing="200.0">
+                  <children>
+                         <Label text="Total Price:">
+                        <font>
+                           <Font name="System Bold" size="32.0" />
+                        </font>
+                     </Label>
+                         <Label fx:id="totalPriceLabel" text="€0.00">
+                        <HBox.margin>
+                           <Insets left="-150.0" />
+                        </HBox.margin>
+                        <font>
+                           <Font name="System Bold" size="32.0" />
+                        </font>
+                     </Label>
+                        <Button onAction="#handleCheckout" prefHeight="49.0" prefWidth="134.0" styleClass="button" text="CHECKOUT">
+                        <HBox.margin>
+                           <Insets right="-100.0" />
+                        </HBox.margin>
+                     </Button>
+                  </children>
+               </HBox>
+              </VBox>
+         </children>
+      </VBox>
     </HBox>
 </AnchorPane>

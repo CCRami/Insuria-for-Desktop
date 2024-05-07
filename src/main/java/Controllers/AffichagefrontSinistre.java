@@ -67,9 +67,9 @@ public class AffichagefrontSinistre {
     private VBox createSinistreCard(Sinistre sinistre) {
         VBox card = new VBox(10);
         card.getStyleClass().add("card");
-
-        ImageView imageView = new ImageView(new Image(sinistre.getImage_path()));
-        imageView.setFitWidth(280);
+        String imagePath = "file:///" + sinistre.getImage_path().replace(" ", "%20");
+        ImageView imageView = new ImageView(new Image(imagePath));
+        imageView.setFitWidth(250);
         imageView.setFitHeight(180);
         imageView.setPreserveRatio(true);
 

@@ -3,6 +3,7 @@ package Controllers;
 
 import Entities.Indemnissation;
 import Entities.Reclamation;
+import Entities.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import Services.IndemnisationService;
@@ -27,6 +29,9 @@ public class indemnisationRefused {
     private TextField beneficitaire;
     private Indemnissation selectedIndemnisation;
 private Reclamation selectedReclamation;
+    @FXML
+    private AnchorPane anchor;
+
 
     @FXML
     void initialize()  {
@@ -50,7 +55,7 @@ private Reclamation selectedReclamation;
                   selectedReclamation.setIndemnisation(selectedIndemnisation);
                System.out.println(selectedReclamation.getIndemnisation());
 
-                String emailValue = "farah.adad2001@gmail.com";
+                String emailValue = UserSession.email;
                 MailService.sendConfirmationEmail(emailValue,selectedReclamation);
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Success");
@@ -69,16 +74,9 @@ private Reclamation selectedReclamation;
             }
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/listReclamationBack.fxml"));
-            Parent root = loader.load();
-
-            // Close the current window
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.close();
-
-            // Show the new FXML
-            Stage newStage = new Stage();
-            newStage.setScene(new Scene(root));
-            newStage.show();
+            Node root = loader.load();
+            anchor.getChildren().clear();
+            anchor.getChildren().add(root);
 
 
             beneficitaire.clear();

@@ -1,54 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddSiniter" stylesheets="@style/dashboardDesign.css">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane stylesheets="@style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddSiniter">
     <children>
-        <VBox alignment="CENTER" spacing="50" layoutX="20" layoutY="20" styleClass="white-bg, shadow" prefHeight="700.0" prefWidth="700.0">
+        <VBox alignment="CENTER" prefHeight="627.0" prefWidth="700.0" spacing="10.0" styleClass="white-bg, shadow">
             <children>
                 <HBox alignment="CENTER">
                     <children>
-                        <ImageView fitWidth="40" fitHeight="40" preserveRatio="true" smooth="true">
+                        <ImageView fitHeight="40" fitWidth="40" preserveRatio="true" smooth="true">
                             <image>
                                 <Image url="@images/form.png" />
                             </image>
                         </ImageView>
-                        <Label text="Sinister Form" styleClass="titlee" />
+                        <Label styleClass="titlee" text="Sinister Form" />
                     </children>
                 </HBox>
                 <GridPane hgap="20" vgap="20">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100"/>
-                        <ColumnConstraints hgrow="ALWAYS" minWidth="10" prefWidth="200"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="200.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <children>
-                        <Label text="Name:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                        <TextField fx:id="nameField" promptText="Name" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                        <Label fx:id="errorName" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <Label styleClass="field-label" text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <TextField fx:id="nameField" promptText="Name" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <Label fx:id="errorName" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                        <Label text="Description:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                        <TextArea fx:id="descriptionField" promptText="Description" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                        <Label fx:id="errorDescription" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <Label styleClass="field-label" text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <TextArea fx:id="descriptionField" promptText="Description" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="errorDescription" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                        <Label text="Image Path:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-                        <TextField fx:id="imagePathField" promptText="Image Path" editable="false" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-                        <Button text="Browse..." onAction="#handleBrowse" styleClass="buttonn" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
-                        <Label fx:id="errorImagePath" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                        <Label styleClass="field-label" text="Image Path:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                        <TextField fx:id="imagePathField" editable="false" promptText="Image Path" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Button onAction="#handleBrowse" styleClass="buttonn" text="Browse..." GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <Label fx:id="errorImagePath" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-                        <ImageView fx:id="imageView" fitWidth="400" fitHeight="200" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="3">
+                        <ImageView fx:id="imageView" fitHeight="162.0" fitWidth="316.0" preserveRatio="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6">
                             <GridPane.margin>
-                                <Insets top="10" bottom="10" left="10" right="10"/>
+                                <Insets bottom="10" left="10" right="10" top="10" />
                             </GridPane.margin>
                         </ImageView>
                     </children>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
                 </GridPane>
-                <HBox spacing="20.0" alignment="CENTER">
-                    <Button text="Save" onAction="#handleSave" styleClass="buttonn"/>
-                    <Button text="Cancel" onAction="#handleCancel" styleClass="buttonn"/>
+                <HBox alignment="CENTER" spacing="20.0">
+                    <Button onAction="#handleSave" styleClass="buttonn" text="Save" />
+                    <Button onAction="#handleCancel" styleClass="buttonn" text="Cancel" />
                 </HBox>
                 <!-- Here we add the contentArea VBox -->
 

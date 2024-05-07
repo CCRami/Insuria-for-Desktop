@@ -3,6 +3,7 @@ package Controllers;
 
 import Entities.Indemnissation;
 import Entities.Reclamation;
+import Entities.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -56,6 +58,10 @@ private double value;
 
     @FXML
     private VBox vboxdash;
+
+
+    @FXML
+    private AnchorPane anchor;
     @FXML
     void initialize()  {
 
@@ -86,7 +92,7 @@ private double value;
                 // Assuming selectedReclaamtion is initialized elsewhere
                 selectedReclaamtion.setIndemnisation(selectedIndemnisation);
 
-                String emailValue = "farah.adad2001@gmail.com";
+                String emailValue = UserSession.email;
                 MailService.sendConfirmationEmail(emailValue,selectedReclaamtion);
 
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -96,16 +102,9 @@ private double value;
                 successAlert.showAndWait();
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/listReclamationBack.fxml"));
-                Parent root = loader.load();
-
-                // Close the current window
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.close();
-
-                // Show the new FXML
-                Stage newStage = new Stage();
-                newStage.setScene(new Scene(root));
-                newStage.show();
+                Node root = loader.load();
+                anchor.getChildren().clear();
+                anchor.getChildren().add(root);
 
             } catch (SQLException e) {
                 // Handle SQLException appropriately, e.g., logging or displaying an error message
@@ -195,6 +194,7 @@ private double value;
        selectedIndemnisation = indemnisation;
        selectedReclaamtion=rec;
        float f =(float)ins_value;
+       System.out.println(f);
         montant.setText(String.valueOf(f));
 label.setText(selectedReclaamtion.getReponse());
         beneficitaire.setText(selectedIndemnisation.getBeneficitaire());

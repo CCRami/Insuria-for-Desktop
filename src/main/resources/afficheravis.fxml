@@ -14,7 +14,7 @@
             <children>
                 <HBox alignment="CENTER" prefHeight="665.0" prefWidth="1514.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <ScrollPane fx:id="scroll" prefHeight="550.0" prefWidth="1243.0" styleClass="transparent" stylesheets="@style/styleafficher.css">
+                        <ScrollPane fx:id="scroll" prefHeight="550.0" prefWidth="1243.0" fitToWidth="true">
                             <content>
                                 <GridPane fx:id="container" prefHeight="8.0" prefWidth="5.0">
                                     <rowConstraints>

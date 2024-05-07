@@ -17,7 +17,7 @@ public class ReclamationService implements Services.IServiceReclamation<Reclamat
     }
 @Override
     public void addReclamation(Reclamation rec)throws SQLException {
-    String sql = " insert into Reclamation (libelle,contenu_rec,reponse,dateSinitre,dateReclamation,latitude,longitude,image_file,command_id) values('" + rec.getLibelle() + "','" + rec.getContenu_rec() + "','" + rec.getReponse() + "','" + rec.getDateSinitre() + "','" + rec.getDateReclamation() +  "','" +rec.getLatitude()+ "','" +rec.getLongitude()+ "','" +rec.getImage_file()+"','"+rec.getCommande().getId()+"')";
+    String sql = " insert into Reclamation (libelle,contenu_rec,reponse,date_sin,date_decl,latitude,longitude,file_name,command_id) values('" + rec.getLibelle() + "','" + rec.getContenu_rec() + "','" + rec.getReponse() + "','" + rec.getDateSinitre() + "','" + rec.getDateReclamation() +  "','" +rec.getLatitude()+ "','" +rec.getLongitude()+ "','" +rec.getImage_file()+"','"+rec.getCommande().getId()+"')";
     try {
         ste = cnx.createStatement();
         ste.executeUpdate(sql);
@@ -28,7 +28,7 @@ public class ReclamationService implements Services.IServiceReclamation<Reclamat
 }
     @Override
     public void modifierReclamation(Reclamation reclamation) throws SQLException {
-        String req = "UPDATE reclamation SET libelle=?, contenu_rec=?, dateSinitre=?,latitude=?,longitude =?,image_file=? WHERE id=?";
+        String req = "UPDATE reclamation SET libelle=?, contenu_rec=?, date_sin=?,latitude=?,longitude =?,file_name=? WHERE id=?";
         try (PreparedStatement pre = cnx.prepareStatement(req)) {
             pre.setString(1, reclamation.getLibelle());
             pre.setString(2, reclamation.getContenu_rec());
@@ -67,7 +67,7 @@ public class ReclamationService implements Services.IServiceReclamation<Reclamat
     }
     @Override
     public void modifierReclamationIndemnisation(Reclamation reclamation) throws SQLException {
-        String req = "UPDATE reclamation SET indemnisation_id =? WHERE id=?";
+        String req = "UPDATE reclamation SET indemnissation_id =? WHERE id=?";
         try (PreparedStatement pre = cnx.prepareStatement(req)) {
             pre.setInt(1,reclamation.getIndemnisation().getId());
 
@@ -105,6 +105,7 @@ public class ReclamationService implements Services.IServiceReclamation<Reclamat
 
     @Override
     public List<Reclamation> afficherReclamations() throws SQLException {
+        CommandeService cs= new CommandeService();
         List<Reclamation> reclamations = new ArrayList<>();
         String req = "SELECT * FROM reclamation";
         try (PreparedStatement pre = cnx.prepareStatement(req); ResultSet rs = pre.executeQuery()) {
@@ -114,12 +115,12 @@ public class ReclamationService implements Services.IServiceReclamation<Reclamat
                 rec.setLibelle(rs.getString("libelle"));
                 rec.setContenu_rec(rs.getString("contenu_rec"));
                 rec.setReponse(rs.getString("reponse"));
-                rec.setDateSinitre(rs.getString("dateSinitre"));
-                rec.setDateReclamation(rs.getString("dateReclamation"));
+                rec.setDateSinitre(rs.getString("date_sin"));
+                rec.setDateReclamation(rs.getString("date_decl"));
                 rec.setLatitude(rs.getString("latitude"));
                 rec.setLongitude(rs.getString("longitude"));
-
-                rec.setImage_file(rs.getString("image_file"));
+                rec.setCommande(cs.getCommandeById(rs.getInt("command_id")));
+                rec.setImage_file(rs.getString("file_name"));
                 reclamations.add(rec);
             }
         }
@@ -128,12 +129,12 @@ public class ReclamationService implements Services.IServiceReclamation<Reclamat
 
     @Override
     public int selectId(Reclamation reclamation) throws SQLException {
-        String req = "SELECT indemnisation_id FROM reclamation WHERE id = ?";
+        String req = "SELECT indemnissation_id FROM reclamation WHERE id = ?";
         try (PreparedStatement pre = cnx.prepareStatement(req)) {
             pre.setInt(1, reclamation.getId());
             try (ResultSet rs = pre.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getInt("indemnisation_id");
+                    return rs.getInt("indemnissation_id");
                 } else {
                     // Gérer le cas où aucun résultat n'est trouvé
                     return -1; // Ou une autre valeur par défaut appropriée
@@ -155,11 +156,11 @@ public class ReclamationService implements Services.IServiceReclamation<Reclamat
                 rec.setLibelle(rs.getString("libelle"));
                 rec.setContenu_rec(rs.getString("contenu_rec"));
                 rec.setReponse(rs.getString("reponse"));
-                rec.setDateSinitre(rs.getString("dateSinitre"));
-                rec.setDateReclamation(rs.getString("dateReclamation"));
+                rec.setDateSinitre(rs.getString("date_sin"));
+                rec.setDateReclamation(rs.getString("date_decl"));
                 rec.setLatitude(rs.getString("latitude"));
                 rec.setLongitude(rs.getString("longitude"));
-                rec.setImage_file(rs.getString("image_file"));
+                rec.setImage_file(rs.getString("file_name"));
                 reclamationsRefusees.add(rec);
             }
         }
@@ -177,11 +178,11 @@ public class ReclamationService implements Services.IServiceReclamation<Reclamat
                 rec.setLibelle(rs.getString("libelle"));
                 rec.setContenu_rec(rs.getString("contenu_rec"));
                 rec.setReponse(rs.getString("reponse"));
-                rec.setDateSinitre(rs.getString("dateSinitre"));
-                rec.setDateReclamation(rs.getString("dateReclamation"));
+                rec.setDateSinitre(rs.getString("date_sin"));
+                rec.setDateReclamation(rs.getString("date_decl"));
                 rec.setLatitude(rs.getString("latitude"));
                 rec.setLongitude(rs.getString("longitude"));
-                rec.setImage_file(rs.getString("image_file"));
+                rec.setImage_file(rs.getString("file_name"));
 
                 reclamationsRefusees.add(rec);
             }
@@ -199,11 +200,11 @@ public class ReclamationService implements Services.IServiceReclamation<Reclamat
                 rec.setLibelle(rs.getString("libelle"));
                 rec.setContenu_rec(rs.getString("contenu_rec"));
                 rec.setReponse(rs.getString("reponse"));
-                rec.setDateSinitre(rs.getString("dateSinitre"));
-                rec.setDateReclamation(rs.getString("dateReclamation"));
+                rec.setDateSinitre(rs.getString("date_sin"));
+                rec.setDateReclamation(rs.getString("date_decl"));
                 rec.setLatitude(rs.getString("latitude"));
                 rec.setLongitude(rs.getString("longitude"));
-                rec.setImage_file(rs.getString("image_file"));
+                rec.setImage_file(rs.getString("file_name"));
                 reclamationsRefusees.add(rec);
             }
         }
@@ -212,12 +213,12 @@ public class ReclamationService implements Services.IServiceReclamation<Reclamat
     @Override
     public double afficherUneCommande(int id_cmd) throws SQLException {
         double ins_value = 0.0; // Initialiser à 0 pour le cas où aucune valeur n'est trouvée
-        String req = "SELECT insvalue FROM commande WHERE id = ?";
+        String req = "SELECT ins_value FROM commande WHERE id = ?";
         try (PreparedStatement pre = cnx.prepareStatement(req)) {
             pre.setInt(1, id_cmd); // Utiliser le bon nom du paramètre
             try (ResultSet rs = pre.executeQuery()) {
                 if (rs.next()) {
-                    ins_value = rs.getDouble("insvalue"); // Récupérer la valeur 'insvalue'
+                    ins_value = rs.getDouble("ins_value"); // Récupérer la valeur 'insvalue'
                 }
             }
         }
@@ -263,6 +264,41 @@ public class ReclamationService implements Services.IServiceReclamation<Reclamat
         String req = "SELECT * FROM reclamation WHERE command_id = ?";
         try (PreparedStatement pre = cnx.prepareStatement(req)) {
             pre.setInt(1, commandId);
+            try (ResultSet rs = pre.executeQuery()) {
+                while (rs.next()) {
+                    Reclamation rec = new Reclamation();
+                    rec.setId(rs.getInt("id"));
+                    rec.setLibelle(rs.getString("libelle"));
+                    rec.setContenu_rec(rs.getString("contenu_rec"));
+                    rec.setReponse(rs.getString("reponse"));
+                    rec.setDateSinitre(rs.getString("date_sin"));
+                    rec.setDateReclamation(rs.getString("date_decl"));
+                    rec.setLatitude(rs.getString("latitude"));
+                    rec.setLongitude(rs.getString("longitude"));
+                    rec.setImage_file(rs.getString("file_name"));
+                    reclamations.add(rec);
+                }
+            }
+        }
+        return reclamations;
+    }
+    public boolean isCommandIdInReclamation(int commandId) throws SQLException {
+        String req = "SELECT COUNT(*) FROM reclamation WHERE command_id = ?";
+        try (PreparedStatement pre = cnx.prepareStatement(req)) {
+            pre.setInt(1, commandId);
+            try (ResultSet rs = pre.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        }
+        return false;
+    }
+    public List<Reclamation> getReclamationsByUserId(int userId) throws SQLException {
+        List<Reclamation> reclamations = new ArrayList<>();
+        String req = "SELECT * FROM reclamation WHERE command_id IN (SELECT id FROM commande WHERE user_id = ?)";
+        try (PreparedStatement pre = cnx.prepareStatement(req)) {
+            pre.setInt(1, userId);
             try (ResultSet rs = pre.executeQuery()) {
                 while (rs.next()) {
                     Reclamation rec = new Reclamation();

@@ -308,4 +308,22 @@ public class UserService implements IUser<User>{
         return email;
     }
 
+    public List<String> getAllUserEmails() {
+        List<String> emails = new ArrayList<>();
+        String query = "SELECT email FROM user";
+
+        try {
+            ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(query);
+
+            while (rs.next()) {
+                emails.add(rs.getString("email"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return emails;
+    }
+
 }

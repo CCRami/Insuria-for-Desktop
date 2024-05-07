@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="278.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.avis1">
+<AnchorPane prefHeight="278.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.avis1">
    <children>
       <VBox fx:id="agevbox" prefHeight="278.0" prefWidth="386.0" style="-fx-background-color: #051B46; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0,5,5, 0, 0);" styleClass="show-box" stylesheets="@style/styleafficher.css">
          <children>

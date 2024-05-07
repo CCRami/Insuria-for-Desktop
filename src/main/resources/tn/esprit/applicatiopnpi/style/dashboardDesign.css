@@ -419,6 +419,18 @@ and open the template in the editor.
     -fx-pref-width: 9em;
     -fx-pref-height: 3em;
 }
+.button22 {
+    -fx-background-color: linear-gradient(to right, #fcaf3d, #fcaf3d, #fcaf3d, #fcaf3d);
+    -fx-text-fill: white;
+    -fx-font-family: inherit;
+    -fx-font-size: 14px;
+    -fx-border-radius: 30px;
+    -fx-padding: 0.75em 0em; /* Hauteur de ligne ajustée pour la hauteur du bouton */
+    -fx-background-insets: 0, 1, 2;
+    -fx-cursor: hand;
+    -fx-pref-width: 9em;
+    -fx-pref-height: 3em;
+}
 .chart-pie-label {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
@@ -481,6 +493,12 @@ and open the template in the editor.
 
 .search-buttton:hover {
     -fx-background-color: linear-gradient(to bottom right, #BFF0FA, #4998ffc4);
+}
+.card__title2 {
+    -fx-font-size: 20;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-alignment: center; /* Center alignment for the title */
 }
 
 

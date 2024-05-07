@@ -13,13 +13,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.IndemnisationAccepted">
+<AnchorPane fx:id="anchor" prefHeight="600.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.IndemnisationAccepted">
    <children>
       <BorderPane fx:id="myBorderPane" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1030.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <VBox fx:id="vboxdash" prefHeight="810.0" prefWidth="1062.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane prefHeight="720.0" prefWidth="1030.0">
+                  <AnchorPane prefHeight="634.0" prefWidth="954.0">
                      <children>
                         <TextField fx:id="beneficitaire" layoutX="406.0" layoutY="331.0" prefHeight="58.0" prefWidth="363.0" />
                         <Label layoutX="329.0" layoutY="263.0" prefHeight="18.0" prefWidth="54.0" text="Date" textAlignment="JUSTIFY" textFill="#0061ed">
@@ -33,7 +33,7 @@
                               <Font name="System Bold Italic" size="17.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="montant" editable="false" layoutX="407.0" layoutY="174.0" prefHeight="42.0" prefWidth="51.0" AnchorPane.leftAnchor="407.0" AnchorPane.rightAnchor="767.4000000000001">
+                        <TextField fx:id="montant" layoutX="407.0" layoutY="174.0" prefHeight="42.0" prefWidth="50.0" AnchorPane.leftAnchor="407.0" AnchorPane.rightAnchor="500.0">
                            <padding>
                               <Insets right="50.0" />
                            </padding>

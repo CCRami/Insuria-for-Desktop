@@ -262,7 +262,7 @@ and open the template in the editor.
     -fx-background-color: #ff0000; /* Couleur assombrie pour hover */
 }
 .buttonn1:hover {
-    -fx-background-color: #00ff73; /* Couleur assombrie pour hover */
+    -fx-background-color: #fcaf3d; /* Couleur assombrie pour hover */
 }
 
 .buttonn:pressed {
@@ -415,6 +415,26 @@ and open the template in the editor.
 .inputt:focused {
     -fx-border-color: #5891ff; /* Border color when the input is focused */
 }
+.carde {
+    -fx-background-color: linear-gradient(to right, #ffffff, #ffffff);
+    -fx-background-radius: 5px;
+    -fx-border-color: black;  /* Choisir la couleur de la bordure */
+    -fx-border-width: 2px;    /* Définir l'épaisseur de la bordure */
+    -fx-border-radius: 5px;   /* Assurer que la bordure a le même rayon que le fond */
+}
+.button2 {
+    -fx-background-color: linear-gradient(to right, #2ca2fb, #2ca2fb, #2ca2fb, #2ca2fb);
+    -fx-text-fill: white;
+    -fx-font-family: inherit;
+    -fx-font-size: 14px;
+    -fx-border-radius: 30px;
+    -fx-padding: 0.75em 0em; /* Hauteur de ligne ajustée pour la hauteur du bouton */
+    -fx-background-insets: 0, 1, 2;
+    -fx-cursor: hand;
+    -fx-pref-width: 9em;
+    -fx-pref-height: 3em;
+}
+
 
 
 

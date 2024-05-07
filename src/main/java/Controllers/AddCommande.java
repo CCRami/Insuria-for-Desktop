@@ -2,18 +2,24 @@ package Controllers;
 
 import Entities.Commande;
 import Entities.Insurance;
+import Entities.Police;
 import Entities.UserSession;
 import Services.CommandeService;
 import Services.InsuranceService;
+import Services.PoliceService;
+import Services.SinistreService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -37,18 +43,35 @@ public class AddCommande {
     @FXML
     private VBox doaFormContainer;
 
+    @FXML
+    private VBox contentArea;
+
     private InsuranceService insuranceService;
+    @FXML
+    private Label despol;
+
+    @FXML
+    private Label namepol;
+
+
+    private Insurance insurance;
+
+    @FXML
+    private ImageView imgview;
 
     public AddCommande() {
         insuranceService = new InsuranceService(); // Initialize InsuranceService
     }
 
-    @FXML
-    private void initialize() {
-        // Initialize your controller
+    public void initialize(Insurance ins) {
+        PoliceService policeService = new PoliceService();
+        Police p=policeService.getPoliceById(ins.getPol_id().getId());
+        despol.setText(p.getDescriptionPolice());
+        namepol.setText(p.getPoliceName());
+
     }
 
-    private Insurance insurance;
+
 
     public void setInsurance(Insurance insurance) {
         if (insurance != null) {
@@ -56,6 +79,9 @@ public class AddCommande {
             Insurance fetchedInsurance = insuranceService.getInsuranceById(insurance.getId());
             if (fetchedInsurance != null) {
                 this.insurance = fetchedInsurance;
+                String imagePath = "file:///" + fetchedInsurance.getIns_image().replace(" ", "%20");
+                Image image = new Image(imagePath);
+                imgview.setImage(image);
                 System.out.println("Fetched Insurance: " + fetchedInsurance);
                 System.out.println("Insurance DOA Details: " + fetchedInsurance.getDoa());
                 displayDoaForm(fetchedInsurance.getDoa());
@@ -166,6 +192,7 @@ public class AddCommande {
                 // Now you can save the Commande object to your database
                 CommandeService commandeService = new CommandeService();
                 commandeService.addCommande(commande, Integer.parseInt(UserSession.id));
+                //commandeService.addCommande(commande, 174);
 
                 // Navigate to the new page
                 navigateToCommandeDetailsPage(commande); // You need to implement this method
@@ -184,28 +211,22 @@ public class AddCommande {
 
     private void navigateToCommandeDetailsPage(Commande commande) {
         try {
-            // Load the FXML file for the commande details page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayMyCommande.fxml"));
-            Parent root = loader.load();
-
-            // Get the controller instance from the loader
+            Node eventFXML = loader.load();
             CommandDetails controller = loader.getController();
 
-            // Pass the commande object to the controller
             controller.initData(commande);
 
-            // Create a new scene with the loaded FXML content
-            Scene scene = new Scene(root);
-
-            // Get the stage from the current scene
-            Stage stage = (Stage) insValueField.getScene().getWindow();
-
-            // Set the scene to the stage
-            stage.setScene(scene);
-            stage.show();
+            if (contentArea != null) {
+                contentArea.getChildren().clear();
+                contentArea.getChildren().add(eventFXML);
+            } else {
+                System.out.println("Erreur : contentArea est null, vérifiez votre fichier FXML.");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
 

@@ -172,10 +172,14 @@
       <artifactId>c3p0</artifactId>
       <version>0.9.5.5</version>
     </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>21.0.2</version>
+        </dependency>
 
 
-
-  </dependencies>
+    </dependencies>
   <repositories>
 
     <repository>

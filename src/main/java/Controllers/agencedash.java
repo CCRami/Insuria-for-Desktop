@@ -666,26 +666,26 @@ public class agencedash implements  Initializable{
 
 
                     // Configuration des boutons avec icônes et texte
-                   ImageView editIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/icons8-edit-24.png")));
+                   ImageView editIcon = new ImageView(new Image(getClass().getResourceAsStream("/tn/esprit/applicatiopnpi/edit_icon.png")));
                    editIcon.setFitHeight(20); // Taille de l'icône
                    editIcon.setFitWidth(20);
                     Button editButton = new Button("Edit");
                     editButton.setId("edit");
-                    editButton.getStyleClass().add("buttonn");
+                    editButton.getStyleClass().add("button2");
 
-                    ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/icons8-delete-24.png")));
+                    ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/tn/esprit/applicatiopnpi/delet_icon.png")));
                    deleteIcon.setFitHeight(20); // Taille de l'icône
                     deleteIcon.setFitWidth(20);
                     Button deleteButton = new Button("Delete");
                     deleteIcon.setId("update");
-                    deleteButton.getStyleClass().add("buttonn");
+                    deleteButton.getStyleClass().add("button2");
 
                    ImageView deleteIcon1 = new ImageView(new Image(getClass().getResourceAsStream("/images/icons8-review-50.png")));
                    deleteIcon1.setFitHeight(20); // Taille de l'icône
                    deleteIcon1.setFitWidth(20);
                     Button consulteravisbutton = new Button("List reviews");
                     deleteIcon1.setId("list");
-                    consulteravisbutton.getStyleClass().add("buttonn");
+                    consulteravisbutton.getStyleClass().add("button2");
 
                     HBox actionBox = new HBox(editButton, deleteButton,consulteravisbutton);
                     actionBox.setSpacing(5);

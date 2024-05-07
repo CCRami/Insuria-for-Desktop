@@ -137,7 +137,7 @@ public class dashboard implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*UserSession session = UserSession.getInstance(null,null);
+        UserSession session = UserSession.getInstance(null,null);
 
         UserService us= new UserService();
         User u= us.displayByid(Integer.parseInt(session.getId()));
@@ -147,7 +147,7 @@ public class dashboard implements Initializable {
         }
         else {
             profileimg.setImage(new Image("https://i.imgur.com/x5co7s8.png"));
-        }*/
+        }
 
 
     }

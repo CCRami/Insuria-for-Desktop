@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import Services.IndemnisationService;
@@ -34,6 +35,9 @@ public class indemnisationsBack implements Initializable {
 
     @FXML
     private TextField searchField;
+
+    @FXML
+    private AnchorPane anchor;
 
     IndemnisationService indemnisationService=new IndemnisationService();
 
@@ -65,11 +69,11 @@ public class indemnisationsBack implements Initializable {
 
                     AmountLabel.setMinWidth(170.0);
                     AmountLabel.setMaxWidth(170.0);
-                    Label dateLabel = new Label(rec.getDate().toString());
+                    Label dateLabel = new Label(rec.getDate());
                     dateLabel.setMinWidth(160.0);
                     dateLabel.setMaxWidth(160.0);
                     dateLabel.setStyle("-fx-padding: 2px;");
-                    Label noteLabel = new Label(rec.getBeneficitaire().toString());
+                    Label noteLabel = new Label(rec.getBeneficitaire());
                     noteLabel.setMinWidth(200.0);
                     noteLabel.setMaxWidth(200.0);
                     noteLabel.setStyle("-fx-padding: 2px;");
@@ -87,14 +91,11 @@ public class indemnisationsBack implements Initializable {
 
                             try {
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/showComBack.fxml"));
-                                Parent root = loader.load();
+                                Node root = loader.load();
                                 showCompensation controller = loader.getController();
                                 controller.initData(ind);
-                                Stage stage = new Stage();
-                                stage.setScene(new Scene(root));
-                                stage.show();
-                                Stage currentStage = (Stage) button.getScene().getWindow();
-                                currentStage.close();
+                                anchor.getChildren().clear();
+                                anchor.getChildren().add(root);
                             } catch (IOException e) {
                                 e.printStackTrace();
                                 // Gérer l'erreur si nécessaire

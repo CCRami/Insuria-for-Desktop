@@ -2,6 +2,7 @@ package Controllers;
 
 
 import Controllers.User.UserProfileController;
+import Entities.Insurance;
 import Entities.User;
 import Entities.UserSession;
 import Services.UserService;
@@ -246,5 +247,43 @@ public class dashboardFront implements Initializable{
         }
     }
 
+    public void showadd(Insurance ins)
+    {
+        try {
+            // Charger le fichier FXML pour ajouter un sinistre
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddCommande.fxml"));
+            Node eventFXML = loader.load();
+            AddCommande controller = loader.getController();
+            controller.setInsurance(ins);
+            controller.initialize(ins);
 
+            if (vboxdash != null) {
+                vboxdash.getChildren().clear(); // Nettoyer le contenu existant
+                vboxdash.getChildren().add(eventFXML); // Ajouter le contenu chargé
+            } else {
+                System.out.println("Erreur : contentArea est null, vérifiez votre fichier FXML.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showbasket(double disc)
+    {
+        try {
+            // Charger le fichier FXML pour ajouter un sinistre
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CommandeBasket.fxml"));
+            Node eventFXML = loader.load();
+            CommandeBasket controller = loader.getController();
+            controller.setDiscount(disc);
+            if (vboxdash != null) {
+                vboxdash.getChildren().clear(); // Nettoyer le contenu existant
+                vboxdash.getChildren().add(eventFXML); // Ajouter le contenu chargé
+            } else {
+                System.out.println("Erreur : contentArea est null, vérifiez votre fichier FXML.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

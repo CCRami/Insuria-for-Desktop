@@ -168,7 +168,7 @@ public class PoliceService implements Iservice<Police> {
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 // Assuming Police has a constructor that takes relevant parameters
-                return new Police(rs.getInt("id"));
+                return new Police(rs.getInt("id"),rs.getString("police_name"), rs.getString("description_police"), new Sinistre());
             } else {
                 // Handle case when no police with the given ID is found
                 return null;

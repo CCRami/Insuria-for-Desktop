@@ -4,52 +4,100 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="810.0" prefWidth="1062.0" style="-fx-background-color: white;" styleClass="right-bar" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddCommande">
+<AnchorPane prefHeight="600.0" prefWidth="1280.0" style="-fx-background-color: white;" styleClass="right-bar" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddCommande">
     <children>
-        <VBox alignment="CENTER" prefHeight="810.0" prefWidth="900.0" VBox.vgrow="ALWAYS">
-
-            <Text fill="#ff9b49" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a new Commande" textAlignment="CENTER" wrappingWidth="296.5366973876953">
-                <VBox.margin>
-                    <Insets bottom="44.0" left="33.0" top="55.0" />
-                </VBox.margin>
-                <font>
-                    <Font name="Lucida Fax Demibold" size="24.0" />
-                </font>
-            </Text>
-
-            <!-- New VBox for doaFormContainer -->
-            <VBox fx:id="doaFormContainer" alignment="CENTER">
-
-
-            </VBox>
-            <HBox>
-                <Label styleClass="label bold-label" text="Ins Value:">
-                    <HBox.margin>
-                        <Insets left="325.0" />
-                    </HBox.margin>
-                </Label>
-                <TextField fx:id="insValueField" styleClass="text-field bold-text-field">
-                    <HBox.margin>
-                        <Insets left="20.0" />
-                    </HBox.margin>
-                </TextField>
-            </HBox>
-
-            <!-- Save button -->
-            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveCommandeAction" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" text="Save" textFill="WHITE">
-                <font>
-                    <Font size="13.0" />
-                </font>
-                <VBox.margin>
-                    <Insets top="200.0" />
-                </VBox.margin>
-            </Button>
+        <VBox fx:id="contentArea" alignment="CENTER" prefHeight="600.0" prefWidth="1280.0" VBox.vgrow="ALWAYS">
+         <HBox maxWidth="1000.0" prefHeight="563.0" prefWidth="1000.0">
+            <children>
+               <VBox alignment="CENTER" maxWidth="600.0" prefHeight="550.0" prefWidth="516.0" spacing="20.0" styleClass="main-container">
+                  <children>
+            
+                        <Text fill="#000e29e8" strokeType="OUTSIDE" strokeWidth="0.0" text="Get A Quote" textAlignment="CENTER" wrappingWidth="296.5366973876953">
+                            <VBox.margin>
+                                <Insets bottom="44.0" top="55.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="Tw Cen MT" size="40.0" />
+                            </font>
+                        </Text>
+                        <HBox alignment="CENTER" maxWidth="600.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="26.0" prefWidth="949.0">
+                            <Label styleClass="label bold-label" text="Ins Value:" textFill="#051b56">
+                                <HBox.margin>
+                                    <Insets />
+                                </HBox.margin>
+                            </Label>
+                            <TextField fx:id="insValueField" styleClass="text-field bold-text-field">
+                                <HBox.margin>
+                                    <Insets left="20.0" />
+                                </HBox.margin>
+                            </TextField>
+                        <VBox.margin>
+                           <Insets />
+                        </VBox.margin>
+                        </HBox>
+            
+                        <!-- New VBox for doaFormContainer -->
+                        <VBox fx:id="doaFormContainer" alignment="CENTER" maxWidth="608.0" prefHeight="26.0" prefWidth="397.0" styleClass="text-field bold-text-field">
+                        <VBox.margin>
+                           <Insets left="30.0" />
+                        </VBox.margin>
+                     </VBox>
+            
+                        <!-- Save button -->
+                        <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveCommandeAction" prefHeight="43.0" prefWidth="103.0" styleClass="search-button" text="Save" textFill="WHITE">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="200.0" />
+                            </VBox.margin>
+                        </Button>
+                  </children>
+                  <HBox.margin>
+                     <Insets bottom="2.0" />
+                  </HBox.margin>
+               </VBox>
+               <VBox alignment="CENTER" prefHeight="384.0" prefWidth="559.0" spacing="20.0">
+                  <children>
+                     <Text fill="#000e29" strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance Policy" textAlignment="CENTER" wrappingWidth="296.5366973876953">
+                        <font>
+                           <Font name="Tw Cen MT" size="40.0" />
+                        </font>
+                        <VBox.margin>
+                           <Insets bottom="40.0" top="-100.0" />
+                        </VBox.margin>
+                     </Text>
+                     <ImageView fx:id="imgview" fitHeight="204.0" fitWidth="302.0" pickOnBounds="true" preserveRatio="true" />
+                         <Label fx:id="namepol" maxWidth="185.0" minWidth="185.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29; -fx-alignment: center;" text="Name">
+                        <VBox.margin>
+                           <Insets right="200.0" />
+                        </VBox.margin>
+                        <font>
+                           <Font size="20.0" />
+                        </font>
+                     </Label>
+                         <Label fx:id="despol" maxWidth="256.0" minWidth="173.0" prefHeight="40.0" prefWidth="256.0" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #000E29; -fx-alignment: center;" text="Description">
+                        <VBox.margin>
+                           <Insets right="100.0" top="50.0" />
+                        </VBox.margin>
+                        <font>
+                           <Font size="18.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </VBox>
+            </children>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+         </HBox>
 
         </VBox>
         <!-- Additional UI elements can be added here -->

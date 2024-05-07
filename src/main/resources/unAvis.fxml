@@ -14,9 +14,10 @@
 
 <AnchorPane prefHeight="278.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.avis">
    <children>
-      <VBox fx:id="agevbox" prefHeight="274.0" prefWidth="382.0" style="-fx-background-color: #051B46; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0,5,5, 0, 0);" styleClass="show-box" stylesheets="@style/styleafficher.css">
+      <VBox fx:id="agevbox" prefHeight="274.0" prefWidth="382.0" styleClass="card" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css">
+
          <children>
-            <Label fx:id="nomagence" alignment="CENTER" prefHeight="52.0" prefWidth="390.0" text="Crepe Factory" textFill="WHITE">
+            <Label fx:id="nomagence" alignment="CENTER" prefHeight="52.0" prefWidth="390.0" text="Crepe Factory" styleClass="card__title">
                <font>
                   <Font size="24.0" />
                </font>
@@ -25,7 +26,7 @@
                <children>
                   <HBox prefHeight="22.0" prefWidth="306.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Client : ">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Client : " styleClass="card__title2">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -39,7 +40,7 @@
                   </HBox>
                   <HBox prefHeight="22.0" prefWidth="306.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Note : ">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Note : " styleClass="card__title2">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -94,7 +95,7 @@
                   </HBox>
                   <HBox prefHeight="22.0" prefWidth="306.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Creation Date : ">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Creation Date : " styleClass="card__title2">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -110,7 +111,7 @@
             </VBox>
             <HBox prefHeight="58.0" prefWidth="382.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Comment : ">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Comment : " styleClass="card__title2">
                      <font>
                         <Font size="24.0" />
                      </font>

@@ -14,9 +14,10 @@
 
 <AnchorPane prefHeight="237.0" prefWidth="289.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Age">
    <children>
-      <VBox fx:id="agevbox" prefHeight="260.0" prefWidth="330.0" style="-fx-background-color: #051B46;" styleClass="show-box" stylesheets="@style/styleafficher.css">
+      <VBox fx:id="agevbox" maxWidth="310.0" prefHeight="260.0" prefWidth="304.0" styleClass="card" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css">
+
          <children>
-            <Label fx:id="nom" alignment="CENTER" prefHeight="30.0" prefWidth="330.0" text="Crepe Factory" textFill="WHITE">
+            <Label fx:id="nom" alignment="CENTER" prefHeight="30.0" prefWidth="330.0" styleClass="card__title" text="Crepe Factory">
                <font>
                   <Font size="24.0" />
                </font>
@@ -25,7 +26,7 @@
                <children>
                   <HBox prefHeight="22.0" prefWidth="306.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Adress : ">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card__title2" text="  Adress : ">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -39,7 +40,7 @@
                   </HBox>
                   <HBox prefHeight="22.0" prefWidth="306.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Email : ">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card__title2" text="  Email : ">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -53,7 +54,7 @@
                   </HBox>
                   <HBox prefHeight="22.0" prefWidth="306.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Phone : ">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card__title2" text="  Phone : ">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -67,7 +68,7 @@
                   </HBox>
                   <HBox prefHeight="22.0" prefWidth="306.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Creation Date : ">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card__title2" text="  Creation Date : ">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -81,7 +82,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="116.0" prefHeight="22.0" prefWidth="306.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="  Average rating : ">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="card__title2" text="  Average rating : ">
                            <font>
                               <Font size="24.0" />
                            </font>
