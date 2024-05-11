@@ -95,6 +95,49 @@ public class AvisService implements IServiceAvis {
 
     }
 
+    @Override
+    public void updateav(int id) {
+        System.out.println(id);
+        String req = "UPDATE Avis  SET etat=1 WHERE id = ?";
+        try (PreparedStatement ps = cnx.prepareStatement(req)) {
+            ps.setInt(1, id);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("No record found with ID " + id + ". Deletion failed.");
+
+
+            } else {
+                System.out.println("No record found with ID " + id + ". Deletion failed.");
+            }
+        } catch (SQLException e) {
+            // Handle or log the exception
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void updateav1(int id) {
+        System.out.println(id);
+        String req = "UPDATE Avis  SET etat=0 WHERE id = ?";
+        try (PreparedStatement ps = cnx.prepareStatement(req)) {
+            ps.setInt(1, id);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+
+                System.out.println("No record found with ID " + id + ". Deletion failed.");
+
+            } else {                System.out.println("No record found with ID " + id + ". Deletion failed.");
+
+                //System.out.println("No record found with ID " + id + ". Deletion failed.");
+            }
+        } catch (SQLException e) {
+            // Handle or log the exception
+            e.printStackTrace();
+        }
+
+    }
+
 
    /* @Override
     public Object getOneById(int id) {
@@ -125,6 +168,32 @@ public class AvisService implements IServiceAvis {
         }
         return list;
     }
+
+    public List<Avis> getAllavisuser() {
+        List<Avis> list = new ArrayList<>();
+        String sql = "select * from Avis WHERE etat=TRUE";
+        try {
+            ste = cnx.createStatement();
+            ResultSet res = ste.executeQuery(sql);
+            while (res.next()) {
+                int id = res.getInt(1);
+                String commentaire = res.getString(2);
+                int note = res.getInt(3);
+                String date_avis = res.getString(4);
+                int avis_id = res.getInt(5);
+                int agenceav_id = res.getInt(6);
+                Agence agence = s.getOneById(agenceav_id);
+                //int agenceav_id =res.getInt(6);
+                boolean etat = res.getBoolean(7);
+                list.add(new Avis(id, commentaire, note, date_avis, avis_id,  agence, etat));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+
     public List<Avis> getAllavisbyuser(int userid) {
         List<Avis> list = new ArrayList<>();
         String sql = "select * from Avis WHERE avis_id=?";
@@ -178,6 +247,37 @@ public class AvisService implements IServiceAvis {
         System.out.println(list);
         return list;
     }
+
+    public List<Avis> getAllavisbyagenceuser(Agence Parametre) {
+        System.out.println("ff" + Parametre);
+        List<Avis> list = new ArrayList<>();
+
+        String sql = "select * from Avis WHERE agenceav_id=? AND etat=1";
+
+        try {//ste=cnx.createStatement();
+
+            PreparedStatement pst = cnx.prepareStatement(sql);
+            pst.setInt(1, Parametre.getIdage());
+            ResultSet res = pst.executeQuery();
+            while (res.next()) {
+                int id = res.getInt(1);
+                String commentaire = res.getString(2);
+                int note = res.getInt(3);
+                String date_avis = res.getString(4);
+                int avis_id = res.getInt(5);
+                Object agenceav_id =res.getObject(6);
+
+                //Parametre = res.get(6);
+                boolean etat = res.getBoolean(7);
+                list.add(new Avis(id, commentaire, note, date_avis, avis_id, Parametre, etat));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(list);
+        return list;
+    }
+
 
 }
 

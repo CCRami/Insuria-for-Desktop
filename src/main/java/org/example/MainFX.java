@@ -12,7 +12,7 @@ import java.awt.*;
 public class MainFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dashboardfront.fxml"));
         Parent root = loader.load();
         // dashboard
        // dashboardfront

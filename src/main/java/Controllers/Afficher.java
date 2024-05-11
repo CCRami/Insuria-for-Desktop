@@ -67,7 +67,7 @@ public class Afficher implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+   aviss=serviceAvis.getAllavis();
        agences = serviceAgence.getAllage();
         int column = 0;
         int row = 1;
@@ -80,7 +80,16 @@ public class Afficher implements Initializable {
                     //System.out.println(agences);
                     age.setData(agence);
                    // parametre=agence;
-                    age.supprimera(agence);
+                    for (Avis avis : aviss) {
+                        // Vérifier si l'agence correspond à celle recherchée
+                        if (avis.getAvis_id()!=111 && avis.getAgenceav_id() != agence) {
+                            // Ajouter l'avis correspondant à la liste des avis filtrés
+                            age.supprimera(agence);
+                        }
+                    }
+
+
+
                     age.reviewsbyagence(agence);
                   //  age.Rateus1(agence);
                    // Button rateusButton = age.Rateus1(agence);

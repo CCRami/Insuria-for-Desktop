@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface IServiceAvis <T> {
 
+    void updateav(int id);
+    void updateav1(int id);
     //public  void ajouteravis(T t) ;
    /* public void modifier(T t) ;
 
@@ -22,4 +24,6 @@ public interface IServiceAvis <T> {
     public void ajouteravis(Avis avis);
 
     public void supprimerav(int id) ;
+    public List<T> getAllavisuser();
+
 }

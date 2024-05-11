@@ -2,6 +2,10 @@ package Controllers;
 
 import Entities.Avis;
 import Services.AvisService;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import util.DataSource;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,11 +22,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
+
+import static java.awt.Color.*;
 
 public class afficheravisback  {
     @FXML
@@ -236,12 +243,40 @@ conditionLabel.setText("★");
                     deleteButton.getStyleClass().add("buttonn");
 
 
-                    HBox actionBox = new HBox( deleteButton);
+                    ImageView deleteIcon1 = new ImageView(new Image(getClass().getResourceAsStream("/images/icons8-delete-24.png")));
+                    deleteIcon1.setFitHeight(20); // Taille de l'icône
+                    deleteIcon1.setFitWidth(20);
+                    Button etat = new Button("Delete");
+                    if (item.isEtat()==true)
+                    {etat.setStyle("-fx-background-color:green;-fx-background-radius: 44;-fx-padding: 11 ");
+                    etat.setText("published");}
+
+                    else {etat.setStyle("-fx-background-color:red;-fx-background-radius: 44;-fx-padding: 11 ");
+                        etat.setText("unpublished");}
+                    deleteIcon.setId("update");
+                    deleteButton.getStyleClass().add("buttonn");
+
+
+
+
+                    HBox actionBox = new HBox( deleteButton,etat);
                     actionBox.setSpacing(5);
                     actionBox.setMinWidth(300);
                     actionBox.setMaxWidth(300);
 
 
+
+
+                    etat.setOnAction(event -> {
+                        if(item.isEtat()==true){ serviceAvis.updateav1(item.getIdAV());}
+                        if(item.isEtat()==false){ serviceAvis.updateav(item.getIdAV());}
+                        //List<Avis> agences =  serviceAvis.getAllavis();
+                        // tab1.getItems();
+                        updateTable_r();
+                        contentArea.setVisible(false);
+                        contentArea.setVisible(true);
+                        //  tab1.getItems().remove(item); // Mise à jour immédiate de l'interface
+                    });
 
 
                     deleteButton.setOnAction(event -> {
