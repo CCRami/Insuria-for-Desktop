@@ -82,17 +82,28 @@ public class AffichagefrontSinistre {
         descriptionLabel.setPrefWidth(280);
         descriptionLabel.setMinHeight(Label.USE_PREF_SIZE);
 
-        VBox contentBox = new VBox(titleLabel, descriptionLabel);
-        contentBox.getStyleClass().add("card__content");
-        contentBox.setSpacing(5);
-        contentBox.setVisible(false);
+        card.getChildren().addAll(imageView, titleLabel, descriptionLabel);
 
-        card.getChildren().addAll(imageView, contentBox);
-        card.setOnMouseEntered(e -> contentBox.setVisible(true));
-        card.setOnMouseExited(e -> contentBox.setVisible(false));
+        // Apply hover effects with fluorescent colors
+        card.setOnMouseEntered(e -> {
+            titleLabel.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000; -fx-font-weight: bold; -fx-padding: 5px; -fx-background-radius: 5px;"); // Neon green background with black text
+            descriptionLabel.setStyle("-fx-background-color: #ffffff; -fx-text-fill: #000000; -fx-padding: 5px; -fx-background-radius: 5px;"); // Neon pink background with black text
+        });
+
+        card.setOnMouseExited(e -> {
+            titleLabel.getStyleClass().clear();
+            titleLabel.getStyleClass().add("card__title"); // Revert to original class
+            titleLabel.setStyle(""); // Clear inline styles
+
+            descriptionLabel.getStyleClass().clear();
+            descriptionLabel.getStyleClass().add("card__description"); // Revert to original class
+            descriptionLabel.setStyle(""); // Clear inline styles
+        });
 
         return card;
     }
+
+
 
     @FXML
     private void handleSearch(ActionEvent event) {
