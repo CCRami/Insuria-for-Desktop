@@ -75,36 +75,26 @@ public class of {
             // Construct JSON object with offer details
             JSONObject offerJson = new JSONObject();
             offerJson.put("id", offre.getId_off());
-            offerJson.put("advantage\n", offre.getAdvantage());
-            offerJson.put("conditions\n", offre.getConditions());
-            offerJson.put("discount\n", offre.getDiscount());
-            offerJson.put("duration\n", offre.getDuration());
+            offerJson.put("advantage", offre.getAdvantage()); // Remove the "\n" characters
+            offerJson.put("conditions", offre.getConditions()); // Remove the "\n" characters
+            offerJson.put("discount", offre.getDiscount()); // Remove the "\n" characters
+            offerJson.put("duration", offre.getDuration()); // Remove the "\n" characters
 
-// Constructing a single-line representation of the JSON object
-            StringBuilder jsonString = new StringBuilder("{");
+            // Generate JSON string with each attribute on a separate line
+            StringBuilder jsonString = new StringBuilder();
             for (String key : offerJson.keySet()) {
-                jsonString.append("\"").append(key).append("\":\"").append(offerJson.get(key)).append("\", ");
+                jsonString.append(key).append(": ").append(offerJson.get(key)).append("\n");
             }
-// Remove the trailing comma and space if there are any entries
-            if (jsonString.length() > 2) {
-                jsonString.setLength(jsonString.length() - 2); // Remove the last comma and space
-            }
-            jsonString.append("}");
-
-            String offerJsonString = offerJson.toString();
-            System.out.println(offerJsonString);
-
-
 
             // Generate QR code using the encoded JSON string
-            int width = 50;
-            int height = 50;
+            int width = 200; // Increase width for better readability
+            int height = 200; // Increase height for better readability
 
             MultiFormatWriter writer = new MultiFormatWriter();
             Map<EncodeHintType, Object> hints = new HashMap<>();
             hints.put(EncodeHintType.MARGIN, 1);
 
-            BitMatrix matrix = writer.encode(offerJsonString, BarcodeFormat.QR_CODE, width, height, hints);
+            BitMatrix matrix = writer.encode(jsonString.toString(), BarcodeFormat.QR_CODE, width, height, hints);
             Image qrImage = matrixToImage(matrix);
 
             qrCodeImageView.setImage(qrImage); // Display the generated QR code Image

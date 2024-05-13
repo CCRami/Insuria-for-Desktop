@@ -77,7 +77,7 @@ public class afficheravisbackbyagence {
 
 
     public void initialize(Agence id) {
-        avis = serviceAvis.getAllavisbyagence(id);
+        avis = serviceAvis.getAllavisbyagenceuser(id);
         int column = 0;
         int row = 1;
         try {

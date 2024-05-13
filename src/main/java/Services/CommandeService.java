@@ -20,13 +20,13 @@ public class CommandeService {
         cnx= DataSource.getInstance().getCnx();
     }
 
-    public void addCommande(Commande commande, int id) {
+    public void addCommande(Commande commande, int userId) {
         String sql = "INSERT INTO commande (montant, date_effet, date_exp, full_doa, doa_com_id, user_id, ins_value, is_checked) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement pst = cnx.prepareStatement(sql)) {
+        try (PreparedStatement pst = cnx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             float insValue = commande.getIns_value();
-            float montant = insValue * 0.0075f; // Multiply insValue by 0.75
+            float montant = insValue * 0.0075f; // Multiply insValue by 0.0075 to get montant
 
-            // Now set the calculated montant in the prepared statement
+            // Set parameters for the prepared statement
             pst.setFloat(1, montant);
             LocalDate dateEffet = LocalDate.now();
             pst.setString(2, dateEffet.toString());
@@ -37,36 +37,88 @@ public class CommandeService {
             String fullDoaJson = convertToJson(commande.getDoa_full());
             pst.setString(4, fullDoaJson);
 
-            // Set doa_com_id, user_id, and ins_value
             pst.setInt(5, commande.getDoa_com_id().getId());
-            pst.setInt(6, id); // Assuming user_id is 1 for now
+            pst.setInt(6, userId);
             pst.setFloat(7, insValue);
-            pst.setFloat(8, 0);
+            pst.setBoolean(8, false);
 
-            pst.executeUpdate();
+            int rowsAffected = pst.executeUpdate();
+
+            // Retrieve and set the generated ID to the Commande object
+            try (ResultSet generatedKeys = pst.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int generatedId = generatedKeys.getInt(1);
+                    commande.setId(generatedId);
+                    System.out.println("Inserted Commande with ID: " + generatedId);
+                }
+            }
         } catch (SQLException e) {
             throw new RuntimeException("Error adding Commande", e);
         }
     }
 
+    // In CommandeService.java
 
-    // Utility method to convert ArrayList<String> to JSON string
+    public void updateCommande(Commande commande, int id) {
+        String updateSql = "UPDATE commande SET montant = ?, ins_value = ?, full_doa = ? WHERE id = ?";
+        try (PreparedStatement updatePst = cnx.prepareStatement(updateSql)) {
+            float insValue = commande.getIns_value();
+            float montant = insValue * 0.0075f;
+            updatePst.setFloat(1, montant);
+            updatePst.setFloat(2, commande.getIns_value());
+
+            String fullDoaJson = convertToJson(commande.getDoa_full());
+            System.out.println("Converted fullDoaJson: " + fullDoaJson); // Debug print
+            updatePst.setString(3, fullDoaJson);
+
+            updatePst.setInt(4, id);
+
+            int rowsAffected = updatePst.executeUpdate();
+
+            if (rowsAffected == 0) {
+                System.out.println("No rows affected. Commande with ID " + id + " not found.");
+            } else {
+                System.out.println("Commande updated in the database.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating Commande", e);
+        }
+    }
+
+
+
+    // Updated convertToJson method to handle multiple fields correctly
+    // Refined convertToJson method to ensure accurate JSON conversion
     private String convertToJson(ArrayList<String> dynamicFields) {
-        StringBuilder jsonBuilder = new StringBuilder("[");
+        StringBuilder jsonBuilder = new StringBuilder("{");
         for (String field : dynamicFields) {
-            // Split the label and value and format them into a JSON object
-            String[] parts = field.split(":");
-            if (parts.length == 2) {
-                jsonBuilder.append("{\"").append(parts[0].trim()).append("\":\"").append(parts[1].trim()).append("\"},");
+            // Check if field is already a JSON string
+            if (field.trim().startsWith("{") && field.trim().endsWith("}")) {
+                jsonBuilder.append(field.substring(1, field.length() - 1)).append(",");
+            } else {
+                String[] parts = field.split(":");
+                if (parts.length == 2) {
+                    jsonBuilder.append("\"").append(parts[0].trim()).append("\":\"")
+                            .append(parts[1].trim()).append("\",");
+                } else {
+                    System.out.println("Skipping invalid field: " + field);
+                }
             }
         }
-        // Remove the last comma and close the JSON array
         if (jsonBuilder.length() > 1) {
-            jsonBuilder.deleteCharAt(jsonBuilder.length() - 1);
+            jsonBuilder.deleteCharAt(jsonBuilder.length() - 1); // Remove last comma
         }
-        jsonBuilder.append("]");
+        jsonBuilder.append("}");
+        System.out.println("Final JSON string: " + jsonBuilder.toString());
         return jsonBuilder.toString();
     }
+
+
+
+
+
+
+
 
     public List<Commande> getAllCommandes() {
         List<Commande> commandes = new ArrayList<>();

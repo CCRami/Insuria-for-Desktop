@@ -286,4 +286,20 @@ public class dashboardFront implements Initializable{
             e.printStackTrace();
         }
     }
+    @FXML
+    void gotobasket(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CommandeBasket.fxml"));
+            Node eventFXML = loader.load();
+            if (vboxdash != null) {
+                vboxdash.getChildren().clear(); // Nettoyer le contenu existant
+                vboxdash.getChildren().add(eventFXML); // Ajouter le contenu chargé
+            } else {
+                System.out.println("Erreur : contentArea est null, vérifiez votre fichier FXML.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

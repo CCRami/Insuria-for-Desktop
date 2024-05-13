@@ -37,6 +37,9 @@ public class AffichagefrontPolice {
     @FXML
     private HBox sinistreFilterBox;
 
+    private Integer selectedSinistreId = null; // Variable to store selected sinistre ID
+    private List<Police> filteredBySinistrePolicies;
+
     @FXML
     public void initialize() {
         populateSinistreFilters();
@@ -79,19 +82,13 @@ public class AffichagefrontPolice {
 
         // Execute the search in a background thread if it might be long-running
         new Thread(() -> {
-            if (searchTerm.isEmpty()) {
-                Platform.runLater(this::loadPolice); // Use method reference for better readability
-            } else {
-                // Fetch all policies only once to avoid multiple database calls
-                List<Police> allPolicies = policeService.getAll();
-                List<Police> filteredPolicies = allPolicies.stream()
-                        .filter(police -> police.getPoliceName().toLowerCase().contains(searchTerm) ||
-                                police.getDescriptionPolice().toLowerCase().contains(searchTerm))
-                        .collect(Collectors.toList());
+            List<Police> policiesToSearch = filteredBySinistrePolicies != null ? filteredBySinistrePolicies : policeService.getAll();
+            List<Police> filteredPolicies = policiesToSearch.stream()
+                    .filter(police -> police.getPoliceName().toLowerCase().contains(searchTerm) ||
+                            police.getDescriptionPolice().toLowerCase().contains(searchTerm))
+                    .collect(Collectors.toList());
 
-                // Update UI in the JavaFX Application Thread
-                Platform.runLater(() -> createAndDisplayPoliceCards(filteredPolicies));
-            }
+            Platform.runLater(() -> createAndDisplayPoliceCards(filteredPolicies));
         }).start();
     }
 
@@ -101,7 +98,11 @@ public class AffichagefrontPolice {
         sinistreFilterBox.setStyle(TABS_STYLE);
         Button allButton = new Button("All");
         applyButtonStyle(allButton);
-        allButton.setOnAction(event -> loadPolice());
+        allButton.setOnAction(event -> {
+            selectedSinistreId = null;
+            filteredBySinistrePolicies = null;
+            loadPolice();
+        });
         sinistreFilterBox.getChildren().add(allButton);
 
         // Populate buttons for each sinistre
@@ -215,15 +216,11 @@ public class AffichagefrontPolice {
         }
     }
     private void filterPoliciesBySinistre(int sinistreId) {
-        // Clear the current display
-        cardsContainer.getChildren().clear();
-
-        // Fetch filtered policies
-        List<Police> filteredPolicies = policeService.getPoliciesBySinistre(sinistreId);
-        System.out.println("Found " + filteredPolicies.size() + " policies for sinistre ID: " + sinistreId);
-
-        // Use the createAndDisplayPoliceCards method to add filtered policies to the UI
-        createAndDisplayPoliceCards(filteredPolicies);
+        new Thread(() -> {
+            filteredBySinistrePolicies = policeService.getPoliciesBySinistre(sinistreId);
+            System.out.println("Found " + filteredBySinistrePolicies.size() + " policies for sinistre ID: " + sinistreId);
+            Platform.runLater(() -> createAndDisplayPoliceCards(filteredBySinistrePolicies));
+        }).start();
     }
     private void generatePDF(Police police) {
         Document document = new Document(PageSize.A4);

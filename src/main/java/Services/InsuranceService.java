@@ -133,11 +133,11 @@ public class InsuranceService {
                         Police pol = policeService.getPoliceById(rs.getInt("pol_id"));
 
                         String doaJson = rs.getString("doa");
-                        logger.info("DOA JSON from database: " + doaJson); // Logging statement
+
                         ArrayList<String> doa = null;
                         if (doaJson != null) {
                             doa = parseJson(doaJson);
-                            logger.info("Parsed DOA: " + doa); // Logging statement
+
                         }
 
                         return new Insurance(rs.getInt("id"), rs.getString("name_ins"), rs.getFloat("montant"),
@@ -146,7 +146,7 @@ public class InsuranceService {
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Error getting insurance by ID", e);
+
             // throw new CustomException("Error getting insurance by ID", e); // You can define CustomException
         }
         return null;

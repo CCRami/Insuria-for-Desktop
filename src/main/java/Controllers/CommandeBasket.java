@@ -25,6 +25,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -109,6 +110,11 @@ public class CommandeBasket implements Initializable {
                         if (totalAmount-item.getMontant()<1)
                             totalPriceLabel.setText("0.0 DT");
                     });
+                    Button updateButton = new Button("Update");
+                    updateButton.getStyleClass().add("button2"); // Apply a CSS class if needed
+                    updateButton.setOnAction(event -> {
+                        openModifyPopup(item);
+                    });
 
                     // Adding all labels to the grid
                     hbox.getChildren().addAll(
@@ -116,7 +122,8 @@ public class CommandeBasket implements Initializable {
                             amountValueLabel,
                              effectiveDateValueLabel,
                              expirationDateValueLabel,
-                            deleteButton
+                            deleteButton,
+                            updateButton
                     );
                     setGraphic(hbox);
                     setText(null);
@@ -125,6 +132,29 @@ public class CommandeBasket implements Initializable {
             }
         });
     }
+    @FXML
+    private void openModifyPopup(Commande cmd) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditCommande.fxml"));
+            Parent root = loader.load();
+
+            System.out.println("Opening modify popup for Commande: " + cmd);
+
+            EditCommande controller = loader.getController();
+            controller.setCommandeData(cmd);
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Modify Commande");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+            totalAmount=0;
+            initialize(null, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void delete(int id) {
         com.deleteCommande(id); // Ici, sinistreService doit être l'instance de ton service qui contient la méthode supprimer
     }

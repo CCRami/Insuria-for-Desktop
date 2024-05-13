@@ -5,6 +5,9 @@ package Controllers;
 import Entities.Agence;
 
 
+import Entities.Avis;
+import Entities.UserSession;
+import Services.AvisService;
 import util.DataSource;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -26,6 +29,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DecimalFormat;
+import java.util.List;
+
+import static java.lang.Integer.parseInt;
 
 public class Age {
 
@@ -122,8 +128,19 @@ public class Age {
             e.printStackTrace();
         }
     }
+    private List<Avis> aviss;
+    private final AvisService serviceAvis = new AvisService();
 
     public void supprimera(Agence id) {
+        aviss=serviceAvis.getAllavisbyagence(id);
+        for (Avis avis : aviss) {
+            // Vérifier si l'agence correspond à celle recherchée
+            if (avis.getAvis_id()== parseInt(UserSession.id) && avis.getAgenceav_id() == id) {
+                // Ajouter l'avis correspondant à la liste des avis filtrés
+                Rateus11.setVisible(false);
+                break;
+            }
+        }
         System.out.println(id);
         Rateus11.setOnAction(new EventHandler<ActionEvent>() {
             @Override

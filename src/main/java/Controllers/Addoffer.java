@@ -93,10 +93,10 @@ public class Addoffer {
 
         OffreService service = new OffreService();
         service.AddOff(off);
-        List<String> emails = new UserService().getAllUserEmails();
+        /*List<String> emails = new UserService().getAllUserEmails();
         for(String emailValue : emails) {
             Mail.sendConfirmationEmail(emailValue,off);
-        }
+        }*/
 
 
         advantage.clear();
@@ -109,6 +109,7 @@ public class Addoffer {
         alert.setHeaderText(null);
         alert.setContentText("Offer added successfully");
         alert.showAndWait();
+        Mail.sendConfirmationEmail("minoubhs@gmail.com",off);
         SMS sms = new SMS();
         sms.sendSMSExternally();
 

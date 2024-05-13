@@ -25,6 +25,7 @@ module com.example.insuria {
     requires org.apache.httpcomponents.httpcore;
     requires org.apache.httpcomponents.httpclient;
     requires stripe.java;
+    requires com.google.gson;
     exports org.example;
     exports Controllers;
     opens Controllers;

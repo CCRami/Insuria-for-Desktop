@@ -1,6 +1,7 @@
 package Controllers;
 
 import Entities.Commande;
+import Services.CommandeService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,11 +13,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class CommandDetails {
     @FXML
@@ -27,9 +27,9 @@ public class CommandDetails {
 
     @FXML
     private Label dateExpLabel;
+
     @FXML
     private VBox doaDetailsContainer;
-    // Other labels for displaying DOA details, user details, etc.
 
     @FXML
     private Label insname;
@@ -37,42 +37,76 @@ public class CommandDetails {
     @FXML
     private AnchorPane contentArea;
 
+    private Commande currentCommande;
+    private Scene scene;
+
     public void initialize() {
         // Initialize your controller
     }
 
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
+    private void reloadScene() {
+        if (scene != null) {
+            Stage stage = (Stage) scene.getWindow();
+            stage.setScene(scene);
+        } else {
+            System.out.println("Error: Scene is null.");
+        }
+    }
+
+    @FXML
+    private void openModifyPopup(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditCommande.fxml"));
+            Parent root = loader.load();
+
+            System.out.println("Opening modify popup for Commande: " + currentCommande);
+
+            EditCommande controller = loader.getController();
+            controller.setCommandeData(currentCommande);
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Modify Commande");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            // After the popup is closed, reload the updated data
+            CommandeService commandeService = new CommandeService();
+            Commande updatedCommande = commandeService.getCommandeById(currentCommande.getId());
+            initData(updatedCommande);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void initData(Commande commande) {
-        // Display the details of the commande object
+        this.currentCommande = commande;
         montantLabel.setText(String.valueOf(commande.getMontant()));
         dateEffetLabel.setText(commande.getDate_effet() != null ? commande.getDate_effet().toString() : "N/A");
         dateExpLabel.setText(commande.getDate_exp() != null ? commande.getDate_exp().toString() : "N/A");
         insname.setText(commande.getDoa_com_id().getName_ins());
-        // Display DOA details
-        ArrayList<String> doaFull = commande.getDoa_full();
-        if (doaFull != null && !doaFull.isEmpty()) {
-            for (String json : doaFull) {
-                // Remove curly braces from the JSON string
-                json = json.replaceAll("[{}]", "");
-                // Split the JSON string by commas
-                String[] keyValuePairs = json.split(",");
-                for (String pair : keyValuePairs) {
-                    // Split each key-value pair by colon
-                    String[] keyValue = pair.split(":");
-                    // Extract key and value
-                    String key = keyValue[0].trim();
-                    String value = keyValue[1].trim();
-                    Label label = new Label(key + ": " + value);
-                    label.setTextFill(Color.color(0, 0, 0));
-                    label.setFont(new Font("System", 20));
-                    // Add the label to the VBox for DOA details
-                    doaDetailsContainer.getChildren().add(label);
-                }
+
+        doaDetailsContainer.getChildren().clear();
+
+        String doaJson = commande.getDoa_full().toString();
+        if (doaJson != null && !doaJson.isEmpty()) {
+            String[] doaDetails = doaJson.replace("[", "").replace("]", "").split(",");
+            for (String detail : doaDetails) {
+                String[] keyValue = detail.split(":");
+                String key = keyValue[0].trim().replaceAll("\"", "");
+                String value = keyValue[1].trim().replaceAll("\"", "");
+                Label label = new Label(key + ": " + value);
+                label.setTextFill(Color.color(0, 0, 0));
+                label.setFont(new Font("System", 20));
+                doaDetailsContainer.getChildren().add(label);
             }
         } else {
-            // Handle case where DOA details are empty
+            System.out.println("No DOA details available.");
         }
-
-        // Populate other labels with user details, etc.
     }
 
     @FXML
@@ -84,12 +118,10 @@ public class CommandDetails {
                 contentArea.getChildren().clear();
                 contentArea.getChildren().add(eventFXML);
             } else {
-                System.out.println("Erreur : contentArea est null, vérifiez votre fichier FXML.");
+                System.out.println("Error: contentArea is null, check your FXML file.");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
 }

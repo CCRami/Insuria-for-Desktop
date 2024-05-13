@@ -15,7 +15,7 @@
 
 <AnchorPane prefHeight="561.0" prefWidth="1141.0" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.addReclamation">
    <children>
-      <VBox alignment="CENTER" layoutY="5.0" prefHeight="520.0" prefWidth="922.0" spacing="10.0" styleClass="white-bg, shadow" AnchorPane.leftAnchor="200.0">
+      <VBox alignment="CENTER" layoutY="5.0" prefHeight="520.0" prefWidth="922.0" spacing="10.0" styleClass="white-bg, shadow" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="300.0">
          <children>
             <GridPane hgap="10.0" vgap="10.0">
                <columnConstraints>

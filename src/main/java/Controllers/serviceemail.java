@@ -41,16 +41,17 @@ public class serviceemail {
             StringBuilder emailContent = new StringBuilder();
             emailContent.append("<html><body>");
             emailContent.append("<div style='text-align: center;'>");
-            //String imageUrl = "https://drive.google.com/uc?export=view&id=1PF9iT3BL-ZP_mEncQVTVjeSQ3zAhuuIL";
-           // emailContent.append("<img src='" + imageUrl + "' alt='Logo' width='100' height='100' style='border-radius: 50%;'>");
+            String imageUrl = "https://drive.google.com/uc?export=view&id=1PF9iT3BL-ZP_mEncQVTVjeSQ3zAhuuIL";
+            emailContent.append("<img src='" + imageUrl + "' alt='Logo' width='100' height='100' style='border-radius: 50%;'>");
             emailContent.append("<h1>Assurance Insuria</h1>");
-            emailContent.append("<p>Avertissement!!!</p>");
+            emailContent.append("<p>Warning!!!</p>");
             emailContent.append("</div>");
             emailContent.append("<p>Cher Client,</p>");
-            emailContent.append("<p>Nous avez ecrit un commentaire contient un mot grave </p>");
-
+            emailContent.append("<p>you wrote a comment containing a bad word </p>");
+            emailContent.append("<p>If you have any questions or require further assistance regarding this compensation, please do not hesitate to reach out to us.<p>");
+            emailContent.append("<p>Best regards,<br>Insuria Team</p>");
             emailContent.append("</body></html>");
-            message.setText("Nous avez ecrit un commentaire contient un mot grave ");
+            //    message.setText("Nous avez ecrit un commentaire contient un mot grave ");
             message.setContent(emailContent.toString(), "text/html");
             message.setSubject("Avertissement");
             Transport.send(message, message.getAllRecipients());

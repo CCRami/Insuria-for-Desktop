@@ -20,9 +20,9 @@
 <AnchorPane prefHeight="720.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.dashboardFront">
    <children>
       <BorderPane fx:id="myBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="1280.0" />
-        <HBox prefHeight="118.0" prefWidth="1280.0" spacing="10.0" style="-fx-background-color: #051B46;">
+        <HBox prefHeight="107.0" prefWidth="1280.0" spacing="10.0" style="-fx-background-color: #051B46;">
             <children>
-                <ImageView fitHeight="117.0" fitWidth="265.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="118.0" fitWidth="123.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/logo.png" />
                     </image>
@@ -106,7 +106,7 @@
                         <Insets bottom="33.0" top="22.0" />
                     </HBox.margin>
                 </HBox>
-                <ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="90.0" prefWidth="234.0">
+                <ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="105.0" prefWidth="254.0">
                     <buttons>
                         <ImageView fx:id="profileimg" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                             <effect>
@@ -122,17 +122,31 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                        <VBox alignment="CENTER" prefHeight="91.0" prefWidth="100.0" spacing="5.0">
                             <children>
-                                <Button fx:id="Profilebtn" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#GotoProfile" styleClass="button22" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" text="Profile" />
-                                <Button fx:id="Logoutbtn" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#GotoLogout" prefHeight="30.0" styleClass="button22" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" text="Logout" textFill="RED">
+                                <Button fx:id="Profilebtn" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" maxHeight="25.0" mnemonicParsing="false" onAction="#GotoProfile" prefHeight="14.0" prefWidth="76.0" styleClass="button22" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" text="Profile">
+                           <font>
+                              <Font size="13.0" />
+                           </font></Button>
+                                <Button fx:id="Logoutbtn" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" maxHeight="25.0" mnemonicParsing="false" onAction="#GotoLogout" prefHeight="30.0" styleClass="button22" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" text="Logout" textFill="RED">
                                     <effect>
                                         <InnerShadow>
                                  <color>
                                     <Color red="1.0" />
                                  </color></InnerShadow>
                                     </effect>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
                                 </Button>
+                        <Button maxHeight="25.0" mnemonicParsing="false" onAction="#gotobasket" prefHeight="30.0" styleClass="button22" stylesheets="@tn/esprit/applicatiopnpi/style/dashboardDesign.css" text="Basket">
+                           <VBox.margin>
+                              <Insets bottom="1.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
                             </children>
                         </VBox>
                     </buttons>
@@ -140,11 +154,11 @@
                         <Insets />
                     </opaqueInsets>
                     <padding>
-                        <Insets right="20.0" top="20.0" />
+                        <Insets right="20.0" top="3.0" />
                     </padding>
                 </ButtonBar>
             </children>
         </HBox>
-        <VBox fx:id="vboxdash" layoutY="113.0" prefHeight="600.0" prefWidth="1280.0" />
+        <VBox fx:id="vboxdash" layoutY="120.0" prefHeight="600.0" prefWidth="1280.0" />
    </children>
 </AnchorPane>

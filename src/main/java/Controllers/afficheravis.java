@@ -70,7 +70,7 @@ public class afficheravis implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        aviss = serviceAvis.getAllavis();
+        aviss = serviceAvis.getAllavisuser();
         int column = 0;
         int row = 1;
         try {

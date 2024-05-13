@@ -2,6 +2,7 @@ package Controllers;
 
 import Entities.Agence;
 import Entities.Avis;
+import Entities.UserSession;
 import Services.AgenceService;
 import Services.AvisService;
 import javafx.fxml.FXML;
@@ -20,6 +21,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.control.Pagination;
+
+import static java.lang.Integer.parseInt;
 
 public class Afficher implements Initializable {
 
@@ -67,7 +70,7 @@ public class Afficher implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        aviss=serviceAvis.getAllavis();
        agences = serviceAgence.getAllage();
         int column = 0;
         int row = 1;
@@ -79,8 +82,15 @@ public class Afficher implements Initializable {
                     Age age = fxmlLoader.getController();
                     //System.out.println(agences);
                     age.setData(agence);
+                    for (Avis avis : aviss) {
+                        // Vérifier si l'agence correspond à celle recherchée
+                        if (avis.getAvis_id()!= parseInt(UserSession.id) && avis.getAgenceav_id() != agence) {
+                            // Ajouter l'avis correspondant à la liste des avis filtrés
+                            age.supprimera(agence);
+                        }
+                    }
                    // parametre=agence;
-                    age.supprimera(agence);
+
                     age.reviewsbyagence(agence);
                   //  age.Rateus1(agence);
                    // Button rateusButton = age.Rateus1(agence);

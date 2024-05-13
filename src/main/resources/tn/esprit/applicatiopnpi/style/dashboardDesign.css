@@ -422,14 +422,13 @@ and open the template in the editor.
 .button22 {
     -fx-background-color: linear-gradient(to right, #fcaf3d, #fcaf3d, #fcaf3d, #fcaf3d);
     -fx-text-fill: white;
-    -fx-font-family: inherit;
-    -fx-font-size: 14px;
-    -fx-border-radius: 30px;
+    -fx-font-size: 12px;
+    -fx-border-radius: 25px;
     -fx-padding: 0.75em 0em; /* Hauteur de ligne ajustée pour la hauteur du bouton */
     -fx-background-insets: 0, 1, 2;
     -fx-cursor: hand;
-    -fx-pref-width: 9em;
-    -fx-pref-height: 3em;
+    -fx-pref-width: 65px;
+    -fx-pref-height: 15px;
 }
 .chart-pie-label {
     -fx-font-size: 14px;
